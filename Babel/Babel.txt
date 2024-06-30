@@ -3,7 +3,7 @@
 ## Author: SplendidAchievers
 ## APIVersion: 101040 101041
 ## AddOnVersion: 1
-## Version: 0.11
+## Version: 1.012
 ## SavedVariables: MAsBabel_Vars
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
