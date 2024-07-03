@@ -91,7 +91,7 @@ BB.AddonList["LibAddonMenu-2.0"] = function() if not LibAddonMenu2 then return f
     RELOAD_DIALOG_RELOAD_BUTTON = "重载",
     RELOAD_DIALOG_DISCARD_BUTTON = "放弃",
   }
-  LibAddonMenu2.util.L = ZO_ShallowTableCopy(Table, LibAddonMenu2.util.L)
+  LibAddonMenu2.util.L = BB.TableCopy(Table, LibAddonMenu2.util.L)
 return true end
 
 --[[ Template

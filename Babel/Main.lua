@@ -4,11 +4,11 @@ MABabel = {}
 --Basic Info
 local BB = MABabel
 BB.Name = "Babel"
-BB.Title = "Babel"
+BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "0.11"
+BB.Version = "1.038"
 
---Default Setting
+--Default/Saved Setting
 BB.Default = {
   ["BanList"] = {}
 }
@@ -18,10 +18,16 @@ BB.AddonList = {}
 BB.ActiveAddons = {}
 BB.AfterPart = {}
 
+--Original Fun
+local OldGetString = GetString
+local OldFireCallbacks = CALLBACK_MANAGER.FireCallbacks
+local OldCreateStringId = ZO_CreateStringId
+
 -------------------
 ----Start point----
 -------------------
 local OnLoading = "Babel"
+local SupportCount = 0
 --Loaded before Other Addons
 local function OnAddOnLoaded(eventCode, addonName)
   --Saved Setting
@@ -31,9 +37,14 @@ local function OnAddOnLoaded(eventCode, addonName)
   BB.SetAfterPart(BB.BuildMenu)
   --Finish Loading
   EVENT_MANAGER:UnregisterForEvent(BB.Name, EVENT_ADD_ON_LOADED)
+  --Undo Function Change
+  GetString = OldGetString
+  CALLBACK_MANAGER.FireCallbacks = OldFireCallbacks
+  ZO_CreateStringId = OldCreateStringId
   
   --Start Localization
   for Addon, Fun in pairs(BB.AddonList) do
+    SupportCount = SupportCount + 1
     if not BB.SV.BanList[Addon] then
       OnLoading = Addon
       BB.ActiveAddons[Addon] = Fun()
@@ -70,8 +81,6 @@ end
 ----Menu Part----
 -----------------
 
-local LAM = LibAddonMenu2
-
 local function TableOfKey(Table)
   local String = {}
   for Key, Value in pairs(Table) do
@@ -100,9 +109,12 @@ local function StatusOfTable(Table)
 end
 
 function BB.BuildMenu()
+  local LAM = LibAddonMenu2
+  if not LAM then return end
+
   local panelData = {
     type = "panel",
-    name = BB.Name,
+    name = BB.Title,
     displayName = BB.Title,
     author = BB.Author,
     version = BB.Version,
@@ -147,12 +159,29 @@ function BB.BuildMenu()
     },
     {
       type = "description",
-      title = "插件（文件夹名）：已支持 / |c008000已启用|r / |cFF0000已禁用|r",
+      title = "插件（文件夹名）：已支持 ("..SupportCount.." 款) / |c008000已启用|r / |cFF0000已禁用|r\r\n\r\n  *部分插件的汉化，不支持被部分或完全禁用",
       text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
       width = "full",	
     },
 	}
   LAM:RegisterOptionControls(BB.Name.."_Options", options)
+end
+
+----------------
+----Tool Fun----
+----------------
+
+--Overwrite elements existing in the source to the target
+function BB.TableCopy(Source, Target)
+  Target = Target or {}
+  for key, value in pairs(Source) do
+    if type(value) == "table" then
+      Target[key] = BB.TableCopy(Source[key], Target[key])
+    else
+      Target[key] = value
+    end
+  end
+  return Target
 end
 
 ------------------

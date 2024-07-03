@@ -1112,7 +1112,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     F12 = "ESOUI.COM插件 <<1>> v<<2>>：誓约、试炼和世界Boss日常追踪，自动邀请和自动分享任务。",
   }
   --Special Setting
-  ZO_ShallowTableCopy(L, WPamA.i18n)
+  WPamA.i18n = BB.TableCopy(L, WPamA.i18n)
 return true end
 
 --WritWorthy

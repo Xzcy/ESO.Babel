@@ -56,7 +56,7 @@ BB.AddonList["AdvancedFilters"] = function() if not AdvancedFilters then return 
     Polymorph = GetString(SI_COLLECTIBLECATEGORYTYPE12),
     Personality = GetString(SI_COLLECTIBLECATEGORYTYPE9),
   }
-  AdvancedFilters.strings = ZO_ShallowTableCopy(Table, AdvancedFilters.ENstrings)
+  AdvancedFilters.strings = BB.TableCopy(Table, AdvancedFilters.ENstrings)
 return true end
 
 --Arkadius' Trade Tools
@@ -92,7 +92,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
     ATT_STR_BUTTON_FORCE_REFRESH_TOOLTIP            = "从LibHistoire刷新数据",
     ATT_STR_KEYBIND_TOGGLE_MAIN_WINDOW              = "显示或隐藏主界面",
   }
-  ZO_ShallowTableCopy(ToolString, ArkadiusTradeTools.Localization)
+  BB.TableCopy(ToolString, ArkadiusTradeTools.Localization)
   --Statistics
   local StatisticsString = {
     ATT_STR_STATISTICS               = "统计",
@@ -109,7 +109,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
     ATT_STR_FILTER_TEXT_TOOLTIP      = "检索用户名或公会名",
     ATT_STR_FILTER_SUBSTRING_TOOLTIP = "在精确搜索和关键词搜索间切换。两种方式都忽略大小写",
   }
-  ZO_ShallowTableCopy(StatisticsString, (ArkadiusTradeTools.Modules.Statistics or {}).Localization)
+  BB.TableCopy(StatisticsString, (ArkadiusTradeTools.Modules.Statistics or {}).Localization)
   --Sale
   local SaleString = {
     ATT_STR_SALES                                      = "销售",
@@ -171,7 +171,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
     ATT_FMTSTR_STATS_MASTER_WRIT            = SaleString["ATT_FMTSTR_STATS_MASTER_WRIT"],
     ATT_FMTSTR_STATS_NO_SALES               = SaleString["ATT_FMTSTR_STATS_NO_SALES"],
   }
-  ZO_ShallowTableCopy(SaleString, (ArkadiusTradeTools.Modules.Sales or {}).Localization)
+  BB.TableCopy(SaleString, (ArkadiusTradeTools.Modules.Sales or {}).Localization)
   --Purchase
   local PurchaseString = {
     ATT_STR_PURCHASES                = "购买",
@@ -190,7 +190,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
     ATT_STR_FILTER_SUBSTRING_TOOLTIP = "在精确搜索和关键词搜索间切换。两种方式都忽略大小写",
     ATT_STR_FILTER_COLUMN_TOOLTIP    = "在文本搜索中排除/包含此列",
   }
-  ZO_ShallowTableCopy(PurchaseString, (ArkadiusTradeTools.Modules.Purchases or {}).Localization)
+  BB.TableCopy(PurchaseString, (ArkadiusTradeTools.Modules.Purchases or {}).Localization)
   --Export
   local ExportString = {
     ATT_STR_EXPORTS                  = "导出",
@@ -212,7 +212,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
     ATT_STR_EXPORT_RELOAD_WARNING    = "输出已保存。请重新加载UI以写入硬盘",
     ATT_STR_INCLUDE_ONLY_MEMBERS     = "仅包含成员"
   }
-  ZO_ShallowTableCopy(ExportString, (ArkadiusTradeTools.Modules.Exports or {}).Localization)
+  BB.TableCopy(ExportString, (ArkadiusTradeTools.Modules.Exports or {}).Localization)
   
   --Special Setting(Fixed the font of timestamp)
   local OldFun1 = ArkadiusTradeToolsSortFilterList.Initialize
@@ -1538,6 +1538,359 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
   }
 return true end
 
+--Caro's Skill Point Saver
+--5.5.0
+BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
+  local L = {}
+  
+	L.SI_BINDING_NAME_CSPS_SHOW = "显示 Skill Point Saver"
+	L.SI_BINDING_NAME_CSPS_CPHK1 = "CP栏预设 热键 1"
+	L.SI_BINDING_NAME_CSPS_CPHK2 = "CP栏预设 热键 2"
+	L.SI_BINDING_NAME_CSPS_CPHK3 = "CP栏预设 热键 3"
+	L.SI_BINDING_NAME_CSPS_CPHK4 = "CP栏预设 热键 4"
+	L.SI_BINDING_NAME_CSPS_CPHK5 = "CP栏预设 热键 5"
+	L.SI_BINDING_NAME_CSPS_CPHK6 = "CP栏预设 热键 6"
+	L.SI_BINDING_NAME_CSPS_CPHK7 = "CP栏预设 热键 7"
+	L.SI_BINDING_NAME_CSPS_CPHK8 = "CP栏预设 热键 8"
+	L.SI_BINDING_NAME_CSPS_CPHK9 = "CP栏预设 热键 9"
+	L.SI_BINDING_NAME_CSPS_CPHK10 = "CP栏预设 热键 10"
+	L.SI_BINDING_NAME_CSPS_CPHK11 = "CP栏预设 热键 11"
+	L.SI_BINDING_NAME_CSPS_CPHK12 = "CP栏预设 热键 12"
+	L.SI_BINDING_NAME_CSPS_CPHK13 = "CP栏预设 热键 13"
+	L.SI_BINDING_NAME_CSPS_CPHK14 = "CP栏预设 热键 14"
+	L.SI_BINDING_NAME_CSPS_CPHK15 = "CP栏预设 热键 15"
+	L.SI_BINDING_NAME_CSPS_CPHK16 = "CP栏预设 热键 16"
+	L.SI_BINDING_NAME_CSPS_CPHK17 = "CP栏预设 热键 17"
+	L.SI_BINDING_NAME_CSPS_CPHK18 = "CP栏预设 热键 18"
+	L.SI_BINDING_NAME_CSPS_CPHK19 = "CP栏预设 热键 19"
+	L.SI_BINDING_NAME_CSPS_CPHK20 = "CP栏预设 热键 20"
+	
+	-- General UI
+	L.CSPS_MyWindowTitle = "Caro's Skill Point Saver"
+	
+	L.CSPS_Tooltiptext_Close = "关闭窗口"
+	L.CSPS_Tooltiptext_Read = "读取当前数据"
+	L.CSPS_Tooltiptext_Save = "保存显示的数据"
+	L.CSPS_Tooltiptext_Load = "加载保存的数据"
+	L.CSPS_Tooltiptext_Apply = "应用冠军点数"
+	L.CSPS_Tooltiptext_Help = "帮助!"
+	L.CSPS_Tooltiptext_CP1 = "你想要应用蓝CP吗？"
+	L.CSPS_Tooltiptext_CP2 = "你想要应用红CP吗？"
+	L.CSPS_Tooltiptext_CP3 = "你想要应用绿CP吗？"
+	
+	L.CSPS_Tooltiptext_ApplyCP = "应用冠军点数"
+	L.CSPS_Tooltiptext_ATTR = "应用属性点数"
+	L.CSPS_Tooltiptext_Sk = "应用技能点数"
+	
+	L.CSPS_Tooltiptext_MinusSk = "降级/删除 此技能"
+	L.CSPS_Tooltiptext_PlusSk = "升级/添加 此技能"
+	L.CSPS_Tooltiptext_Optional = "显示额外选项"
+	L.CSPS_Tooltiptext_SkIcon = "拖动技能，将其装备在热键栏上"
+	L.CSPS_Tooltiptext_SrcCombo	 = "选择导入/导出格式"
+	L.CSPS_Tooltiptext_AddProfile = "添加预设..."
+	L.CSPS_Tooltiptext_RenameProfile = "重命名预设..."
+	L.CSPS_Tooltiptext_DeleteProfile = "删除预设..."
+	L.CSPS_Tooltiptext_ProfileCombo = "选择一个配置文件以加载/保存数据..."
+	L.CSPS_Tooltiptext_MinusSkType = "删除该类型的所有技能"
+	L.CSPS_Tooltiptext_MinusSkLine = "删除此技能线中的所有技能"
+	L.CSPS_Tooltiptext_PlusSkLine = "添加所有被动技能，并将其设置为最高等级"
+	L.CSPS_Tooltiptext_MinusAttr = "移除属性点（按住 %s 为 10 点）"
+	L.CSPS_Tooltiptext_PlusAttr = "添加属性点（按住 %s 为 10 点）"
+	L.CSPS_Tooltiptext_SaveProfile = "保存预设..."
+	L.CSPS_Tooltiptext_CPProfile = "CP 预设" -- also used for the profile-section title
+	L.CSPS_Tooltiptext_PlusCP = "添加CP点 (按住 %s 为 10 点 / 下一阶段)"
+	L.CSPS_Tooltiptext_MinusCP = "移除CP点 (按住 %s 为 10 点 / 下一阶段)"
+	L.CSPS_Tooltiptext_CpHbHk = "点击改变该预设的热键"
+	L.CSPS_Tooltip_CPBar = "从列表中拖放一个技能到这里。右键单击可移除已装备的技能。"
+	L.CSPS_Tooltip_CPPUpdate = "上次更新: <<1>>/<<2>>/<<3>>"
+	L.CSPS_Tooltip_CPPWebsite = "如需了解最新信息，请访问\n<<1>>"
+	L.CSPS_Tooltip_CPCustomBar = "切换 HUD中是否显示 CP装备栏"
+	L.CSPS_Tooltip_CPCustomIcons = "切换 插件是否为装备的CP使用自定义图标"
+	
+	L.CSPS_Tooltip_ReverseLabel = "导入文本的标准顺序：编号 名称\n点击颠倒顺序为：名称 编号"
+	L.CSPS_Tooltip_CapLabel = "激活时，插件将不会尝试导入超过该账户可用点数的CP"
+	L.CSPS_Tooltip_SelectBarProfile = "|t26:26:esoui/art/miscellaneous/icon_lmb.dds|t: 选择 子预设 (%s)\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 编辑 子预设" 
+	L.CSPS_Tooltip_ImpExp_CleanUp = "这将删除文本中的所有特殊字符。它还将删除所有以破折号分隔的数字对，这些数字对可用于表示所需的冠军点范围（如在 AlcastHQ 上），但会在导入过程中导致错误。"
+	
+	L.CSPS_Tooltip_AddBind1 = "如果添加了此条件，每次加载所选 dressing room 设置时，都会自动应用当前组"
+	L.CSPS_Tooltip_AddBind2 = "如果添加了此条件，每次加载所选 alpha gear 设置时，都会自动应用当前组"
+	L.CSPS_Tooltip_AddBind3 = "如果添加了此条件，每次进入所选区域时，都会自动应用当前组"
+	
+	L.CSPS_Tooltip_CPAutoOpen = "勾选时，插件会在每次你进入CP窗口时显示"
+	
+	L.CSPS_Tooltiptext_DeleteBinding = "去除绑定"
+	
+	L.CSPS_Tooltip_AddConnection = "链接到当前预设"
+	L.CSPS_Tooltip_RemoveConnection = "移除与当前预设的链接"
+	L.CSPS_Tooltip_ShowConnection = "链接到子预设: %s\n\n 对该规范所做的更改可以应用到你的角色，但不会保存到当前的预设中。加载构建会自动尝试加载链接的子预设.\n\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 移除链接"
+	
+	L.CSPS_Tooltiptext_LoadAndApply = "加载并应用"
+	L.CSPS_MORPH = "<<1[无变形/变形 1/变形 $d]>>"
+	L.CSPS_MyRank = "等级 %s"
+	
+	L.CSPS_CP_RED = "红CP"
+	L.CSPS_CP_BLUE = "蓝CP"
+	L.CSPS_CP_GREEN = "绿CP"
+	
+	L.CSPS_TxtCp = "CP"	-- shortest form for champion points
+	
+	--	Errormessages (chat)
+	L.CSPS_NoSavedData = "尚无保存的数据"
+	L.CSPS_TxtLangDiff = "游戏语言已更改。迁移按字母顺序排列的技能类型数据。"
+	L.CSPS_Txt_NewProfile = "预设 " -- for numbered names
+	L.CSPS_Txt_NewProfile2 = "新预设" -- for unnumbered names
+	L.CSPS_Txt_StandardProfile = "标准"
+	
+	L.CSPS_CPP_Name = "名称"
+	L.CSPS_CPP_Points = "点数"
+	L.CSPS_CPP_Role = "角色"
+	L.CSPS_CPP_Source = "来源"
+	L.CSPS_CPP_Hotkey = "热键"
+	L.CSPS_CPP_BtnCustAcc = "自定义\n(账户)"
+	L.CSPS_CPP_BtnCustChar = "自定义\n(角色)"
+	L.CSPS_CPP_BtnImportText = "从文本导入"
+	L.CSPS_CPP_BtnPresets = "预设"
+	L.CSPS_CPP_BtnHotBar = "仅限热区栏"
+	L.CSPS_CPApplied = "CP成功应用"
+	L.CSPS_CPNoChanges = "无需更改CP"
+	L.CSPS_CPBar_GroupHeading = "当前组: %s/%s"
+	L.CSPS_CPBar_GroupKeybind = "当前键位: %s"
+	L.CSPS_Manage_Connections = "管理绑定"
+	L.CSPS_CPLoadGroup = "加载组: "
+	L.CSPS_CPOldPreset = "连接到已加载预案的 CP 预置会被标记为过时。您仍然可以使用这些预置，但建议切换到一些较新的可用预设"
+	L.CSPS_BuildProfile = "建立预设"
+	
+	L.CSPS_CPValueTooHigh = "数值高于该技能的最大值"
+	
+	L.CSPS_CPPDescr_JoaTFarming = "该预置经过优化，可与插件 'Jack of all Trades' 一起使用，并侧重于采集资源（战斗、捕鱼和犯罪将在更高的CP等级添加）"
+	L.CSPS_CPPDescr_JoaTFishing = "该预设经过优化，可与插件 ‘Jack of all Trades' 一起使用，并侧重于捕鱼（采集、战斗和犯罪将在更高的CP等级添加）"
+	L.CSPS_CPPDescr_JoaTThieving = "该预设经过优化，可与插件 ‘Jack of all Trades' 一起使用，并侧重于犯罪（采集、战斗、捕鱼将在更高的CP等级添加）"
+	L.CSPS_CPPDescr_CombatFocus = "该预置侧重于与战斗相关的绿色CP"
+	
+	L.CSPS_StrictOrder = "严格秩序"
+	L.CSPS_Tooltiptext_StrictOrder = "启用时，插件在第一个技能点数不足时停止加载预设，而不是检查是否可以加载其余技能。选择此选项可能会增加未使用的点数，但可能会节省 3000 金币的重置费。"
+	L.CSPS_CPPCurrentlyApplied = "目前应用:  <<1[无点数/1 点数/$d 点数]>>"
+		
+	L.CSPS_MSG_ApplyClosing = "CP系统中似乎有未应用的更改。请确保没有忘记应用它们。"
+	
+	L.CSPS_CPBar_LocTrial = "试炼 / 竞技场"
+	L.CSPS_CPBar_LocCurr = "当前区域"
+	L.CSPS_CPBar_LocType = "按种类"
+	L.CSPS_CPBar_Location = "区域"
+	
+	L.CSPS_CPBar_AddBindings = "为该组添加自动应用的条件..."
+	L.CSPS_CPBar_BindingsHeader = "该组的现有条件："
+	L.CSPS_Bindings_Empty = "清空组"
+	L.CSPS_Binding_Overwritten = "被改写: 组 %s (%s)"
+	L.CSPS_Binding_Conflict = " 与组的现有绑定冲突 %s.\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 去除现有的绑定"
+	
+	L.CSPS_CPBar_EditProfiles = "编辑预设"
+	L.CSPS_CPBar_Apply = "加载并应用该组..."
+	L.CSPS_CPBar_NoDR = "您要么没有安装 <<1>>，要么您使用的版本现在不支持"
+
+	L.CSPS_QS_ApplyWait = "应用热区栏：%s（等待时间：%s）"
+	L.CSPS_QS_TT_Edit = "|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 改变"
+	L.CSPS_QS_TT_Select = "|t26:26:esoui/art/miscellaneous/icon_lmb.dds|t: 选择"
+	L.CSPS_QS_TT_TestIt = "|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 立即行动"
+	L.CSPS_SubProfiles_Edit = "编辑子预设"
+	
+	L.CSPS_Help_Oversection1 = "常规功能"
+	L.CSPS_Help_Head1 = "保存数据"
+	L.CSPS_Help_Sect1 = " 1. 点击 '读取当前数据'(|t24:24:esoui/art/help/help_tabicon_feedback_up.dds|t).\n2. 可选择点击技能旁的加/减号来调整技能（稍后您还可以编辑技能）\n3. 点击 '保存显示的数据'(|t24:24:esoui/art/mail/mail_tabicon_compose_up.dds|t)\n会保存所有技能、属性点、CP、快捷栏和装备(需要LibSets)"
+	L.CSPS_Help_Head2 = "加载已保存的数据"
+	L.CSPS_Help_Sect2 = "1. 点击 '加载保存的数据' (|t24:24:esoui/art/mail/mail_tabicon_inbox_up.dds|t)\n2. 的加减号来调整技能。\n3.  点击每个部分上方或右侧的一个应用按钮 (|t24:24:esoui/art/buttons/accept_up.dds|t)，应用您的技能、属性等\n您所选的数据已应用\n应用技能时，请注意必须单独应用您的热栏。请确保您的热栏显示在插件底部。如果没有，请单击 '选项'（右上角 |t24:24:esoui/art/skillsadvisor/advisor_tabicon_settings_up.dds|t）并启用热栏。然后点击插件底部的 '应用'（|t24:24:esoui/art/buttons/accept_up.dds|t）。"
+	L.CSPS_Help_Head3 = "创建预设"
+	L.CSPS_Help_Sect3 = "您可以将所有数据（技能、属性和CP）保存到不同的预设中\n1. 通过插件窗口左上角的下拉菜单选择现有预设，或点击旁边的加号按钮创建新预设\n 除标准配置文件外，您还可以重命名或删除所有已创建的预设(|t24:24:esoui/art/buttons/edit_up.dds|t, |t24:24:esoui/art/buttons/minus_up.dds|t) \n3. 为了使保存的数据尽可能少，建议只将应用时实际需要更改的技能保存到预设中。使用相应的减号按钮可从预设中删除整行技能。\n4. 完成编辑后，别忘了保存预设(|t24:24:esoui/art/mail/mail_tabicon_compose_up.dds|t)"
+	L.CSPS_Help_Head4 = "应用 预设/重置"
+	L.CSPS_Help_Sect4 = "要应用技能点或属性点预设，首先要在神龛花费金币来进入技能或属性重置\n在大多数情况下，重置变形就足够了。保持在重置模式下应用更改。完成后在 eso 技能窗口中确认更改。请注意，只要游戏仍处于重置模式且尚未确认更改，插件就会将您的更改视为冲突。另外，您也可以在应用预设前在军械库中使用空栏。请注意，插件无法更改您的装备"
+	L.CSPS_Help_Head5 = "自定义CP图标"
+	L.CSPS_Help_Sect5 = "为了使冠军插槽更容易区分，插件可以为每个可插槽技能使用不同的图标。点击 '选项'（右上角，|t24:24:esoui/art/skillsadvisor/advisor_tabicon_settings_up.dds|t）并激活 '自定义 CP 图标' 选框"
+	L.CSPS_Help_Head6 = "独立CP栏"
+	L.CSPS_Help_Sect6 = "该插件可以在单独的条形图中显示您已插槽的冠军技能，作为游戏内覆盖的一部分，帮助您跟踪当前激活的技能。 点击 '选项'（右上角，|t24:24:esoui/art/skillsadvisor/advisor_tabicon_settings_up.dds|t）并激活 '独立 CP 栏' 选框。还可选择是否将插槽显示在一行（1x12）、三行（3x4）或只显示当前CP技能树(1x4)"
+	L.CSPS_Help_Oversection7 = "子预设"
+	L.CSPS_Help_Head7 = "常规子预设"
+	L.CSPS_Help_Sect7 = "您可以选择为技能、快捷栏或CP等构建的不同方面创建单独的子预设 \n1. 根据要保存的规范，点击右上角的按钮之一(|t24:24:esoui/art/champion/champion_points_magicka_icon-hud-32. dds|t，|t24:24:esoui/art/champion/champion_points_health_icon-hud-32.dds|t，|t24:24:esoui/art/champion/champion_points_stamina_icon-hud-32.dds|t ...)\n2. 选择只为当前角色保存子预设，还是让整个账户都能使用\n3. 对于CP，您也可以加载插件中的预设，而不用创建自己的预设" 
+	L.CSPS_Help_Head8 = "自动化(绑定组)" 
+	L.CSPS_Help_Sect8 = "您可以创建绑定组，通过按键绑定或自动加载，包括CP热区栏和/或快捷键预设。您也可以加载完整的构建预设，但不建议这样做，因为应用完整预设可能会消耗金币或根本无法运行。插件仅在设置中激活时启用该功能。您最多可以定义 20 个全账户组和 20 个基于角色的组。每个组都可以通过控制设置分配一个绑定键位。如果存在具有相同按键绑定的全账户组和基于角色的组，插件将始终加载基于角色的组。"
+	L.CSPS_Help_Head9 = "设置绑定组"
+	L.CSPS_Help_Sect9 = "1.  要设置自动化，请单击 '选项' (|t24:24:esoui/art/skillsadvisor/advisor_tabicon_settings_up.dds|t)\n2. 点击 '管理绑定'.\n3. 使用顶部的箭头 |t24:24:esoui/art/buttons/large_leftarrow_up.dds|t 和 |t24:24:esoui/art/buttons/large_rightarrow_up.dds|t 选择组 \n4. 现在可以通过已定义的绑定键位或以下章节介绍的自动选项加载和应用所选的子预设"
+	L.CSPS_Help_Head10 = "绑定到区域"
+	L.CSPS_Help_Sect10 = "在绑定管理器中，您可以选择是否在进入特定位置（如特定试验或竞技场）后应用绑定组 \n1. 点击 '区域' \n2. 选择当前组应自动应用的区域 \n3. 现在，每次进入所选区域时，插件都会加载选定预设"
+	L.CSPS_Help_Head11 = "Dressing Room / Alpha Gear / Wizard's Wardrobe"
+	L.CSPS_Help_Sect11 = "您还可以使用绑定管理器将绑定组绑定到Dressing Room、Alpha Gear或Wizard's Wardrobe \n1. 点击 'DR', 'AG' 或 'WW'.\n2. 选择技能或装备配置绑定至CP栏预设\n3. 现在，每次通过Dressing Room、Alpha Gear或Wizard's Wardrobe 装备所选装备/技能时，绑定组也会应用"
+	L.CSPS_Help_Oversection12 = "导入/\n导出"
+	L.CSPS_Help_Head12 = "常规导入/导出"
+	L.CSPS_Help_Sect12 = "1. 点击 '设置' (|t24:24:esoui/art/skillsadvisor/advisor_tabicon_settings_up.dds|t)\n2. 点击 '导入/导出'，打开导入/导出窗口 \n3. 使用右上角的下拉菜单选择要导入和/或导出的数据和格式 \n4. 根据所选格式的不同，您现在有不同的选择 \n5. 要导入数据，首先要将其复制到剪贴板，然后粘贴到导入文本字段 (Ctrl+V)。"
+	L.CSPS_Help_Head13 = "基于文本的CP导入 (1/3)"
+	L.CSPS_Help_Sect13 = "1. 对于该选项，首先要选择要导入的CP规范 \n2. 导入文本应包含CP技能的英文名称和相应数值 \n3. 标准格式是数字形式的数值，然后是技能名称（例如 '10 Tireless Discipline' 或 '(10) → Tireless Discipline')。您可以点击页面底部的选框来切换顺序。请注意，文本中实际的冠军点数旁不应包含任何数字"
+	L.CSPS_Help_Head14 = "基于文本的CP导入 (2/3)"
+	L.CSPS_Help_Sect14 = "4. 如果文本中包含可插槽的CP技能，插件将从顶部开始应用这些技能。如果您只想让某些技能插槽，请在文本中使用附加关键字 'slot'(必须放在名称旁边，而不是数值旁边)标记它们。\n5. 如果插件无法识别一个或多个技能名称，您可以从列表中手动选择。在分配或放弃所有值之前，该过程不会结束"
+	L.CSPS_Help_Head15 = "基于文本的CP导入 (3/3)"
+	L.CSPS_Help_Sect15 = "如果文本中包含同一冠军技能的多个值，则只会导入最后一个值。点击导入按钮的同时按住 shift 键，即可将这些值相加 \n使用右键单击可创建动态预设，另外按住 Ctrl 键可使其覆盖整个帐户。动态预设中保存的CP将从上到下依次应用，直到达到当前可用CP点数的上限"
+	L.CSPS_Help_Head16 = "手把手 从 AlcastHQ 或 JustLootIt 导入"
+	L.CSPS_Help_Sect16 = "1. 点击右上角的蓝色、红色或绿色 CP 图标(取决于您希望导入的 CP 颜色) \n2. 点击 '从文本导入'(Ctrl+V) \n3. 将网站上的文本粘贴到导入文本字段中 \n4. 确保 'slot'一词只出现在你真正想要插槽的CP技能后面 \n5. 点击右下角的 '清理文本' \n6. 选中 '顺序颠倒' 选框(因为 AlcastHQ 和 JustLootIt 都是先列出名称，再列出数值) \n7. 点击 '导入文本' \n8. 点数现已加载到插件中。现在，您可以点击 '自定义(账户)'或 '自定义(角色)'，然后点击这些按钮下方的加号按钮，将它们保存到新预设，或者点击 CP 预设部分下方的应用按钮来应用它们"
+
+	-- Dialogs
+	L.CSPS_MSG_ConfirmSave = "真的要将显示的数据保存为预设'<<1>>'？这会覆盖现有数据 <<2>>"
+	L.CSPS_MSG_ConfirmApply = "可用技能点: %s\n实际需要的技能点: %s\n\n冲突: %s\n尚未解锁: %s\n已处于另一变形: %s\n已经为更高等级: %s\n变形/等级尚未解锁: %s\n\n应用这些技能点？"
+	L.CSPS_MSG_ConfirmApplyTitle = "CSPS - 技能点"
+	L.CSPS_MSG_ConfirmAttrTitle = "CSPS - 属性点"
+	L.CSPS_MSG_ConfirmAttr = "需要的属性点: <<1>>\n可用属性点: <<2>>\n应用这些属性点?"
+	L.CSPS_MSG_ConfirmAttr1 = "无法应用属性点; 可用属性点不足。请先重置旧属性"
+	L.CSPS_MSG_ConfirmAttr2 = "无法应用属性点; 至少一种属性比预设值要高。 请先重置旧属性"	
+	L.CSPS_MSG_RenameProfile = "为预设选择新名称 '<<1>>':<<2>>"
+	L.CSPS_MSG_DeleteProfile = "确定删除预设 '<<1>>'?<<2>><<3>>"
+	L.CSPS_MSG_DeleteProfileStan =  "标准预设将被加载"
+	L.CSPS_MSG__ChangeProfile = "预设 '<<1>>' 可能存在未保存修改。你确定要加载预设 '<<2>>'?<<3>>"
+	L.CSPS_MSG_DeleteSkillType = "你确定要从预设中移除所有 '<<1>>' 技能？" -- <<1>> can either be a skill type or a skill line 
+	L.CSPS_MSG_CpPurchTitle = "应用CP点数..."
+	L.CSPS_MSG_CpPurchChosen = "需求的点数: "
+	L.CSPS_MSG_CpPurchCost = "花费: <<1>>|t28:28:esoui/art/loot/icon_goldcoin_pressed.dds|t" -- the cost and a coin-icon
+	L.CSPS_MSG_CpPurchNow = "确定现在应用选择的CP点数？"
+	L.CSPS_MSG_CpPurchFailed = "应用CP点数失败"
+	L.CSPS_MSG_CpPurchSuccess = "成功应用CP点数"
+	L.CSPS_MSG_CpPointsMissing = "CP点数不足 - 移除点数后重试"
+	L.CSPS_MSG_Unslotted = "下列可插槽技能无法插槽："
+	L.CSPS_MSG_NoCPProfiles = "\n\n|cff7723WARNING!|r\n这不是保存CP预设的最佳方法！如果您只想保存CP预设，请使用右上角的三个按钮打开CP预设部分。在那里，您可以找到用于创建和保存预设的单独按钮(|t28:28:esoui/art/champion/champion_points_magicka_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_health_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_stamina_icon-hud-32.dds|t)"
+	L.CSPS_MSG_CPPaths = "最便宜的解锁路径 '<<C:1>>':\n\n<<2>>"
+	L.CSPS_MSG_CPPathOpt = "|c<<1>>选项 <<2>> (<<3>>)|r:" -- 1 color 2 number 3 points
+	
+	--	Errorcodes
+	L.CSPS_ErrorNumber1 = "技能已学习"
+	L.CSPS_ErrorNumber2 = "技能已处于另一变形。请在尝试应用前重置技能或变形"
+	L.CSPS_ErrorNumber3 = "技能的当前等级已经超过你尝试应用的"
+	L.CSPS_LoadingError = "请检查技能: <<C:1>>"
+	
+	-- Options
+	L.CSPS_KeepLastBuild = "在关闭时保留最后一次构建"
+	L.CSPS_KeepLastBuildTT = "如果激活，在关闭窗口时，插件会始终将当前构建保存到一个不可见的配置文件中。下次启动游戏并打开插件时，该配置文件将被加载，这样您就可以继续之前的操作。如果未激活，插件将始终以当前应用的实际构建文件启动"
+	L.CSPS_DeleteLastBuilds = "是否应该删除所有角色的临时预设？"
+	L.CSPS_ShowHb = "显示热区栏"
+	L.CSPS_AutoOpen = "自动打开..."
+	L.CSPS_CPAutoOpen = "CP界面"
+	L.CSPS_CPCustomBar = "单独CP栏"
+	L.CSPS_CPCustomIcons = "自定义CP图标"
+	L.CSPS_CPCustomBarLayout = "图层"
+	L.CSPS_ArmoryAutoOpen = "军械库"
+	L.CSPS_Tooltip_ArmoryAutoOpen = "选定时，使用军械库时显示插件"
+	L.CSPS_SkillWindowAutoOpen = "技能界面"
+	L.CSPS_StatsWindowAutoOpen = "角色界面"
+	L.CSPS_BtnApplyAll = "全部应用"
+	L.CSPS_ShowBtnApplyAll = "显示 '全部应用' 按钮"
+	L.CSPS_ShowDateInProfileName = "在预设名中显示最后修改时间"
+	L.CSPS_AcceptedLevelDifference = "接受等级差异"
+	L.CSPS_AcceptedLevelDifferenceTooltip = "CSPS 只会在您的角色等级与物品等级之差小于所选值的情况下找到并装备装备"
+	L.CSPS_RequiresLibSets = "该功能需要安装并激活 LibSets"
+	L.CSPS_ShowGearMarkers = "显示库存标记"
+	L.CSPS_ShowGearMarkersTooltip = "只有符合已保存预设的套装物品才会显示标记。更改后保存预设，以标记相应的套装物品"
+	L.CSPS_ShowGearMarkerDataBased = "显示符合数据的物品"
+	L.CSPS_ShowGearMarkerDataBasedTooltip = "如果物品是按其属性而非唯一ID 保存的，则插件可以标记符合数据的物品。否则，它只会标记保存为 '唯一'的物品"
+	L.CSPS_SavedSpecific = "保存在: %s"
+	L.CSPS_SavedData = "适用于: %s"
+	
+	L.CSPS_LAM_ShowCpPresetNotifications = "加载CP预设时通知"
+	L.CSPS_LAM_ShowCpNotSaved = "CP技能变动尚未应用"
+	L.CSPS_LAM_ShowSaveOther = "打开子预设部分时保存一般预设"
+	L.CSPS_LAM_KB_Descr = "您可以将子预设组合成组，并通过热键应用。您可以定义 20 个全账户组和 20 个与当前角色绑定的组。您可以定义多达 20 个热键来快速加载和应用这些组。如果基于角色的组不为空，按下热键将加载该组。否则将加载具有相同编号的全账户组。您可以定义一个单独的键来强制插件加载整个账户的组，而不是基于角色的组"
+	L.CSPS_LAM_KB_ShiftMode = "强制为热键加载全账户组而非基于角色的组"
+	L.CSPS_LAM_ShowOutdatedPresets = "在预设列表中显示过时预置"
+	L.CSPS_LAM_ShowBindBuild = "在绑定管理器中显示构建配置文件(请注意：在尝试加载需要应用神龛等的配置文件时，自动操作可能不起作用)"
+	L.CSPS_LAM_JumpShiftKey = "键(调整属性/CP时以10为单位，或链接子预设)"
+	L.CSPS_LAM_SortCP = "CP技能顺序"
+	L.CSPS_LAM_SortCP_1 = "标准"
+	L.CSPS_LAM_SortCP_2 = "按字母顺序"
+	L.CSPS_LAM_SortCP_3 = "按字母顺序, 被动技能独立"
+	L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
+	
+	-- Presets
+	L.CSPS_MSG_SwitchCP = "Invest points into |c<<1>>'<<2>>'|r instead of one of the other slottables whenever you might profit from it."
+	L.CSPS_MSG_SituationalCP = "根据情况，考虑用以下技能之一来代替插槽: "
+	L.CSPS_CPP_Tank = "坦克"
+	L.CSPS_AOE = "AOE伤害"
+	L.CSPS_CRIT = "暴击伤害"
+	L.CSPS_OffBalance = "失衡"
+	
+	-- Import/Export
+	L.CSPS_ImpEx_BtnImpLink = "导入链接"
+	L.CSPS_ImpEx_BtnImpText = "导入文本"
+	L.CSPS_ImpEx_BtnExpLink = "生成链接"
+	L.CSPS_ImpEx_BtnExpText = "生成文本"
+	L.CSPS_ImpEx_Standard = "您可以从 eso-skillfactory.com 粘贴链接（Ctrl+V）来导入构建，也可以点击 '生成链接' 来为当前选定的构建生成链接，然后复制（Ctrl+C）并导出到浏览器中，在 eso-skillfactory.com 上查看"
+	L.CSPS_ImpEx_CpAsText = "您可以将文本形式的 CP 设置粘贴到此字段中（Ctrl+V）。标准格式是 数字格式的数值，然后是技能名称(英文)。如果要应用的文本使用了不同的顺序，请单击底部的顺序选框。如果文本中包含 CP 范围的数字（如源自 AlcastHQ 或 JustLootIt文本），请单击底部的 '清理' 按钮将其删除。然后点击 '导入文本'。只要所有CP 名称都写得完整正确，插件就会自动将它们填入表格，供您查看和应用。"
+	L.CSPS_ImpEx_BtnImpTT = "首先将链接粘贴（Ctrl+V）到下面的字段中"
+	L.CSPS_ImpEx_BtnImpTTCP = "首先将文本粘贴（Ctrl+V）到下面的字段中 \n按住 Ctrl 为预设生成代码 \n使用右键单击创建动态预设，另外按住 Ctrl 键使其覆盖整个账户\n如果按下 Shift 键，同一CP 技能的多个条目数值将相加而不是替换"
+	L.CSPS_ImpEx_BtnExpTT = "从当前显示的构建中生成链接"
+	L.CSPS_ImpEx_NoData = "未找到数据。在尝试生成链接之前，请先为角色加载数据。"
+	L.CSPS_ImpEx_ErrHb = "导入热区栏 <<1>> 时出错"
+	L.CSPS_ImpEx_ErrSk = "无法映射技能: <<1>>"
+	L.CSPS_ImpExp_TextSk = "文本导出"
+	L.CSPS_ImpExp_TextOd = "其他数据"
+	L.CSPS_ImpEx_HbTxt = "热区栏"
+	L.CSPS_ImpEx_CsvCP = "以逗号分隔 CP 列表"
+	L.CSPS_ImpEx_TxtCP2_1 = "CP |cA6D852(绿, 从文本)|r" 
+	L.CSPS_ImpEx_TxtCP2_2 = "CP |c5CBDE7(蓝, 从文本)|r" 
+	L.CSPS_ImpEx_TxtCP2_3 = "CP |cDE6531(红, 从文本)|r"
+	L.CSPS_ImpExp_TxtOrder1 = "值 → 名称(/Slot)"
+	L.CSPS_ImpExp_TxtOrder2 = "名称(/Slot) → 值"
+	L.CSPS_ImpExp_TxtOrder3 = "名称 → 值 ( → Slot)"
+	L.CSPS_ImpEx_CapLabel = "限制点数"
+	L.CSPS_ImpEx_LangTT = "使用 %s 代替英文作为CP技能名称的语言（如果要从英文网站导入 CP，请勿激活此选项）"
+	L.CSPS_ImpExp_CleanUp = "清理文本"
+	L.CSPS_ImpExp_Transfer = "转移..."
+	L.CSPS_ImpExp_TransferLoad = "加载"
+	L.CSPS_ImpExp_TransConfirm = "|cDE6531您真的希望将所有绑定从 <<1>> 转移到 <<2>>？所有当前绑定都将被覆盖。这个过程是不可逆的。|r"
+	L.CSPS_ImpExp_Transfer_Server = "服务器"
+	L.CSPS_ImpExp_Transfer_Profiles = "预设..."
+	L.CSPS_ImpExp_Transfer_CPP = "CP预设..."
+	L.CSPS_ImpExp_Transfer_CPHb = "CP栏..."
+	L.CSPS_ImpExp_Transfer_CopyReplace = "转移所有热区栏预设和绑定（替换当前预设）"
+	L.CSPS_ImpExp_Transfer_CopyAdd = "转移所有热区栏预设和绑定（保留当前预设）"
+	
+	L.CSPS_Tooltip_Transfer_CopyReplace = "|cDE6531当前为该角色设置的所有绑定和热区栏预设都将被覆盖|r"
+	L.CSPS_Tooltip_Transfer_CopyAdd = "转移热区栏预设，但保留现有预设\n|cDE6531当前为该角色设置的所有绑定都将被覆盖|r"
+	
+	L.CSPS_CPImp_Success = "成功映射技能:"
+	L.CSPS_CPImp_Unmapped = "尚未分配技能:"
+	L.CSPS_CPImp_BtnApply = "应用映射"
+	L.CSPS_CPImp_BtnDiscard = "弃用"
+	L.CSPS_CPImp_BtnDiscardAll = "弃用所有"
+	L.CSPS_CPImp_New = "|c<<1>> <<2>>/<<3>> 映射 <<4>> 指向: <<C:5>>|r"
+	L.CSPS_CPImp_Note = "单击下面列表中的技能，手动映射该技能。请注意，只有在所有技能都已映射或放弃后，才会应用该映射"
+	L.CSPS_CPImp_NoMatch = "找不到任何匹配数据"
+	
+	--New with 5.5.0
+	L.CSPS_ScribingGoToStation = "%s\n请到纂刻台刻印你的纂刻技能（需要花费 %s 墨水）"
+	L.CSPS_CannotBeScribed = "<<1[技能/1 技能/$d 技能]>> 无法刻印"
+	L.CSPS_ScribingGo = "%s\n刻印你的纂刻技能（将消耗 %s 墨水，您拥有 %s）"
+	L.CSPS_NothingToScribe = "没有什么可刻印的"
+	L.CSPS_ScribeGo = "刻印: <<C:1>>"
+	L.CSPS_ScribingDiag = "%s 技能将被刻印 (这将消耗 %s 墨水)"
+	L.CSPS_ScribeNotEnough = "您无法刻印所选技能（墨水不足）"
+	L.CSPS_CustomStyles = "应用自定义样式: %s\n锁定的自定义样式: %s\n\n%s"
+	
+  for stringId, stringValue in pairs(L) do
+    ZO_CreateStringId(stringId, stringValue)
+  end
+  
+  --Special Setting
+  BB.SetAfterPart(
+    function()
+      CSPSWindowOptionsBtnImpExp:SetText("导入/导出")
+      CSPSWindowOptionsBtnManageBars:SetText("管理键位绑定")
+      CSPSWindowOptionsBtnExtendetOptions:SetText("额外设置")
+      CSPSWindowManageBarsLblBindList:SetText("该组的现有条件: ")
+      CSPSWindowSubProfilesCustomAcc:SetText("自定义\r\n(账户)")
+      CSPSWindowSubProfilesCustomChar:SetText("自定义\r\n(角色)")
+      CSPSWindowSubProfilesImportFromText:SetText("从文本导入")
+      CSPSWindowSubProfilesPresets:SetText("预设")
+      CSPSWindowSubProfilesBarsOnly:SetText("仅限热区栏")
+      CSPSWindowImportExportLblCap:SetText("有限点数")
+      CSPSWindowImportExportCleanUpText:SetText("清理文本")
+      CSPSWindowSubProfilesHeaderName:SetText("名称")
+    end
+  )
+return true end
+
 --Code's Combat Alerts
 --2.0.8.1
 BB.AddonList["CombatAlerts"] = function() if not CombatAlerts2 then return false end
@@ -1587,6 +1940,1054 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
   end
+return true end
+
+--CraftStore
+--2.91
+do
+  local CS = CraftStoreFixedAndImprovedLongClassName
+  local lmb,rmb,mmb = '|t16:16:CraftStoreFixedAndImproved/DDS/lmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/rmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/mmb.dds|t'
+  local i,o = GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_INTRICATE),GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_ORNATE)
+  local L = {
+    options = {
+      showbutton = '显示CraftStore按钮',
+      lockbutton = '锁定CraftStore按钮',
+      lockelements = '锁定CraftStore元素',
+      closeonmove = '移动时关闭CraftStore窗口',
+      useartisan = '使用CraftStore工匠 (未准备好)',
+      useflask = '使用CraftStore烧瓶 (未准备好)',
+      usequest = '使用CraftStore任务',
+      usequestTooltip = '打开制作台时显示当前活动的制作令状任务',
+      usecook = '使用CraftStore烹饪',
+      usecookTooltip = '用 Craftstore UI 替换烹饪站的默认用户界面',
+      userune = '使用CraftStore附魔',
+      useruneTooltip = '用 Craftstore UI 替换附魔表的默认用户界面',
+      displaystyles = '在详细框中显示物品风格',
+      markitems = '标记需要的物品',
+      showsymbols = '显示 '..i..'/'..o..'-标志',
+      marksetitems = '套装物品可以被标记为可研究',
+      showstock = '在提示框中显示物品库存',
+      stacksplit = '预选择物品堆叠分割',
+      markduplicates = '允许标记复制品为可研究',
+      displayrunelevel = '在提示框显示附魔符文等级',
+      displaymm = '在提示框中显示Master Merchant插件',
+      displayttc = '在提示框中显示TTC插件',
+      timeralarm = '显示计时器提醒',
+      mountalarm = '显示骑术提醒',
+      researchalarm = '显示研究提醒',
+      playrunevoice = '播放附魔符文语音',
+      advancedcolorgrid = '研究列表使用高级颜色',
+      lockprotection = '开启锁定保护',
+      inspirationgain = '显示获得的灵感',
+      sortsets = '排序套装',
+      sortstyles = '排序风格',
+      bulkcraftlimit = '批量制造限制',
+      overviewstyle = '角色概览风格',
+      userunecreation = '使用CraftStore符文制造',
+      userunecreationTooltip = '用 Craftstore UI 替换符文制作的默认用户界面',
+      useruneextraction = '使用CraftStore符文分解',
+      useruneextractionTooltip = '将符文提取的默认用户界面替换为 Craftstore UI',
+      userunerecipe = '使用CraftStore符文家具',
+      userunerecipeTooltip = '使用Craftstore UI替换附魔台上家具蓝图制作的默认用户界面。',
+      displayunknown = '在提示框中显示未知',
+      displayknown = '在提示框中显示已知',
+      displaycount = '在工具提示中显示已知/未知计数',
+    },
+    suboptions = {
+      sortstyles = {
+        [1] = "字母顺序",
+        [2] = "风格页 #",
+        [3] = "内置顺序 #",
+      },
+      sortsets = {
+        [1] = "字母顺序",
+        [2] = "特性",
+      },
+      alarms = {
+        [1] = "通告",
+        [2] = "聊天",
+        [3] = "两者",
+        [4] = "关闭",
+      },
+      overviewstyle = {
+        [1] = "完全",
+        [2] = "缩减",
+        [3] = "最小",
+      },
+    },
+    TT = {
+      '|cFFFFFF<<C:1>>|r\n'..lmb..' 选择/取消 研究\n\n|t20:20:<<2>>|t |cFFFFFF全部 <<C:3>>|r\n'..rmb..' 选择/取消 研究',
+      '|cE8DFAF'..lmb..' 制造 x <<1>>|r',
+      '|cE8DFAF'..rmb..' 制造 x <<1>>|r',
+      '|cE8DFAF'..mmb..' 标记到收藏夹 |r|t16:16:esoui/art/characterwindow/equipmentbonusicon_full.dds|t',
+      '|cE8DFAF'..lmb..' 选择|r',
+      '|cE8DFAF'..rmb..' 链接到聊天框|r',
+      '|cE8DFAF'..mmb..' 标记材料|r',
+      '|cE8DFAF'..lmb..' 分解附魔雕文|r',
+      '|cE8DFAF'..lmb..' 分解所有非制造的附魔雕文\n'..rmb..' 分解所有可找到的附魔雕文|r',
+      '|cE8DFAF'..lmb..' 选择此角色\n'..rmb..' 设置此角色为主要角色\n'..mmb..' 删除此角色',
+      '收藏夹',
+      '符文模式制造',
+      '追踪已知风格',
+      '追踪已知食谱',
+      '显示CraftStore',
+      '可用销赃交易数和今天的进账',
+      '法师公会 - 艾维雅 - 在最近的法师公会建筑中使用传送门',
+      '战士公会 - 大地熔炉 - 在最近的战士公会建筑中使用传送门',
+      '点击前往离此套装制造站最近的指路祭坛',
+      '|cFFFFFF骑术|r\n负重, 耐力\n和速度',
+      {'任何水域','污水','河水','湖水','海水'},
+      '分解所有附魔雕文',
+      '状令',
+      '家具',
+      '追踪已知特性',
+      '|cE8DFAF'..lmb..' 家具预览|r',
+      '|cE8DFAF'..rmb..' 家具预览|r',
+      '|cE8DFAF'..rmb..' 分解堆叠|r',
+      '|cFFFFFF技能点|r\n未花费/总共获得',--29
+      '|cFFFFFFSP|r ',--30
+      '|cFFFFFF天空碎片|r\n已收集/总数',--31
+      '追踪已知蓝图',--32
+      '|cE8DFAF'..mmb..' 研究|r',
+      '|cE8DFAF'..lmb..' 追踪|r',
+      '片鱼',
+    },
+    nobagspace = '|cFF0000背包空间不足!|r',
+    noSlot = '|cFF0000没有空闲研究槽或物品无法使用!|r',
+    noItemPreview = '|cFF0000需要物品预览!|r',
+    noFurnitureData = '|cFF0000Item物品预览缺乏此物品|r',
+    blueprintSearchLimit = '|cFF0000缩小搜索范围以显示所有结果|r',
+    removeCurrentCharacter = '|cFF0000无法移除当前角色|r',
+    searchfor = '搜索: ',
+    finished = '已完成',
+    level = '等级',
+    rank = '技能级数',
+    bank = '银行',
+    housebank = '房屋银行 ',
+    guildbank = '公会银行',
+    craftbag = '生产背包',
+    chars = '角色概览',
+    set = '选择套装...',
+    unknown = '未知',
+    knownStyles = '已知风格',
+    finishResearch = '<<C:1>> 已完成 |c00FF00<<C:2>>|r |c00FF88(<<C:3>>)|r 研究.',
+    finishMount = '<<C:1>> 完成了骑术研究',
+    finish12 = '12 小时倒计时已结束',
+    finish24 = '24 小时倒计时已结束',
+    itemsearch = '\n谁有 <<c:2>> 特性的 <<C:1>> ？',
+    hideStyles = '隐藏简单风格',
+    hideCrownStyles = '隐藏皇冠风格',
+    hideKnown = "隐藏已知",
+    hideUnknown = "隐藏未知",
+    unselectedWayshrine = "|cFF0000选择一种可制造的套装|r",
+    unknownWayshrine = "|cFF0000不能传送到未发现的指路祭坛|r", 
+    previewType = {"重甲", "中甲", "轻甲 + 长袍", "轻甲 + 衬衫"},
+    provisioningWritOffset = 7,
+    styleNames = {}, 
+    reload = "需要重新载入",
+  }
+  --Specail Setting
+  local OldFun = ZO_CreateStringId
+  ZO_CreateStringId = function(...)
+    local key, value = ...
+    if key == "SI_BINDING_NAME_CRAFTSTORE" and value == "CraftStore" then
+      CraftStoreFixedAndImprovedLongClassName.Loc = BB.TableCopy(L, CraftStoreFixedAndImprovedLongClassName.Loc)
+    end
+    return OldFun(...)
+  end
+
+  BB.AddonList["CraftStoreFixedAndImproved"] = function()
+    if not CraftStoreFixedAndImprovedLongClassName then return false end
+    return true 
+  end
+end
+
+--Display Leads
+--42.1
+BB.AddonList["displayleads"] = function() if not RDL then return false end
+--Location
+  RDL.LOCDATA_TYPE_ALLLOOTTABLES = "所有拾取列表"
+  RDL.LOCDATA_SHORT_ALLLOOTTABLES = "所有拾取列表"
+  RDL.LOCDATA_LONG_ALLLOOTTABLES = "任何和所有来源。甚至包括试炼"
+
+  RDL.LOCDATA_TYPE_EXCAVATIONREWARD = "挖掘奖励"
+  RDL.LOCDATA_SHORT_EXCAVATIONREWARD = "挖掘奖励"
+  RDL.LOCDATA_LONG_EXCAVATIONREWARD = "挖掘前一级宝物线索的奖励"
+
+  RDL.LOCDATA_TYPE_EXCAVATIONREWARD2 = "藏宝图"
+  RDL.LOCDATA_SHORT_EXCAVATIONREWARD2 = "藏宝图"
+  RDL.LOCDATA_LONG_EXCAVATIONREWARD2 = "瑞驰和西天际的藏宝图"
+
+  RDL.LOCDATA_TYPE_COFFER = "奖励箱"
+  RDL.LOCDATA_SHORT_COFFER = "西罗帝尔角斗士奖励箱"
+  RDL.LOCDATA_LONG_COFFER = "角斗士奖励箱西罗帝尔"
+
+  RDL.LOCDATA_TYPE_DAILY = "日常"
+  RDL.LOCDATA_SHORT_DAILY = "日常奖励箱"
+  RDL.LOCDATA_LONG_DAILY = "日常奖励箱"
+
+  RDL.LOCDATA_TYPE_DELVE = "洞穴"
+
+  RDL.LOCDATA_TYPE_FISHING = "钓鱼"
+
+  RDL.LOCDATA_TYPE_FIXLOCATION = "修改位置"
+
+  RDL.LOCDATA_TYPE_GROUPDUNGEON = "组队地牢"
+
+  RDL.LOCDATA_TYPE_MOB = "怪物"
+
+  RDL.LOCDATA_TYPE_NODE = "采集点"
+
+  RDL.LOCDATA_TYPE_PUBLICDUNGEON = "公共地牢"
+
+  RDL.LOCDATA_TYPE_SAFEBOX = "保险箱"
+  RDL.LOCDATA_SHORT_SAFEBOX = "保险箱"
+
+  RDL.LOCDATA_TYPE_STARTER = "起始"
+  RDL.LOCDATA_SHORT_STARTER = "基本"
+  RDL.LOCDATA_LONG_STARTER = "区域起始线索"
+
+  RDL.LOCDATA_TYPE_TREASURECHEST = "宝箱"
+  RDL.LOCDATA_SHORT_TREASURECHEST = "宝箱"
+  RDL.LOCDATA_LONG_TREASURECHEST = "宝箱"
+
+  RDL.LOCDATA_TYPE_TREASUREMAP = "藏宝图"
+  RDL.LOCDATA_SHORT_TREASUREMAP = "藏宝图"
+  RDL.LOCDATA_LONG_TREASUREMAP = "藏宝图宝箱"
+
+  RDL.LOCDATA_TYPE_ANTIQUEMAP = "商人"
+  RDL.LOCDATA_SHORT_ANTIQUEMAP = "旅店老板，普通商人"
+  RDL.LOCDATA_LONG_ANTIQUEMAP = "旅店老板，普通商人。需要探路者成就"
+
+  RDL.LOCDATA_TYPE_WORLDBOSS = "世界boss"
+  RDL.LOCDATA_SHORT_WORLDBOSSALL = "(WB) 全部"
+  RDL.LOCDATA_LONG_WORLDBOSSALL = "全部世界boss"
+  RDL.LOCDATA_SHORT_WORLDBOSSDRAGON = "(WB) 龙"
+  RDL.LOCDATA_LONG_WORLDBOSSDRAGON = "从龙身上掉落"
+  RDL.LOCDATA_SHORT_HARROWSTORMS = "(WB) 血疫风暴"
+  RDL.LOCDATA_LONG_HARROWSTORMS = "从血疫风暴掉落"
+
+  RDL.LOCDATA_TYPE_FIX = "修改位置"
+  RDL.LOCDATA_SHORT_FIX = "MapPins插件"
+  RDL.LOCDATA_LONG_FIX = "使用Hoft的Map Pins插件。开启古物筛选器。"
+
+  RDL.UNKNOWN = "未知"
+
+  RDL.ENDLESSARCHIVE = "无尽的档案"
+
+  BB.TableCopy({
+    [18] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [19] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [20] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [21] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [22] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [23] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [24] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [25] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [26] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [27] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [28] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [29] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [30] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [31] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [32] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [33] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [34] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [35] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [36] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [37] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [38] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [39] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [40] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [41] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [42] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [43] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [44] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [45] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [46] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [47] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [48] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [49] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [50] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [51] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [52] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [53] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [54] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [55] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [56] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [57] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [58] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [59] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [60] = {"在厄卡奥泽欧制造区角落中的'神奇锻莫碎石'",RDL.LOCDATA_TYPE_FIXLOCATION,"碎石","TRUE",},
+    [61] = {"坐骑碎片 - 内海机枢洞穴boss",RDL.LOCDATA_TYPE_DELVE,"(D) 内海机枢","TRUE",},
+    [62] = {"克拉兹加尔洞穴中的克拉兹加尔百夫长",RDL.LOCDATA_TYPE_DELVE,"(D) 克拉兹加尔","TRUE",},
+    [63] = {"祖伏特内的锻莫蜘蛛, 锻莫机械球, 百夫长, 蒸汽管道",RDL.LOCDATA_TYPE_MOB,"祖伏特怪物","TRUE",},
+    [64] = {"阿尔登兹洞穴boss",RDL.LOCDATA_TYPE_DELVE,"(D) 阿尔登兹","TRUE",},
+    [65] = {"外面的狼群, 布扎克内的锻莫蜘蛛, 圣徒港德蕾克哨兵/德蕾克割喉者, 哥布林矿洞",RDL.LOCDATA_TYPE_ALLLOOTTABLES,"大多数怪物","TRUE",},
+    [66] = {"阿旺晨泽尔洞穴boss",RDL.LOCDATA_TYPE_DELVE,"(D) 阿旺晨泽尔","TRUE",},
+    [67] = {"穆萨纳兹boss, 巧手的裁缝师, 黄铜蜘蛛幼仔",RDL.LOCDATA_TYPE_DELVE,"(D) 穆萨纳兹","TRUE",},
+    [68] = {"沃伦费尔最终boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 沃伦费尔","TRUE",},
+    [69] = {"暗影洞穴2(引擎守护者boss) ",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 暗影洞穴2","TRUE",},
+    [70] = {"拉扎克之轮的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 拉扎克之轮","TRUE",},
+    [71] = {"查森卡斯特的非组队boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 查森卡斯特","TRUE",},
+    [72] = {"大地熔炉压力间 III，奥格努姆之鳞制衣台附近的“神奇锻莫碎石”",RDL.LOCDATA_TYPE_FIXLOCATION,"碎石","TRUE",},
+    [73] = {"(WB) 泽玛雷克萨尔",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 泽玛雷克萨尔","TRUE",},
+    [74] = {"暗影洞穴1(库加姆的哨兵) ",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 暗影洞穴1","TRUE",},
+    [75] = {"卡尔达克洞穴中最后的哨兵boss",RDL.LOCDATA_TYPE_DELVE,"(D) 卡尔达克","TRUE",},
+    [76] = {"昆德泽夫特组队洞穴，马兹克洛克boss",RDL.LOCDATA_TYPE_DELVE,"(D) 昆德泽夫特","TRUE",},
+    [77] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [78] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [79] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [80] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [81] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [82] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [83] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [84] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [85] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [86] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [87] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [88] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [89] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [90] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [91] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [93] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [94] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [95] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [96] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [97] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [98] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [99] = {"所有地区的珠宝盒容器","容器","珠宝盒","TRUE",},
+    [100] = {"多数/全部地区中的盗贼宝库","盗贼宝库","盗贼宝库","TRUE",},
+    [101] = {"所有区域的保险箱，宝箱",RDL.LOCDATA_TYPE_SAFEBOX,RDL.LOCDATA_SHORT_SAFEBOX,"TRUE",},
+    [102] = {"雷伦希尔场景NPC。观看幽灵跳舞，然后线索将出现在你的收藏品中。",RDL.LOCDATA_TYPE_FIXLOCATION,"雷伦希尔幽灵之舞","TRUE",},
+    [103] = {"","其他","","TRUE",},
+    [104] = {"至高王的房间，蓝色宫殿；独孤城外帝都行商帐篷珠宝盒",RDL.LOCDATA_TYPE_FIXLOCATION,"至高王的房间","TRUE",},
+    [105] = {"“要塞的危机”主线任务中莫萨尔城古墓的终点",RDL.LOCDATA_TYPE_FIXLOCATION,"莫萨尔城古墓","TRUE",},
+    [106] = {"在龙桥下方",RDL.LOCDATA_TYPE_FIXLOCATION,"龙桥下方","TRUE",},
+    [107] = {"查森卡斯特公共地牢内的“机械准则”",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 查森卡斯特","TRUE",},
+    [108] = {"废料洞穴的锻莫蜘蛛boss。",RDL.LOCDATA_TYPE_DELVE,"(D) 废料洞穴","TRUE",},
+    [109] = {"黑降的巨像充能站世界boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 巨像","TRUE",},
+    [111] = {"卡斯威斯腾公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 卡斯威斯腾","TRUE",},
+    [112] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [113] = {"咸水钓鱼",RDL.LOCDATA_TYPE_FISHING,"咸水钓鱼","TRUE",},
+    [114] = {"阿蒂姆或夏暮岛的塞伊克传送门",RDL.LOCDATA_TYPE_NODE,"塞伊克传送门","TRUE",},
+    [115] = {"咸水钓鱼",RDL.LOCDATA_TYPE_FISHING,"咸水钓鱼","TRUE",},
+    [116] = {"恐霜要塞中的冰境的德萝达",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 恐霜要塞","TRUE",},
+    [117] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [118] = {"匕落同盟NPC、霜之边缘哨兵、冰啮蜘蛛、泥蟹、亡灵",RDL.LOCDATA_TYPE_MOB,"怪物","TRUE",},
+    [119] = {"西罗帝尔, 棺盖洞穴, 毒菌洞穴, 顶石洞穴, 红宝石洞穴等四个洞穴",RDL.LOCDATA_TYPE_DELVE,"(D) 西罗帝尔4个洞穴","FALSE",},
+    [120] = {"迷宫遗迹公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 迷宫遗迹","TRUE",},
+    [121] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [122] = {"艾尔登洞穴1的奥兰内斯族长",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 艾尔登洞穴1","TRUE",},
+    [123] = {"恶人幽谷公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 恶人幽谷","TRUE",},
+    [124] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [125] = {"波克-许尔，回声幽谷世界boss，西帝斯之牙+特索费尔洞穴内的boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) (D) 全部","TRUE",},
+    [126] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [127] = {"黑心港口地牢的黑心船长",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 黑心港口","TRUE",},
+    [128] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [129] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [130] = {"乌鸦之森公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 乌鸦之森","TRUE",},
+    [131] = {"贝庭克的随机怪物",RDL.LOCDATA_TYPE_MOB,"随机怪物","TRUE",},
+    [132] = {"老奥辛纽姆公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 老奥辛纽姆","TRUE",},
+    [133] = {"碎骨废墟公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 碎骨废墟","TRUE",},
+    [134] = {"帝都上层Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 帝都上层","TRUE",},
+    [135] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [136] = {"心灵地穴1中的伊拉姆布里斯双子",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 心灵地穴1","TRUE",},
+    [137] = {"失落村庄公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 失落村庄","TRUE",},
+    [138] = {"蛛丝之握洞穴1的低语者",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 蛛丝之握洞穴1","TRUE",},
+    [139] = {"桑吉恩领地公共地牢内的所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 桑吉恩领地","TRUE",},
+    [140] = {"帝都下水道全部Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 所有帝都下水道boss","TRUE",},
+    [141] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [142] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [143] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [144] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [145] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [146] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [147] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [148] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [149] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [150] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [151] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [152] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [153] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [154] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [155] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [156] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [157] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [158] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [159] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [160] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [161] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [162] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [163] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [164] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [165] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [166] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [167] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [168] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [169] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [170] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [171] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [172] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [173] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [174] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [175] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [176] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [177] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [178] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [179] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [180] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [181] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [182] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [183] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [184] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [185] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [186] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [187] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [188] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [189] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [190] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [191] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [192] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [193] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [194] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [195] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [196] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [197] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [198] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [199] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [200] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [204] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [205] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [206] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [207] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [208] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [209] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [213] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [214] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [215] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [216] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [217] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [218] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [219] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [220] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [221] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [222] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [223] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [224] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [225] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [226] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [227] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [228] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [229] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [230] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [231] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [232] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [233] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [234] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [235] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [236] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [237] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [238] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [239] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [240] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [241] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [242] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [243] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [244] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [245] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [246] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [247] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [248] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [249] = {"老奥辛纽姆公共地牢内的所有boss和随机怪物",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 老奥辛纽姆","TRUE",},
+    [250] = {"所有采集点",RDL.LOCDATA_TYPE_NODE,"所有采集点","TRUE",},
+    [251] = {"木材,符文石采集点",RDL.LOCDATA_TYPE_NODE,"木材,符文石采集点","TRUE",},
+    [252] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [253] = {"普通猛犸象怪物，东境、裂谷、马拉巴尔石山、沃斯加的猛犸象","猛犸象","猛犸象","TRUE",},
+    [254] = {"科林涅姆堡垒最终boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 科林涅姆堡垒","TRUE",},
+    [255] = {"狮鹫、塞伊克传送门、间歇泉","狮鹫","狮鹫,塞伊克,间歇泉","TRUE",},
+    [256] = {"矿物采集点、矿物调查报告采集点、珠宝调查报告",RDL.LOCDATA_TYPE_NODE,"矿物,珠宝采集点","TRUE",},
+    [257] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [258] = {"香丁赫尔、瓦拉斯塔努斯、克罗普斯福特、科洛尔、布鲁玛日常奖励",RDL.LOCDATA_TYPE_DAILY,"城镇日常5x","TRUE",},
+    [259] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [260] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [261] = {"保险箱、藏宝图宝箱、盗贼宝库、采集点",RDL.LOCDATA_TYPE_SAFEBOX,"特殊","TRUE",},
+    [262] = {RDL.LOCDATA_LONG_TREASURECHEST,RDL.LOCDATA_TYPE_TREASURECHEST,RDL.LOCDATA_SHORT_TREASURECHEST,"TRUE",},
+    [263] = {"怪物(胡蜂、狼、莫里瑟利、山海幽灵、血荆棘教徒) ",RDL.LOCDATA_TYPE_MOB,"怪物","TRUE",},
+    [264] = {"吸血剑齿虎、熊、血骑士，凯恩之盾、荆棘城堡、石之花园中的怪物",RDL.LOCDATA_TYPE_MOB,"特殊","FALSE",},
+    [265] = {RDL.LOCDATA_LONG_TREASURECHEST,RDL.LOCDATA_TYPE_TREASURECHEST,RDL.LOCDATA_SHORT_TREASURECHEST,"TRUE",},
+    [266] = {"脏水鱼饵钓鱼",RDL.LOCDATA_TYPE_FISHING,"脏水鱼饵钓鱼","TRUE",},
+    [267] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [268] = {"瓦登费尔日常奖励箱",RDL.LOCDATA_TYPE_DAILY,"日常","TRUE",},
+    [269] = {"月光海湾和遗忘城堡中的容器，例如瓮罐和背包, 森查尔码头瓮，南艾斯维尔随机怪物","容器","容器","TRUE",},
+    [270] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [271] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [272] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [273] = {"随机怪物",RDL.LOCDATA_TYPE_MOB,"随机怪物","TRUE",},
+    [274] = {"哨兵城的保险箱",RDL.LOCDATA_TYPE_SAFEBOX,RDL.LOCDATA_SHORT_SAFEBOX,"TRUE",},
+    [275] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [276] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [277] = {"任何地方的所有牛头人。帝都的莫拉格.巴尔","牛头人","牛头人","TRUE",},
+    [278] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [279] = {"战场获得的“贡献者奖励！”","战场奖励","战场奖励","TRUE",},
+    [280] = {"纳西斯、哀伤之城(审判庭神殿) 、友善附魔师、穆斯格纳尔山丘附近的磨坊、德雷斯宅邸等地的保险箱",RDL.LOCDATA_TYPE_SAFEBOX,RDL.LOCDATA_SHORT_SAFEBOX,"TRUE",},
+    [281] = {"塞伊克传送门、附魔符文石采集点、背包",RDL.LOCDATA_TYPE_NODE,"塞伊克,符文石采集点","TRUE",},
+    [282] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [283] = {"塞伊克传送门、附魔采集点",RDL.LOCDATA_TYPE_NODE,"塞伊克,符文石采集点","TRUE",},
+    [284] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,RDL.LOCDATA_SHORT_SAFEBOX,"TRUE",},
+    [285] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [286] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [287] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [288] = {RDL.LOCDATA_LONG_WORLDBOSSDRAGON,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSDRAGON,"TRUE",},
+    [289] = {"马拉塔深渊的利刃交响曲boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 马拉塔深渊","TRUE",},
+    [290] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [291] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [292] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [293] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [294] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [295] = {RDL.LOCDATA_LONG_WORLDBOSSDRAGON,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSDRAGON,"TRUE",},
+    [296] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [297] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [298] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [299] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [300] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [301] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [302] = {"完成盗窃任务和盗贼公会日常获得的奖励。盗贼公会的大小被洗劫的货箱容器。",RDL.LOCDATA_TYPE_DAILY,"盗贼公会日常","TRUE",},
+    [303] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [304] = {RDL.LOCDATA_LONG_COFFER,RDL.LOCDATA_TYPE_COFFER,RDL.LOCDATA_SHORT_COFFER,"TRUE",},
+    [305] = {RDL.LOCDATA_LONG_COFFER,RDL.LOCDATA_TYPE_COFFER,RDL.LOCDATA_SHORT_COFFER,"TRUE",},
+    [306] = {RDL.LOCDATA_LONG_COFFER,RDL.LOCDATA_TYPE_COFFER,RDL.LOCDATA_SHORT_COFFER,"TRUE",},
+    [307] = {"布扎克的宝箱、怪物；床头柜偷窃，圣徒港的海盗，狼群、甲虫刺客",RDL.LOCDATA_TYPE_MOB,"特殊","TRUE",},
+    [308] = {"荒崖任何试炼的最终boss","试炼","荒崖试炼","TRUE",},
+    [310] = {"古文物学会顶层的“神奇钱币收藏”(在一些书架后面的一个陈列柜的上面，需要收集所有102个免费的绿色、蓝色、紫色区域宝物线索后才会刷新) ",RDL.LOCDATA_TYPE_FIXLOCATION,"神奇钱币收藏","TRUE",},
+    [312] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [313] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [314] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [315] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [316] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [317] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [318] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [319] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [320] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [321] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [322] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [323] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [324] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [325] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [326] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [327] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [328] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [329] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD2,RDL.LOCDATA_TYPE_EXCAVATIONREWARD2,RDL.LOCDATA_SHORT_EXCAVATIONREWARD2,"TRUE",},
+    [335] = {"夜谷要塞内桌子上的卷轴。每隔五分钟重新刷新。",RDL.LOCDATA_TYPE_FIXLOCATION,"夜谷要塞","TRUE",},
+    [336] = {"(PD) 恶人幽谷普通小怪",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 恶人幽谷","TRUE",},
+    [337] = {RDL.LOCDATA_LONG_TREASURECHEST,RDL.LOCDATA_TYPE_TREASURECHEST,RDL.LOCDATA_SHORT_TREASURECHEST,"TRUE",},
+    [338] = {"冷岩矿洞最终boss",RDL.LOCDATA_TYPE_DELVE,"(D) 冷岩矿洞","TRUE",},
+    [339] = {RDL.LOCDATA_LONG_WORLDBOSSALL,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_WORLDBOSSALL,"TRUE",},
+    [340] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,RDL.LOCDATA_SHORT_SAFEBOX,"TRUE",},
+    [341] = {"心灵地穴2的奈恩斯",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 心灵地穴2","TRUE",},
+    [342] = {"利里斯亲王。",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 放逐地牢1","TRUE",},
+    [343] = {"(PD) 根之割裂废墟boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(PD) 根之割裂废墟","TRUE",},
+    [344] = {"所有洞穴boss",RDL.LOCDATA_TYPE_DELVE,"(D) 全部","TRUE",},
+    [345] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [346] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [347] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [348] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [349] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [350] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [351] = {"精英锻莫怪物(极低掉落几率) (巴塔·扎尔，阿克赞德图书馆外部…) ",RDL.LOCDATA_TYPE_MOB,"巴塔·扎尔","TRUE",},
+    [352] = {"黑降中的未激活构造体。已经死亡。使用一个虚无异常传送过桥。阿克赞德图书馆南边",RDL.LOCDATA_TYPE_FIXLOCATION,"黑降","TRUE",},
+    [353] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [354] = {RDL.LOCDATA_LONG_HARROWSTORMS,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_HARROWSTORMS,"TRUE",},
+    [355] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [356] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [357] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [358] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [359] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [360] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [361] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [362] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [363] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [364] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [365] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [366] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [367] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [368] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [369] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [370] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [371] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [372] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [373] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [374] = {"在一根亚龙人棍子上。石林试炼西边，天空裂片北边 70.05,90.34",RDL.LOCDATA_TYPE_FIXLOCATION,"亚龙人棍子","TRUE",},
+    [375] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [376] = {"乐雅文日常奖励箱",RDL.LOCDATA_TYPE_DAILY,"乐雅文日常","TRUE",},
+    [377] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [378] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [379] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [380] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [381] = {"湮灭传送门最终宝箱","湮灭传送门","湮灭传送门","TRUE",},
+    [382] = {"全部帝都上层Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 帝都上层","TRUE",},
+    [383] = {"贡献者奖励！","贡献者奖励！","贡献者奖励！","TRUE",},
+    [384] = {"龙星竞技场最终宝箱",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 龙星竞技场","TRUE",},
+    [385] = {"异常点，安卡拉。最终宝箱。",RDL.LOCDATA_TYPE_WORLDBOSS,"异常点，安卡拉","TRUE",},
+    [386] = {"(GD) 疯狂密室最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 疯狂密室","TRUE",},
+    [387] = {RDL.LOCDATA_LONG_HARROWSTORMS,RDL.LOCDATA_TYPE_WORLDBOSS,RDL.LOCDATA_SHORT_HARROWSTORMS,"TRUE",},
+    [388] = {"海尔辛的徘徊地全部Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 海尔辛的徘徊地","TRUE",},
+    [389] = {"(GD) 蛛丝之握洞穴2最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 蛛丝之握洞穴2","TRUE",},
+    [390] = {"(PD) 寂静殿堂: 几乎所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 寂静殿堂","TRUE",},
+    [391] = {"全部世界Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 全部","TRUE",},
+    [392] = {"(GD) 谜城遗迹: 最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 谜城遗迹","TRUE",},
+    [393] = {"全部炼金采集点",RDL.LOCDATA_TYPE_NODE,"炼金采集点","TRUE",},
+    [394] = {"脏水钓鱼",RDL.LOCDATA_TYPE_FISHING,"脏水钓鱼","TRUE",},
+    [395] = {"匕落同盟怪物",RDL.LOCDATA_TYPE_MOB,"匕落同盟怪物","TRUE",},
+    [396] = {"(PD) 泽尼萨尔神庙: 所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 泽尼萨尔神庙","TRUE",},
+    [397] = {"罪犯避难所的黑暗兄弟会补给掉落，需要技能点","黑暗兄弟会补给掉落","黑暗兄弟会","TRUE",},
+    [398] = {"(GD) 暗影摇篮",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 暗影摇篮","TRUE",},
+    [399] = {"所有洞穴boss",RDL.LOCDATA_TYPE_DELVE,"(D) 全部","TRUE",},
+    [400] = {"(PD) 遗忘地穴: 所有boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 遗忘地穴","TRUE",},
+    [401] = {"屑石村路点神龛西南边被毁的小屋(59.67,78.86) ",RDL.LOCDATA_TYPE_FIXLOCATION,"被毁的小屋","TRUE",},
+    [402] = {"乌纳克洞穴西边，在一条长隧道中大型祭坛后面(30.75,36.99) ",RDL.LOCDATA_TYPE_FIXLOCATION,"祭坛后面","TRUE",},
+    [403] = {"屑石村内荒废的建筑上层。需要跳跃(63.90,79.83) ",RDL.LOCDATA_TYPE_FIXLOCATION,"荒废的建筑","TRUE",},
+    [404] = {"破碎的石巢神庙WB东南边的隘谷中(58.30,85.59) ",RDL.LOCDATA_TYPE_FIXLOCATION,"隘谷","TRUE",},
+    [405] = {"乐雅文桥东南边骷髅旁边(30.75,57.69) ",RDL.LOCDATA_TYPE_FIXLOCATION,"骷髅","TRUE",},
+    [406] = {"葛林桥南边帐篷旁边(66.41,67.52) ",RDL.LOCDATA_TYPE_FIXLOCATION,"帐篷旁边","TRUE",},
+    [407] = {"潮汐洞穴东南边木箱边的树边，挨近小船(31.74,70.04) ",RDL.LOCDATA_TYPE_FIXLOCATION,"树","TRUE",},
+    [408] = {"乌纳克洞穴北边，在岛上的房屋中(81.29,63.49) ",RDL.LOCDATA_TYPE_FIXLOCATION,"岛上的房屋","TRUE",},
+    [409] = {"寂静殿堂公共地牢图标北边，在独轮车附近的一个洞里(57.91,62.90) ",RDL.LOCDATA_TYPE_FIXLOCATION,"独轮车","TRUE",},
+    [410] = {"谢姆霍克的泻湖WB东南边荒废的建筑(81.66,79.33) ",RDL.LOCDATA_TYPE_FIXLOCATION,"荒废的建筑","TRUE",},
+    [411] = {"蓝血路点神龛东南边被毁的马车(37.42,67.77) ",RDL.LOCDATA_TYPE_FIXLOCATION,"被毁的马车","TRUE",},
+    [412] = {"吉德昂北边的城堡废墟，东边，穿过陷阱 - 女公爵的私人书房(56.60,45.35) ",RDL.LOCDATA_TYPE_FIXLOCATION,"藏身处","TRUE",},
+    [413] = {"西·提赛洞穴西北边的小船(48.92,75.55) ",RDL.LOCDATA_TYPE_FIXLOCATION,"船","TRUE",},
+    [414] = {"暗潮洞穴西北边的洞穴里(17.13,47.40) ",RDL.LOCDATA_TYPE_FIXLOCATION,"洞穴","TRUE",},
+    [415] = {"白马旅馆南边(20.74,45.74) ",RDL.LOCDATA_TYPE_FIXLOCATION,"白马旅馆南边","TRUE",},
+    [416] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [417] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [418] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [419] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [420] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [421] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [422] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [423] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [424] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [425] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [426] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [427] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [428] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [429] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [430] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"FALSE",},
+    [431] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"FALSE",},
+    [432] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"FALSE",},
+    [433] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,"保险箱","FALSE",},
+    [434] = {"徘徊的boss",RDL.LOCDATA_TYPE_WORLDBOSS,"徘徊的boss","FALSE",},
+    [435] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [436] = {"恶毒尖刺路点神龛北边的细死树下方的不寻常的金属采集点(81.29,42.29) ",RDL.LOCDATA_TYPE_FIXLOCATION,"不寻常的金属采集点","FALSE",},
+    [437] = {"(WB) 憎恶摇篮",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 憎恶摇篮","FALSE",},
+    [438] = {"任何地方的魔族",RDL.LOCDATA_TYPE_ALLLOOTTABLES,"魔族","FALSE",},
+    [439] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,"保险箱","FALSE",},
+    [440] = {"(WB) 颤栗神龛",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 颤栗神龛","FALSE",},
+    [441] = {"惊惧兽",RDL.LOCDATA_TYPE_MOB,"惊惧兽","FALSE",},
+    [442] = {"(WB) 毁灭者",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 毁灭者","FALSE",},
+    [443] = {"(GD) 放逐地牢1&2",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 放逐地牢1&2","FALSE",},
+    [444] = {"死地日常",RDL.LOCDATA_TYPE_DAILY,"死地日常","FALSE",},
+    [445] = {"魔鼠",RDL.LOCDATA_TYPE_MOB,"魔鼠","FALSE",},
+    [446] = {"宝箱",RDL.LOCDATA_TYPE_TREASURECHEST,"宝箱","FALSE",},
+    [447] = {"死地日常",RDL.LOCDATA_TYPE_DAILY,"死地日常","FALSE",},
+    [448] = {"(GD) 佛克瑞斯领地宝箱",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 佛克瑞斯领地宝箱","FALSE",},
+    [449] = {"(GD) 黑德雷克庄园",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 黑德雷克庄园","FALSE",},
+    [450] = {"黄金海岸宝箱",RDL.LOCDATA_TYPE_TREASURECHEST,"宝箱","FALSE",},
+    [451] = {"(WB) 行政官的愚行",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 行政官的愚行","FALSE",},
+    [452] = {"(PD) 献祭环礁(传送门事件) ",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 献祭环礁","FALSE",},
+    [453] = {"符文石",RDL.LOCDATA_TYPE_NODE,"符文石","FALSE",},
+    [460] = {"塞伊克传送门",RDL.LOCDATA_TYPE_NODE,"塞伊克传送门","FALSE",},
+    [461] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,"保险箱","FALSE",},
+    [462] = {"(试炼) 太阳尖顶(龙) ","试炼","(T) 太阳尖顶","TRUE",},
+    [463] = {"(GD) 月墓神庙小怪",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 月墓神庙小怪","TRUE",},
+    [464] = {"(GD) 马塞洛克巢穴最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 马塞洛克巢穴","TRUE",},
+    [465] = {"传送门内的凝视者(献祭环礁) ",RDL.LOCDATA_TYPE_MOB,"传送门内的凝视者","TRUE",},
+    [466] = {"(GD) 帝都监狱(观察者Boss) ",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 帝都监狱","TRUE",},
+    [467] = {"制衣采集点",RDL.LOCDATA_TYPE_NODE,"制衣采集点","TRUE",},
+    [468] = {"观察者怪物",RDL.LOCDATA_TYPE_MOB,"观察者怪物","TRUE",},
+    [469] = {"(PD) 邪恶宅邸公共地牢内的宝箱",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 邪恶宅邸","TRUE",},
+    [470] = {"日常制造委托",RDL.LOCDATA_TYPE_DAILY,"日常制造委托","TRUE",},
+    [471] = {"间歇泉的贝壳宝库",RDL.LOCDATA_TYPE_WORLDBOSS,"间歇泉","TRUE",},
+    [472] = {"(WB) 莫尔纳德瀑布",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 莫尔纳德瀑布","TRUE",},
+    [473] = {"礁蛇，小海蝰",RDL.LOCDATA_TYPE_MOB,"礁蛇/小海蝰","TRUE",},
+    [474] = {"宝箱",RDL.LOCDATA_TYPE_TREASURECHEST,"宝箱","TRUE",},
+    [475] = {"(WB) 巨蛇泥沼",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 巨蛇泥沼","TRUE",},
+    [476] = {"珠宝调查报告","调查报告","珠宝调查报告","TRUE",},
+    [477] = {"大砗磲",RDL.LOCDATA_TYPE_NODE,"大砗磲","TRUE",},
+    [478] = {"法师公会日常",RDL.LOCDATA_TYPE_DAILY,"法师公会日常","TRUE",},
+    [479] = {"(WB) 冰冻废墟",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 冰冻废墟","TRUE",},
+    [480] = {"保险箱",RDL.LOCDATA_TYPE_SAFEBOX,"保险箱","TRUE",},
+    [481] = {"(WB) 泥蟹沙滩/泰坦之爪",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 泥蟹沙滩","TRUE",},
+    [482] = {"矿物采集点",RDL.LOCDATA_TYPE_NODE,"矿物采集点","TRUE",},
+    [483] = {"随机怪物",RDL.LOCDATA_TYPE_MOB,"随机怪物","TRUE",},
+    [484] = {"火山口",RDL.LOCDATA_TYPE_WORLDBOSS,"火山口","TRUE",},
+    [485] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [486] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [487] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [488] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [489] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [490] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [491] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [492] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [493] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [494] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [495] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [496] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [497] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [498] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [499] = {"水道交汇处的“旧罐”，阿梅诺斯休息站东北边",RDL.LOCDATA_TYPE_FIXLOCATION,"阿梅诺斯: 小岛","TRUE",},
+    [500] = {"建在悬崖中的废墟里的“凹凸不平的碗”，在隐藏的铸造厂的东入口的南边",RDL.LOCDATA_TYPE_FIXLOCATION,"阿梅诺斯: 悬崖底部的废墟","TRUE",},
+    [501] = {"水中高杆附近失事船只上“生锈的食物处理钳”，在骷髅牙海岸北边的海湾内",RDL.LOCDATA_TYPE_FIXLOCATION,"阿梅诺斯: 骷髅牙海岸北边","TRUE",},
+    [502] = {"全旗屿东北滨的“陈旧的石头”，被一块高大的新月形的陈旧的石头边的陆地掩蔽起来",RDL.LOCDATA_TYPE_FIXLOCATION,"全旗屿","TRUE",},
+    [503] = {"死亡之勇要塞洞穴南边小海湾的南岸上的“老旧的布莱顿茶壶”",RDL.LOCDATA_TYPE_FIXLOCATION,"死亡之勇要塞南边小海湾","TRUE",},
+    [504] = {"纳维尔城堡路点神龛东边，路边大树旁的“损坏的编织过滤器”",RDL.LOCDATA_TYPE_FIXLOCATION,"纳维尔城堡附近","TRUE",},
+    [505] = {"度佛特船厂路点神龛南边，在炽热的德鲁伊教团中的岩石后面的“炽热的石头”",RDL.LOCDATA_TYPE_FIXLOCATION,"度佛特船厂南边","TRUE",},
+    [506] = {"从托尔·达奥奇火山口向西走，然后在开花的树左边找到“德鲁伊的屠夫刀”",RDL.LOCDATA_TYPE_FIXLOCATION,"托尔·达奥奇火山口西边","TRUE",},
+    [507] = {"加里克栖所北边，俯瞰大海的悬崖上的“远古清洁工具”",RDL.LOCDATA_TYPE_FIXLOCATION,"加里克栖所附近","TRUE",},
+    [508] = {"海滩上的浮木边的“满是污痕的水壶”，树精的林冠西边",RDL.LOCDATA_TYPE_FIXLOCATION,"树精的林冠西边","TRUE",},
+    [509] = {"倚靠在一棵高大树木附近的岩石上的“德鲁伊箭矢”，在一个瀑布东边，放逐避难所北边。被一只小恶魔守卫着。每5分钟刷新",RDL.LOCDATA_TYPE_FIXLOCATION,"阿梅诺斯: 瀑布","TRUE",},
+    [510] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [511] = {"(试炼) 恐帆礁石","试炼","(T) 恐帆礁石","TRUE",},
+    [512] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [513] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [514] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [515] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [516] = {RDL.UNKNOWN,RDL.UNKNOWN,RDL.UNKNOWN,"FALSE",},
+    [517] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [518] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [519] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [520] = {"(WB) 鹿人瀑布",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 鹿人瀑布","TRUE",},
+    [521] = {"(PD) 黑曜石伤痕",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 黑曜石伤痕","TRUE",},
+    [522] = {"盗贼宝库, 保险箱","盗贼宝库","盗贼宝库, 保险箱","TRUE",},
+    [523] = {"木材采集点",RDL.LOCDATA_TYPE_NODE,"木材采集点","TRUE",},
+    [524] = {"(D) 鲸落,Boss和猎人",RDL.LOCDATA_TYPE_DELVE,"(D) 鲸落","TRUE",},
+    [525] = {"火山口",RDL.LOCDATA_TYPE_WORLDBOSS,"火山口","TRUE",},
+    [526] = {"制衣、炼金采集点",RDL.LOCDATA_TYPE_NODE,"制衣、炼金采集点","TRUE",},
+    [527] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"TRUE",},
+    [528] = {"(PD) 牙槌隘谷的组队事件Boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 牙槌隘谷","TRUE",},
+    [529] = {"(WB观察者山谷",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB观察者山谷","TRUE",},
+    [530] = {"日常锻造委托",RDL.LOCDATA_TYPE_DAILY,"日常锻造委托","TRUE",},
+    [531] = {"(GD) 放逐地牢2",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 放逐地牢2","TRUE",},
+    [532] = {"钓鱼",RDL.LOCDATA_TYPE_FISHING,"钓鱼","TRUE",},
+    [533] = {"(GD) 船工之憾地牢",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 船工之憾地牢","TRUE",},
+    [534] = {"(WB) 灵鹿乐园",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 灵鹿乐园","TRUE",},
+    [535] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [536] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"TRUE",},
+    [537] = {"(PD) 幽灵庇护湾组队事件",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 幽灵庇护湾","FALSE",},
+    [538] = {"(PD) 遗忘废墟",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 遗忘废墟","TRUE",},
+    [539] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [540] = {"(WB) 伽林保护者",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 伽林保护者","TRUE",},
+    [541] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"TRUE",},
+    [542] = {"火山口，(PD) 失落之城纳·托坦布(阿里克尔沙漠) ",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"多重","TRUE",},
+    [543] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"TRUE",},
+    [544] = {"(WB) 海妖德苏嘉",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 海妖德苏嘉","TRUE",},
+    [545] = {RDL.LOCDATA_LONG_TREASURECHEST ,RDL.LOCDATA_TYPE_TREASURECHEST,RDL.LOCDATA_SHORT_TREASURECHEST ,"TRUE",},
+    [546] = {"(GD) 途歇城下水道1",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 途歇城下水道1","TRUE",},
+    [547] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [548] = {"盗贼宝库，日常奖励",RDL.LOCDATA_TYPE_DAILY,"盗贼宝库，日常奖励","TRUE",},
+    [549] = {"(GD) 途歇城下水道2",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 途歇城下水道2","TRUE",},
+    [550] = {"火山口",RDL.LOCDATA_TYPE_WORLDBOSS,"火山口","TRUE",},
+    [551] = {"(WB) 奇美拉之林",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 奇美拉之林","TRUE",},
+    [552] = {"(D) 鹿人之森",RDL.LOCDATA_TYPE_DELVE,"(D) 鹿人之森","TRUE",},
+    [553] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"TRUE",},
+    [554] = {"(GD) 灰烬之城1:最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 灰烬之城1:最终Boss","TRUE",},
+    [555] = {"(D) 灰烬藤",RDL.LOCDATA_TYPE_DELVE,"(D) 灰烬藤","TRUE",},
+    [556] = {"凤凰蛾, Magma Frog",RDL.LOCDATA_TYPE_MOB,"凤凰蛾, Magma Frog","TRUE",},
+    [557] = {"(GD) 巴尔桑纳 最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 巴尔桑纳","FALSE",},
+    [558] = {"(WB) 克拉莫拉普盆地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 克拉莫拉普盆地","FALSE",},
+    [559] = {"(D) 忧虑书房 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 忧虑书房","FALSE",},
+    [560] = {RDL.LOCDATA_LONG_TREASURECHEST ,RDL.LOCDATA_TYPE_TREASURECHEST,RDL.LOCDATA_SHORT_TREASURECHEST ,"FALSE",},
+    [561] = {"日常奖励箱",RDL.LOCDATA_TYPE_DAILY,"日常奖励箱","FALSE",},
+    [562] = {"(D) 纳曲莱夫特",RDL.LOCDATA_TYPE_DELVE,"(D) 纳曲莱夫特","FALSE",},
+    [563] = {"(GD) 铭深岛 隐藏 Boss 1&2&3",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 铭深岛","FALSE",},
+    [564] = {"(GD) 珊瑚鹫巢 激光隐藏Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 珊瑚鹫巢","FALSE",},
+    [565] = {"(PD) 遗忘废墟，纳曲莱夫庭斯 组队Boss",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 两个组队BOSS","FALSE",},
+    [566] = {"(PD) 格尔涅组队事件",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 格尔涅组队事件","FALSE",},
+    [567] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [568] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [569] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [570] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [571] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [572] = {" WB, 圣遗物 日常奖励宝箱",RDL.LOCDATA_TYPE_DAILY,"WB,圣遗物 日常","FALSE",},
+    [573] = {"(D) 卡蒙纳鲁恩 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 卡蒙纳鲁恩","FALSE",},
+    [574] = {"(GD) 书吏大厅 金库宝箱",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 书吏大厅 金库宝箱","FALSE",},
+    [575] = {"(WB) 符文大师卫城",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 符文大师卫城","FALSE",},
+    [576] = {"(PD) 焚迹熔炉组队BOSS : 全视者基祖",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 焚迹熔炉","FALSE",},
+    [577] = {RDL.LOCDATA_LONG_ANTIQUEMAP,RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [578] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [579] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [580] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [581] = {"尼米克堡垒 赫麦尤斯·莫拉 小BOSS 宝箱","尼米克堡垒","尼米克堡垒 宝箱","FALSE",},
+    [582] = {"钓鱼",RDL.LOCDATA_TYPE_FISHING,"钓鱼","FALSE",},
+    [583] = {"真菌岩洞 II: 最终BOSS",RDL.LOCDATA_TYPE_P,"真菌岩洞 II","FALSE",},
+    [584] = {"(D) 玛图斯·阿金蛋矿",RDL.LOCDATA_TYPE_DELVE,"(D) 玛图斯·阿金蛋矿","FALSE",},
+    [585] = {"(WB) 深层掠夺者沼地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 深层掠夺者沼地","FALSE",},
+    [586] = {"符文石",RDL.LOCDATA_TYPE_NODE,"符文石","FALSE",},
+    [587] = {"每日 委托",RDL.LOCDATA_TYPE_DAILY,"每日 委托","FALSE",},
+    [588] = {"(WB) 首席编者",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 首席编者","FALSE",},
+    [589] = {"尼米克堡垒 Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"尼米克堡垒 Boss","FALSE",},
+    [591] = {"(D) 安克雷蛋矿 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 安克雷蛋矿","FALSE",},
+    [592] = {"木材资源点",RDL.LOCDATA_TYPE_NODE,"木材资源点","FALSE",},
+    [593] = {"(D) 拉蕾尔夫人的避难所",RDL.LOCDATA_TYPE_DELVE,"(D) 拉蕾尔夫人的避难所","FALSE",},
+    [594] = {"(GD) 真菌岩洞 I 最终BOSS",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 真菌岩洞 I","FALSE",},
+    [595] = {"尼米克堡垒 Boss",RDL.LOCDATA_TYPE_WORLDBOSS,"尼米克堡垒 Boss","FALSE",},
+    [596] = {"(WB) 西索恩广场",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 西索恩广场","FALSE",},
+    [597] = {"日常洞穴 奖励之匣",RDL.LOCDATA_TYPE_DAILY,"日常洞穴 奖励之匣","FALSE",},
+    [598] = {"(WB) 复生之庭",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 复生之庭","FALSE",},
+    [599] = {"(D) 深水漂移",RDL.LOCDATA_TYPE_DELVE,"(D) 深水漂移","FALSE",},
+    [600] = {"保险箱, 盗贼宝库","保险箱, 盗贼宝库","保险箱, 盗贼宝库","FALSE",},
+    [601] = {"旅店老板, 普通商人. 需要 死灵之地英雄 成就",RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [602] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [603] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [604] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [605] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [606] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [607] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [608] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [609] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [610] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [611] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [612] = {"(D) 奎尔斯温德 BOSS",RDL.LOCDATA_TYPE_DELVE,"(D) 奎尔斯温德 BOSS","FALSE",},
+    [613] = {"(WB) 梦魇巢穴",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 梦魇巢穴","FALSE",},
+    [614] = {"(D) 调节厅",RDL.LOCDATA_TYPE_DELVE,"(D) 调节厅","FALSE",},
+    [615] = {"岩浆池南部在 阿拉维利斯 和 帕多梅山峰路点神龛之间",RDL.LOCDATA_TYPE_FIXLOCATION,"帕多梅 的西南","FALSE",},
+    [616] = {"通往 凯梅尔-泽 的桥梁后, right side",RDL.LOCDATA_TYPE_FIXLOCATION,"朝 凯梅尔-泽 的方向","FALSE",},
+    [617] = {"埃德伊斯拉的东北部. 城市与水之间.",RDL.LOCDATA_TYPE_FIXLOCATION,"埃德伊斯拉的东北部","FALSE",},
+    [618] = {"梦魇巢穴以南的海岸 WB",RDL.LOCDATA_TYPE_FIXLOCATION,"梦魇巢穴以南的海岸","FALSE",},
+    [619] = {"凯梅尔-泽的右边 有三个岛屿 (最小的) . 找小瓮",RDL.LOCDATA_TYPE_FIXLOCATION,"凯梅尔-泽东边岛屿","FALSE",},
+    [620] = {"帕多梅路点神龛南部 , 沿着悬崖边墙",RDL.LOCDATA_TYPE_FIXLOCATION,"帕多梅 南部" ,"FALSE",},
+    [621] = {"在 阿拉维利斯 和 理智边缘 试炼入口之间",RDL.LOCDATA_TYPE_FIXLOCATION,"阿拉维利斯的东南","FALSE",},
+    [622] = {"埃德伊斯拉 南部最大的岛屿",RDL.LOCDATA_TYPE_FIXLOCATION,"埃德伊斯拉 南部最大的岛屿","FALSE",},
+    [623] = {"塞伦莫拉北部海岸",RDL.LOCDATA_TYPE_FIXLOCATION,"塞伦莫拉北部海岸","FALSE",},
+    [624] = {"帕多梅 山峰路点神龛 的北部, 沿河向东. 隐藏在岩石边 ( 右边 ) ",RDL.LOCDATA_TYPE_FIXLOCATION,"帕多梅山峰北部","FALSE",},
+    [625] = {"《望族传奇》 宝箱","《望族传奇》","《望族传奇》 宝箱","FALSE",},
+    [626] = {"(D) 折磨之眼的极点 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 折磨之眼的极点","FALSE",},
+    [627] = {"尼米克堡垒 奖励盒子",RDL.LOCDATA_TYPE_DAILY,"尼米克堡垒 奖励盒子","FALSE",},
+    [628] = {"(D) 泽恩加纳兹",RDL.LOCDATA_TYPE_DELVE,"(D) 泽恩加纳兹","FALSE",},
+    [629] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_LONG_ALLLOOTTABLES,"FALSE",},
+    [630] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [631] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [632] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [633] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [634] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [635] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [636] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [637] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [638] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [639] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [640] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [641] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [642] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [643] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [644] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [645] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [646] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [647] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [648] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [649] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [650] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [651] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [652] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [653] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [654] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [655] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [656] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [657] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [658] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [659] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [660] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [661] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [662] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [663] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [664] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [665] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [666] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [667] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [668] = {RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,RDL.ENDLESSARCHIVE,"FALSE",},
+    [669] = {"(D) 克罗维亚堡垒",RDL.LOCDATA_TYPE_DELVE,"(D) 克罗维亚堡垒","FALSE",},
+    [670] = {"(PD) 瑞因达莱夫特",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 瑞因达莱夫特","FALSE",},
+    [671] = {"(GD) 沃伦费尔地下城 最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 沃伦费尔","FALSE",},
+    [672] = {"(D) 桑卡提",RDL.LOCDATA_TYPE_DELVE,"(D) 桑卡提","FALSE",},
+    [673] = {"制造大厅最终Boss","试炼","(T) 制造大厅","FALSE",},
+    [674] = {"(D) 海尔丹伐木场",RDL.LOCDATA_TYPE_DELVE,"(D) 海尔丹伐木场","FALSE",},
+    [675] = {"(WB) 百夫长高地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 百夫长高地","FALSE",},
+    [676] = {"间歇泉",RDL.LOCDATA_TYPE_WORLDBOSS,"间歇泉","FALSE",},
+    [677] = {"(GD) 月墓古庙",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 月墓古庙","FALSE",},
+    [678] = {"(PD) 兽人栖所",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 兽人栖所","FALSE",},
+    [679] = {"(D) 谢尔格拉之舌",RDL.LOCDATA_TYPE_DELVE,"(D) 谢尔格拉之舌","FALSE",},
+    [680] = {"暗锚","暗锚","暗锚","FALSE",},
+    [681] = {"(WB) 小圆环",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 小圆环","FALSE",},
+    [682] = {"漩涡竞技场奖励宝箱","漩涡竞技场","漩涡竞技场","FALSE",},
+    [683] = {"(PD) 邪恶宅邸",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 邪恶宅邸","FALSE",},
+    [684] = {RDL.LOCDATA_LONG_STARTER,RDL.LOCDATA_TYPE_STARTER,RDL.LOCDATA_SHORT_STARTER,"TRUE",},
+    [685] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [686] = {RDL.LOCDATA_LONG_EXCAVATIONREWARD,RDL.LOCDATA_TYPE_EXCAVATIONREWARD,RDL.LOCDATA_SHORT_EXCAVATIONREWARD,"TRUE",},
+    [687] = {"Innkeeper, general merchant. Requiers Pathfinder Achievement",RDL.LOCDATA_TYPE_ANTIQUEMAP,RDL.LOCDATA_SHORT_ANTIQUEMAP,"TRUE",},
+    [688] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [689] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [690] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [691] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [692] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [693] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [694] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [695] = {RDL.LOCDATA_LONG_ALLLOOTTABLES,RDL.LOCDATA_TYPE_ALLLOOTTABLES,RDL.LOCDATA_SHORT_ALLLOOTTABLES,"FALSE",},
+    [696] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [697] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [698] = {RDL.LOCDATA_LONG_TREASUREMAP,RDL.LOCDATA_TYPE_TREASUREMAP,RDL.LOCDATA_SHORT_TREASUREMAP,"FALSE",},
+    [699] = {"(PD) 西洛恩",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 西洛恩","FALSE",},
+    [700] = {"(WB) 奥洛湖",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 奥洛湖","FALSE",},
+    [701] = {"(D) 菲尔莱特洞穴",RDL.LOCDATA_TYPE_DELVE,"(D) 菲尔莱特洞穴","FALSE",},
+    [702] = {"(D) 诺农加洛",RDL.LOCDATA_TYPE_DELVE,"(D) 诺农加洛","FALSE",},
+    [703] = {"(WB) 法尔林地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 法尔林地","FALSE",},
+    [704] = {"(D) 瓦仁哨岗",RDL.LOCDATA_TYPE_DELVE,"(D) 瓦仁哨岗","FALSE",},
+    [705] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"FALSE",},
+    [706] = {"(PD) 莱福忒尔交易站",RDL.LOCDATA_TYPE_PUBLICDUNGEON,"(PD) 莱福忒尔交易站","FALSE",},
+    [707] = {"镜泽入侵(Mirrormoor Incursions) ","镜泽入侵","镜泽入侵","FALSE",},
+    [708] = {"(D) 军团休整地",RDL.LOCDATA_TYPE_DELVE,"(D) 军团休整地","FALSE",},
+  }, RDL.Locations)
+
+--UI
+  RDL.ZONENAME_ALLZONES = "所有区域"
+  RDL.ZONENAME_BGS = "战场"
+
+  RDL.KEYBINDINGTEXT = "切出线索查询窗口"
+
+  -- UI Filter Elements (Dropdowns) 	
+
+  BB.TableCopy({
+    major = "复杂筛选条件",
+    zone = "按区域筛选",
+    settype = "按套装或古物类型筛选",
+  }, RDL.DropdownTooltips)
+
+  BB.TableCopy({
+    ChoicesMajor  = { "可发现", "可占卜", "缺失宝典条目", "从未挖掘过", "可执行线索", "所有线索", "组队地牢", "最新DLC",},
+    
+    TooltipsMajor  = {
+      "排除已发现但未占卜的线索，以及已发现的不可重复获得的线索",
+      "只显示已发现但还未占卜的线索",
+      "只显示考古宝典条目存在缺失的条目",
+      "只显示从还未挖掘过的古物",
+      "显示除已完成的不可重复获得的线索之外的其他所有线索",
+      "显示包括已完成的不可重复获得的线索的所有线索",
+      "只显示从4人地牢中获得的线索",
+      "只显示最新DLC的新线索",
+    },
+    
+    ChoicesZone = {RDL.ZONENAME_ALLZONES, "当前区域", "最新DLC", "排除次要DLC", },
+    TooltipsZone = { 
+      "显示所有区域的线索",
+      "只显示与当前区域有关的线索",
+      "只显示最新DLC的新线索",
+      "只显示与基础区域或章节区域有关的线索",
+    },
+    TooltipsZoneGenerated = "只显示与 %s 有关的线索",
+    ChoicesSetType  = { "所有", "隐藏简单类", "组合古物",},
+    TooltipsSetType   = {
+      "显示所有类型和套装的线索",
+      "隐藏古地图、免费宝物线索及样式页\n但如果在'可占卜'主模式下，则仅隐藏普通绿色宝物",
+      "仅显示组合古物的线索",
+    },
+    TooltipsSetTypeGenerated = "仅显示 %s 类型/套装的线索",
+  }, RDL.DropdownData)
+
+  -- Alerts Label
+
+  RDL.LABEL_ALERTS_UD_MISSING = "|c%s警告 : %d 7天; %d 1天; %d 1小时; ?? 闯世者日常|r"
+
+  RDL.LABEL_ALERTS = "|c%s警告 : %d 7天; %d 1天; %d 1小时; %d 闯世者日常|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "UndauntedDaily插件缺失！无法",
+    "计算日常任务是否有线索给你",
+  }, RDL.TOOLTIP_ALERTS_UD_MISSING)
+
+  RDL.TOOLTIP_ALERTS_1HOUR = "线索过期<1小时: %d"
+  RDL.TOOLTIP_ALERTS_1DAY = "线索过期<1天: %d"
+  RDL.TOOLTIP_ALERTS_7DAYS = "线索过期<7天: %d"
+  RDL.TOOLTIP_ALERTS_UD_NONEFOUND = "闯世者日常无线索给你"
+  RDL.TOOLTIP_ALERTS_UD_SCRYFIRST = " (您已拥有此线索，请先占卜/挖掘)"
+
+  RDL.LABEL_URL_INITIAL = "目前为止没有发现线索"
+  RDL.LABEL_URL_LEADFOUND = "|c3A92FF报告最新的线索，使用ID %d|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "为了顺畅地报告新地点: ",
+    "如您找到一个线索，本插件将:",
+    " - 将线索ID信息贴出到此框内",
+    " - 将当前地点贴出到右边的栏中",
+    "   (如果我认为位置信息是完整的，它将发布一个请求",
+    "    以确认你的信息确实是最新的)",
+    " - 如果你是在别处发现此线索的，请您:",
+    "   - 删除编辑框中的内容",
+    "   - 描述你的位置",
+    "   - 点击这里的栏",
+    "插件将:",
+    " - 将信息转化为URL",
+    " - 同意ZOS的弹出框后用浏览器打开URL",
+  }, RDL.TOOLTIP_URL)
+
+  RDL.EDITBOX_INITIAL = "如果你找到新位置: 替换将出现在这里的内容; 单击左侧的标签发送到浏览器"
+  RDL.EDITBOX_LOCATION_DATA_COMPLETE = "位置信息被认为是完整的。请仅在确认您的发现未被现有描述涵盖后提交"
+  RDL.EDITBOX_NO_LEAD_FOUND_OR_SELECTED = "首先找到一个线索，或单击要报告的线索行"
+  RDL.EDITBOX_NOT_EDITED = "提交新发现: 首先用新位置替换此编辑框中的内容。然后单击左侧的标签。"
+  RDL.EDITBOX_LOCDATA_EMPTY = "您需要在此编辑框中输入您的新位置。然后单击左侧的标签。"
+  RDL.EDITBOX_THANKS = "感谢您提交新的位置数据"
+
+  BB.TableCopy({
+      "线索", 
+      "区域", 
+      "地点", 
+      "难度", 
+      "知识", 
+      "挖掘", 
+      "套装", 
+      "过期", 
+  }, RDL.SORTHEADER_NAMES)
+
+  BB.TableCopy({
+    "古物的名称",
+    "可找到/占卜线索的区域",
+    "简短的位置描述\n(D) = 洞穴\n(PD) = 公共地牢\n(GD) = 组队地牢\n(WB) = 世界Boss",
+    "线索稀有程度。除非难度为5。",
+    "还有多少知识/宝典条目缺失",
+    "该古物已被挖出多少次",
+    "组合古物组装完成后的物品名。\n或单线索古物的类型",
+    "线索过期剩余时间。\n某些线索在获得后的前几天过期时间不会减少。",
+  }, RDL.SORTHEADER_TOOLTIP)
+
+  -- LOOP
+  BB.TableCopy({
+    "如果你知道其他的获取位置:",
+    "单击行以激活该线索的位置数据更新。",
+    "将编辑框内容替换为您的位置，然后单击左侧的标签"
+  }, RDL.TOOLTIP_LEAD_HOWUPDATE)
+
+  -- LOOP
+  BB.TableCopy({
+    "原始位置数据由@inklings提供 (Discord, Twitch)",
+    "非常感谢你让我使用这些数据",
+  }, RDL.TOOLTIP_INKLING)
+
+  RDL.TOOLTIP_MAPPINS = "已包含在Hoft的MapPins插件中"
+
+--Sepcial Setting
+  BB.SetAfterPart(
+    
+    function()
+      RDLMainWindowHeadersLeadName:SetText(RDL.SORTHEADER_NAMES[1])
+      RDLMainWindowHeadersZoneName:SetText(RDL.SORTHEADER_NAMES[2])
+      RDLMainWindowHeadersLocationName:SetText(RDL.SORTHEADER_NAMES[3])
+      RDLMainWindowHeadersDiffName:SetText(RDL.SORTHEADER_NAMES[4])
+      RDLMainWindowHeadersLoreName:SetText(RDL.SORTHEADER_NAMES[5])
+      RDLMainWindowHeadersDugName:SetText(RDL.SORTHEADER_NAMES[6])
+      RDLMainWindowHeadersSetName:SetText(RDL.SORTHEADER_NAMES[7])
+      RDLMainWindowHeadersExpirationName:SetText(RDL.SORTHEADER_NAMES[8])
+    end
+  )
 return true end
 
 --Dolgubon's Lazy Set (and Furniture!) Crafter
