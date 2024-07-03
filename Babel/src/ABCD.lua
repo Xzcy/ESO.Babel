@@ -1892,7 +1892,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 return true end
 
 --Code's Combat Alerts
---2.0.8.1
+--2.0.9.1
 BB.AddonList["CombatAlerts"] = function() if not CombatAlerts2 then return false end
   ZO_CreateStringId("SI_CA_TITLE"                          , "Combat Alerts")
   ZO_CreateStringId("SI_CA_MODULE_LOAD"                    , "已加载模块 [<<1>>].")
@@ -1916,6 +1916,9 @@ BB.AddonList["CombatAlerts"] = function() if not CombatAlerts2 then return false
   ZO_CreateStringId("SI_CA_MOVE_GROUP_PANEL"               , "队伍面板")
   ZO_CreateStringId("SI_CA_MOVE_NEARBY"                    , "附近")
   ZO_CreateStringId("SI_CA_LEGACY_HOF"                     , "制造大厅插件已退役，应卸载；其功能已并入本插件。")
+  --2.0.9.1
+  ZO_CreateStringId("SI_CA_SETTINGS_MODULE_RAID_LEAD"      , "启用 RAID 领导模式")
+  ZO_CreateStringId("SI_CA_SETTINGS_MODULE_RAID_LEAD_TT"   , "通常情况下，某些警报只对某些相关参与者可见。这样做是为了减少无关警报的干扰。\n\n启用该模式将绕过这些限制，旨在帮助为其他玩家提供指导。")
 return true end
 
 --Combat Metrics
