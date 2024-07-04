@@ -2105,6 +2105,527 @@ do
   end
 end
 
+--CrutchAlerts
+--1.0.1
+BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false end
+    local Crutch = CrutchAlerts
+    local function GetNoSubtitlesZoneIdsAndNames()
+      local ids = {}
+      local names = {}
+      for zoneId, _ in pairs(Crutch.savedOptions.subtitlesIgnoredZones) do
+          table.insert(ids, zoneId)
+          table.insert(names, string.format("%s (%d)", GetZoneNameById(zoneId), zoneId))
+      end
+      return ids, names
+    end
+    local NewTable = {
+        {
+          type = "checkbox",
+          name = "解锁UI",
+          tooltip = "解锁框架的移动功能",
+        },
+---------------------------------------------------------------------
+-- general
+        {
+            type = "submenu",
+            name = "常规设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示 施法开始警告",
+                    tooltip = "在你成为开始施法的目标时显示警报 (ACTION_RESULT_BEGIN)",
+                },
+                {
+                    type = "checkbox",
+                    name = "      忽视非怪物来源施法",
+                    tooltip = "如果施法不是来自怪物（如玩家来源），则不显示开始时警告",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 施法获得警告",
+                    tooltip = "在你从怪物处 \"获得\" 施法时显示警告  (ACTION_RESULT_GAINED 或手动设置的 ACTION_RESULT_GAINED_DURATION)",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 对其他目标的施法警告",
+                    tooltip = "当你队伍中的其他人成为特定能力的目标，或者在某些情况下，当敌人对自身施放某种能力时，显示警告。这是一个手动编辑列表，其中列出了足以影响到你的关键能力",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 可伤害计时器",
+                    tooltip = "对于某些遭遇战，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回竞技场等",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 奥术师计时器",
+                    tooltip = "显示施放奥术师特定引导技能的警告",
+                },
+            }
+        },
+-- boss health bar
+        {
+            type = "submenu",
+            name = "垂直 Boss 血条设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示 BOSS 血条",
+                    tooltip = "为基于百分比的机制显示带有标记的垂直 BOSS 血条",
+                },
+                {
+                    type = "slider",
+                    name = "尺寸",
+                    tooltip = "显示垂直 BOSS 血条的尺寸。注意：某些元素在重新加载前可能无法正确更新尺寸",
+                },
+                {
+                    type = "checkbox",
+                    name = "使用 \"向下取整\" 舍入方式",
+                    tooltip = "是否使用\"向下取整\"或\"四舍五入\"的方式显示 BOSS 血量 %\n\n开启时，血量相对于机制%更加精确\n\n关闭时，血量将与其他UI的表现一致",
+                },
+                {
+                    type = "submenu",
+                    name = "舍入: 为什么?",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "基于血量的机制通常会以 50.999% 这样的百分比显示，但默认用户界面和大多数附加组件都使用 \"zo_round\" 对显示的血量百分比进行四舍五入。这是常见的四舍五入方法，例如 50.4 四舍五入为 50，50.5 四舍五入为 51。这就意味着，当我们说一个机制在 50%时发生，它仍然可以在用户界面上显示 51%！为了解决这个问题，\"向下取整\" 会将小数舍入更小的整数。这意味着 50.999 被舍入为 50，这就与触发 BOSS 机制的方式一致了。不过我还是保留了常用的四舍五入方法作为选项，因为有些人可能更希望整个用户界面保持一致，即使只有半个百分点的差别",
+                        }
+                    },
+                },
+            }
+        },
+-- subtitles
+        {
+            type = "submenu",
+            name = "杂项设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "在聊天中显示字幕",
+                    tooltip = "在聊天中显示 NPC 对话字幕。如果有多行字幕，颜色格式会很奇怪",
+                },
+                {
+                    type = "dropdown",
+                    name = "无字幕区域",
+                    tooltip = "在这些区域中聊天时不会显示字幕。从下拉菜单中选择一个即可移除",
+                    setFunc = function(value)
+                        Crutch.savedOptions.subtitlesIgnoredZones[value] = nil
+                        CHAT_SYSTEM:AddMessage(string.format("从字幕忽略区移除 %s(%d)", GetZoneNameById(value), value))
+                        local ids, names = GetNoSubtitlesZoneIdsAndNames()
+                        CrutchAlerts_NoSubtitlesZones:UpdateChoices(names, ids)
+                    end,
+                },
+                {
+                    type = "editbox",
+                    name = "添加无字幕区域ID",
+                    tooltip = "输入区域ID来添加无字幕列表",
+                    setFunc = function(value)
+                        local zoneId = tonumber(value)
+                        local zoneName = GetZoneNameById(zoneId)
+                        if (not zoneId or not zoneName or zoneName == "") then
+                            CHAT_SYSTEM:AddMessage(value .. " 为非法区域ID！")
+                            return
+                        end
+                        Crutch.savedOptions.subtitlesIgnoredZones[zoneId] = true
+                        CHAT_SYSTEM:AddMessage(string.format("为字幕忽略区添加 %s(%d)", zoneName, zoneId))
+                    end,
+                },
+            }
+        },
+-- debug
+        {
+            type = "submenu",
+            name = "调试设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示高难领导诊断",
+                    tooltip = "当发生某些重要事件时，在文本聊天中显示可能的信息。例如，有人在 DSR 中捡到了火穹",
+                },
+                {
+                    type = "checkbox",
+                    name = "在警报中显示调试信息",
+                    tooltip = "在警报上添加一小行文本，显示 ID 和其他调试信息",
+                },
+                {
+                    type = "checkbox",
+                    name = "在聊天框显示调试信息",
+                    tooltip = "几乎每次启用战斗事件时都会在聊天框显示信息 -- 非常吵！",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示其他调试",
+                    tooltip = "显示其他调试信息",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示调试UI",
+                    tooltip = "显示一个用户界面元素，该元素可能包含有用的调试功能，也可能不包含",
+                },
+            },
+        },
+---------------------------------------------------------------------
+-- trials
+        {
+            type = "description",
+            title = "试炼",
+            text = "以下是特定试炼中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "庇护圣所(AS)",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "Play sound for cone on self",
+                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets you",
+                },
+                {
+                    type = "checkbox",
+                    name = "Play sound for cone on others",
+                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets other players",
+                },
+            }
+        },
+        {
+            type = "submenu",
+            name = "云息城(CR)",
+            controls = Crutch.GetProminentSettings(1051, {
+                {
+                    type = "checkbox",
+                    name = "Show spears indicator",
+                    tooltip = "Show an indicator for how many spears are revealed, sent, and orbs dunked",
+                },
+                {
+                    type = "checkbox",
+                    name = "Play spears sound",
+                    tooltip = "Plays the champion point committed sound when a spear is revealed",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show flare sides",
+                    tooltip = "On Z'Maja during execute with +Siroria, show which side each of the two people with Roaring Flares can go to (will be same sides as RaidNotifier)",
+                },
+                {
+                    type = "checkbox",
+                    name = "染色Ody死亡图标",
+                    tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其OdySupportIcons死亡图标染为紫色",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "恐帆礁石(DSR)",
+            controls = Crutch.GetProminentSettings(1344, {
+                {
+                    type = "checkbox",
+                    name = "Alert Building Static stacks",
+                    tooltip = "Displays a prominent alert and ding sound if you reach too many Building Static (lightning) stacks",
+                },
+                {
+                    type = "slider",
+                    name = "Building Static stacks threshold",
+                    tooltip = "The minimum number of stacks of Building Static to show alert for",
+                },
+                {
+                    type = "checkbox",
+                    name = "Alert Volatile Residue stacks",
+                    tooltip = "Displays a prominent alert and ding sound if you reach too many Volatile Residue (poison) stacks",
+                },
+                {
+                    type = "slider",
+                    name = "Volatile Residue stacks threshold",
+                    tooltip = "The minimum number of stacks of Volatile Residue to show alert for",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "制造大厅(HoF)",
+            controls = Crutch.GetProminentSettings(975, {
+                {
+                    type = "checkbox",
+                    name = "Show safe spot for triplets",
+                    tooltip = "In the triplets fight, shows an icon in the world that is outside of Shock Field. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Triplets icon size",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Assembly General icons",
+                    tooltip = "Shows icons in the world for execute positions. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Assembly General icons size",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "凯恩之盾(KA)",
+            controls = Crutch.GetProminentSettings(1196, {
+                {
+                    type = "checkbox",
+                    name = "Show Exploding Spear landing spot",
+                    tooltip = "On trash packs with Half-Giant Raiders, show icons at the approximate locations where Exploding Spears will land. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Blood Prison icon",
+                    tooltip = "Shows icon above player who is targeted by Blood Prison, slightly before the bubble even shows up. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Falgravn 2nd floor DPS stacks",
+                    tooltip = "In the Falgravn fight, shows 1~4 DPS in the world for stacks. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Falgravn icon size",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "卢晶堡垒(LC)",
+            controls = Crutch.GetProminentSettings(1478, {
+                {
+                    type = "checkbox",
+                    name = "Show Orphic Shattered Shard mirror icons",
+                    tooltip = "Shows icons for each mirror on the Orphic Shattered Shard fight. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Orphic numbered icons",
+                    tooltip = "Uses numbers 1~8 instead of cardinal directions N/SW/etc. for the mirror icons",
+                },
+                {
+                    type = "slider",
+                    name = "Orphic icon size",
+                    tooltip = "The size of the mirror icons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Arcane Knot timer",
+                    tooltip = "Shows an \"alert\" timer for the currently held Arcane Knot",
+                },
+                {
+                    type = "dropdown",
+                    name = "Show Weakening Charge timer",
+                    tooltip = "Shows an \"alert\" timer for Weakening Charge. If set to \"Tank Only\" it will display only if your LFG role is tank",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "洛克汗的巨口(MoL)",
+            controls = Crutch.GetProminentSettings(725, {
+                {
+                    type = "checkbox",
+                    name = "Show Zhaj'hassa cleanse pad cooldowns",
+                    tooltip = "In the Zhaj'hassa fight, shows tiles with cooldown timers for 25 seconds (veteran)",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Twins Color Swap",
+                    tooltip = "In the twins fight, shows a prominent alert when you receive Shadow/Lunar Conversion",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "石林(RG)",
+            controls = Crutch.GetProminentSettings(1263, {
+                {
+                    type = "checkbox",
+                    name = "Show Noxious Sludge sides",
+                    tooltip = "Displays who should go left and who should go right for Noxious Sludge, matching Qcell's Rockgrove Helper",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "理智边缘(SE)",
+            controls = Crutch.GetProminentSettings(1427, {
+                {
+                    type = "checkbox",
+                    name = "Show center of Ansuul arena",
+                    tooltip = "In the Ansuul fight, shows an icon in the world on the center of the arena. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Ansuul icon size",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "太阳尖顶(SS)",
+            controls = Crutch.GetProminentSettings(1121, {
+                {
+                    type = "checkbox",
+                    name = "Show Lokkestiiz HM beam position icons",
+                    tooltip = "During flight phase on Lokkestiiz hardmode, shows 1~8 DPS and 2 healer positions in the world for Storm Fury. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Lokkestiiz solo heal icons",
+                    tooltip = "Use solo healer positions for the Lokkestiiz hardmode icons. This is for 9 damage dealers and 1 healer. If you change this option while at the Lokkestiiz fight, the new icons will show up the next time icons are displayed",
+                },
+                {
+                    type = "slider",
+                    name = "Lokkestiiz HM icon size",
+                    tooltip = "Updated size will show after the icons are hidden and shown again",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Yolnahkriin position icons",
+                    tooltip = "During flight phase on Yolnahkriin, shows icons in the world for where the next head stack and (right) wing stack will be when Yolnahkriin lands. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Yolnahkriin left position icons",
+                    tooltip = "Use left icons instead of right icons during flight phase on Yolnahkriin",
+                },
+                {
+                    type = "slider",
+                    name = "Yolnahkriin icon size",
+                },
+            }),
+        },
+        {
+            type = "description",
+            title = "竞技场",
+            text = "以下是特定竞技场中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "黑玫瑰监狱(BRP)",
+            controls = Crutch.GetProminentSettings(1082, {}),
+        },
+        {
+            type = "submenu",
+            name = "龙星竞技场(DSA)",
+            controls = Crutch.GetProminentSettings(635, {
+                {
+                    type = "checkbox",
+                    name = "普通难度下受伤警告",
+                    tooltip = "如果在普通难度龙星竞技场中受到某些技能伤害，则会显示恼人的文字并敲响警钟。这样做是为了方便进行afk伐木，在需要手动干预时通知您。",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "无尽档案塔",
+            controls = Crutch.GetProminentSettings(1436, {
+                {
+                    type = "checkbox",
+                    name = "Auto mark Fabled",
+                    tooltip = "When your reticle passes over Fabled enemies, automatically marks them with basegame target markers to make them easier to focus. It may sometimes mark incorrectly if you move too quickly and particularly if an NPC or your group member walks in front, but is otherwise mostly accurate",
+                },
+                {
+                    type = "checkbox",
+                    name = "Auto mark Negate casters",
+                    tooltip = "The same as auto marking Fabled above, but for enemies that can cast Negate Magic (Silver Rose Stormcaster, Dro-m'Athra Conduit, Dremora Conduit). They only cast Negate when you are close enough to them",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "漩涡竞技场(MA)",
+            controls = Crutch.GetProminentSettings(677, {
+                {
+                    type = "checkbox",
+                    name = "显示当前轮数",
+                    tooltip = "在每轮开始时在聊天栏显示信息。同样也在倒数第二轮开始15秒后，提醒马上到最后一轮",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 1 额外文本",
+                    tooltip = "第 1 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 2 额外文本",
+                    tooltip = "第 2 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 3 额外文本",
+                    tooltip = "第 3 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 4 额外文本",
+                    tooltip = "第 4 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 5 额外文本",
+                    tooltip = "第 5 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 6 额外文本",
+                    tooltip = "第 6 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 7 额外文本",
+                    tooltip = "第 7 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 8 额外文本",
+                    tooltip = "第 8 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 9 额外文本",
+                    tooltip = "第 9 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "checkbox",
+                    name = "普通难度下受伤警告",
+                    tooltip = "如果在普通难度旋涡竞技场中受到某些技能伤害，则会显示恼人的文字并敲响警钟。这样做是为了方便进行afk伐木，在需要手动干预时通知您。",
+                },
+            }),
+        },
+        {
+            type = "submenu",
+            name = "瓦特什兰洞穴(VH)",
+            controls = Crutch.GetProminentSettings(1227, {
+                {
+                    type = "checkbox",
+                    name = "显示丢失的附加分数",
+                    tooltip = "Works only in veteran, and should be used only if going for score. Skipped adds may be inaccurate if you skip entire pulls. The missed adds detection assumes that you do the secret blue side pull before the final blue side pull prior to Iozuzzunth",
+                },
+            }),
+        },
+        {
+            type = "description",
+            title = "地下城",
+            text = "以下是特定地下城中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "船工之憾地牢",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "Suggest stacks for Soul Bomb",
+                    tooltip = "Displays a notification for suggested person to stack on for Soul Bomb on Foreman Bradiggan hardmode when there are 2 bombs. If OdySupportIcons is enabled, also shows an icon above that person's head. The suggested stack is alphabetical based on @ name",
+                },
+            }
+        },
+    }
+    --Specail Setting
+    BB.SetMenuPatch("CrutchAlertsOptions", NewTable)
+return true end
+
 --Display Leads
 --42.1
 BB.AddonList["displayleads"] = function() if not RDL then return false end

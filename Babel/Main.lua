@@ -15,8 +15,10 @@ BB.Default = {
 
 --Table
 BB.AddonList = {}
-BB.ActiveAddons = {}
 BB.AfterPart = {}
+BB.LAMList = {}
+
+BB.ActiveAddons = {}
 
 --Original Fun
 local OldGetString = GetString
@@ -26,23 +28,47 @@ local OldCreateStringId = ZO_CreateStringId
 -------------------
 ----Start point----
 -------------------
+
 local OnLoading = "Babel"
 local SupportCount = 0
+
 --Loaded before Other Addons
 local function OnAddOnLoaded(eventCode, addonName)
   --Saved Setting
   BB.SV = ZO_SavedVars:NewAccountWide("MAsBabel_Vars", 1, nil, BB.Default, GetWorldName())
+  
   --Register After Part
   EVENT_MANAGER:RegisterForEvent(BB.Name, EVENT_PLAYER_ACTIVATED, BB.DoAfterPart)
   BB.SetAfterPart(BB.BuildMenu)
+  
   --Finish Loading
   EVENT_MANAGER:UnregisterForEvent(BB.Name, EVENT_ADD_ON_LOADED)
+  
   --Undo Function Change
   GetString = OldGetString
   CALLBACK_MANAGER.FireCallbacks = OldFireCallbacks
   ZO_CreateStringId = OldCreateStringId
   
-  --Start Localization
+--Start Localization
+  --LAM Injection
+  if LibAddonMenu2 then
+    local OldFun = LibAddonMenu2.RegisterOptionControls
+    BB.SetAfterPart(
+      function()
+        LibAddonMenu2.RegisterOptionControls = OldFun
+      end
+    )
+    LibAddonMenu2.RegisterOptionControls = function(...)
+      local Self, Name, OptionTable = ...
+      local NewTable = BB.DoMenuPatch(Name, OptionTable)
+      if not NewTable then
+        return OldFun(...)
+      else
+        return OldFun(Self, Name, NewTable)
+      end
+    end
+  end
+  --Do Functions before Other Addons Loading
   for Addon, Fun in pairs(BB.AddonList) do
     SupportCount = SupportCount + 1
     if not BB.SV.BanList[Addon] then
@@ -52,6 +78,34 @@ local function OnAddOnLoaded(eventCode, addonName)
   end
   --Succeed with All Addons
   OnLoading = nil
+end
+
+----------------------------------
+----Intercepting Settings Menu----
+----------------------------------
+
+function BB.SetMenuPatch(Name, NewTable)
+  BB.LAMList[Name] = NewTable
+end
+
+function BB.DoMenuPatch(Name, OldTable)
+  local NewTable = BB.LAMList[Name]
+  --Need Patch?
+  if not NewTable then return nil end
+  --Check the degree of match
+  if BB.SafeMenuPatch(OldTable, NewTable) then
+    --Replace Menu
+    return BB.TableCopy(NewTable, OldTable)
+  else
+    --Keep Menu
+    BB.SetAfterPart(
+      function() 
+        d("[Babel] "..Name.." 汉化可能已过时，已停用")
+        d("[Babel] 请等待后续更新修复")
+      end
+    )
+    return nil
+  end
 end
 
 -----------------------------------
@@ -69,7 +123,7 @@ function BB.DoAfterPart()
     d("[Babel] 请在设置中禁用该插件汉化并重载UI")
     d("[Babel] 请联系SA公会修复有关插件汉化问题")
   end
-  --Apply Control Text
+  --Apply After Part Functions
   for i = 1, #BB.AfterPart do
     BB.AfterPart[i]()
   end
@@ -184,6 +238,27 @@ function BB.TableCopy(Source, Target)
   return Target
 end
 
+function BB.SafeMenuPatch(OldTable, NewTable)
+  --Either nil
+  if (not OldTable) or (not NewTable) then return false end
+  --Check Option Number
+  if #OldTable ~= #NewTable then return false end
+  --Check Option Type
+  for i = 1, #OldTable do
+    --Check Type
+    if OldTable[i]["type"] ~= NewTable[i]["type"] then
+      return false
+    end
+    --Check Sub Options
+    if OldTable[i]["controls"] then
+      if not BB.SafeMenuPatch(OldTable[i]["controls"], NewTable[i]["controls"]) then
+        return false
+      end
+    end
+  end
+  --Safe for Replace
+  return true
+end
 ------------------
 ----Start Here----
 ------------------
