@@ -2672,6 +2672,133 @@ return true end
 --Display Leads
 --42.1
 BB.AddonList["displayleads"] = function() if not RDL then return false end
+--UI
+  RDL.ZONENAME_ALLZONES = "所有区域"
+  RDL.ZONENAME_BGS = "战场"
+
+  RDL.KEYBINDINGTEXT = "切出线索查询窗口"
+
+  -- UI Filter Elements (Dropdowns) 	
+
+  BB.TableCopy({
+    major = "复杂筛选条件",
+    zone = "按区域筛选",
+    settype = "按套装或古物类型筛选",
+  }, RDL.DropdownTooltips)
+
+  BB.TableCopy({
+    ChoicesMajor  = { "可发现", "可占卜", "缺失宝典条目", "从未挖掘过", "可执行线索", "所有线索", "组队地牢", "最新DLC",},
+    
+    TooltipsMajor  = {
+      "排除已发现但未占卜的线索，以及已发现的不可重复获得的线索",
+      "只显示已发现但还未占卜的线索",
+      "只显示考古宝典条目存在缺失的条目",
+      "只显示从还未挖掘过的古物",
+      "显示除已完成的不可重复获得的线索之外的其他所有线索",
+      "显示包括已完成的不可重复获得的线索的所有线索",
+      "只显示从4人地牢中获得的线索",
+      "只显示最新DLC的新线索",
+    },
+    
+    ChoicesZone = {RDL.ZONENAME_ALLZONES, "当前区域", "最新DLC", "排除次要DLC", },
+    TooltipsZone = { 
+      "显示所有区域的线索",
+      "只显示与当前区域有关的线索",
+      "只显示最新DLC的新线索",
+      "只显示与基础区域或章节区域有关的线索",
+    },
+    TooltipsZoneGenerated = "只显示与 %s 有关的线索",
+    ChoicesSetType  = { "所有", "隐藏简单类", "组合古物",},
+    TooltipsSetType   = {
+      "显示所有类型和套装的线索",
+      "隐藏古地图、免费宝物线索及样式页\n但如果在'可占卜'主模式下，则仅隐藏普通绿色宝物",
+      "仅显示组合古物的线索",
+    },
+    TooltipsSetTypeGenerated = "仅显示 %s 类型/套装的线索",
+  }, RDL.DropdownData)
+
+  -- Alerts Label
+
+  RDL.LABEL_ALERTS_UD_MISSING = "|c%s警告 : %d 7天; %d 1天; %d 1小时; ?? 闯世者日常|r"
+
+  RDL.LABEL_ALERTS = "|c%s警告 : %d 7天; %d 1天; %d 1小时; %d 闯世者日常|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "UndauntedDaily插件缺失！无法",
+    "计算日常任务是否有线索给你",
+  }, RDL.TOOLTIP_ALERTS_UD_MISSING)
+
+  RDL.TOOLTIP_ALERTS_1HOUR = "线索过期<1小时: %d"
+  RDL.TOOLTIP_ALERTS_1DAY = "线索过期<1天: %d"
+  RDL.TOOLTIP_ALERTS_7DAYS = "线索过期<7天: %d"
+  RDL.TOOLTIP_ALERTS_UD_NONEFOUND = "闯世者日常无线索给你"
+  RDL.TOOLTIP_ALERTS_UD_SCRYFIRST = " (您已拥有此线索，请先占卜/挖掘)"
+
+  RDL.LABEL_URL_INITIAL = "目前为止没有发现线索"
+  RDL.LABEL_URL_LEADFOUND = "|c3A92FF报告最新的线索，使用ID %d|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "为了顺畅地报告新地点: ",
+    "如您找到一个线索，本插件将:",
+    " - 将线索ID信息贴出到此框内",
+    " - 将当前地点贴出到右边的栏中",
+    "   (如果我认为位置信息是完整的，它将发布一个请求",
+    "    以确认你的信息确实是最新的)",
+    " - 如果你是在别处发现此线索的，请您:",
+    "   - 删除编辑框中的内容",
+    "   - 描述你的位置",
+    "   - 点击这里的栏",
+    "插件将:",
+    " - 将信息转化为URL",
+    " - 同意ZOS的弹出框后用浏览器打开URL",
+  }, RDL.TOOLTIP_URL)
+
+  RDL.EDITBOX_INITIAL = "如果你找到新位置: 替换将出现在这里的内容; 单击左侧的标签发送到浏览器"
+  RDL.EDITBOX_LOCATION_DATA_COMPLETE = "位置信息被认为是完整的。请仅在确认您的发现未被现有描述涵盖后提交"
+  RDL.EDITBOX_NO_LEAD_FOUND_OR_SELECTED = "首先找到一个线索，或单击要报告的线索行"
+  RDL.EDITBOX_NOT_EDITED = "提交新发现: 首先用新位置替换此编辑框中的内容。然后单击左侧的标签。"
+  RDL.EDITBOX_LOCDATA_EMPTY = "您需要在此编辑框中输入您的新位置。然后单击左侧的标签。"
+  RDL.EDITBOX_THANKS = "感谢您提交新的位置数据"
+
+  BB.TableCopy({
+      "线索", 
+      "区域", 
+      "地点", 
+      "难度", 
+      "知识", 
+      "挖掘", 
+      "套装", 
+      "过期", 
+  }, RDL.SORTHEADER_NAMES)
+
+  BB.TableCopy({
+    "古物的名称",
+    "可找到/占卜线索的区域",
+    "简短的位置描述\n(D) = 洞穴\n(PD) = 公共地牢\n(GD) = 组队地牢\n(WB) = 世界Boss",
+    "线索稀有程度。除非难度为5。",
+    "还有多少知识/宝典条目缺失",
+    "该古物已被挖出多少次",
+    "组合古物组装完成后的物品名。\n或单线索古物的类型",
+    "线索过期剩余时间。\n某些线索在获得后的前几天过期时间不会减少。",
+  }, RDL.SORTHEADER_TOOLTIP)
+
+  -- LOOP
+  BB.TableCopy({
+    "如果你知道其他的获取位置:",
+    "单击行以激活该线索的位置数据更新。",
+    "将编辑框内容替换为您的位置，然后单击左侧的标签"
+  }, RDL.TOOLTIP_LEAD_HOWUPDATE)
+
+  -- LOOP
+  BB.TableCopy({
+    "原始位置数据由@inklings提供 (Discord, Twitch)",
+    "非常感谢你让我使用这些数据",
+  }, RDL.TOOLTIP_INKLING)
+
+  RDL.TOOLTIP_MAPPINS = "已包含在Hoft的MapPins插件中"
+
 --Location
   RDL.LOCDATA_TYPE_ALLLOOTTABLES = "所有拾取列表"
   RDL.LOCDATA_SHORT_ALLLOOTTABLES = "所有拾取列表"
@@ -3260,7 +3387,7 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
     [553] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"TRUE",},
     [554] = {"(GD) 灰烬之城1:最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 灰烬之城1:最终Boss","TRUE",},
     [555] = {"(D) 灰烬藤",RDL.LOCDATA_TYPE_DELVE,"(D) 灰烬藤","TRUE",},
-    [556] = {"凤凰蛾, Magma Frog",RDL.LOCDATA_TYPE_MOB,"凤凰蛾, Magma Frog","TRUE",},
+    [556] = {"凤凰蛾, 牛角岩浆蛙",RDL.LOCDATA_TYPE_MOB,"凤凰蛾, 牛角岩浆蛙","TRUE",},
     [557] = {"(GD) 巴尔桑纳 最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 巴尔桑纳","FALSE",},
     [558] = {"(WB) 克拉莫拉普盆地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 克拉莫拉普盆地","FALSE",},
     [559] = {"(D) 忧虑书房 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 忧虑书房","FALSE",},
@@ -3414,136 +3541,14 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
     [708] = {"(D) 军团休整地",RDL.LOCDATA_TYPE_DELVE,"(D) 军团休整地","FALSE",},
   }, RDL.Locations)
 
---UI
-  RDL.ZONENAME_ALLZONES = "所有区域"
-  RDL.ZONENAME_BGS = "战场"
-
-  RDL.KEYBINDINGTEXT = "切出线索查询窗口"
-
-  -- UI Filter Elements (Dropdowns) 	
-
-  BB.TableCopy({
-    major = "复杂筛选条件",
-    zone = "按区域筛选",
-    settype = "按套装或古物类型筛选",
-  }, RDL.DropdownTooltips)
-
-  BB.TableCopy({
-    ChoicesMajor  = { "可发现", "可占卜", "缺失宝典条目", "从未挖掘过", "可执行线索", "所有线索", "组队地牢", "最新DLC",},
-    
-    TooltipsMajor  = {
-      "排除已发现但未占卜的线索，以及已发现的不可重复获得的线索",
-      "只显示已发现但还未占卜的线索",
-      "只显示考古宝典条目存在缺失的条目",
-      "只显示从还未挖掘过的古物",
-      "显示除已完成的不可重复获得的线索之外的其他所有线索",
-      "显示包括已完成的不可重复获得的线索的所有线索",
-      "只显示从4人地牢中获得的线索",
-      "只显示最新DLC的新线索",
-    },
-    
-    ChoicesZone = {RDL.ZONENAME_ALLZONES, "当前区域", "最新DLC", "排除次要DLC", },
-    TooltipsZone = { 
-      "显示所有区域的线索",
-      "只显示与当前区域有关的线索",
-      "只显示最新DLC的新线索",
-      "只显示与基础区域或章节区域有关的线索",
-    },
-    TooltipsZoneGenerated = "只显示与 %s 有关的线索",
-    ChoicesSetType  = { "所有", "隐藏简单类", "组合古物",},
-    TooltipsSetType   = {
-      "显示所有类型和套装的线索",
-      "隐藏古地图、免费宝物线索及样式页\n但如果在'可占卜'主模式下，则仅隐藏普通绿色宝物",
-      "仅显示组合古物的线索",
-    },
-    TooltipsSetTypeGenerated = "仅显示 %s 类型/套装的线索",
-  }, RDL.DropdownData)
-
-  -- Alerts Label
-
-  RDL.LABEL_ALERTS_UD_MISSING = "|c%s警告 : %d 7天; %d 1天; %d 1小时; ?? 闯世者日常|r"
-
-  RDL.LABEL_ALERTS = "|c%s警告 : %d 7天; %d 1天; %d 1小时; %d 闯世者日常|r"
-
-  -- LOOP
-  BB.TableCopy({
-    "UndauntedDaily插件缺失！无法",
-    "计算日常任务是否有线索给你",
-  }, RDL.TOOLTIP_ALERTS_UD_MISSING)
-
-  RDL.TOOLTIP_ALERTS_1HOUR = "线索过期<1小时: %d"
-  RDL.TOOLTIP_ALERTS_1DAY = "线索过期<1天: %d"
-  RDL.TOOLTIP_ALERTS_7DAYS = "线索过期<7天: %d"
-  RDL.TOOLTIP_ALERTS_UD_NONEFOUND = "闯世者日常无线索给你"
-  RDL.TOOLTIP_ALERTS_UD_SCRYFIRST = " (您已拥有此线索，请先占卜/挖掘)"
-
-  RDL.LABEL_URL_INITIAL = "目前为止没有发现线索"
-  RDL.LABEL_URL_LEADFOUND = "|c3A92FF报告最新的线索，使用ID %d|r"
-
-  -- LOOP
-  BB.TableCopy({
-    "为了顺畅地报告新地点: ",
-    "如您找到一个线索，本插件将:",
-    " - 将线索ID信息贴出到此框内",
-    " - 将当前地点贴出到右边的栏中",
-    "   (如果我认为位置信息是完整的，它将发布一个请求",
-    "    以确认你的信息确实是最新的)",
-    " - 如果你是在别处发现此线索的，请您:",
-    "   - 删除编辑框中的内容",
-    "   - 描述你的位置",
-    "   - 点击这里的栏",
-    "插件将:",
-    " - 将信息转化为URL",
-    " - 同意ZOS的弹出框后用浏览器打开URL",
-  }, RDL.TOOLTIP_URL)
-
-  RDL.EDITBOX_INITIAL = "如果你找到新位置: 替换将出现在这里的内容; 单击左侧的标签发送到浏览器"
-  RDL.EDITBOX_LOCATION_DATA_COMPLETE = "位置信息被认为是完整的。请仅在确认您的发现未被现有描述涵盖后提交"
-  RDL.EDITBOX_NO_LEAD_FOUND_OR_SELECTED = "首先找到一个线索，或单击要报告的线索行"
-  RDL.EDITBOX_NOT_EDITED = "提交新发现: 首先用新位置替换此编辑框中的内容。然后单击左侧的标签。"
-  RDL.EDITBOX_LOCDATA_EMPTY = "您需要在此编辑框中输入您的新位置。然后单击左侧的标签。"
-  RDL.EDITBOX_THANKS = "感谢您提交新的位置数据"
-
-  BB.TableCopy({
-      "线索", 
-      "区域", 
-      "地点", 
-      "难度", 
-      "知识", 
-      "挖掘", 
-      "套装", 
-      "过期", 
-  }, RDL.SORTHEADER_NAMES)
-
-  BB.TableCopy({
-    "古物的名称",
-    "可找到/占卜线索的区域",
-    "简短的位置描述\n(D) = 洞穴\n(PD) = 公共地牢\n(GD) = 组队地牢\n(WB) = 世界Boss",
-    "线索稀有程度。除非难度为5。",
-    "还有多少知识/宝典条目缺失",
-    "该古物已被挖出多少次",
-    "组合古物组装完成后的物品名。\n或单线索古物的类型",
-    "线索过期剩余时间。\n某些线索在获得后的前几天过期时间不会减少。",
-  }, RDL.SORTHEADER_TOOLTIP)
-
-  -- LOOP
-  BB.TableCopy({
-    "如果你知道其他的获取位置:",
-    "单击行以激活该线索的位置数据更新。",
-    "将编辑框内容替换为您的位置，然后单击左侧的标签"
-  }, RDL.TOOLTIP_LEAD_HOWUPDATE)
-
-  -- LOOP
-  BB.TableCopy({
-    "原始位置数据由@inklings提供 (Discord, Twitch)",
-    "非常感谢你让我使用这些数据",
-  }, RDL.TOOLTIP_INKLING)
-
-  RDL.TOOLTIP_MAPPINS = "已包含在Hoft的MapPins插件中"
-
 --Sepcial Setting
+  BB.TableCopy({
+    [RDL.ZONEID_ALLZONES] = RDL.ZONENAME_ALLZONES,
+    [RDL.ZONEID_BGS] = RDL.ZONENAME_BGS,
+    [RDL.ZONEID_UNKNOWN] = RDL.LOCDATA_ZONENAME_UNKNOWN,
+  }, RDL.ZONENAME_SPECIAL)
+
   BB.SetAfterPart(
-    
     function()
       RDLMainWindowHeadersLeadName:SetText(RDL.SORTHEADER_NAMES[1])
       RDLMainWindowHeadersZoneName:SetText(RDL.SORTHEADER_NAMES[2])
