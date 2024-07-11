@@ -7,3 +7,6 @@
 2) 修改汉化文档请前往 MelanAster(DEV) 分支
   
 3) 有想要 Babel 新增汉化的插件，请在Issues板块留言
+
+已兼容/不适宜Babel集成 插件列表：
+https://kdocs.cn/l/crJx2v9PujDz
