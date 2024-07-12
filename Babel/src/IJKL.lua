@@ -3,11 +3,7 @@ local BB = MABabel
 --ITTs Donation Bot
 --2.1.1
 BB.AddonList["ITTSDonationBot"] = function() if not ITTsDonationBot then return false end
-  local Mtable = {}
-  for key, value in pairs(ITTsDonationBot.i18n) do
-    Mtable[key] = value
-  end
-  ITTsDonationBot.i18n = {
+  BB.TableCopy({
     ITTDB_NAME = "ITT's Donation Bot",
     ITTDB_HEADER = "捐助",
     ITTDB_HEADER_GUILDS = "公会",
@@ -68,9 +64,8 @@ BB.AddonList["ITTSDonationBot"] = function() if not ITTsDonationBot then return 
     -- commands
     ITTDB_CMD_NO_GUILDS = "无法找到公会，请输入 1~5 之间的数字",
     ITTDB_CMD_GENERATED = "重新生成弹窗"
-  }
-  --Special Setting
-  setmetatable(ITTsDonationBot.i18n, {__index = Mtable})
+  }, ITTsDonationBot.i18n)
+
 return true end
 
 --LibAddonMenu-2.0
@@ -94,7 +89,7 @@ BB.AddonList["LibAddonMenu-2.0"] = function() if not LibAddonMenu2 then return f
   LibAddonMenu2.util.L = BB.TableCopy(Table, LibAddonMenu2.util.L)
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
@@ -104,3 +99,16 @@ return true end
 
 ]]
 
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]

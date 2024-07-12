@@ -2,41 +2,41 @@ local BB = MABabel
 
 --Quest Map
 --10.0.0
-do
+do if not BB.SV.BanList["QuestMap"] then
   local function Fun()
-    local strings = {
+    local Strings = {
       -- General
-      QUESTMAP_COMPANION = "伙伴",
-      QUESTMAP_TRIAL = "试炼",
-      QUESTMAP_STORY_ICON_SET = "主线图标设定",
-      QUESTMAP_SKILLPOINT_ICON_SET = "技能点图标设定",
-      QUESTMAP_CADWELL_ICON_SET = "卡德维尔图标设定",
-      QUESTMAP_COMPANION_ICON_SET = "伙伴图标设定",
-      QUESTMAP_ICON_SETS_HEADER = "任务图标设定",
-      QUESTMAP_SETTINGS_HEADER = "地图图标设置",
-      QUESTMAP_PIN_COLOR_HEADER = "地图图标颜色设置",
-      QUESTMAP_RESET_HIDDEN_HEADER = "重置隐藏的地图图标",
+      [QUESTMAP_COMPANION] = "伙伴",
+      [QUESTMAP_TRIAL] = "试炼",
+      [QUESTMAP_STORY_ICON_SET] = "主线图标设定",
+      [QUESTMAP_SKILLPOINT_ICON_SET] = "技能点图标设定",
+      [QUESTMAP_CADWELL_ICON_SET] = "卡德维尔图标设定",
+      [QUESTMAP_COMPANION_ICON_SET] = "伙伴图标设定",
+      [QUESTMAP_ICON_SETS_HEADER] = "任务图标设定",
+      [QUESTMAP_SETTINGS_HEADER] = "地图图标设置",
+      [QUESTMAP_PIN_COLOR_HEADER] = "地图图标颜色设置",
+      [QUESTMAP_RESET_HIDDEN_HEADER] = "重置隐藏的地图图标",
     }
-    for key, value in pairs(strings) do
-      ZO_CreateStringId(key, value)
-      SafeAddVersion(key, 1)
+    
+    for k, v in pairs(Strings) do
+      SafeAddString(k, v, 2)
     end
-    return strings.QUESTMAP_ICON_SETS_HEADER
+    
+    return Strings[QUESTMAP_ICON_SETS_HEADER]
   end
 
-  local OldFun = GetString
-  GetString = function(...)
-    local Result = OldFun(...)
-    if Result == "Quest Icon Sets" then
-      return Fun() 
+  --Special Setting
+  BB.SetFunHook(function(ID)
+    if QUESTMAP_ICON_SETS_HEADER and QUESTMAP_ICON_SETS_HEADER == ID then
+      return Fun()
     end
-    return Result
-  end
+  end, _G, "GetString", true)
 
-  BB.AddonList["QuestMap"] = function()
-    if not QuestMap then return false end
-    return true
-  end
+end end
+
+BB.AddonList["QuestMap"] = function()
+  if not QuestMap then return false end
+  return true
 end
 
 --RaidNotifier
@@ -370,8 +370,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Dragonstar_Arena8_Fire_Charge              = "|cFF3113火焰冲锋|r 目标 你 !打断或翻滚!"
   L.Alerts_Dragonstar_Arena8_Fire_Charge_Other        = "|c6699FF火焰冲锋|r 目标 |cFF0000<<!aC:1>>|r !打断!"
 
-
-
   --------------------------------
   ---- Halls Of Fabrication   ----
   --------------------------------
@@ -428,8 +426,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_HallsFab_Fabricant_Spawn                   = "|cFFC000废墟制造者刷新|r"
   L.Alerts_HallsFab_Reclaim_Achieve                   = "|cDCD822[计划报废]|r 成就 |cFF0000失败|r"
 
-
-
   --------------------------------
   ----   Asylum Sanctorium    ----
   --------------------------------
@@ -466,8 +462,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Asylum_Trial_By_Fire                    = "|cFF5500火焰|r来袭!"
   L.Alerts_Asylum_Protector_Spawn                  = "|c0000FF保卫者|r 刷新!"
   L.Alerts_Asylum_Protector_Active                 = "|c0000FF保卫者|r 激活!"
-
-
 
   --------------------------------
   ------   CLOUDREST         -----
@@ -572,8 +566,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Settings_Sunspire_Shock_Bolt_TT         = "震荡闪电倒计时，通知队伍何时聚拢以解放另一个玩家。"
   L.Settings_Sunspire_Apocalypse            = "永恒仆从: 翻译启示录"
   L.Settings_Sunspire_Apocalypse_TT         = "当永恒仆从正在引导他的攻击到楼上的组员时警告你。给你一个倒计时显示何时你可以打断引导并且用一个倒计时显示他何时完成引导攻击。"
-
-
   -- Alerts
   L.Alerts_Sunspire_Chilling_Comet          = "|c00ddff霜冻彗星|r 目标 你 !格挡!"
   L.Alerts_Sunspire_Chilling_Comet_Other    = "|c00ddff霜冻彗星|r 目标 |cff0000<<!aC:1>>|r !"
@@ -597,7 +589,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Sunspire_Shock_Bolt              = "|c00ddff震荡闪电|r !聚在一起以解放"
   L.Alerts_Sunspire_Apocalypse              = "|cffff00翻译启示录|r 打断 还有"
   L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00翻译启示录|r 结束 还有"
-
 
   --------------------------------
   ------   KYNE'S AEGIS      -----
@@ -632,7 +623,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_KynesAegis_FireMage_Meteor                 = "|cffa500流星|r对你来了"
   L.Alerts_KynesAegis_FireMage_Meteor_Other           = "流星来了"
   L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000脓血迸发|r来了"
-
 
   --------------------------------
   ------   ROCKGROVE         -----
@@ -685,7 +675,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Rockgrove_Bahsei_Portal_Number            = "传送门 #<<1>>"
   L.Alerts_Rockgrove_Xalvakka_Unstable_Charge        = "缘离 |c008C22blob|r!"
 
-
   --------------------------------
   ------   DREADSAIL REEF    -----
   --------------------------------
@@ -734,7 +723,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_DreadsailReef_Rapid_Deluge                = "你受到了 |c1CA3EC极速奔涌|r! 你需要游泳，剩余"
   L.Alerts_DreadsailReef_Rapid_Deluge_Other          = "|cFF0000<<!aC:1>>|r 受到了 |c1CA3EC极速奔涌|r! 需要游泳，剩余"
 
-
   --------------------------------
   ----       Debugging        ----
   --------------------------------
@@ -778,7 +766,7 @@ return true end
 
 --Srendarr
 --2.5.36
-do
+do if not BB.SV.BanList["Srendarr"] then
   local L = {}
 
   ------------------------------------------------------------------------------------------------------------------
@@ -1289,10 +1277,8 @@ do
   L.VolatileAOE    = "异变仆从技能"
 
   --Sepical Setting
-  local OldFun = CALLBACK_MANAGER.FireCallbacks
-  CALLBACK_MANAGER.FireCallbacks = function(...)
+  BB.SetFunHook(function(...)
     local _, name, _, key = ...
-    local Result = OldFun(...)
     if name == "LibMediaProvider_Registered" and key == "Srendarr Ability Proc" then
       local S = _G['Srendarr'].GetLocale()
       L = BB.TableCopy(L, S)
@@ -1300,13 +1286,14 @@ do
         return L
       end
     end
-    return Result
-  end
+    return nil
+  end, CALLBACK_MANAGER, "FireCallbacks")
 
-  BB.AddonList["Srendarr"] = function()
-    if not Srendarr then return false end
-    return true 
-  end
+end end
+
+BB.AddonList["Srendarr"] = function()
+  if not Srendarr then return false end
+  return true 
 end
 
 --Tamriel Trade Centre
@@ -1326,10 +1313,24 @@ BB.AddonList["TamrielTradeCentre"] = function() if not TamrielTradeCentre then r
   ZO_CreateStringId("TTC_MSG_RECORDEDDATACLEARED", "自动记录数据已清除")
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

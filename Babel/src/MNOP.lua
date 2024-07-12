@@ -2,7 +2,7 @@ local BB = MABabel
 
 --Master Merchant
 --3.8.07
-do
+do if not BB.SV.BanList["MasterMerchant"] then
   local function Fun()
     -- Options Menu
     ZO_CreateStringId("SK_ALERT_ANNOUNCE_NAME", "屏幕提醒")
@@ -577,22 +577,14 @@ do
     ZO_CreateStringId("MM_WARN_MESSAGE_TEXT", "截至 9.3.8游戏版本，公会历史信息功能似乎已稳定。查看文档以了解有关请求数据或使用刷新 LibHistoire 功能的信息", 2)
   end
   
-  local First = true
-  local OldFun = ZO_CreateStringId
-  ZO_CreateStringId = function(...)
-    local key = ...
-    if key == "MM_WARN_MESSAGE_TEXT" and First then
-      First = false
-      Fun()
-      return
-    end
-    return OldFun(...)
-  end
-  
-  BB.AddonList["MasterMerchant"] = function() 
-    if not MasterMerchant then return false end
-    return true 
-  end
+  --Sepcial Setting
+  BB.SetGlobalHook(function() Fun() end, "MM_FontGameLargeBold")
+
+end end
+
+BB.AddonList["MasterMerchant"] = function() 
+  if not MasterMerchant then return false end
+  return true 
 end
 
 --pChat
@@ -1457,7 +1449,7 @@ BB.AddonList["Postmaster"] = function() if not Postmaster then return false end
     ["SI_PM_SENDMAIL_AMOUNT"]                    = "要保存的最近条目数",
     ["SI_PM_SENDMAIL_PREVIEW_CHARS"]             = "最近邮件信息菜单的字符宽度",
   }
-  --Special setting
+
   for stringId, value in pairs(POSTMASTER_STRINGS) do
     local stringValue
     if type(value) == "table" then
@@ -1579,10 +1571,24 @@ BB.AddonList["PotionMaker"] = function() if not PotMaker then return false end
   }
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

@@ -59,6 +59,165 @@ BB.AddonList["AdvancedFilters"] = function() if not AdvancedFilters then return 
   AdvancedFilters.strings = BB.TableCopy(Table, AdvancedFilters.ENstrings)
 return true end
 
+--AlphaGear 2
+--6.17.0
+do if not BB.SV.BanList["AlphaGear"] then
+  local lmb, rmb = '|t16:16:AlphaGear/asset/lmb.dds|t', '|t16:16:AlphaGear/asset/rmb.dds|t'
+  local msg = {
+    Copy = '拷贝',
+    Paste = '粘贴',
+    Clear = '清除',
+    Insert = '插入当前装备的',
+
+    -- new since 6.6.0
+    ToBankAll = '将所有装备配置存入银行',
+    FromBankAll = '从银行取回所有装备配置',
+    FailedToMoveItem = '移动 <<1>> 失败',
+    MovingSet = '移动套装 <<1>>...',
+    -- end new 6.6.0
+
+    -- new since 6.2.1
+    ToBank = '将装备配置存入银行',
+    FromBank = '从银行取回装备配置',
+    CurrentlyEquipped = '<<1>> 处于装备状态',
+    NotEnoughSpaceInBackPack = '背包空间不足：<<1>>',
+    NotEnoughSpaceInBank = '银行空间不足：<<1>>',
+    ItemIsStolen = '无法将偷取的 <<1>> 存入银行',
+    ReassignHint = '请使用 Shift + 左键 或 从技能界面中拖动技能来重新保存，以获得正确的弹窗信息',
+    ToolTipSkillIcon = lmb..' 选择图标\n'..rmb..' 重置图标',
+    BindLoadNextSet = '加载下一配置',
+    BindLoadPreviousSet = '加载上一配置',
+    BindToggleSet = '切换最后两套配装',
+    MsgNoPreviousSet = '你没有装备第二套配装',
+    ShowMainBinding = '显示/隐藏 AlphaGear 窗口',
+    -- end new 6.2.1
+
+    Icon = lmb..'选择图标',
+    Set = lmb..' 装备套装\n'..rmb..' 编辑套装',
+    NotFound = '<<1>> |cFF0000没有找到...|r',
+    NotEnoughSpace = '|cFFAA33AlphaGear|r |cFF0000没有足够的空间...|r',
+    SoulgemUsed = '<<C:1>> |cFFAA33已充能.|r',
+    SetPart = '\n|cFFAA33套装: <<C:1>>|r',
+    Lock = '如果套装锁定, 所有空的槽位将会卸下装备.\n如果套装解锁, 所有空的槽位将会忽略.\n\n'..lmb..' 锁定/解锁',
+    Unequip = '卸下装备',
+    UnequipAll = '卸下所有装备',
+
+    -- new since 6.1.1
+    SetsHeader = '套装',
+    SettingsDesc = '配置 AlphaGear UI, Auto-Repair和Auto-Recharge',
+    NumVisibleSetButtons = '套装按钮的显示数量',
+    GearHeader = '装备',
+    WeaponsHeader = '武器',
+    EquipmentHeader = '装备栏',
+    UIHeader = '用户界面',
+    ResetPositions = '重置位置',
+    -- end new 6.1.1
+    -- new since 6.1.3
+    ShowItemLevelChoices = {'总是', '仅低级物品', '从不'},
+    -- end new 6.1.3
+
+    -- new since 6.2.0
+    OutfitLabel = '装扮',
+    UneqipAllBinding = '卸下所有装备',
+    LoadSetBinding = '加载套装 ',
+    KeepOutfitItemLabel = '保持当前装扮',
+    SetChangeQueuedMsg = '当脱战时，将装备套装 <<1>> (<<2>>)',
+    ActionBar1Text = '技能栏 1',
+    ActionBar2Text = '技能栏 2',
+    ActionBarNText = '技能栏 <<1>>',
+    NotEnoughMoneyForRepairMsg = '没有足够的钱修理装备',
+    ItemsRepairedMsg = '<<1>> 已修复，总开销: <<2>> 金币',
+    ItemsNotRepairedMsg = '没有足够的金币修复 <<1>>',
+    -- end new since 6.2.0    
+
+    -- new since 6.5.0
+    BindLoadProfile = '加载预设 ',
+    BindLoadNextProfile = '加载下一预设',
+    BindLoadPreviousProfile = '加载上一预设',
+    BindToggleProfile = '切换最后两个预设',
+    MsgNoPreviousProfile = '没有可切换的预设',
+    -- end new since 6.5.0
+
+    SetConnector = {
+      lmb..' 连接装备到套装\n'..rmb..' 移除连接',
+      lmb..' 连接动作条 1 到套装\n'..rmb..' 移除连接',
+      lmb..' 连接动作条 2 到套装\n'..rmb..' 移除连接'
+    },
+    Head = {
+      Gear = '装备 ',
+      Skill = '技能 '
+    },
+    Button = {
+      Gear = lmb..' 装备物品\n'..rmb..' 移除物品',
+      Skill = lmb..' 装备技能\n'..rmb..' 移除技能'
+    },
+    Selector = {
+      Gear = lmb..' 装备所有装备\n'..rmb..' 更多选项',
+      Skill = lmb..' 装备所有技能\n'..rmb..' 更多选项'
+    },
+    OptionWidth = 300,
+    Options = {
+      '显示界面按钮',
+      '显示界面套装按钮',
+      '显示修理按钮',
+      '显示修理花费',
+      '显示武器充能图标',
+      '显示武器切换信息',
+      '显示正在装备的套装',
+      '在物品栏中标记套装',
+      '显示物品耐久度百分比',
+      '显示物品质量为颜色',
+      '移动时关闭窗口',
+      '锁定所有AlphaGear的元素',
+      '自动武器充能',
+      -- new since 6.1.1
+      '在商店界面自动修理装备',
+      -- end new 6.1.1
+      -- new since 6.1.3
+      '显示物品等级标识',
+      -- end new 6.1.3
+      -- new since 6.4.1
+      '<Unused Message>',
+      '自动加载预设中最后一个BD',          -- AG_OPTION_LOAD_LAST_BUILD_OF_PROFILE = 17
+      -- end new since 6.4.1
+    },
+
+    -- new since 6.8.1
+    Integrations = {
+      Inventory = {
+        Title = '库存管理',
+        UseFCOIS = '显示 FCOIS 标记图标',
+        FCOIS = {
+          GearMarkerIconLabel = '标记图标',
+          NoGearMarkerIconEntry = '-无-',
+        }
+      },
+      Styling = {
+        Title = '风格样式管理',
+        UseAlphaStyle = '使用 AlphaStyle 插件',
+      },
+      Champion = {
+        Title = '冠军点数管理',
+        UseCPSlots = '使用 ChampionPointsSlots 插件',
+      },
+      QuickSlot = {
+        Title = '快捷栏管理',
+        UseGMQSB = '使用 Greymind Quick Slot Bar 插件',
+      },
+    },
+    -- new since 6.8.1
+  }
+
+  --Special Setting
+  BB.SetGlobalHook(function() BB.TableCopy(msg, AGLang.msg) end, "AG", "author")
+
+end end
+
+BB.AddonList["AlphaGear"] = function() 
+  if not AGLang then return false end
+  return true
+end
+
 --Arkadius' Trade Tools
 --2.0.0
 BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then return false end
@@ -247,7 +406,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
       end
     return Result
   end
-  --
+  --UI
   ZO_PostHookHandler(ArkadiusTradeToolsWindow, "OnEffectivelyShown",
     function()
       for i = 1, 4 do
@@ -1538,6 +1697,80 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
   }
 return true end
 
+--Buff The Group
+--3.5.0
+BB.AddonList["BuffTheGroup"] = function() if not btg then return false end
+  local NewOption = {
+		{
+			type = "header",
+			name = "设置",
+		},
+		{
+			type = "checkbox",
+			name = "启用",
+			tooltip = "切换UI显示",
+		},
+		{
+			type = "checkbox",
+			name = "仅为DPS职能显示",
+			tooltip = "在BTG框架中，仅显示被标记为DPS玩家的Buff情况",
+		},
+		{
+			type = "checkbox",
+			name = "单列模式",
+			tooltip = "以单列而不是 6x2 布局来排列框架",
+		},
+		{
+			type = "checkbox",
+			name = "精简模式",
+			tooltip = "将UI简化为百分比显示，背景颜色代表Buff剩余时间。[仅为DPS职能显示]设置对该模式有效",
+		},
+		{
+			type = "checkbox",
+			name = "梯度模式",
+			tooltip = "为Buff持续时间使用颜色渐变显示",
+		},
+		{
+			type = "colorpicker",
+			name = "Buff开始颜色",
+			tooltip = "设置追踪Buff开始时的梯度颜色",
+		},
+		{
+			type = "colorpicker",
+			name = "Buff结束颜色",
+			tooltip = "设置追踪Buff结束时的梯度颜色",
+		},
+		{
+			type = "header",
+			name = "译注：因插件使用 英文字符串 区分高级/次级Buff",
+		},
+		{
+			type = "header",
+			name = "导致中文下，所有Buff均被归入其他一类",
+		},
+		{
+			type = "header",
+			name = "其他 Buff",
+		},
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+		{
+			type = "button",
+			name = "取消所有选择",
+		},
+		{
+			type = "button",
+			name = "重置位置",
+		},
+	}
+  
+  --Specail Setting
+  BB.SetMenuPatch(btg.name.."Options", NewOption)
+  
+return true end
+
 --Caro's Skill Point Saver
 --5.5.0
 BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
@@ -1908,16 +2141,505 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
     SI_COMBAT_METRICS_LIVEREPORT_GROUP_TOOLTIP = "玩家 / 队伍",
     SI_COMBAT_METRICS_MENU_ALKOSH_TOOLTIP = "由艾尔克许的咆哮降低的抗性。它取决于施法者的武器伤害或法术伤害中更高的那项，至多减少6000抗性。",
   }
---Special Setting
+
   for stringId, stringValue in pairs(strings) do
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
   end
 return true end
 
+--Combat Metronome
+--v1.6.6
+BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return false end
+  local NewOption = {
+    {
+      type = "header",
+      name = "设置"
+    },
+    {
+      type = "checkbox",
+      name = "账户设置",
+      tooltip = "检查账户范围的插件设置",
+    },
+		{
+      type = "submenu",
+      name = "施法条 / GCD追踪器",
+			tooltip = "帮你追踪GCD，有效安排轻击和施法",
+			controls = {
+				{
+					type = "checkbox",
+					name = "隐藏GCD追踪器",
+					tooltip = "隐藏施法条，如果你只需要技能层数追踪器",
+					warning = "激活时，所有与GCD追踪器有关设置都会失效",
+				},
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏施法条",
+					tooltip = "在PVP区域隐藏施法条，以保持用户界面整洁",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧预览施法条，其无法调整大小或移动。离开设置菜单时重置",
+					warning = "这将暂时禁用解锁功能。停用后才可解锁施法条位置",
+				},
+        ---------------------------
+        ---- Position and Size ----
+        ---------------------------
+				{
+					type = "submenu",
+					name = "位置 / 大小",
+					controls = {
+						{
+							type = "checkbox",
+							name = "解锁施法条",
+							tooltip = "通过拖动中心/边缘来重新定位/调整施法条尺寸",
+						},
+						{
+							type = "slider",
+							name = "X轴偏移量",
+						},
+						{
+							type = "button",
+							name = "水平居中",
+						},
+						{
+							type = "slider",
+							name = "Y轴偏移量",
+						},
+						{
+							type = "button",
+							name = "垂直居中",
+						},
+						{
+							type = "slider",
+							name = "宽度",
+						},
+						{
+							type = "slider",
+							name = "高度",
+						},
+					},
+				},
+        -----------------
+        ---- Visuals ----
+        -----------------
+				{
+					type = "submenu",
+					name = "视觉效果 / 色彩 / 布局",
+					controls = {
+						{
+							type = "checkbox",
+							name = "永久显示",
+							tooltip = "如果不想在未使用时隐藏施法条，它会显示背景颜色",
+						},
+						{
+							type = "checkbox",
+							name = "华丽化",
+							tooltip = "使施法条变得花哨",
+						},
+						{
+							type = "colorpicker",
+							name = "背景颜色",
+							tooltip = "施法条的背景色",
+						},
+						{
+							type = "colorpicker",
+							name = "施法条颜色",
+							tooltip = "施法条的颜色",
+						},
+						{
+							type = "colorpicker",
+							name = "Ping值区域颜色",
+							tooltip = "Ping值区域颜色",
+						},
+						{
+							type = "dropdown",
+							name = "对齐",
+							tooltip = "施法条的对齐方式",
+						},
+						{
+							type = "checkbox",
+							name = "为引导技能切换施法条颜色",
+							tooltip = "在引导技能剩余1s以内改变施法条颜色，帮助在引导结束时切手",
+							warning = "这是实验性功能，可能会有点不正常",
+						},
+						{
+							type = "colorpicker",
+							name = "引导技能颜色",
+							tooltip = "释放引导技能时颜色",
+						},
+						{
+							type = "dropdown",
+							name = "标签字体",
+							tooltip = "标签使用的字体",
+						},
+						{
+							type = "dropdown",
+							name = "字体样式",
+							tooltip = "标签使用的字体样式",
+						},
+					},
+				},
+        ------------------
+        ---- Behavior ----
+        ------------------
+				{
+					type = "submenu",
+					name = "表现",
+					controls = {
+						{
+							type = "slider",
+							name = "最大延迟",
+							tooltip = "设置最大显示延迟",
+						},
+						{
+							type = "slider",
+							name = "GCD调整",
+							tooltip = "增加/减少显示的 GCD 长度",
+						},
+						{
+							type = "slider",
+							name = "全局重击调整",
+							tooltip = "增加/减少重击的基准时间。除此以外，还会对特定重击类型进行额外调整",
+						},
+						{
+							type = "slider",
+							name = "全局施法调整",
+							tooltip = "增加/减少技能施放的基准时间。除此以外，还会对特定技能进行额外调整",
+						},
+						{
+							type = "checkbox",
+							name = "显示GCD",
+							tooltip = "在非战斗状态下跟踪 GCD",
+						},
+						{
+							type = "checkbox",
+							name = "不显示Ping值区域",
+							tooltip = "完全不在施法条上显示Ping值区域",
+						},
+						{
+							type = "checkbox",
+							name = "我不是重击侠",
+							tooltip = "停止显示重击的施法条",
+						},
+						{
+							type = "checkbox",
+							name = "在重击时显示Ping值区域",
+							tooltip = "在重击时显示Ping值区域。重击会在施法条进入Ping值区域时完成（本地估算），这是为了视觉一致性。",
+						},
+						{
+							type = "checkbox",
+							name = "在施法条上显示引导技能名称",
+							tooltip = "在施法条上显示引导技能的名称",
+						},
+						{
+							type = "checkbox",
+							name = "在施法条上显示引导技能剩余时间",
+							tooltip = "在施法条上显示引导技能的剩余时间",
+						},
+					},
+				},
+        ----------------
+        ---- Sounds ----
+        ----------------
+				{
+					type = "submenu",
+					name = "声音", 
+					controls = {
+						{
+							type = "slider",
+							name = "'tick' 和 'tock' 的音量",
+							tooltip = "调整音量",
+							warning = "您可能需要同时调整游戏音频设置，这样效果才会明显",
+						},
+						{
+							type = "checkbox",
+							name = "音效 'tick'",
+							tooltip = "启用音效 'tick'",
+						},
+						{
+							type = "dropdown",
+							name = "音效 'tick' 效果",
+						},
+						{
+							type = "slider",
+							name = "音效 'tick' 偏移量",
+						},
+						{
+							type = "checkbox",
+							name = "音效 'tock'",
+              tooltip = "启用音效 'tock'",
+						},
+						{
+							type = "dropdown",
+							name = "音效 'tock' 效果",
+						},
+						{
+							type = "slider",
+							name = "音效 'tock' 偏移量",
+						},
+					},
+				},
+        -------------------------------
+        ---- Ability Timer Adjusts ----
+        -------------------------------
+				{
+					type = "submenu",
+					name = "技能计时器调整",
+					description = "调整特定技能的计时器，这会在全局调整的基础上进行",
+					controls = {
+						{
+							type = "editbox",
+							name = "添加需要调整的技能（中文全称）",
+						},
+						{
+							type = "dropdown",
+							name = "选择技能",
+						},
+						{
+							type = "slider",
+							name = "调整GCD长度",
+						},
+						{
+							type = "button",
+							name = "移除技能调整",
+						},
+					},
+				},
+			},
+		},
+		{	type = "divider",},
+		-------------------
+		---- Resources ----
+		-------------------
+		{	
+      type = "submenu",
+			name = "资源",
+			tooltip = "在资源条上追踪您的各种资源",
+			controls = {
+				{
+					type = "checkbox",
+					name = "解锁资源条",
+					tooltip = "通过拖动中心/边缘，重新定位/调整资源栏大小",
+				},
+				{
+					type = "checkbox",
+					name = "将资源条固定在GCD追踪器顶部",
+					tooltip = "关闭时，资源条可以独立拖动和调整",
+					warning = "关闭此选项时，将自动调整资源条大小以适应GCD追踪器",
+				},
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏资源条",
+					tooltip = "在PVP区域时隐藏资源条，保持界面干净",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧显示资源条用于预览，其无法移动",
+					warning = "这会暂时禁止资源条的移动功能。禁用以解锁资源条。离开设置菜单时重置",
+				},
+				{
+					type = "submenu",
+					name = "配置",
+					controls = {
+						{
+							type = "checkbox",
+							name = "始终显示持有资源",
+							tooltip = "关闭时，仅在瞄准可攻击目标时显示",
+						},
+						{
+							type = "checkbox",
+							name = "显示终极点",
+							tooltip = "切换显示终极点",
+						},
+						{
+							type = "slider",
+							name = "终极点标签尺寸",
+							tooltip = "设置终极点标签的尺寸",
+						},
+						{
+							type = "colorpicker",
+							name = "终极点标签颜色",
+							tooltip = "终极点标签颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示耐力（百分比）",
+							tooltip = "切换显示耐力",
+						},
+						{
+							type = "slider",
+							name = "耐力标签尺寸",
+							tooltip = "设置耐力标签的尺寸",
+						},
+						{
+							type = "colorpicker",
+							name = "耐力标签颜色",
+							tooltip = "设置耐力标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示魔力（百分比）",
+							tooltip = "切换显示魔力",
+						},
+						{
+							type = "slider",
+							name = "魔力标签大小",
+							tooltip = "设置魔力标签的大小",
+						},
+						{
+							type = "colorpicker",
+							name = "魔力标签颜色",
+							tooltip = "设置魔力标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示目标血量",
+							tooltip = "切换显示目标血量",
+						},
+						{
+							type = "slider",
+							name = "血量标签大小",
+							tooltip = "设置血量标签的大小",
+						},
+						{
+							type = "colorpicker",
+							name = "血量标签颜色",
+							tooltip = "设置血量标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "将目标血量吸附在准星上",
+							tooltip = "将目标血量放在准星旁",
+						},
+						{
+							type = "slider",
+							name = "目标血量斩杀线高亮",
+							tooltip = "设置目标血量高亮阈值（0%不高亮）",
+						},
+						{
+							type = "colorpicker",
+							name = "血量高亮颜色",
+							tooltip = "设置目标血量高亮的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "在瞄准守卫时显示资源",
+							tooltip = "在瞄准守卫时显示资源",
+						},
+					},
+				},
+			},
+		},
+		{	type = "divider",},
+		-----------------------
+		---- Stack Tracker ----
+		-----------------------
+		{	
+      type = "submenu",
+			name = "技能层数追踪器",
+			tooltip = "仅为夜刃、巫师、龙骑、奥术启用",
+			controls = {
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏层数追踪器",
+					tooltip = "在PVP区域隐藏层数追踪器",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧显示层数追踪器预览，其不可移动",
+					warning = "这将会暂时禁用层数追踪器的移动功能。禁用以解锁层数追踪器。离开设置菜单时重置",
+				},
+        ---------------------------
+        ---- Position and Size ----
+        ---------------------------
+				{
+					type = "submenu",
+					name = "位置 / 尺寸",
+					controls = {
+						{	
+              type = "checkbox",
+							name = "解锁层数追踪器",
+							tooltip = "解锁层数追踪器",
+						},
+						{	
+              type = "slider",
+							name = "层数追踪器尺寸",
+						},
+					},
+				},
+        -------------------------
+        ---- Stacks to track ----
+        -------------------------
+				{
+					type = "submenu",
+					name = "需要追踪的技能层数",
+					controls = {
+						{
+							type = "checkbox",
+							name = "追踪 熔火烈鞭",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 契约武器",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 百折不挠 及其变形",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 魔核",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 火焰颅骨 及其变形",
+						},
+					},
+				},
+        --------------------------
+        ---- Tracker Behavior ----
+        --------------------------
+				{
+					type = "submenu",
+					name = "视听提示",
+					tooltip = "达到满层数时的视听提示设置",
+					controls = {
+						{	type = "checkbox",
+							name = "满层时播放音效",
+							tooltip = "当层数达到最大值时会发出声音",
+						},
+						{
+							type = "slider",
+							name = "音效音量",
+							tooltip = "选择提示音效的音量",
+							warning = "您可能还需要调整游戏音频设置，这样效果才明显",
+						},
+						{
+							type = "dropdown",
+							name = "选择音效",
+						},
+						{	type = "checkbox",
+							name = "满层时播放动画",
+							tooltip = "给你更强烈的视觉提示",
+						},
+          }
+        }
+      }
+    },
+  }
+
+  --Speical Setting
+  BB.SetMenuPatch("CombatMetronomeOptions", NewOption)
+  
+return true end
+
 --CraftStore
 --2.91
-do
+do if not BB.SV.BanList["CraftStoreFixedAndImproved"] then
   local CS = CraftStoreFixedAndImprovedLongClassName
   local lmb,rmb,mmb = '|t16:16:CraftStoreFixedAndImproved/DDS/lmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/rmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/mmb.dds|t'
   local i,o = GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_INTRICATE),GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_ORNATE)
@@ -2059,20 +2781,15 @@ do
     styleNames = {}, 
     reload = "需要重新载入",
   }
-  --Specail Setting
-  local OldFun = ZO_CreateStringId
-  ZO_CreateStringId = function(...)
-    local key, value = ...
-    if key == "SI_BINDING_NAME_CRAFTSTORE" and value == "CraftStore" then
-      CraftStoreFixedAndImprovedLongClassName.Loc = BB.TableCopy(L, CraftStoreFixedAndImprovedLongClassName.Loc)
-    end
-    return OldFun(...)
-  end
 
-  BB.AddonList["CraftStoreFixedAndImproved"] = function()
-    if not CraftStoreFixedAndImprovedLongClassName then return false end
-    return true 
-  end
+  --Specail Setting
+  BB.SetGlobalHook(function() BB.TableCopy(L, CraftStoreFixedAndImprovedLongClassName.Loc) end, "CraftStoreFixedAndImprovedLongClassName", "Quality")
+
+end end
+
+BB.AddonList["CraftStoreFixedAndImproved"] = function()
+  if not CraftStoreFixedAndImprovedLongClassName then return false end
+  return true 
 end
 
 --CrutchAlerts //待翻译//
@@ -2665,8 +3382,10 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             }
         },
     }
+    
     --Specail Setting
     BB.SetMenuPatch("CrutchAlertsOptions", NewTable)
+
 return true end
 
 --Display Leads
@@ -4295,10 +5014,24 @@ BB.AddonList["DressingRoom"] = function() if not DressingRoom then return false 
   }
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

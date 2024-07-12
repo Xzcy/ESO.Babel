@@ -34,7 +34,7 @@ BB.AddonList["Untaunted"] = function() if not Untaunted then return false end
     -- Keybinds --
     SI_BINDING_NAME_UNTAUNTED_MARKERSIZE_TOGGLE = "切换敌方标记的大小",
   }
-  --Special Setting
+
   for stringId, stringValue in pairs(strings) do
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
@@ -208,6 +208,7 @@ BB.AddonList["WizardsWardrobe"] = function() if not WizardsWardrobe then return 
     SafeAddVersion(key, 1)
     ZO_CreateStringId(key, value)
   end
+  
   --Special setting
   WizardsWardrobe.zones.LC.name = GetString(WW_LC_NAME)
   WizardsWardrobe.zones.LC.bosses = {
@@ -1111,8 +1112,10 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     F11 = "/p 任务已自动共享。如未接到可能您还有其他Boss任务未完成，或者您今天已完成过该任务。",
     F12 = "ESOUI.COM插件 <<1>> v<<2>>：誓约、试炼和世界Boss日常追踪，自动邀请和自动分享任务。",
   }
+
   --Special Setting
   WPamA.i18n = BB.TableCopy(L, WPamA.i18n)
+
 return true end
 
 --WritWorthy
@@ -1196,7 +1199,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["know_err_skill_missing"                ] = "缺少技能: [%s]"
   ,   ["know_err_skill_not_maxed"              ] = "技能不足 [%s]: %d / %d"
   ,   ["know_err_trait"                        ] = "特质 [%s] (%s) 未研究"
-  ,   ["know_err_trait_ct_too_low"             ] = "需要 ( %d / %d ) 特质研究数，以制造套装 [%s]"
+  ,   ["know_err_trait_ct_too_low"             ] = "特质研究数 ( %d / %d ) [%s]"
   ,   ["know_err_llc_too_old"                  ] = "懒人制造插件 %s 需要升级以设置 %d %s"
   ,   ["lam_banked_vouchers_desc"              ] = "扫描银行并在可用委托列表中包含这些委托以自动制造。\n|cFF3333注意！如果你在多个角色上进行制造的话，其他的角色在制造同一个银行中的委托时WritWorthy将不会提醒你。|r"
   ,   ["lam_banked_vouchers_title"             ] = "在自动制造窗口中包含银行中的委托"
@@ -1255,7 +1258,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["title_writ_inventory_player_bank"      ] = "委托库存: %s + 银行"
   ,   ["tooltip_crafted"                       ] = "制造完成"
   ,   ["tooltip_mat_total"                     ] = "总材料"
-  ,   ["tooltip_per_voucher"                   ] = "每张券"
+  ,   ["tooltip_per_voucher"                   ] = "每券"
   ,   ["tooltip_purchase"                      ] = "购买"
   ,   ["tooltip_queued"                        ] = "已加入制造队列"
   ,   ["tooltip_sell_for"                      ] = "以 %s 金出售"
@@ -1264,6 +1267,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["name_reset_window_pos"                 ] = "重置窗口位置"
   ,   ["tooltip_reset_window_pos"              ] = "重新设置窗口位置."
   }
+
   --Special Setting for Control Text
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersType     , "Type"      , "类别"   , "ui_type")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersVoucherCt, "VoucherCt" , "卷"     , "ui_voucher_ct")
@@ -1274,12 +1278,27 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersDetail4  , "Detail4"   , "详情 4" , "ui_detail4")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersDetail5  , "Detail5"   , "品质"   , "ui_detail5")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersEnqueue  , "Enqueue"   , "Q"      , "ui_is_queued")
+
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

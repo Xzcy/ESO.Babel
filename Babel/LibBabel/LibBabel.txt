@@ -1,10 +1,11 @@
-## Title: Babel
-## Description: Clustered Chinese Localization Tools
+## Title: LibBabel
+## Description: Storing Babel's configuration file
 ## Author: SplendidAchievers
 ## APIVersion: 101042
-## AddOnVersion: 20240713
-## Version: 2024.07.13
-## DependsOn: LibBabel
+## AddOnVersion: 1
+## Version: 1.0
+## SavedVariables: SA_Babel_Vars
+## IsLibrary: true
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
 ## The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States and/or other countries. 
@@ -13,11 +14,3 @@
 ## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
 
 Main.lua
-
-src/ABCD.lua
-src/EFGH.lua
-src/IJKL.lua
-src/MNOP.lua
-src/QRST.lua
-src/UVWX.lua
-src/YZ.lua
