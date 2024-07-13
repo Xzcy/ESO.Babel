@@ -191,8 +191,8 @@ function BB.DoMenuPatch(Name, OldTable)
       function()
         zo_callLater(
           function()
-            d("[Babel] "..Name.." 设置界面汉化已过时/出错，已停用")
-            d("[Babel] 请等待后续更新修复")
+            d("[Babel] "..Name.." 设置界面汉化与插件版本不匹配")
+            d("[Babel] 请更新插件，或等待后续更新修复")
           end, 5000
         )
       end
