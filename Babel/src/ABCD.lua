@@ -2809,67 +2809,95 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
     
     --此Table中的key值无需翻译,仅需要翻译后两者
     local Prominent = {
-      ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-      --CR
-      ["Alert Direct Current"] = {"Alert Direct Current", "Shows a prominent alert for Relequen's interruptible attack, Direct Current"},
-      ["Alert Glacial Spikes"] = {"Alert Glacial Spikes", "Shows a prominent alert for Galenwe's interruptible attack, Glacial Spikes"},
-      ["Alert Creeper Spawn"] = {"Alert Creeper Spawn", "Shows a prominent alert when a Malicious Creeper spawns"},
-      ["Alert Grievous Retaliation"] = {"Alert Grievous Retaliation", "Shows a prominent alert when you try to resurrect a player with their shade still up"},
-      --DSR
-      ["Alert Cascading Boot"] = {"Alert Cascading Boot", "Shows a prominent alert when a Dreadsail Overseer tries to yeet you with Cascading Boot"},
-      --HoF
-      ["Alert Direct Current"] = {"Alert Direct Current", "Shows a prominent alert when the Pinnacle Factotum casts its interruptible, Direct Current"},
-      ["Alert Reclaim the Ruined"] = {"Alert Reclaim the Ruined", "Shows a prominent alert when the adds spawn during the triplets fight"},
-      ["Alert Stomp"] = {"Alert Stomp", "Shows a prominent alert when the Assembly General does Stomp (for trench strat)"},
-      --KA
-      ["Alert Hemorrhage Ended (Tank Only)"] = {"Alert Hemorrhage Ended (Tank Only)", "Shows a prominent alert if you are a tank and the Hemorrhage phase ends, as a reminder to taunt the new coagulant"},
-      --LC
-      ["Alert Darkness Inflicted"] = {"Alert Darkness Inflicted", "Shows a prominent alert when you gain Darkness Inflicted (3 stacks of Creeping Darkness)"},
-      ["Alert Fate Sealer"] = {"Alert Fate Sealer", "Shows a prominent alert when the Orphic Shattered Shard summons a Fate Sealer orb and if you are a tank"},
-      --MoL
-      ["Alert Shattering Strike"] = {"Alert Shattering Strike", "Shows a prominent alert when a Dro-m'Athra Savage targets you to shatter your armor with Shattering Strike"},
-      ["Alert Grip of Lorkhaj"] = {"Alert Grip of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
-      ["Alert Threshing Wings"] = {"Alert Threshing Wings", "Shows a prominent alert when you should block to avoid Rakkhat's knockback"},
-      ["Alert Unstable Void"] = {"Alert Unstable Void", "Shows a prominent alert when you receive Unstable Void and should take the bomb out of group"},
-      --RG
-      ["Alert Savage Blitz"] = {"Alert Savage Blitz", "Shows a prominent alert when Oaxiltso charges"},
-      --SE
-      ["Alert Chain Pull"] = {"Alert Chain Pull", "Shows a prominent alert when Yaseyla chains you and you should break free"},
-      --SS
-      ["Alert Shield Charge"] = {"Alert Shield Charge", "Shows a prominent alert when a Ruin of Alkosh targets you with Shield Charge"},
-      ["Alert Sundering Gale"] = {"Alert Sundering Gale", "Shows a prominent alert when the Eternal Servant in the portal targets you with the Sundering Gale cone"},
-      
-      --BRP
-      ["Alert Lava Whip"] = {"Alert Lava Whip", "Shows a prominent alert when an Imperial Dread Knight targets you with Lava Whip"},
-      --DSA
-      ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-      ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
-      ["Alert Draining Poison"] = {"Alert Draining Poison", "Shows a prominent alert when a Pacthunter Ranger targets you with Draining Poison. You should dodge to avoid having your resources drained"},
-      --endlessArchive
-      ["Alert Grasp of Lorkhaj"] = {"Alert Grasp of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
-      --MA
-      ["Alert Poison Arrow Spray"] = {"Alert Poison Arrow Spray", "Shows a prominent alert when you get arrow sprayed by an Argonian Venomshot in the Vault of Umbrage and should cleanse the DoT"},
-      ["Alert Volatile Poison"] = {"Alert Volatile Poison", "Shows a prominent alert when you get poisoned by a plant in the Vault of Umbrage and should cleanse the DoT"},
-      ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-      ["Alert Teleport Strike"] = {"Alert Teleport Strike", "Shows a prominent alert when a Dremora Kynlurker ambushes you"},
-      ["Alert Soul Tether"] = {"Alert Soul Tether", "Shows a prominent alert when a Dremora Kynlurker casts Soul Tether"},
-      --VH
-      ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-      ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+      [1051] = { --CR
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Direct Current"] = {"震荡光束 警告", "瑞丽昆恩（电）释放可打断的震荡光束时，显示突出警报"},
+        ["Alert Glacial Spikes"] = {"冰爆 警告", "加伦韦（冰）释放可打断的冰爆时，显示突出警报"},
+        ["Alert Creeper Spawn"] = {"藤蔓生成 警告", "藤蔓生成时，显示突出警报"},
+        ["Alert Grievous Retaliation"] = {"队友影子 警告", "当你尝试救一个影子还存在的玩家时，显示突出警报"},
+      },
+      [1344] = { --DSR
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Cascading Boot"] = {"冰踢 警告", "当监管者使用冰踢攻击（击退）你时，显示突出警报"},
+      },
+      [975] = { --HoF
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Direct Current"] = {"震荡光束 警告", "当顶级机械体（二王）释放可以打断的震荡光束时，显示突出警告"},
+        ["Alert Reclaim the Ruined"] = {"自爆机械 警告", "当重组理事（三王）战斗中生成自爆小怪时，显示突出警告"},
+        ["Alert Stomp"] = {"践踏 警告", "当组装大将军（尾王）释放可格挡的践踏时，显示突出警告"},
+      },
+      [1196] = { --KA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Hemorrhage Ended (Tank Only)"] = {"血球爆炸后 警告 (仅对Tank)", "当你是Tank且二楼血球爆炸后，显示突出警告，提醒你嘲讽血球爆炸产生的巨型史莱姆"},
+      },
+      [1478] = { --LC
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Darkness Inflicted"] = {"黑暗侵袭 警告", "当你叠加3层蠕动黑暗，获得黑暗侵袭时，显示突出警告"},
+        ["Alert Fate Sealer"] = {"命运封存球体 警告", "当你是Tank且神秘破裂碎片（三王）召唤命运封存球体时，显示突出警告"},
+      },
+      [725] = { --MoL
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Shattering Strike"] = {"Alert Shattering Strike", "Shows a prominent alert when a Dro-m'Athra Savage targets you to shatter your armor with Shattering Strike"},
+        ["Alert Grip of Lorkhaj"] = {"Alert Grip of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
+        ["Alert Threshing Wings"] = {"Alert Threshing Wings", "Shows a prominent alert when you should block to avoid Rakkhat's knockback"},
+        ["Alert Unstable Void"] = {"Alert Unstable Void", "Shows a prominent alert when you receive Unstable Void and should take the bomb out of group"},
+      },
+      [1263] = { --RG
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥克西尔索（一王）冲锋时，显示突出警告"},
+      },
+      [1427] = { --SE
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Chain Pull"] = {"Alert Chain Pull", "Shows a prominent alert when Yaseyla chains you and you should break free"},
+      },
+      [1121] = { --SS
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Shield Charge"] = {"Alert Shield Charge", "Shows a prominent alert when a Ruin of Alkosh targets you with Shield Charge"},
+        ["Alert Sundering Gale"] = {"Alert Sundering Gale", "Shows a prominent alert when the Eternal Servant in the portal targets you with the Sundering Gale cone"},
+      },
+    
+      [1082] = { --BRP
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Lava Whip"] = {"Alert Lava Whip", "Shows a prominent alert when an Imperial Dread Knight targets you with Lava Whip"},
+      },
+      [635] = { --DSA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+        ["Alert Draining Poison"] = {"Alert Draining Poison", "Shows a prominent alert when a Pacthunter Ranger targets you with Draining Poison. You should dodge to avoid having your resources drained"},
+      },
+      [1436] = { --endlessArchive
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Grasp of Lorkhaj"] = {"Alert Grasp of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
+      },
+      [677] = { --MA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Poison Arrow Spray"] = {"Alert Poison Arrow Spray", "Shows a prominent alert when you get arrow sprayed by an Argonian Venomshot in the Vault of Umbrage and should cleanse the DoT"},
+        ["Alert Volatile Poison"] = {"Alert Volatile Poison", "Shows a prominent alert when you get poisoned by a plant in the Vault of Umbrage and should cleanse the DoT"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Teleport Strike"] = {"Alert Teleport Strike", "Shows a prominent alert when a Dremora Kynlurker ambushes you"},
+        ["Alert Soul Tether"] = {"Alert Soul Tether", "Shows a prominent alert when a Dremora Kynlurker casts Soul Tether"},
+      },
+      [1227] = { --VH
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+      },
     }
-  
-    local function ReplaceProminent(Old)
+
+    local function ReplaceProminent(ID, Old)
+      local New = Prominent[ID]
       local Start = false
       for i = 1, #Old do
         if Start then
-          if Old[i].name and Prominent[Old[i].name] then
-            Old[i].tooltip = Prominent[Old[i].name][2]
-            Old[i].name = Prominent[Old[i].name][1]
+          if Old[i].name and New[Old[i].name] then
+            Old[i].tooltip = New[Old[i].name][2]
+            Old[i].name = New[Old[i].name][1]
           end
         else
-          if Old[i].title and Prominent[Old[i].title] then
-            Old[i].text = Prominent[Old[i].title][2]
-            Old[i].title = Prominent[Old[i].title][1]
+          if Old[i].title and New[Old[i].title] then
+            Old[i].text = New[Old[i].title][2]
+            Old[i].title = New[Old[i].title][1]
             Start = true
           end
         end
@@ -3050,33 +3078,33 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "云息城(CR)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1051, {
+            controls = ReplaceProminent(1051, Crutch.GetProminentSettings(1051, {
                 {
                     type = "checkbox",
-                    name = "Show spears indicator",
-                    tooltip = "Show an indicator for how many spears are revealed, sent, and orbs dunked",
+                    name = "显示 矛机制 指示器",
+                    tooltip = "显示有多少矛上楼、下楼和球被消除",
                 },
                 {
                     type = "checkbox",
-                    name = "Play spears sound",
-                    tooltip = "Plays the champion point committed sound when a spear is revealed",
+                    name = "播放 矛机制 音效",
+                    tooltip = "当矛在楼上生成时，播放CP技能提交音效",
                 },
                 {
                     type = "checkbox",
-                    name = "Show flare sides",
-                    tooltip = "On Z'Maja during execute with +Siroria, show which side each of the two people with Roaring Flares can go to (will be same sides as RaidNotifier)",
+                    name = "显示 叠火 分组",
+                    tooltip = "当进入泽玛亚斩杀阶段且加火时，显示被点叠火的2人应该去哪一侧(这将与RaidNotifier插件的提示相同)",
                 },
                 {
                     type = "checkbox",
                     name = "染色Ody死亡图标",
-                    tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其OdySupportIcons死亡图标染为紫色",
+                    tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其Ody死亡图标染为紫色",
                 },
             })),
         },
         {
             type = "submenu",
             name = "恐帆礁石(DSR)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1344, {
+            controls = ReplaceProminent(1344, Crutch.GetProminentSettings(1344, {
                 {
                     type = "checkbox",
                     name = "Alert Building Static stacks",
@@ -3102,7 +3130,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "制造大厅(HoF)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(975, {
+            controls = ReplaceProminent(975, Crutch.GetProminentSettings(975, {
                 {
                     type = "checkbox",
                     name = "Show safe spot for triplets",
@@ -3126,7 +3154,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "凯恩之盾(KA)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1196, {
+            controls = ReplaceProminent(1196, Crutch.GetProminentSettings(1196, {
                 {
                     type = "checkbox",
                     name = "Show Exploding Spear landing spot",
@@ -3151,7 +3179,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "卢晶堡垒(LC)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1478, {
+            controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478, {
                 {
                     type = "checkbox",
                     name = "Show Orphic Shattered Shard mirror icons",
@@ -3182,7 +3210,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "洛克汗的巨口(MoL)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(725, {
+            controls = ReplaceProminent(725, Crutch.GetProminentSettings(725, {
                 {
                     type = "checkbox",
                     name = "Show Zhaj'hassa cleanse pad cooldowns",
@@ -3198,7 +3226,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "石林(RG)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1263, {
+            controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, {
                 {
                     type = "checkbox",
                     name = "Show Noxious Sludge sides",
@@ -3209,7 +3237,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "理智边缘(SE)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1427, {
+            controls = ReplaceProminent(1427, Crutch.GetProminentSettings(1427, {
                 {
                     type = "checkbox",
                     name = "Show center of Ansuul arena",
@@ -3224,7 +3252,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "太阳尖顶(SS)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1121, {
+            controls = ReplaceProminent(1121, Crutch.GetProminentSettings(1121, {
                 {
                     type = "checkbox",
                     name = "Show Lokkestiiz HM beam position icons",
@@ -3264,12 +3292,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "黑玫瑰监狱(BRP)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1082, {})),
+            controls = ReplaceProminent(1082, Crutch.GetProminentSettings(1082, {})),
         },
         {
             type = "submenu",
             name = "龙星竞技场(DSA)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(635, {
+            controls = ReplaceProminent(635, Crutch.GetProminentSettings(635, {
                 {
                     type = "checkbox",
                     name = "普通难度下受伤警告",
@@ -3280,7 +3308,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "无尽档案塔",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1436, {
+            controls = ReplaceProminent(1436, Crutch.GetProminentSettings(1436, {
                 {
                     type = "checkbox",
                     name = "Auto mark Fabled",
@@ -3296,7 +3324,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "漩涡竞技场(MA)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(677, {
+            controls = ReplaceProminent(677, Crutch.GetProminentSettings(677, {
                 {
                     type = "checkbox",
                     name = "显示当前轮数",
@@ -3357,7 +3385,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "瓦特什兰洞穴(VH)",
-            controls = ReplaceProminent(Crutch.GetProminentSettings(1227, {
+            controls = ReplaceProminent(1227, Crutch.GetProminentSettings(1227, {
                 {
                     type = "checkbox",
                     name = "显示丢失的附加分数",

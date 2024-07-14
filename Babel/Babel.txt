@@ -2,8 +2,8 @@
 ## Description: Clustered Chinese Localization Tools
 ## Author: SplendidAchievers
 ## APIVersion: 101042
-## AddOnVersion: 20240713
-## Version: 2024.07.13
+## AddOnVersion: 20240714
+## Version: 2024.07.14
 ## DependsOn: LibBabel
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
@@ -13,6 +13,7 @@
 ## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
 
 Main.lua
+ChangeLog.lua
 
 src/ABCD.lua
 src/EFGH.lua

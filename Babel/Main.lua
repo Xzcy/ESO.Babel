@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.07.13"
+BB.Version = "2024.07.14"
 
 --Default/Saved Setting
 BB.Default = {
@@ -269,50 +269,73 @@ function BB.BuildMenu()
     displayName = BB.Title,
     author = BB.Author,
     version = BB.Version,
+    website = "https://github.com/Xzcy/ESO.Babel",
     registerForRefresh = true,
 	}
 	LAM:RegisterAddonPanel(BB.Name.."_Options", panelData)
+  
   local SelectedAddon = ""
   local options = {
     {
-			type = "header",
+			type = "submenu",
 			name = "插件列表",
-		},
-    {
-      type = "dropdown",
-      name = "插件列表", 
-      choices = TableOfKey(BB.AddonList),
-      scrollable = true,
-      getFunc = function() return "" end,
-      setFunc = function(var) SelectedAddon = var end,
-      width = "full",	
+      controls = {
+        {
+          type = "dropdown",
+          name = "插件列表", 
+          choices = TableOfKey(BB.AddonList),
+          scrollable = true,
+          getFunc = function() return "" end,
+          setFunc = function(var) SelectedAddon = var end,
+          width = "full",	
+        },
+        {
+          type = "button",
+          name = "重载UI",
+          func = function()
+            ReloadUI("ingame")
+          end,
+          width = "half",	
+        },
+        {
+          type = "button",
+          name = "启用/禁用 插件汉化",
+          warning = "修改后需重新加载UI",
+          func = function()
+            if not BB.SV.BanList[SelectedAddon] then
+              BB.SV.BanList[SelectedAddon] = true
+            else
+              BB.SV.BanList[SelectedAddon] = false
+            end
+          end,
+          width = "half",	
+        },
+        {
+          type = "description",
+          title = "插件（文件夹名）：已支持 ( "..SupportCount.." 款 ) / |c008000已启用|r / |cFF0000已禁用|r\r\n\r\n  *不推荐在非中文语言下使用Babel，可能造成意外错误|r\r\n\r\n  *部分插件自带的汉化内容无法被Babel禁用",
+          text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
+          width = "full",	
+        },
+      },
     },
     {
-      type = "button",
-      name = "重载UI",
-      func = function()
-        ReloadUI("ingame")
-      end,
-      width = "half",	
-    },
-    {
-      type = "button",
-      name = "启用/禁用 插件汉化",
-      warning = "修改后需重新加载UI",
-      func = function()
-        if not BB.SV.BanList[SelectedAddon] then
-          BB.SV.BanList[SelectedAddon] = true
-        else
-          BB.SV.BanList[SelectedAddon] = false
-        end
-      end,
-      width = "half",	
+      type = "submenu",
+			name = "更新日志",
+      controls = {
+        {
+        type = "description",
+        text = function() return BB.ChangeLog end,
+        width = "full",
+        },
+      },
     },
     {
       type = "description",
-      title = "插件（文件夹名）：已支持 ( "..SupportCount.." 款 ) / |c008000已启用|r / |cFF0000已禁用|r\r\n\r\n  *不推荐在非中文语言下使用Babel，可能造成意外错误|r\r\n\r\n  *部分插件自带的汉化内容无法被Babel禁用",
-      text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
-      width = "full",	
+      title = "联系方式（|l0:1:0:-35%:3:FFFFFF|l广告位招租|l）\r\n",
+      text = "    Splendid Achievers\r\n       美服 公会 QQ群 452116107".."\r\n\r\n"..
+             "    Guar Protection\r\n       欧服 公会 QQ群 703671761".."\r\n\r\n"..
+             "    Babel项目仓库见 |c7B68EE'访问网站'|r 链接（墙外）",
+      width = "full",
     },
 	}
   LAM:RegisterOptionControls(BB.Name.."_Options", options)
