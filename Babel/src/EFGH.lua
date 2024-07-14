@@ -1,5 +1,155 @@
 local BB = MABabel
 
+--Elm's Markers
+--3.1.0
+BB.AddonList["ElmsMarkers"] = function() if not ElmsMarkers then return false end
+  local NewOption = {
+		{
+			type = "header",
+			name = "配置：/elms 打开ElmsMarkers UI，方便添加/移除标记",
+		},
+		{
+			type = "checkbox",
+			name = "显示标记",
+			tooltip = "切换UI显示",
+		},
+		{
+			type = "button",
+			name = "清空当前区域",
+			tooltip = "这将会移除当前区域的所有标记",
+		},
+		{
+			type = "slider",
+			name = "标记尺寸",
+		},
+		{
+			type = "header",
+			name = "团队标记",
+		},
+		{
+			type = "checkbox",
+			name = "订阅 队长标记",
+			tooltip = "自动接收队长的群发标记\r\n译注：需队长使用/elms pp或/elms rr指令或在插件UI中 群发/删标记",
+		},
+		{
+			type = "checkbox",
+			name = "订阅 队长警报",
+			tooltip = "自动接收队长的集合指令警报\r\n译注：需队长绑定集合指令的快捷键并使用",
+		},
+		{
+			type = "button",
+			name = function() return ElmsMarkers.savedVars.locked and "重定位UI" or "锁定UI" end,
+			tooltip = "切换重新定位插件UI",
+			func = function(value)
+				ElmsMarkers.UnlockUI(ElmsMarkers.savedVars.locked)
+					 if not ElmsMarkers.savedVars.locked then
+								value:SetText("锁定UI")
+					 else
+								value:SetText("重定位UI")
+					 end
+			end,
+		},
+		{
+			type = "slider",
+			name = "警告尺寸",
+			tooltip = "设置警告的尺寸 (需要搭配上方的按钮使用)",
+ 		},
+		{
+			type = "header",
+			name = " 导入",
+		},
+		{
+			type = "editbox",
+			name = "配置",
+			tooltip = "输入有效的 ElmsMarkers 字符串，在当前区域导入标记",
+		},
+		{
+			type = "button",
+			name = "导入",
+			tooltip = "为当前区域导入设置",
+		},
+		{
+			type = "header",
+			name = " 导出字符串",
+		},
+		{
+			type = "editbox",
+			name = "配置",
+			tooltip = "描述您为该区域配置的标记的字符串",
+		},
+	}
+  
+  --Special
+  BB.SetMenuPatch(ElmsMarkers.name.."Options", NewOption)
+  
+  BB.SetAfterPart(
+    function()
+      ElmsMarkers_Frame_Title_Subtitle:SetText("放置新标记")
+      ElmsMarkers_Frame_Button_Group_Place_Button:SetText("放置")
+      ElmsMarkers_Frame_Button_Group_Place_Publish_Button:SetText("放置并发布")
+      ElmsMarkers_Frame_Button_Group_Remove_Button:SetText("移除")
+      ElmsMarkers_Frame_Button_Group_Remove_Publish_Button:SetText("移除并发布")
+    end
+  )
+
+return true end
+
+--English Tooltips
+--1.7.1
+BB.AddonList["EnglishTooltips"] = function() if not EnglishTooltips then return false end
+  local Strings = {
+    [SI_ENGLISHTOOLTIPS_TOOLTIP_FORMAT] = "弹窗中信息格式",
+    [SI_ENGLISHTOOLTIPS_TOOLTIP_NEW_LINE] = "另起一行显示翻译",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT] = "装备",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_DESC] = "装备 (护甲, 饰品 & 武器)",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_SETNAME] = "套装名",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_SETNAME_DESC] = "显示套装名而不是物品名",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_ENCHANTMENT] = "附魔",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_ENCHANTMENT_DESC] = "显示附魔名称",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_ENCHANTMENT_COLOR] = "附魔品质颜色",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_ENCHANTMENT_COLOR_DESC] = "在弹窗中显示附魔品质颜色",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_TRAIT] = "特质",
+    [SI_ENGLISHTOOLTIPS_EQUIPMENT_TRAIT_DESC] = "显示特质名称",
+    [SI_ENGLISHTOOLTIPS_CHAMPION_POINTS] = "冠军点数",
+    [SI_ENGLISHTOOLTIPS_CHAMPION_POINTS_DESC] = "显示冠军点数技能名称",
+    [SI_ENGLISHTOOLTIPS_ABILITIES] = "技能",
+    [SI_ENGLISHTOOLTIPS_ABILITIES_DESC] = "显示技能名称",
+    [SI_ENGLISHTOOLTIPS_MATERIALS] = "材料",
+    [SI_ENGLISHTOOLTIPS_MATERIALS_DESC] = "材料, 原材料, 品质材料, 风格材料, 特质材料",
+    [SI_ENGLISHTOOLTIPS_GLYPH] = "雕文",
+    [SI_ENGLISHTOOLTIPS_GLYPH_DESC] = "护甲, 武器和饰品雕文",
+    [SI_ENGLISHTOOLTIPS_CONSUMABLE] = "药水 & 毒药",
+    [SI_ENGLISHTOOLTIPS_CONSUMABLE_DESC] = "药水, 毒药",
+    [SI_ENGLISHTOOLTIPS_FOOD] = "食物 & 饮料",
+    [SI_ENGLISHTOOLTIPS_FOOD_DESC] = "食物, 饮料",
+    [SI_ENGLISHTOOLTIPS_TROPHIES] = "奖励",
+    [SI_ENGLISHTOOLTIPS_TROPHIES_DESC] = "调查报告, 藏宝图, 博物馆藏品, 符文箱碎片, 收藏品碎片, 可调制作台, 各种容器",
+    [SI_ENGLISHTOOLTIPS_CRAFTING_MOTIFS] = "制作样式",
+    [SI_ENGLISHTOOLTIPS_CRAFTING_MOTIFS_DESC] = "显示制作样式名称",
+    [SI_ENGLISHTOOLTIPS_FURNISHING] = "家具",
+    [SI_ENGLISHTOOLTIPS_FURNISHING_DESC] = "显示可放置的家具名称",
+    [SI_ENGLISHTOOLTIPS_RECIPES] = "配方",
+    [SI_ENGLISHTOOLTIPS_RECIPES_DESC] = "显示配方名称",
+    [SI_ENGLISHTOOLTIPS_MASTER_WRITS] = "大师委托",
+    [SI_ENGLISHTOOLTIPS_MASTER_WRITS_DESC] = "显示大师委托的名称",
+    [SI_ENGLISHTOOLTIPS_PVP] = "PvP相关",
+    [SI_ENGLISHTOOLTIPS_PVP_DESC] = "攻城器械, 修理包, 传送石",
+    [SI_ENGLISHTOOLTIPS_CROWN_ITEMS] = "皇冠物品",
+    [SI_ENGLISHTOOLTIPS_CROWN_ITEMS_DESC] = "皇冠物品, 皇冠修理包",
+    [SI_ENGLISHTOOLTIPS_MISCELLANEOUS] = "杂项",
+    [SI_ENGLISHTOOLTIPS_MISCELLANEOUS_DESC] = "修理包, 撬锁器, 灵魂宝石, 鱼, 鱼饵, 垃圾",
+    [SI_ENGLISHTOOLTIPS_UPDATE_BUTTON] = "更新数据库",
+    [SI_ENGLISHTOOLTIPS_UPDATE_BUTTON_DESC] = "在数据损坏或游戏发布新版本时，需要更新数据库",
+    [SI_ENGLISHTOOLTIPS_UPDATE_BUTTON_WARNING] = "注意:\n该选项将会自动开始重载用户界面！",
+    [SI_ENGLISHTOOLTIPS_UPDATE_MSG] = "请更新 \"English Tooltips\" 插件数据库！打开插件设置界面，并点击 更新数据库 按钮",
+  }
+
+  for stringId, stringValue in pairs(Strings) do
+    SafeAddString(stringId, stringValue, 2)
+  end
+  
+return true end
+
 --Furniture Catalogue
 --4.83.0
 BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false end
@@ -366,135 +516,134 @@ return true end
 
 --Guild Hall Button
 --2.3.16
-do
+do if not BB.SV.BanList["GuildHallButton"] then
   local function Fun()
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ADD_ON_COMPATIBILITY_IS_AND_7D8F8298C885E6090",'插件兼容性为 <<1>> 和 <<2>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ADD_ON_MENU_CALL_FAILED_00111DF3F9FE114E68529",'插件菜单调用失败: ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ADD_ON_MENU_LIBRARY_LIBADDONMENU_UNAV_B27E5A9",'LibAddonMenu-2.0不可用或版本过低')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ADD_ON_VERSION_IS_5291C2A5F3AB8A534B4548167A0",'插件版本 <<1>>.<<2>>.<<3>>+<<4>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_AND_NOT_JUST_THEIR_PRINCIPAL_RESIDENC_F5C9A18",'不仅是他们的主要住所。但如果您没有访问权限，则只会收到一条错误信息，')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_API_VERSION_IS_004E3AEED6FF731AA19AD7DE9853CE",'API版本 <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ATTEMPT_TO_ESTABLISH_CASTELLAN_OF_GUI_CC4B320",'尝试建立大厅持有者失败（公会 编号 <<1>> ID <<2>> )：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_BUTTON_PRESS_FAILED_58F2A2731EFB8ADB0A00380C7",'按钮触发失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_GUILD_MEMBER_CHEC_4AB3D5C",'无法识别公会成员 "<<1>>" : 请检查拼写和 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_GUILD_MEMBER_CHEC_66E96E4",'无法识别公会成员 "<<1>>" : 请检查拼写和大小写')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_PLAYER_NAME_CHECK_76A9A7C",'无法识别玩家名 "<<1>>" : 检查配置设置')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_PLAYER_NAME_CHECK_861DA12",'无法识别玩家名 "<<1>>" : 检查配置 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_VALID_PLACE_TO_GO_E51FE3A",'无法确定 <<1>> 为有效位置')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_A_SUITABLE_HOUSE_AS_GU_7E3FF7F",'找不到合适的房屋作为 <<1>> 的公会大厅，无法前往')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_THE_GUILD_HALL_YET_D94246312D6",'尚未确定公会大厅')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CAN_T_MATCH_WITH_ANY_HOUSE_NAME_A1F61693F689F",'无法将 <<1>> 与任何房屋名称匹配')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CASTELLAN_OFFICER_71F06C6EBA715C8542DCAE0BB06",'大厅持有人')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_209A738",'指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (或 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_6A17FFE",'指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (或 空)')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_6F6ED75",'指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (非 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_YOU_DO_NOT__8A5B05B",'指令 /guildhall <<1>> 无效: 你没有编号的公会 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_YOU_DO_NOT__DDF0A2B",'指令 /guildhall <<1>> 无效: 你没有编号的公会 <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_CONFIGURATION_REPORT_FAILED_32D073A88E532C36A",'配置报告失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COULD_NOT_IDENTIFY_AS_A_HOUSE_IGNORIN_8A1AA1C",'无法将 <<1>> 识别为房屋：忽略它')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_COULD_NOT_SET_GUILD_HALL_NAME_FOR_36F4E3BF265",'无法为 <<1>> 设置公会大厅名称： ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_DEFAULT_GUILD_HALL_IS_GUILD_LEADER_S__343533A",'默认公会大厅是公会会长的主要住所。启用覆盖功能可指定不同的内容。')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_DEFAULT_GUILD_HALL_IS_GUILD_LEADER_S__FBB32DB",'默认公会大厅是公会会长的主要住所。启用 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_DESTINATIONS_201376A014EB6075E874622EAB261986",'目的地')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_DISPLAY_TRACEBACK_N_IN_A_UI_ERROR_WIN_6B73666",'在用户界面错误窗口中显示跟踪记录，从新到旧')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ENABLE_VISIT_COMMAND_66801F4064B19943409289CA",'启用 /visit 指令')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_END_OF_TRACEBACK_4F6563DA25EEBEA7B9157AD45627",'追踪结束 <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ERROR_WHILE_EXECUTING_COMMAND_E6CC53DD796BE01",'执行命令时出错 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_ERROR_WHILE_EXECUTING_COMMAND_VISIT_B6388D7B9",'执行 /visit 命令时出错 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_EX_GUILD_96D2B2882E8EAF999C8D4AED6505588C_000",'前公会')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_JOINED_GUILD_EVENT_2D458D53",'处理加入公会事件失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_JOINED_GUILD_EVENT_A0F9509C",'处理加入公会事件失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_LEFT_GUILD_EVENT_92EF764328",'处理离开公会事件失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_LEFT_GUILD_EVENT_BD8C059BAB",'处理离开公会事件失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_RETRIEVE_CONFIGURED_HOUSE_N_664FB85",'检索已配置的房屋名称失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_FAILED_TO_RETRIEVE_CONFIGURED_HOUSE_N_7BFA8A6",'检索已配置的房屋名称失败：')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GH_58C1A39F0D84CF0A66EE05448A7267A7_000000000",'/gh')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GH_TRACEBACK_B5CC4EC82980C9D53FE5E3B1FE5E885B",'/gh traceback')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILDHALL_5C3DEEE0E8CAB6EB2989E7B210FEC61B_00",'/guildhall')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILDHALL_E92A91F2910C5C17F2B63FBB99F866D3_00",'/guildhall <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILDHALL_F5F658A21522BF8EEB59D12485DD8A58_00",'/guildhall <<1>> <<2>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_186E1B907496E328562844EA16A01BA8_000000",'公会 <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BD3549AC09EB9DD7E98ADC80BBC51E87_0",'<<1>> 公会大厅')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_A1BB155E045F550CBF963FAAE85",'Guild Hall Button')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_CANNOT_REGISTER_ANY_154E1C7",'Guild Hall Button 无法注册 <<1[any/the following/the ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_CANNOT_REGISTER_ANY_8D488C2",'Guild Hall Button 无法注册 <<1[any/the following/the following]>> slash <<1[command/command/commands]>> 由于 <<1[conflicts/a conflict/conflicts]>>: <<2>> 无法正常工作，因为 <<1[it has/it has/they have]>> 已被注册或 <<1[.../another add-on/other add-ons]>>.')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_97C6E05173B0",'Guild Hall Button 追踪 <<1>> 从 <<2>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_IDEN_74242CC",'Guild Hall Button 追踪 <<1>> 从 <<2>>: 相同于追踪 <<3>> ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_IDEN_EB02DB1",'Guild Hall Button 追踪 <<1>> 从 <<2>>: 相同于追踪 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_CEFFA39898CBD2ACE5339DBB4750CCF9_0",'公会大厅 <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_DAA0E11C3F5AD09A5CFA0E3E5F7CE0E0_0",'公会大厅')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_HALL_G_3253A38A280D24AF21D3D09AFF0ACFCA",'公会大厅 <<G:1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_LEADER_282636F0BFB2DA3BE6370AD4EA292296",'公会会长')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_LEADER_90E5A1A286AAA741EC3CE1B060C60ECA",'(公会会长)')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_GUILD_LEADER_S_HOUSE_1D20F2D72501178F16DBD137",'公会会长的房子')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_IDENTIFIED_AS_HOUSE_ID_E5333A37F7DEC36BA81350",'确定 <<1>> 为房屋 ID <<2>>： <<3>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_IF_IN_DOUBT_LEAVE_THESE_OPTIONS_SWITC_8402CC2",'如有疑问，请关闭这些选项')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_LIST_10AE9FC7D453B0DD525D0EDF2EDE7961_0000000",'列表')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_NAME_OF_GUILD_HALL_8E78D14941704F91BFD3B0A368",'公会大厅的名称')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_NAME_OF_THE_GUILD_OFFICER_WHO_IS_THE__98E12BC",'正式拥有公会大厅的公会成员姓名')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_NO_TRACEBACK_NUMBERED_IS_AVAILABLE_F26D90C3D1",'没有编号为 <<1>> 的追踪记录')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_OR_IF_YOU_TRY_TO_VISIT_A_HOUSE_THE_PL_4532305",'或者，如果你试图访问玩家并不拥有的房子。')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_OVERRIDE_DEFAULT_GUILD_HALL_39BCB7E69E761919F",'覆盖默认公会大厅')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_PRINCIPAL_RESIDENCE_36D90080A5B25024E5AEE830E",'主要住所')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_PRINCIPAL_RESIDENCE_78EC4E220CF3D0743E140FA7F",'(主要住所)')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_RELOAD_UI_ON_JOINING_A_NEW_GUILD_CA066F65A25F",'加入公会时重新加载UI')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_RELOAD_UI_ON_LEAVING_A_GUILD_B9D56C736C853187",'离开公会时重新加载UI')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_REPORT_ADD_ON_GUILD_CONFIGURATION_C33080ECFDF",'报告插件公会配置')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_REPORT_ADD_ON_VERSION_AND_COMPATIBILI_AD2F13B",'报告插件版本和兼容性')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SHORT_NAME_MATCHES_N_DIFFERENT_HOUSES_8568A2E",'简称 <<1>> 匹配 <<n:2>> 不同的房屋： <<3>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SPECIFY_WHEN_THE_GUILD_HALL_IS_NOT_TH_3806928",'指明，当公会大厅不是寨主成员的主要住所')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SPECIFY_WHEN_THE_GUILD_HALL_IS_NOT_TH_CC3B44E",'指明，当公会大厅不是寨主成员的主要 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_4670B3B",'加入公会后自动发出 /reloadui 命令。如果连续加入 2 个公会，将收到 2 个 /reloadui 命令。这可能不是您想要的')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_B3BBD1A",'打开开关，以代表自动发出 /reloadui 命令 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_E43C442",'离开公会后自动发出 /reloadui 命令。如果连续离开 2 个公会，将收到 2 个 /reloadui 命令。这可能不是您想要的')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SWITCH_ON_TO_ENABLE_THE_VISIT_COMMAND_64BC609",'打开 /visit 命令。这不仅允许您访问公会大厅，还允许您访问任何玩家的房屋，')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_SWITCH_ON_TO_ENABLE_THE_VISIT_COMMAND_65E801F",'打开以启用 /visit 命令')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_THIS_HAPPENS_WHEN_YOU_LOG_OUT_OR_ISSU_4733C41",'重新登录或使用 /reloadui 命令可刷新信息。')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TO_SEE_THE_TRACEBACK_F9049B53E0EBFA176BE850E8",'以查看追踪结果: ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRACEBACK_756563A5EFEAF4D400B526843A8570EA_00",'追踪')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRANSLATION_VERSION_298B3874E461321DA828F865C",'$Id: en.lua 911 2022-03-14 22:58:16Z paulk $')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRANSLATION_VERSION_98252F5CD90D00AD9997604D6",'文本版本 <<1>> <<2>> <<3>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVELING_TO_C_S_HOUSE_AT_A614E93F6DC98ADC724",'传送至 <<C:1>> 在 <<2>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVELING_TO_C_S_HOUSE_L_C79CEBD4996B18D20E2E",'传送至 <<C:1>> 在 <<2>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVELING_TO_THE_GUILD_HALL_B279E35A01DA3A10F",'传送至 <<1>> 的公会大厅 <<2>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVELING_TO_YOUR_HOUSE_AT_6182CC27C860F0760D",'传送至 你在 <<1>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVELING_TO_YOUR_HOUSE_L_7AF705F3135F6A1A55B",'传送至 你在 <<1>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVEL_L_F68A5C5D8DBEE3FEC8A44B00F3847891_000",'传送至 <<1>> (<<2>>)')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVEL_TO_570AFA648090A8DFA32AE1D5BCC11830_00",'传送至 <<1>> (<<2>>)')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_TRAVEL_TO_GUILD_HALL_62037739554C73EFB0A3327B",'传送至公会大厅')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VERSION_2AF72F100C356273D46284F6FD1DFC08_0000",'版本')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VERSION_INFORMATION_9D11E23779D9604067DD20E35",'版本信息')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISITING_C_S_HOUSE_D1C9CCB9C9BC05CEA78075A5EB",'拜访 <<C:1>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISITING_C_S_HOUSE_L_BAA1050C3487F904AC18303C",'拜访 <<C:1>> 在 <<2>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISITING_YOUR_HOUSE_L_FEF218F331CFB2D9C49457F",'拜访你在 <<1>> 的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISIT_89B0F4A089D457D7FEC4E29BD987543D_000000",'/visit')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISIT_ANYONE_S_HOUSE_5082C66C9F0FA0FAEBC5151D",'拜访任何人的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISIT_A_PLAYER_S_HOUSE_B7AA090447E6AE8E6230A8",'拜访某人的房屋')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_VISIT_B4C0AE96A2003D3DA92E3A709B854322_000000",'/visit <<1>>')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_WHEN_LEAVING_AND_JOINING_GUILDS_64B318ABDED04",'离开和加入公会时')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_WHEN_YOU_LEAVE_A_GUILD_OR_JOIN_A_NEW__945F71F",'当您离开或加入公会时，该界面不会自动更新。')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_WHEN_YOU_LEAVE_A_GUILD_OR_JOIN_A_NEW__E576C17",'离开公会或加入新公会时，此界面将不会显示 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_YOU_CAN_CHOOSE_TO_HAVE_THE_GUILD_HALL_320D2F0",'您可以选择在离开或加入公会时让 Guild Hall Button 自动重新加载用户界面。')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON_YOU_CAN_CHOOSE_TO_HAVE_THE_GUILD_HALL_4C21598",'您可以选择让 Guild Hall Button 自动进入用户界面 ')
-    ZO_CreateStringId("SI_GUILDHALLBUTTON__935DFC8294ACC5E24C96FD80891549B2_00000000000",'<<1>><<2>><<3>><<4>><<5>>')
-  return true end
-
-  local First = true
-  local OldFun = ZO_CreateStringId
-  ZO_CreateStringId = function(...)
-    local key = ...
-    if key == "SI_GUILDHALLBUTTON__935DFC8294ACC5E24C96FD80891549B2_00000000000" and First then
-      First = false
-      Fun()
-      return
+    local Strings = {
+      [SI_GUILDHALLBUTTON_ADD_ON_COMPATIBILITY_IS_AND_7D8F8298C885E6090] = '插件兼容性为 <<1>> 和 <<2>>',
+      [SI_GUILDHALLBUTTON_ADD_ON_MENU_CALL_FAILED_00111DF3F9FE114E68529] = '插件菜单调用失败: ',
+      [SI_GUILDHALLBUTTON_ADD_ON_MENU_LIBRARY_LIBADDONMENU_UNAV_B27E5A9] = 'LibAddonMenu-2.0不可用或版本过低',
+      [SI_GUILDHALLBUTTON_ADD_ON_VERSION_IS_5291C2A5F3AB8A534B4548167A0] = '插件版本 <<1>>.<<2>>.<<3>>+<<4>>',
+      [SI_GUILDHALLBUTTON_AND_NOT_JUST_THEIR_PRINCIPAL_RESIDENC_F5C9A18] = '不仅是他们的主要住所。但如果您没有访问权限，则只会收到一条错误信息，',
+      [SI_GUILDHALLBUTTON_API_VERSION_IS_004E3AEED6FF731AA19AD7DE9853CE] = 'API版本 <<1>>',
+      [SI_GUILDHALLBUTTON_ATTEMPT_TO_ESTABLISH_CASTELLAN_OF_GUI_CC4B320] = '尝试建立大厅持有者失败（公会 编号 <<1>> ID <<2>> )：',
+      [SI_GUILDHALLBUTTON_BUTTON_PRESS_FAILED_58F2A2731EFB8ADB0A00380C7] = '按钮触发失败：',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_GUILD_MEMBER_CHEC_4AB3D5C] = '无法识别公会成员 "<<1>>" : 请检查拼写和 ',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_GUILD_MEMBER_CHEC_66E96E4] = '无法识别公会成员 "<<1>>" : 请检查拼写和大小写',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_PLAYER_NAME_CHECK_76A9A7C] = '无法识别玩家名 "<<1>>" : 检查配置设置',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_PLAYER_NAME_CHECK_861DA12] = '无法识别玩家名 "<<1>>" : 检查配置 ',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_AS_A_VALID_PLACE_TO_GO_E51FE3A] = '无法确定 <<1>> 为有效位置',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_A_SUITABLE_HOUSE_AS_GU_7E3FF7F] = '找不到合适的房屋作为 <<1>> 的公会大厅，无法前往',
+      [SI_GUILDHALLBUTTON_CAN_T_IDENTIFY_THE_GUILD_HALL_YET_D94246312D6] = '尚未确定公会大厅',
+      [SI_GUILDHALLBUTTON_CAN_T_MATCH_WITH_ANY_HOUSE_NAME_A1F61693F689F] = '无法将 <<1>> 与任何房屋名称匹配',
+      [SI_GUILDHALLBUTTON_CASTELLAN_OFFICER_71F06C6EBA715C8542DCAE0BB06] = '大厅持有人',
+      [SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_209A738] = '指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (或 ',
+      [SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_6A17FFE] = '指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (或 空)',
+      [SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_EXPECTING_A_6F6ED75] = '指令 /guildhall <<1>> 无效: 需要公会编号 1..5 (非 ',
+      [SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_YOU_DO_NOT__8A5B05B] = '指令 /guildhall <<1>> 无效: 你没有编号的公会 ',
+      [SI_GUILDHALLBUTTON_COMMAND_GUILDHALL_INVALID_YOU_DO_NOT__DDF0A2B] = '指令 /guildhall <<1>> 无效: 你没有编号的公会 <<1>>',
+      [SI_GUILDHALLBUTTON_CONFIGURATION_REPORT_FAILED_32D073A88E532C36A] = '配置报告失败：',
+      [SI_GUILDHALLBUTTON_COULD_NOT_IDENTIFY_AS_A_HOUSE_IGNORIN_8A1AA1C] = '无法将 <<1>> 识别为房屋：忽略它',
+      [SI_GUILDHALLBUTTON_COULD_NOT_SET_GUILD_HALL_NAME_FOR_36F4E3BF265] = '无法为 <<1>> 设置公会大厅名称： ',
+      [SI_GUILDHALLBUTTON_DEFAULT_GUILD_HALL_IS_GUILD_LEADER_S__343533A] = '默认公会大厅是公会会长的主要住所。启用覆盖功能可指定不同的内容。',
+      [SI_GUILDHALLBUTTON_DEFAULT_GUILD_HALL_IS_GUILD_LEADER_S__FBB32DB] = '默认公会大厅是公会会长的主要住所。启用 ',
+      [SI_GUILDHALLBUTTON_DESTINATIONS_201376A014EB6075E874622EAB261986] = '目的地',
+      [SI_GUILDHALLBUTTON_DISPLAY_TRACEBACK_N_IN_A_UI_ERROR_WIN_6B73666] = '在用户界面错误窗口中显示跟踪记录，从新到旧',
+      [SI_GUILDHALLBUTTON_ENABLE_VISIT_COMMAND_66801F4064B19943409289CA] = '启用 /visit 指令',
+      [SI_GUILDHALLBUTTON_END_OF_TRACEBACK_4F6563DA25EEBEA7B9157AD45627] = '追踪结束 <<1>>',
+      [SI_GUILDHALLBUTTON_ERROR_WHILE_EXECUTING_COMMAND_E6CC53DD796BE01] = '执行命令时出错 ',
+      [SI_GUILDHALLBUTTON_ERROR_WHILE_EXECUTING_COMMAND_VISIT_B6388D7B9] = '执行 /visit 命令时出错 ',
+      [SI_GUILDHALLBUTTON_EX_GUILD_96D2B2882E8EAF999C8D4AED6505588C_000] = '前公会',
+      [SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_JOINED_GUILD_EVENT_2D458D53] = '处理加入公会事件失败：',
+      [SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_JOINED_GUILD_EVENT_A0F9509C] = '处理加入公会事件失败：',
+      [SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_LEFT_GUILD_EVENT_92EF764328] = '处理离开公会事件失败：',
+      [SI_GUILDHALLBUTTON_FAILED_TO_PROCESS_LEFT_GUILD_EVENT_BD8C059BAB] = '处理离开公会事件失败：',
+      [SI_GUILDHALLBUTTON_FAILED_TO_RETRIEVE_CONFIGURED_HOUSE_N_664FB85] = '检索已配置的房屋名称失败：',
+      [SI_GUILDHALLBUTTON_FAILED_TO_RETRIEVE_CONFIGURED_HOUSE_N_7BFA8A6] = '检索已配置的房屋名称失败：',
+      [SI_GUILDHALLBUTTON_GH_58C1A39F0D84CF0A66EE05448A7267A7_000000000] = '/gh',
+      [SI_GUILDHALLBUTTON_GH_TRACEBACK_B5CC4EC82980C9D53FE5E3B1FE5E885B] = '/gh traceback',
+      [SI_GUILDHALLBUTTON_GUILDHALL_5C3DEEE0E8CAB6EB2989E7B210FEC61B_00] = '/guildhall',
+      [SI_GUILDHALLBUTTON_GUILDHALL_E92A91F2910C5C17F2B63FBB99F866D3_00] = '/guildhall <<1>>',
+      [SI_GUILDHALLBUTTON_GUILDHALL_F5F658A21522BF8EEB59D12485DD8A58_00] = '/guildhall <<1>> <<2>>',
+      [SI_GUILDHALLBUTTON_GUILD_186E1B907496E328562844EA16A01BA8_000000] = '公会 <<1>>',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BD3549AC09EB9DD7E98ADC80BBC51E87_0] = '<<1>> 公会大厅',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_A1BB155E045F550CBF963FAAE85] = 'Guild Hall Button',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_CANNOT_REGISTER_ANY_154E1C7] = 'Guild Hall Button 无法注册 <<1[any/the following/the ',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_CANNOT_REGISTER_ANY_8D488C2] = 'Guild Hall Button 无法注册 <<1[any/the following/the following]>> slash <<1[command/command/commands]>> 由于 <<1[conflicts/a conflict/conflicts]>>: <<2>> 无法正常工作，因为 <<1[it has/it has/they have]>> 已被注册或 <<1[.../another add-on/other add-ons]>>.',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_97C6E05173B0] = 'Guild Hall Button 追踪 <<1>> 从 <<2>>',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_IDEN_74242CC] = 'Guild Hall Button 追踪 <<1>> 从 <<2>>: 相同于追踪 <<3>> ',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_BUTTON_TRACEBACK_FROM_IDEN_EB02DB1] = 'Guild Hall Button 追踪 <<1>> 从 <<2>>: 相同于追踪 ',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_CEFFA39898CBD2ACE5339DBB4750CCF9_0] = '公会大厅 <<1>>',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_DAA0E11C3F5AD09A5CFA0E3E5F7CE0E0_0] = '公会大厅',
+      [SI_GUILDHALLBUTTON_GUILD_HALL_G_3253A38A280D24AF21D3D09AFF0ACFCA] = '公会大厅 <<G:1>>',
+      [SI_GUILDHALLBUTTON_GUILD_LEADER_282636F0BFB2DA3BE6370AD4EA292296] = '公会会长',
+      [SI_GUILDHALLBUTTON_GUILD_LEADER_90E5A1A286AAA741EC3CE1B060C60ECA] = '(公会会长)',
+      [SI_GUILDHALLBUTTON_GUILD_LEADER_S_HOUSE_1D20F2D72501178F16DBD137] = '公会会长的房子',
+      [SI_GUILDHALLBUTTON_IDENTIFIED_AS_HOUSE_ID_E5333A37F7DEC36BA81350] = '确定 <<1>> 为房屋 ID <<2>>： <<3>>',
+      [SI_GUILDHALLBUTTON_IF_IN_DOUBT_LEAVE_THESE_OPTIONS_SWITC_8402CC2] = '如有疑问，请关闭这些选项',
+      [SI_GUILDHALLBUTTON_LIST_10AE9FC7D453B0DD525D0EDF2EDE7961_0000000] = '列表',
+      [SI_GUILDHALLBUTTON_NAME_OF_GUILD_HALL_8E78D14941704F91BFD3B0A368] = '公会大厅的名称',
+      [SI_GUILDHALLBUTTON_NAME_OF_THE_GUILD_OFFICER_WHO_IS_THE__98E12BC] = '正式拥有公会大厅的公会成员姓名',
+      [SI_GUILDHALLBUTTON_NO_TRACEBACK_NUMBERED_IS_AVAILABLE_F26D90C3D1] = '没有编号为 <<1>> 的追踪记录',
+      [SI_GUILDHALLBUTTON_OR_IF_YOU_TRY_TO_VISIT_A_HOUSE_THE_PL_4532305] = '或者，如果你试图访问玩家并不拥有的房子。',
+      [SI_GUILDHALLBUTTON_OVERRIDE_DEFAULT_GUILD_HALL_39BCB7E69E761919F] = '覆盖默认公会大厅',
+      [SI_GUILDHALLBUTTON_PRINCIPAL_RESIDENCE_36D90080A5B25024E5AEE830E] = '主要住所',
+      [SI_GUILDHALLBUTTON_PRINCIPAL_RESIDENCE_78EC4E220CF3D0743E140FA7F] = '(主要住所)',
+      [SI_GUILDHALLBUTTON_RELOAD_UI_ON_JOINING_A_NEW_GUILD_CA066F65A25F] = '加入公会时重新加载UI',
+      [SI_GUILDHALLBUTTON_RELOAD_UI_ON_LEAVING_A_GUILD_B9D56C736C853187] = '离开公会时重新加载UI',
+      [SI_GUILDHALLBUTTON_REPORT_ADD_ON_GUILD_CONFIGURATION_C33080ECFDF] = '报告插件公会配置',
+      [SI_GUILDHALLBUTTON_REPORT_ADD_ON_VERSION_AND_COMPATIBILI_AD2F13B] = '报告插件版本和兼容性',
+      [SI_GUILDHALLBUTTON_SHORT_NAME_MATCHES_N_DIFFERENT_HOUSES_8568A2E] = '简称 <<1>> 匹配 <<n:2>> 不同的房屋： <<3>>',
+      [SI_GUILDHALLBUTTON_SPECIFY_WHEN_THE_GUILD_HALL_IS_NOT_TH_3806928] = '指明，当公会大厅不是寨主成员的主要住所',
+      [SI_GUILDHALLBUTTON_SPECIFY_WHEN_THE_GUILD_HALL_IS_NOT_TH_CC3B44E] = '指明，当公会大厅不是寨主成员的主要 ',
+      [SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_4670B3B] = '加入公会后自动发出 /reloadui 命令。如果连续加入 2 个公会，将收到 2 个 /reloadui 命令。这可能不是您想要的',
+      [SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_B3BBD1A] = '打开开关，以代表自动发出 /reloadui 命令 ',
+      [SI_GUILDHALLBUTTON_SWITCH_ON_TO_AUTOMATICALLY_ISSUE_A_RE_E43C442] = '离开公会后自动发出 /reloadui 命令。如果连续离开 2 个公会，将收到 2 个 /reloadui 命令。这可能不是您想要的',
+      [SI_GUILDHALLBUTTON_SWITCH_ON_TO_ENABLE_THE_VISIT_COMMAND_64BC609] = '打开 /visit 命令。这不仅允许您访问公会大厅，还允许您访问任何玩家的房屋，',
+      [SI_GUILDHALLBUTTON_SWITCH_ON_TO_ENABLE_THE_VISIT_COMMAND_65E801F] = '打开以启用 /visit 命令',
+      [SI_GUILDHALLBUTTON_THIS_HAPPENS_WHEN_YOU_LOG_OUT_OR_ISSU_4733C41] = '重新登录或使用 /reloadui 命令可刷新信息。',
+      [SI_GUILDHALLBUTTON_TO_SEE_THE_TRACEBACK_F9049B53E0EBFA176BE850E8] = '以查看追踪结果: ',
+      [SI_GUILDHALLBUTTON_TRACEBACK_756563A5EFEAF4D400B526843A8570EA_00] = '追踪',
+      [SI_GUILDHALLBUTTON_TRANSLATION_VERSION_298B3874E461321DA828F865C] = '$Id: en.lua 911 2022-03-14 22:58:16Z paulk $',
+      [SI_GUILDHALLBUTTON_TRANSLATION_VERSION_98252F5CD90D00AD9997604D6] = '文本版本 <<1>> <<2>> <<3>>',
+      [SI_GUILDHALLBUTTON_TRAVELING_TO_C_S_HOUSE_AT_A614E93F6DC98ADC724] = '传送至 <<C:1>> 在 <<2>> 的房屋',
+      [SI_GUILDHALLBUTTON_TRAVELING_TO_C_S_HOUSE_L_C79CEBD4996B18D20E2E] = '传送至 <<C:1>> 在 <<2>> 的房屋',
+      [SI_GUILDHALLBUTTON_TRAVELING_TO_THE_GUILD_HALL_B279E35A01DA3A10F] = '传送至 <<1>> 的公会大厅 <<2>>',
+      [SI_GUILDHALLBUTTON_TRAVELING_TO_YOUR_HOUSE_AT_6182CC27C860F0760D] = '传送至 你在 <<1>> 的房屋',
+      [SI_GUILDHALLBUTTON_TRAVELING_TO_YOUR_HOUSE_L_7AF705F3135F6A1A55B] = '传送至 你在 <<1>> 的房屋',
+      [SI_GUILDHALLBUTTON_TRAVEL_L_F68A5C5D8DBEE3FEC8A44B00F3847891_000] = '传送至 <<1>> (<<2>>)',
+      [SI_GUILDHALLBUTTON_TRAVEL_TO_570AFA648090A8DFA32AE1D5BCC11830_00] = '传送至 <<1>> (<<2>>)',
+      [SI_GUILDHALLBUTTON_TRAVEL_TO_GUILD_HALL_62037739554C73EFB0A3327B] = '传送至公会大厅',
+      [SI_GUILDHALLBUTTON_VERSION_2AF72F100C356273D46284F6FD1DFC08_0000] = '版本',
+      [SI_GUILDHALLBUTTON_VERSION_INFORMATION_9D11E23779D9604067DD20E35] = '版本信息',
+      [SI_GUILDHALLBUTTON_VISITING_C_S_HOUSE_D1C9CCB9C9BC05CEA78075A5EB] = '拜访 <<C:1>> 的房屋',
+      [SI_GUILDHALLBUTTON_VISITING_C_S_HOUSE_L_BAA1050C3487F904AC18303C] = '拜访 <<C:1>> 在 <<2>> 的房屋',
+      [SI_GUILDHALLBUTTON_VISITING_YOUR_HOUSE_L_FEF218F331CFB2D9C49457F] = '拜访你在 <<1>> 的房屋',
+      [SI_GUILDHALLBUTTON_VISIT_89B0F4A089D457D7FEC4E29BD987543D_000000] = '/visit',
+      [SI_GUILDHALLBUTTON_VISIT_ANYONE_S_HOUSE_5082C66C9F0FA0FAEBC5151D] = '拜访任何人的房屋',
+      [SI_GUILDHALLBUTTON_VISIT_A_PLAYER_S_HOUSE_B7AA090447E6AE8E6230A8] = '拜访某人的房屋',
+      [SI_GUILDHALLBUTTON_VISIT_B4C0AE96A2003D3DA92E3A709B854322_000000] = '/visit <<1>>',
+      [SI_GUILDHALLBUTTON_WHEN_LEAVING_AND_JOINING_GUILDS_64B318ABDED04] = '离开和加入公会时',
+      [SI_GUILDHALLBUTTON_WHEN_YOU_LEAVE_A_GUILD_OR_JOIN_A_NEW__945F71F] = '当您离开或加入公会时，该界面不会自动更新。',
+      [SI_GUILDHALLBUTTON_WHEN_YOU_LEAVE_A_GUILD_OR_JOIN_A_NEW__E576C17] = '离开公会或加入新公会时，此界面将不会显示 ',
+      [SI_GUILDHALLBUTTON_YOU_CAN_CHOOSE_TO_HAVE_THE_GUILD_HALL_320D2F0] = '您可以选择在离开或加入公会时让 Guild Hall Button 自动重新加载用户界面。',
+      [SI_GUILDHALLBUTTON_YOU_CAN_CHOOSE_TO_HAVE_THE_GUILD_HALL_4C21598] = '您可以选择让 Guild Hall Button 自动进入用户界面 ',
+      [SI_GUILDHALLBUTTON__935DFC8294ACC5E24C96FD80891549B2_00000000000] = '<<1>><<2>><<3>><<4>><<5>>',
+    }
+    
+    for k,v in pairs(Strings) do
+      SafeAddString(k, v, 2)
     end
-    return OldFun(...)
+    
   end
 
-  BB.AddonList["GuildHallButton"] = function() 
-    if not GuildHallButton then return false end
-    return true
-  end
+  --Special Setting
+  BB.SetGlobalHook(function() Fun() end, "GuildHallButton", "name")
+
+end end
+
+BB.AddonList["GuildHallButton"] = function() 
+  if not GuildHallButton then return false end
+  return true
 end
 
 --Harven's Improved Skills Window
@@ -752,10 +901,616 @@ BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return fals
   end
 return true end
 
---[[ Template
+--HowToCloudrest
+--1.2.2
+BB.AddonList["HowToCloudrest"] = function() if not HowToCloudrest then return false end
+  local NewOption = {
+		{
+			type = "dropdown",
+			name = "默认 '启用' 预设",
+			tooltip = "'启用' 预设后，将为选择的身份显示推荐的UI元素",
+		},
+		{
+			type = "description",
+			text = "|cff0000WARNING:|r 这些配置文件将覆盖您已自定义的'启用'设置。但是，它不会更改您已经自定义的元素的大小或位置。配置文件无法更改（目前无法保存预设！",
+		},
+		{
+			type = "checkbox",
+			name = "解锁所有",
+			tooltip = "使用它设置所有已启用通知的位置",
+		},
+		{
+			type = "description",
+			text = "屏幕通知测试 (CSA):",
+		},
+		{
+			type = "button",
+			name = "测试 CSA",
+		},
+		{
+			type = "submenu",
+			name = "通常",
+			controls = {
+				{
+					type = "header",
+					name = "定身通知选项",
+				},
+				{
+					type = "checkbox",
+					name = "启用 藤蔓瞄准 通知",
+					tooltip = "当藤蔓瞄准你缠绕时，显示通知",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑暗利爪 通知",
+					tooltip = "当希罗利亚对你释放黑暗利爪时，显示通知 (定身).",
+				},
+				{
+					type = "checkbox",
+					name = "解锁定身通知",
+					tooltip = "解锁定身通知位置（藤蔓缠绕和黑暗利爪）",
+				},
+				{
+					type = "slider",
+					name = "定身通知尺寸",
+					tooltip = "设置藤蔓缠绕和黑暗利爪的定身通知尺寸",
+				},
+			}
+		},
+		{
+			type = "submenu",
+			name = "小王选项",
+			controls = {
+				{
+					type = "header",
+					name = "通常",
+				},
+				{
+					type = "checkbox",
+					name = "启用 小王列表",
+					tooltip = "显示包含有关小王传送、打断和特殊技能的信息的小王列表",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 小王列表",
+					tooltip = "设置小王列表的位置",
+				},
+				{
+					type = "slider",
+					name = "小王列表尺寸",
+					tooltip = "设置小王列表的尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 小王传送 计时",
+					tooltip = "显示一个计时器，它会告诉你小王传送的冷却时间",
+				},
+				{
+					type = "checkbox",
+					name = "启用 小王打断 计时",
+					tooltip = "显示一个计时器，它会告诉你小王需要打断的技能的冷却时间",
+				},
+				{
+					type = "checkbox",
+					name = "启用 小王技能 计时",
+					tooltip = "显示一个计时器，它会告诉你小王使用技能的冷却时间",
+				},
+				{
+					type = "divider"
+				},
+				{
+					type = "checkbox",
+					name = "启用 小王打断 通知",
+					tooltip = "当瑞丽昆恩咏唱震荡光束/加伦韦咏唱冰爆时，显示打断通知",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 小王打断 通知位置",
+					tooltip = "设置小王打断通知的位置",
+				},
+				{
+					type = "slider",
+					name = "小王打断 通知尺寸",
+					tooltip = "设置小王打断通知的大小",
+				},
+				{
+					type = "divider",
+				},
+				{	type = "checkbox",
+					name = "启用 小王重击 通知",
+					tooltip = "监控所有小王重击",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 小王重击 通知位置",
+					tooltip = "设置小王重击通知位置.",
+				},
+				{
+					type = "slider",
+					name = "小王重击通知尺寸",
+					tooltip = "设置小王重击通知尺寸",
+				},
+				{
+					type = "header",
+					name = "希罗利亚",
+				},
+				{
+					type = "checkbox",
+          name = "启用 叠火 通知",
+          tooltip = "显示叠火点名玩家，斩杀阶段显示谁左谁右",
+        },
+        {
+					type = "checkbox",
+          name = "解锁 叠火 通知",
+          tooltip = "设置叠火通知位置",
+        },
+        {
+					type = "slider",
+          name = "叠火通知尺寸",
+          tooltip = "设置叠火通知尺寸",
+				},
+				{
+					type = "header",
+					name = "瑞丽昆恩",
+				},
+				{
+					type = "checkbox",
+					name = "启用 瑞丽昆恩重击 通知",
+					tooltip = "当你需要从瑞丽昆恩重击中寻找AOE时，显示计时器",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 瑞丽昆恩重击 通知",
+					tooltip = "设置瑞丽昆恩重击通知的位置",
+				},
+				{
+					type = "slider",
+					name = "瑞丽昆恩重击通知尺寸",
+					tooltip = "设置瑞丽昆恩重击通知的尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 过载 通知",
+					tooltip = "追踪超载机制，并为你提示剩余时间",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 过载 通知位置",
+					tooltip = "设置过载通知位置",
+				},
+				{
+					type = "slider",
+					name = "过载通知尺寸",
+					tooltip = "设置过载通知尺寸",
+				},
+				{
+					type = "checkbox",
+					name = "显示 过载 屏幕边缘提示",
+					tooltip = "当你过载时，在屏幕边缘显示颜色提示",
+				},
+				{
+					type = "checkbox",
+					name = "边缘提示预览",
+					tooltip = "用于预览屏幕边缘提示的颜色",
+				},
+				{	type = "checkbox",
+					name = "启用 过载 提示闪烁",
+					tooltip = "启用时，'严禁切手'通知将会闪烁，使其更易于跟踪",
+				},
+				{
+					type = "slider",
+					name = "闪烁频率",
+					tooltip = "设置提示的闪烁频率.",
+				},
+				{
+					type = "dropdown",
+					name = "过载边缘提示颜色",
+					tooltip = "选择想要的过载边缘提示颜色",
+				},
+				{
+					type = "header",
+					name = "加伦韦",
+				},
+				{
+					type = "checkbox",
+          name = "显示 冰风 通知",
+          tooltip = "追踪何时需要丢冰风，以及冰风何时被其他人丢了",
+        },
+        {
+					type = "checkbox",
+          name = "解锁 冰风 通知位置",
+          tooltip = "设置冰风通知位置",
+        },
+        {
+					type = "slider",
+          name = "冰风通知尺寸",
+          tooltip = "设置冰风通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+          name = "启用 冰彗星 通知",
+          tooltip = "冰彗星点你的时候告诉你",
+          default = true,
+        },
+        {
+					type = "checkbox",
+          name = "解锁冰彗星通知位置",
+          tooltip = "设置冰彗星通知位置",
+        },
+        {
+					type = "slider",
+          name = "冰彗星通知尺寸",
+          tooltip = "设置冰彗星通知尺寸",
+        },
+			} -- Mini Boss submenu end
+		},
+		{
+			type = "submenu",
+			name = "传送门选项",
+			controls = {
+				{
+					type = "checkbox",
+					name = "启用 传送门 通知",
+					tooltip = "显示传送门计时，以及下个下楼的组",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 传送门 通知位置",
+					tooltip = "设置传送门追踪计时的位置",
+				},
+				{
+					type = "slider",
+					name = "传送门通知尺寸",
+					tooltip = "设置传送门通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 传送门生成 通知",
+					tooltip = "传送门出现时通知",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 传送门生成 通知",
+					tooltip = "设置解锁传送门出现通知位置",
+				},
+				{
+					type = "slider",
+					name = "传送门通知尺寸",
+					tooltip = "设置传送门通知尺寸",
+				},
+			}
+		},
+		{
+			type = "submenu",
+			name = "泽玛亚设置",
+			controls = {
+				{
+					type = "checkbox",
+					name = "启用 泽玛亚传送 通知",
+					tooltip = "显示泽玛亚即将进入下个位置的计时器",
+				},
+				{	type = "checkbox",
+					name = "解锁 泽玛亚传送 通知",
+					tooltip = "设置泽玛亚传送通知位置",
+				},
+				{	type = "slider",
+					name = "泽玛亚传送 通知尺寸",
+					tooltip = "设置泽玛亚传送通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑圈引导剩余 通知",
+					tooltip = "告诉你黑圈引导的剩余时间",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 黑圈引导剩余 通知",
+					tooltip = "设置黑圈引导通知位置"
+				},
+				{	type = "slider",
+					name = "黑圈引导剩余 通知尺寸",
+					tooltip = "设置黑圈引导通知尺寸"
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑圈引导冷却 通知",
+					tooltip = "告知下次黑圈引导的计时"
+				},
+				{
+					type = "checkbox",
+					name = "解锁 黑圈引导冷却 通知",
+					tooltip = "设置黑圈引导冷却通知位置"
+				},
+				{	type = "slider",
+					name = "黑圈引导冷却 通知尺寸",
+					tooltip = "设置黑圈引导冷却通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 坠落打断 通知",
+					tooltip = "告诉你什么时候打断泽玛亚的坠楼技能施法",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 坠落打断 通知",
+					tooltip = "设置坠落打断通知位置",
+				},
+				{
+					type = "slider",
+					name = "坠落打断 通知尺寸",
+					tooltip = "设置坠落打断通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 有害标记(斩杀阶段) 通知",
+					tooltip = "显示下一次泽玛亚点名有害标记的计时器",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 有害标记(斩杀阶段) 通知",
+					tooltip = "设置有害标记(斩杀阶段)通知位置",
+				},
+				{
+					type = "slider",
+					name = "有害标记(斩杀阶段) 通知尺寸",
+					tooltip = "设置有害标记(斩杀阶段)通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑球 计时器",
+					tooltip = "告诉你泽玛亚产生黑球的时间点，和黑球冲向人群的时间",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 黑球 计时器",
+					tooltip = "设置打球计时器位置",
+				},
+				{
+					type = "slider",
+					name = "黑球 计时器尺寸",
+					tooltip = "设置打球计时器尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑球生成 通知",
+					tooltip = "当泽玛亚产生黑球时通知",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 黑球生成 通知",
+					tooltip = "设置黑球生成通知位置",
+				},
+				{
+					type = "slider",
+					name = "黑球生成 通知尺寸",
+					tooltip = "设置黑球生成通知尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 黑球 追踪",
+					tooltip = "告诉你未被击杀的黑球数量",
+				},
+				{
+					type = "checkbox",
+					name = "在斩杀阶段启用 黑球 追踪",
+					tooltip = "在斩杀阶段中，是否告知未被击杀的黑球数量",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 黑球 追踪",
+					tooltip = "设置黑球追踪位置",
+				},
+				{
+					type = "slider",
+					name = "黑球 追踪尺寸",
+					tooltip = "设置黑球追踪尺寸",
+				},
+				{
+					type = "divider",
+				},
+				{
+					type = "checkbox",
+					name = "启用 藤蔓生成 通知",
+					tooltip = "当泽玛亚产生藤蔓时，显示通知",
+				},
+				{
+					type = "checkbox",
+					name = "解锁 藤蔓生成 通知",
+					tooltip = "设置藤蔓生成通知位置",
+				},
+				{
+					type = "slider",
+					name = "藤蔓生成 通知尺寸",
+					tooltip = "设置藤蔓生成通知尺寸",
+				},
+			} -- Z'Maja submenu end
+		},
+	}
+  
+  --Special Setting
+  BB.SetMenuPatch("HowToCloudrest_Settings", NewOption)
+  
+  local Color = HowToCloudrest.Color
+  BB.TableCopy({
+    RazorThorns = Color.zmajaDark(">> 定身 <<"),
+    DarkTalons = Color.siroLight(">> 定身 <<"),
+
+    Mini_Jump_Off_Cooldown = Color.yellow("立刻"),
+    Mini_Jump_Cast = Color.red("现在"),
+
+    Mini_Bash_Off_Cooldown = Color.yellow("立刻"),
+    Mini_Bash_Cast = Color.red("打断"),
+    Mini_Bash_Faded = Color.green("完成"),
+
+    Mini_Skill_Off_Cooldown = Color.yellow("立刻"),
+    Mini_Skill_Cast = Color.red("现在"),
+
+    Mini_Dead = Color.green("死亡"),
+
+    -- Siroria
+    Flare = Color.siroLight("        叠火 ") .. Color.white("@Floliroy") .. Color.siroLight(": "),
+    FlareFunc = function(name) 
+      return Color.siroLight("        叠火 ") .. Color.white(name)  .. Color.siroLight(": ") 
+    end,
+    FlareExecFunc = function (name1, name2, timer) 
+        return Color.white(name1) .. Color.siroLight("|t100%:100%:Esoui/Art/Buttons/large_leftarrow_up.dds|t 叠火: ") .. Color.red(timer) 
+            .. Color.siroLight("|t100%:100%:Esoui/Art/Buttons/large_rightarrow_up.dds|t") .. Color.white(name2)
+    end,
+
+    -- Relequen
+    Announcement_ReleBash_Faded = Color.releLight("OK"),
+    Announcement_ReleBash_1 = Color.releLight("打断"),
+    Announcement_ReleBash_2 = Color.red(">") .. Color.releLight("打断") .. Color.red("<"),
+    Announcement_ReleBash_3 = Color.red(">>") .. Color.releLight("打断") .. Color.red("<<"),
+    Announcement_ReleBash_4 = Color.red(">>>") .. Color.releLight("打断") .. Color.red("<<<"), -- never gets used
+
+    Overload_Incoming = Color.releLight("过载生效: "),
+    Overload_Static = Color.releDark("严禁切手: "),
+    Overload_Tab1 = Color.releLight("严禁 ") .. Color.releDark("切手    : "),
+    Overload_Tab2 = Color.releDark("   严禁 ") .. Color.releLight("切手 : "),
+
+    ReleHA = Color.releLight("瑞丽重击: "),
+
+    -- Galenwe
+    Announcement_GaleBash_Faded = Color.galeDark("OK"),
+    Announcement_GaleBash_1 = Color.galeDark("打断"),
+    Announcement_GaleBash_2 = Color.red(">") .. Color.galeDark("打断") .. Color.red("<"),
+    Announcement_GaleBash_3 = Color.red(">>") .. Color.galeDark("打断") .. Color.red("<<"),
+    Announcement_GaleBash_4 = Color.red(">>>") .. Color.galeDark("打断") .. Color.red("<<<"),
+    Announcement_GaleBash_5 = Color.yellow(">>>") .. Color.galeDark("打断") .. Color.yellow("<<<"),
+    Announcement_GaleBash_6 = Color.red(">>>") .. Color.galeDark("打断") .. Color.red("<<<"),
+
+    Hoarfrost_Base = Color.galeDark("丢冰风: "),
+    Hoarfrost_Base_Last = Color.galeDark("丢 ") .. Color.green("末次") .. Color.galeDark(" 冰风: "),
+    Hoarfrost_Pick_Up = Color.galeDark("捡冰风!"),
+    Hoarfrost_Incoming = Color.galeDark("冰风 ") .. Color.red("立刻"),
+    Hoarfrost_Drop = Color.galeDark("丢冰风 ") .. Color.red("就现在!"),
+    Hoarfrost_Drop_Last = Color.galeDark("丢 ") .. Color.green("末次") .. Color.galeDark(" 冰风 ") .. Color.red("就现在!"),
+
+    ChillingComet_Base = Color.galeDark("冰彗星: "),
+
+    -- Portal
+    Portal_Open_Cast_1 = Color.portalOpen("传送门 "),
+    Portal_Open_Cast_2 = Color.portalOpen(" 开启!"),
+    Portal_Open_1 = Color.portalOpen("传送门 "),
+    Portal_Open_2 = Color.portalOpen(" 关闭: "),
+    Portal_Off_Cooldown = Color.yellow("马上"),
+    Portal_Closed_Cast = Color.green("传送门 完成!"),
+    Portal_Closed_1 = Color.portalClosed("下个传送门 ( "),
+    Portal_Closed_2 = Color.portalClosed(" ): "),
+    Portal_Out_Of_Time = Color.red("传送门 失败"),
+
+    Portal_Announcement_1 = Color.portalOpen("传送门 "),
+    Portal_Announcement_2 = Color.portalOpen(" 开启!"),
+
+    -- Z'Maja
+    ZMaja_Jump_Base = Color.zmajaDark("泽玛亚 传送: "),
+    ZMaja_Jump_Off_Cooldown = Color.yellow("立刻"),
+    ZMaja_Jump_Cast = Color.red("现在"),
+
+    ZMaja_Bash_Cast_1 = Color.red(">") .. Color.zmajaDark("打断") .. Color.red("<"),
+    ZMaja_Bash_Cast_2 = Color.red(">>") .. Color.zmajaDark("打断") .. Color.red("<<"),
+    ZMaja_Bash_Cast_3 = Color.red(">>>") .. Color.zmajaDark("打断") .. Color.red("<<<"),
+    ZMaja_Bash_Cast_4 = Color.yellow(">>>") .. Color.zmajaDark("打断") .. Color.yellow("<<<"),
+    ZMaja_Bash_Faded = Color.zmajaDark("OK"),
+
+    ZMaja_BanefulMark_Base = Color.zmajaDark("有害标记: "),
+    ZMaja_BanefulMark_Off_Cooldown = Color.yellow("立刻"),
+    ZMaja_BanefulMark_Cast = Color.red("现在!"),
+
+    ZMaja_CrushingDarkness_Kite_Base = Color.zmajaDark("引导: "),
+    ZMaja_CrushingDarkness_Kite_Cast = Color.red("现在"),
+    ZMaja_CrushingDarkness_Kite_Faded = Color.green("完成!"),
+
+    ZMaja_CrushingDarkness_Next_Base = Color.zmajaDark("下次引导: "),
+    ZMaja_CrushingDarkness_Next_Off_Cooldown = Color.yellow("立刻"),
+    ZMaja_CrushingDarkness_Next_Cast = Color.green("现在"),
+
+    ZMaja_MaliciousSphere_Timer_Next = Color.orbs("下次黑球: "),
+    ZMaja_MaliciousSphere_Timer_Kill = Color.red("击杀") .. Color.orbs(" 黑球: "),
+    ZMaja_MaliciousSphere_Timer_Off_Cooldown = Color.yellow("立刻"),
+    ZMaja_MaliciousSphere_Timer_Cast = Color.red("现在"),
+    ZMaja_MaliciousSphere_Timer_Failed = Color.red("失败"),
+    ZMaja_MaliciousSphere_Timer_Success = Color.green("OK"),
+    Zmaja_MaliciousSphere_OrbSpawning = Color.orbs("黑球生成!"),
+
+    Zmaja_CreeperSpawning = Color.creeper("藤蔓生成!"),
+    },  HowToCloudrest.Strings
+  )
+  HTC.String = HowToCloudrest.Strings
+  HTC_Var_Reset_Values = HTC_AUX:DeepCopy(HTC)
+  
+  --SetFont
+  function HowToCloudrest.SetFontSize(label, size)
+    local path = "$(BOLD_FONT)"
+    local outline = "soft-shadow-thick"
+    label:SetFont(path .. "|" .. size .. "|" .. outline)
+  end
+  
+  BB.SetAfterPart(
+    function() 
+      HTC_MiniFrame_TopRow_Skill:SetText("技能")
+      HTC_MiniFrame_TopRow_Jump:SetText("传送")
+      HTC_MiniFrame_TopRow_Bash:SetText("打断")
+      HTC_MiniFrame_Siroria_Title:SetText("|cff4500希罗利亚|r")
+      HTC_MiniFrame_Relequen_Title:SetText("|c33ccff瑞丽昆恩|r")
+      HTC_MiniFrame_Galenwe_Title:SetText("|c3269df加伦韦|r")
+    end
+  )
+
+return true end
+
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

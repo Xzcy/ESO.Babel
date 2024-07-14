@@ -34,11 +34,92 @@ BB.AddonList["Untaunted"] = function() if not Untaunted then return false end
     -- Keybinds --
     SI_BINDING_NAME_UNTAUNTED_MARKERSIZE_TOGGLE = "切换敌方标记的大小",
   }
-  --Special Setting
+
   for stringId, stringValue in pairs(strings) do
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
   end
+return true end
+
+--Votan's Fisherman
+--1.16.0
+BB.AddonList["VotansFisherman"] = function() if not VOTANS_FISHERMAN then return false end
+  local Strings = {
+    [SI_FISHERMAN_SETTING_PIN_LEVEL] = "图标图层优先度",
+    [SI_FISHERMAN_SETTING_PIN_SIZE] = "图标尺寸",
+    [SI_FISHERMAN_SETTING_PIN_SHOW_POIS] = "显示兴趣点",
+    [SI_FISHERMAN_SETTING_SHOW_LOOT_HUD] = "在用户界面显示掉落",
+    [SI_FISHERMAN_SETTING_SHOW_LOOT_MAP] = "在地图上显示",
+    [SI_FISHERMAN_SETTING_SHOW_DEFAULT_LOOT] = "显示通常掉落",
+    [SI_FISHERMAN_SETTING_SHOW_REEL_IN] = "\"提竿\" 提示",
+    [SI_FISHERMAN_SETTING_REEL_IN] = "提竿 - 事件",
+    [SI_FISHERMAN_SETTING_REEL_IN_ANIM] = "动画",
+    [SI_FISHERMAN_SETTING_REEL_IN_COLOR] = "颜色",
+    [SI_FISHERMAN_SETTING_REEL_IN_SIZE] = "尺寸 (%)",
+    [SI_FISHERMAN_SETTING_REEL_IN_SOUND] = "音效",
+    [SI_FISHERMAN_SETTING_REEL_IN_NO_SOUND] = "无音效",
+    [SI_FISHERMAN_SETTING_REEL_IN_RETURN] = "返回互动菜单",
+    [SI_FISHERMAN_SETTING_REEL_IN_RETURN_TOOLTIP] = "像物品栏一样关闭菜单，并停止鼠标指针模式",
+    [SI_FISHERMAN_SETTING_AUTO_SWITCH_BAIT] = "自动更换鱼饵",
+    [SI_FISHERMAN_SETTING_AUTO_SWITCH_BAIT_TOOLTIP] = "首次与已知渔场互动时更换合适的鱼饵",
+    [SI_FISHERMAN_SETTING_PREFER_BETTER_BAIT] = "偏好更好的鱼饵",
+    [SI_FISHERMAN_SETTING_PREFER_BETTER_BAIT_TOOLTIP] = "如果自动切换合适鱼饵，偏好使用更好的",
+
+    [SI_FISHERMAN_SETTING_EXTRAS] = "额外",
+    [SI_FISHERMAN_SETTING_PIN_SHOW_DEBUG] = "显示调试",
+    [SI_FISHERMAN_SETTING_PIN_SHOW_CONTEXTMENU] = "显示地图渔场图标 左键菜单",
+    [SI_FISHERMAN_SETTING_PIN_SHOW_TOOLTIP] = "显示地图渔场图标 信息弹窗",
+    [SI_FISHERMAN_SETTING_SHOW_HIDE_RFT] = "显示/隐藏 Rare Fish Tracker 插件",
+
+    [SI_FISHERMAN_SETTING_DATA_RESTART] = "重新开始测量",
+    [SI_FISHERMAN_SETTING_DATA_RESTART_HINT] = "每次你靠近或在渔场附近移动时，你的当前位置和朝向将被用于精确渔场位置。到达100%时渔场位置被固定",
+    [SI_FISHERMAN_SETTING_DATA_RESTART_HINT2] = "在渔场附近按下按钮，将会重置其计数为1。数据不会丢失",
+    [SI_FISHERMAN_SETTING_DATA_RESTART_BUTTON] = "重新开始",
+    [SI_FISHERMAN_SETTING_DATA_RESTART_TOOLTIP] = "重新开始测量",
+
+    [SI_FISHERMAN_SETTING_DATA_CAUGHT_LIST] = "清除捕获列表",
+    [SI_FISHERMAN_SETTING_DATA_CAUGHT_LIST_HINT] = "清除附近渔场捕获的鱼类和物品清单。保留类型。",
+    [SI_FISHERMAN_SETTING_DATA_CAUGHT_LIST_BUTTON] = "清除",
+    [SI_FISHERMAN_SETTING_DATA_CAUGHT_LIST_TOOLTIP] = "清除捕获列表",
+
+    [SI_FISHERMAN_SETTING_DATA_MERGE] = "合并渔场数据",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_HINT] = "将玩家附近可能错误侦测的假渔场合为一个",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_BUTTON_VERY_CLOSE] = "非常近",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_VERY_CLOSE] = "合并渔场 (25% 范围)",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_BUTTON_CLOSE] = "靠近的",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_CLOSE] = "合并渔场 (50% 范围)",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_BUTTON_NEAR] = "附近的",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_NEAR] = "合并渔场 (100% 范围)",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_BUTTON_RANGE] = "大范围",
+    [SI_FISHERMAN_SETTING_DATA_MERGE_RANGE] = "合并渔场 (125% 范围)",
+    [SI_FISHERMAN_SETTING_DATA_TO_PLAYER_POS] = "设置到玩家位置",
+    [SI_FISHERMAN_SETTING_DATA_PLAYER_TOO_FAR] = "玩家离得太远",
+
+    [SI_FISHERMAN_SETTING_DATA_ERASE] = "清除数据",
+    [SI_FISHERMAN_SETTING_DATA_ERASE_HINT] = "清除附近的渔场",
+    [SI_FISHERMAN_SETTING_DATA_ERASE_BUTTON] = "消除附近的",
+    [SI_FISHERMAN_SETTING_DATA_ERASE_TOOLTIP] = "逝者已逝！",
+    
+    [SI_FISHERMAN_STATS_TOTAL] = "总共",
+    [SI_FISHERMAN_STATS_UNKNOWN] = "未知",
+
+    [SI_FISHERMAN_INTERACT1] = "脏水",
+    [SI_FISHERMAN_INTERACT1B] = "油污",
+    [SI_FISHERMAN_INTERACT2] = "河水",
+    [SI_FISHERMAN_INTERACT3] = "湖水",
+    [SI_FISHERMAN_INTERACT4] = "咸水",
+    [SI_FISHERMAN_INTERACT4B] = "神秘商人",
+
+    [SI_FISHERMAN_ACTIONNAME1] = "脏水钓鱼",
+    [SI_FISHERMAN_ACTIONNAME2] = "河水钓鱼",
+    [SI_FISHERMAN_ACTIONNAME3] = "湖水钓鱼",
+    [SI_FISHERMAN_ACTIONNAME4] = "咸水钓鱼",
+  }
+
+  for stringId, stringValue in pairs(Strings) do
+    SafeAddString(stringId, stringValue, 2)
+  end
+  
 return true end
 
 --Votan's Keybinder
@@ -208,6 +289,7 @@ BB.AddonList["WizardsWardrobe"] = function() if not WizardsWardrobe then return 
     SafeAddVersion(key, 1)
     ZO_CreateStringId(key, value)
   end
+  
   --Special setting
   WizardsWardrobe.zones.LC.name = GetString(WW_LC_NAME)
   WizardsWardrobe.zones.LC.bosses = {
@@ -1111,8 +1193,10 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     F11 = "/p 任务已自动共享。如未接到可能您还有其他Boss任务未完成，或者您今天已完成过该任务。",
     F12 = "ESOUI.COM插件 <<1>> v<<2>>：誓约、试炼和世界Boss日常追踪，自动邀请和自动分享任务。",
   }
+
   --Special Setting
   WPamA.i18n = BB.TableCopy(L, WPamA.i18n)
+
 return true end
 
 --WritWorthy
@@ -1183,7 +1267,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["header_PriceEa"                        ] = "价格"
   ,   ["header_BuySubtotal"                    ] = "总共"
   ,   ["header_tooltip_RequiredCt"             ] = "委托需要多少?"
-  ,   ["header_tooltip_HaveCt"                 ] = "物品栏+银行+生产背包中有多少?"
+  ,   ["header_tooltip_HaveCt"                 ] = "物品栏 + 银行 + 生产背包中有多少?"
   ,   ["header_tooltip_BuyCt"                  ] = "拥有的不够? 你还需要多少? (= 需求 - 拥有)"
   ,   ["header_tooltip_PriceEa"                ] = "每个材料价格"
   ,   ["header_tooltip_BuySubtotal"            ] = "总价格(= 购买 × 价格)"
@@ -1191,12 +1275,12 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["header_tooltip_M"                      ] = "是否使用复制石?"
   ,   ["header_tooltip_V"                      ] = "委托券计数"
   ,   ["keybind_writworthy"                    ] = "切出窗口"
-  ,   ["know_err_motif"                        ] = "样式 %s 未学会"
+  ,   ["know_err_motif"                        ] = "样式 [%s] 未学会"
   ,   ["know_err_recipe"                       ] = "配方未学会"
-  ,   ["know_err_skill_missing"                ] = "缺少技能: %s"
-  ,   ["know_err_skill_not_maxed"              ] = "技能不足 '%s': %d/%d"
-  ,   ["know_err_trait"                        ] = "特质 %s %s 未研究"
-  ,   ["know_err_trait_ct_too_low"             ] = "需要 %d 的 %d 特质，以制造套装 %s"
+  ,   ["know_err_skill_missing"                ] = "缺少技能: [%s]"
+  ,   ["know_err_skill_not_maxed"              ] = "技能不足 [%s]: %d / %d"
+  ,   ["know_err_trait"                        ] = "特质 [%s] (%s) 未研究"
+  ,   ["know_err_trait_ct_too_low"             ] = "特质研究数 ( %d / %d ) [%s]"
   ,   ["know_err_llc_too_old"                  ] = "懒人制造插件 %s 需要升级以设置 %d %s"
   ,   ["lam_banked_vouchers_desc"              ] = "扫描银行并在可用委托列表中包含这些委托以自动制造。\n|cFF3333注意！如果你在多个角色上进行制造的话，其他的角色在制造同一个银行中的委托时WritWorthy将不会提醒你。|r"
   ,   ["lam_banked_vouchers_title"             ] = "在自动制造窗口中包含银行中的委托"
@@ -1255,7 +1339,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["title_writ_inventory_player_bank"      ] = "委托库存: %s + 银行"
   ,   ["tooltip_crafted"                       ] = "制造完成"
   ,   ["tooltip_mat_total"                     ] = "总材料"
-  ,   ["tooltip_per_voucher"                   ] = "每张券"
+  ,   ["tooltip_per_voucher"                   ] = "每券"
   ,   ["tooltip_purchase"                      ] = "购买"
   ,   ["tooltip_queued"                        ] = "已加入制造队列"
   ,   ["tooltip_sell_for"                      ] = "以 %s 金出售"
@@ -1264,6 +1348,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["name_reset_window_pos"                 ] = "重置窗口位置"
   ,   ["tooltip_reset_window_pos"              ] = "重新设置窗口位置."
   }
+
   --Special Setting for Control Text
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersType     , "Type"      , "类别"   , "ui_type")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersVoucherCt, "VoucherCt" , "卷"     , "ui_voucher_ct")
@@ -1274,12 +1359,27 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersDetail4  , "Detail4"   , "详情 4" , "ui_detail4")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersDetail5  , "Detail5"   , "品质"   , "ui_detail5")
 	WritWorthyInventoryList_HeaderInit(WritWorthyUIInventoryListHeadersEnqueue  , "Enqueue"   , "Q"      , "ui_is_queued")
+
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

@@ -59,6 +59,165 @@ BB.AddonList["AdvancedFilters"] = function() if not AdvancedFilters then return 
   AdvancedFilters.strings = BB.TableCopy(Table, AdvancedFilters.ENstrings)
 return true end
 
+--AlphaGear 2
+--6.17.0
+do if not BB.SV.BanList["AlphaGear"] then
+  local lmb, rmb = '|t16:16:AlphaGear/asset/lmb.dds|t', '|t16:16:AlphaGear/asset/rmb.dds|t'
+  local msg = {
+    Copy = '拷贝',
+    Paste = '粘贴',
+    Clear = '清除',
+    Insert = '插入当前装备的',
+
+    -- new since 6.6.0
+    ToBankAll = '将所有装备配置存入银行',
+    FromBankAll = '从银行取回所有装备配置',
+    FailedToMoveItem = '移动 <<1>> 失败',
+    MovingSet = '移动套装 <<1>>...',
+    -- end new 6.6.0
+
+    -- new since 6.2.1
+    ToBank = '将装备配置存入银行',
+    FromBank = '从银行取回装备配置',
+    CurrentlyEquipped = '<<1>> 处于装备状态',
+    NotEnoughSpaceInBackPack = '背包空间不足：<<1>>',
+    NotEnoughSpaceInBank = '银行空间不足：<<1>>',
+    ItemIsStolen = '无法将偷取的 <<1>> 存入银行',
+    ReassignHint = '请使用 Shift + 左键 或 从技能界面中拖动技能来重新保存，以获得正确的弹窗信息',
+    ToolTipSkillIcon = lmb..' 选择图标\n'..rmb..' 重置图标',
+    BindLoadNextSet = '加载下一配置',
+    BindLoadPreviousSet = '加载上一配置',
+    BindToggleSet = '切换最后两套配装',
+    MsgNoPreviousSet = '你没有装备第二套配装',
+    ShowMainBinding = '显示/隐藏 AlphaGear 窗口',
+    -- end new 6.2.1
+
+    Icon = lmb..'选择图标',
+    Set = lmb..' 装备套装\n'..rmb..' 编辑套装',
+    NotFound = '<<1>> |cFF0000没有找到...|r',
+    NotEnoughSpace = '|cFFAA33AlphaGear|r |cFF0000没有足够的空间...|r',
+    SoulgemUsed = '<<C:1>> |cFFAA33已充能.|r',
+    SetPart = '\n|cFFAA33套装: <<C:1>>|r',
+    Lock = '如果套装锁定, 所有空的槽位将会卸下装备.\n如果套装解锁, 所有空的槽位将会忽略.\n\n'..lmb..' 锁定/解锁',
+    Unequip = '卸下装备',
+    UnequipAll = '卸下所有装备',
+
+    -- new since 6.1.1
+    SetsHeader = '套装',
+    SettingsDesc = '配置 AlphaGear UI, Auto-Repair和Auto-Recharge',
+    NumVisibleSetButtons = '套装按钮的显示数量',
+    GearHeader = '装备',
+    WeaponsHeader = '武器',
+    EquipmentHeader = '装备栏',
+    UIHeader = '用户界面',
+    ResetPositions = '重置位置',
+    -- end new 6.1.1
+    -- new since 6.1.3
+    ShowItemLevelChoices = {'总是', '仅低级物品', '从不'},
+    -- end new 6.1.3
+
+    -- new since 6.2.0
+    OutfitLabel = '装扮',
+    UneqipAllBinding = '卸下所有装备',
+    LoadSetBinding = '加载套装 ',
+    KeepOutfitItemLabel = '保持当前装扮',
+    SetChangeQueuedMsg = '当脱战时，将装备套装 <<1>> (<<2>>)',
+    ActionBar1Text = '技能栏 1',
+    ActionBar2Text = '技能栏 2',
+    ActionBarNText = '技能栏 <<1>>',
+    NotEnoughMoneyForRepairMsg = '没有足够的钱修理装备',
+    ItemsRepairedMsg = '<<1>> 已修复，总开销: <<2>> 金币',
+    ItemsNotRepairedMsg = '没有足够的金币修复 <<1>>',
+    -- end new since 6.2.0    
+
+    -- new since 6.5.0
+    BindLoadProfile = '加载预设 ',
+    BindLoadNextProfile = '加载下一预设',
+    BindLoadPreviousProfile = '加载上一预设',
+    BindToggleProfile = '切换最后两个预设',
+    MsgNoPreviousProfile = '没有可切换的预设',
+    -- end new since 6.5.0
+
+    SetConnector = {
+      lmb..' 连接装备到套装\n'..rmb..' 移除连接',
+      lmb..' 连接动作条 1 到套装\n'..rmb..' 移除连接',
+      lmb..' 连接动作条 2 到套装\n'..rmb..' 移除连接'
+    },
+    Head = {
+      Gear = '装备 ',
+      Skill = '技能 '
+    },
+    Button = {
+      Gear = lmb..' 装备物品\n'..rmb..' 移除物品',
+      Skill = lmb..' 装备技能\n'..rmb..' 移除技能'
+    },
+    Selector = {
+      Gear = lmb..' 装备所有装备\n'..rmb..' 更多选项',
+      Skill = lmb..' 装备所有技能\n'..rmb..' 更多选项'
+    },
+    OptionWidth = 300,
+    Options = {
+      '显示界面按钮',
+      '显示界面套装按钮',
+      '显示修理按钮',
+      '显示修理花费',
+      '显示武器充能图标',
+      '显示武器切换信息',
+      '显示正在装备的套装',
+      '在物品栏中标记套装',
+      '显示物品耐久度百分比',
+      '显示物品质量为颜色',
+      '移动时关闭窗口',
+      '锁定所有AlphaGear的元素',
+      '自动武器充能',
+      -- new since 6.1.1
+      '在商店界面自动修理装备',
+      -- end new 6.1.1
+      -- new since 6.1.3
+      '显示物品等级标识',
+      -- end new 6.1.3
+      -- new since 6.4.1
+      '<Unused Message>',
+      '自动加载预设中最后一个BD',          -- AG_OPTION_LOAD_LAST_BUILD_OF_PROFILE = 17
+      -- end new since 6.4.1
+    },
+
+    -- new since 6.8.1
+    Integrations = {
+      Inventory = {
+        Title = '库存管理',
+        UseFCOIS = '显示 FCOIS 标记图标',
+        FCOIS = {
+          GearMarkerIconLabel = '标记图标',
+          NoGearMarkerIconEntry = '-无-',
+        }
+      },
+      Styling = {
+        Title = '风格样式管理',
+        UseAlphaStyle = '使用 AlphaStyle 插件',
+      },
+      Champion = {
+        Title = '冠军点数管理',
+        UseCPSlots = '使用 ChampionPointsSlots 插件',
+      },
+      QuickSlot = {
+        Title = '快捷栏管理',
+        UseGMQSB = '使用 Greymind Quick Slot Bar 插件',
+      },
+    },
+    -- new since 6.8.1
+  }
+
+  --Special Setting
+  BB.SetGlobalHook(function() BB.TableCopy(msg, AGLang.msg) end, "AG", "author")
+
+end end
+
+BB.AddonList["AlphaGear"] = function() 
+  if not AGLang then return false end
+  return true
+end
+
 --Arkadius' Trade Tools
 --2.0.0
 BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then return false end
@@ -247,7 +406,7 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
       end
     return Result
   end
-  --
+  --UI
   ZO_PostHookHandler(ArkadiusTradeToolsWindow, "OnEffectivelyShown",
     function()
       for i = 1, 4 do
@@ -1538,6 +1697,80 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
   }
 return true end
 
+--Buff The Group
+--3.5.0
+BB.AddonList["BuffTheGroup"] = function() if not btg then return false end
+  local NewOption = {
+		{
+			type = "header",
+			name = "设置",
+		},
+		{
+			type = "checkbox",
+			name = "启用",
+			tooltip = "切换UI显示",
+		},
+		{
+			type = "checkbox",
+			name = "仅为DPS职能显示",
+			tooltip = "在BTG框架中，仅显示被标记为DPS玩家的Buff情况",
+		},
+		{
+			type = "checkbox",
+			name = "单列模式",
+			tooltip = "以单列而不是 6x2 布局来排列框架",
+		},
+		{
+			type = "checkbox",
+			name = "精简模式",
+			tooltip = "将UI简化为百分比显示，背景颜色代表Buff剩余时间。[仅为DPS职能显示]设置对该模式有效",
+		},
+		{
+			type = "checkbox",
+			name = "梯度模式",
+			tooltip = "为Buff持续时间使用颜色渐变显示",
+		},
+		{
+			type = "colorpicker",
+			name = "Buff开始颜色",
+			tooltip = "设置追踪Buff开始时的梯度颜色",
+		},
+		{
+			type = "colorpicker",
+			name = "Buff结束颜色",
+			tooltip = "设置追踪Buff结束时的梯度颜色",
+		},
+		{
+			type = "header",
+			name = "译注：因插件使用 英文字符串 区分高级/次级Buff",
+		},
+		{
+			type = "header",
+			name = "导致中文下，所有Buff均被归入其他一类",
+		},
+		{
+			type = "header",
+			name = "其他 Buff",
+		},
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+    {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, {type = "checkbox"}, 
+		{
+			type = "button",
+			name = "取消所有选择",
+		},
+		{
+			type = "button",
+			name = "重置位置",
+		},
+	}
+  
+  --Specail Setting
+  BB.SetMenuPatch(btg.name.."Options", NewOption)
+  
+return true end
+
 --Caro's Skill Point Saver
 --5.5.0
 BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
@@ -1891,33 +2124,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
   )
 return true end
 
---Code's Combat Alerts
---2.0.8.1
-BB.AddonList["CombatAlerts"] = function() if not CombatAlerts2 then return false end
-  ZO_CreateStringId("SI_CA_TITLE"                          , "Combat Alerts")
-  ZO_CreateStringId("SI_CA_MODULE_LOAD"                    , "已加载模块 [<<1>>].")
-  ZO_CreateStringId("SI_CA_MODULE_UNLOAD"                  , "已卸载模块 [<<1>>].")
-  ZO_CreateStringId("SI_CA_CORRUPTED"                      , "|cFF0000错误：|r 战斗机制提醒 的安装文件似乎损坏，这个错误可能由 Minion 造成。 |cFF0000你得手动删除本插件再尝试安装。|r")
-  ZO_CreateStringId("SI_CA_PURGEABLE_EFFECTS"              , "可净化的效果")
-  ZO_CreateStringId("SI_CA_NEARBY"                         , "附近玩家")
-  ZO_CreateStringId("SI_CA_NEARBY_EMPTY"                   , "无附近玩家")
-  ZO_CreateStringId("SI_CA_SETTINGS_SUPPRESS"              , "阻止模块的加载与卸载提示消息")
-  ZO_CreateStringId("SI_CA_SETTINGS_NEARBY"                , "显示附近玩家")
-  ZO_CreateStringId("SI_CA_SETTINGS_BYPASS_PURGE_CHECK"    , "总是追踪可净化的效果")
-  ZO_CreateStringId("SI_CA_SETTINGS_BYPASS_PURGE_CHECK_TT" , "SI_CA_SETTINGS_BYPASS_PURGE_CHECK_TT" , "如果你没有AOE净化技能装载的话，默认将队伍范围的可清除效果追踪为关闭；开启这个选项必须手动确认。")
-  ZO_CreateStringId("SI_CA_SETTINGS_MODULES"               , "模块")
-  ZO_CreateStringId("SI_CA_SETTINGS_MODULE_INFO"           , "区域: <<1>>\nAuthor: <<2>>")
-  ZO_CreateStringId("SI_CA_SETTINGS_MODULE_ALERT_TEMPLATE" , "为<<1>>启用警报")
-  ZO_CreateStringId("SI_CA_SETTINGS_REPOSITION"            , "重定位UI元素")
-  ZO_CreateStringId("SI_CA_SETTINGS_MOVE_ELEMENTS"         , "重定位元素")
-  ZO_CreateStringId("SI_CA_SETTINGS_MOVE_ELEMENTS_TT"      , "您可以随时使用鼠标移动一些用户界面元素，而无需使用设置面板。不过，大多数 UI 元素在战斗外都是隐藏的，这将允许您在战斗外重新定位 UI 元素。")
-  ZO_CreateStringId("SI_CA_SETTINGS_RESET_ELEMENTS"        , "重置所有元素")
-  ZO_CreateStringId("SI_CA_MOVE_STATUS"                    , "状态面板")
-  ZO_CreateStringId("SI_CA_MOVE_GROUP_PANEL"               , "队伍面板")
-  ZO_CreateStringId("SI_CA_MOVE_NEARBY"                    , "附近")
-  ZO_CreateStringId("SI_CA_LEGACY_HOF"                     , "制造大厅插件已退役，应卸载；其功能已并入本插件。")
-return true end
-
 --Combat Metrics
 --1.5.16
 BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
@@ -1935,16 +2141,505 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
     SI_COMBAT_METRICS_LIVEREPORT_GROUP_TOOLTIP = "玩家 / 队伍",
     SI_COMBAT_METRICS_MENU_ALKOSH_TOOLTIP = "由艾尔克许的咆哮降低的抗性。它取决于施法者的武器伤害或法术伤害中更高的那项，至多减少6000抗性。",
   }
---Special Setting
+
   for stringId, stringValue in pairs(strings) do
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
   end
 return true end
 
+--Combat Metronome
+--v1.6.6
+BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return false end
+  local NewOption = {
+    {
+      type = "header",
+      name = "设置"
+    },
+    {
+      type = "checkbox",
+      name = "账户设置",
+      tooltip = "检查账户范围的插件设置",
+    },
+		{
+      type = "submenu",
+      name = "施法条 / GCD追踪器",
+			tooltip = "帮你追踪GCD，有效安排轻击和施法",
+			controls = {
+				{
+					type = "checkbox",
+					name = "隐藏GCD追踪器",
+					tooltip = "隐藏施法条，如果你只需要技能层数追踪器",
+					warning = "激活时，所有与GCD追踪器有关设置都会失效",
+				},
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏施法条",
+					tooltip = "在PVP区域隐藏施法条，以保持用户界面整洁",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧预览施法条，其无法调整大小或移动。离开设置菜单时重置",
+					warning = "这将暂时禁用解锁功能。停用后才可解锁施法条位置",
+				},
+        ---------------------------
+        ---- Position and Size ----
+        ---------------------------
+				{
+					type = "submenu",
+					name = "位置 / 大小",
+					controls = {
+						{
+							type = "checkbox",
+							name = "解锁施法条",
+							tooltip = "通过拖动中心/边缘来重新定位/调整施法条尺寸",
+						},
+						{
+							type = "slider",
+							name = "X轴偏移量",
+						},
+						{
+							type = "button",
+							name = "水平居中",
+						},
+						{
+							type = "slider",
+							name = "Y轴偏移量",
+						},
+						{
+							type = "button",
+							name = "垂直居中",
+						},
+						{
+							type = "slider",
+							name = "宽度",
+						},
+						{
+							type = "slider",
+							name = "高度",
+						},
+					},
+				},
+        -----------------
+        ---- Visuals ----
+        -----------------
+				{
+					type = "submenu",
+					name = "视觉效果 / 色彩 / 布局",
+					controls = {
+						{
+							type = "checkbox",
+							name = "永久显示",
+							tooltip = "如果不想在未使用时隐藏施法条，它会显示背景颜色",
+						},
+						{
+							type = "checkbox",
+							name = "华丽化",
+							tooltip = "使施法条变得花哨",
+						},
+						{
+							type = "colorpicker",
+							name = "背景颜色",
+							tooltip = "施法条的背景色",
+						},
+						{
+							type = "colorpicker",
+							name = "施法条颜色",
+							tooltip = "施法条的颜色",
+						},
+						{
+							type = "colorpicker",
+							name = "Ping值区域颜色",
+							tooltip = "Ping值区域颜色",
+						},
+						{
+							type = "dropdown",
+							name = "对齐",
+							tooltip = "施法条的对齐方式",
+						},
+						{
+							type = "checkbox",
+							name = "为引导技能切换施法条颜色",
+							tooltip = "在引导技能剩余1s以内改变施法条颜色，帮助在引导结束时切手",
+							warning = "这是实验性功能，可能会有点不正常",
+						},
+						{
+							type = "colorpicker",
+							name = "引导技能颜色",
+							tooltip = "释放引导技能时颜色",
+						},
+						{
+							type = "dropdown",
+							name = "标签字体",
+							tooltip = "标签使用的字体",
+						},
+						{
+							type = "dropdown",
+							name = "字体样式",
+							tooltip = "标签使用的字体样式",
+						},
+					},
+				},
+        ------------------
+        ---- Behavior ----
+        ------------------
+				{
+					type = "submenu",
+					name = "表现",
+					controls = {
+						{
+							type = "slider",
+							name = "最大延迟",
+							tooltip = "设置最大显示延迟",
+						},
+						{
+							type = "slider",
+							name = "GCD调整",
+							tooltip = "增加/减少显示的 GCD 长度",
+						},
+						{
+							type = "slider",
+							name = "全局重击调整",
+							tooltip = "增加/减少重击的基准时间。除此以外，还会对特定重击类型进行额外调整",
+						},
+						{
+							type = "slider",
+							name = "全局施法调整",
+							tooltip = "增加/减少技能施放的基准时间。除此以外，还会对特定技能进行额外调整",
+						},
+						{
+							type = "checkbox",
+							name = "显示GCD",
+							tooltip = "在非战斗状态下跟踪 GCD",
+						},
+						{
+							type = "checkbox",
+							name = "不显示Ping值区域",
+							tooltip = "完全不在施法条上显示Ping值区域",
+						},
+						{
+							type = "checkbox",
+							name = "我不是重击侠",
+							tooltip = "停止显示重击的施法条",
+						},
+						{
+							type = "checkbox",
+							name = "在重击时显示Ping值区域",
+							tooltip = "在重击时显示Ping值区域。重击会在施法条进入Ping值区域时完成（本地估算），这是为了视觉一致性。",
+						},
+						{
+							type = "checkbox",
+							name = "在施法条上显示引导技能名称",
+							tooltip = "在施法条上显示引导技能的名称",
+						},
+						{
+							type = "checkbox",
+							name = "在施法条上显示引导技能剩余时间",
+							tooltip = "在施法条上显示引导技能的剩余时间",
+						},
+					},
+				},
+        ----------------
+        ---- Sounds ----
+        ----------------
+				{
+					type = "submenu",
+					name = "声音", 
+					controls = {
+						{
+							type = "slider",
+							name = "'tick' 和 'tock' 的音量",
+							tooltip = "调整音量",
+							warning = "您可能需要同时调整游戏音频设置，这样效果才会明显",
+						},
+						{
+							type = "checkbox",
+							name = "音效 'tick'",
+							tooltip = "启用音效 'tick'",
+						},
+						{
+							type = "dropdown",
+							name = "音效 'tick' 效果",
+						},
+						{
+							type = "slider",
+							name = "音效 'tick' 偏移量",
+						},
+						{
+							type = "checkbox",
+							name = "音效 'tock'",
+              tooltip = "启用音效 'tock'",
+						},
+						{
+							type = "dropdown",
+							name = "音效 'tock' 效果",
+						},
+						{
+							type = "slider",
+							name = "音效 'tock' 偏移量",
+						},
+					},
+				},
+        -------------------------------
+        ---- Ability Timer Adjusts ----
+        -------------------------------
+				{
+					type = "submenu",
+					name = "技能计时器调整",
+					description = "调整特定技能的计时器，这会在全局调整的基础上进行",
+					controls = {
+						{
+							type = "editbox",
+							name = "添加需要调整的技能（中文全称）",
+						},
+						{
+							type = "dropdown",
+							name = "选择技能",
+						},
+						{
+							type = "slider",
+							name = "调整GCD长度",
+						},
+						{
+							type = "button",
+							name = "移除技能调整",
+						},
+					},
+				},
+			},
+		},
+		{	type = "divider",},
+		-------------------
+		---- Resources ----
+		-------------------
+		{	
+      type = "submenu",
+			name = "资源",
+			tooltip = "在资源条上追踪您的各种资源",
+			controls = {
+				{
+					type = "checkbox",
+					name = "解锁资源条",
+					tooltip = "通过拖动中心/边缘，重新定位/调整资源栏大小",
+				},
+				{
+					type = "checkbox",
+					name = "将资源条固定在GCD追踪器顶部",
+					tooltip = "关闭时，资源条可以独立拖动和调整",
+					warning = "关闭此选项时，将自动调整资源条大小以适应GCD追踪器",
+				},
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏资源条",
+					tooltip = "在PVP区域时隐藏资源条，保持界面干净",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧显示资源条用于预览，其无法移动",
+					warning = "这会暂时禁止资源条的移动功能。禁用以解锁资源条。离开设置菜单时重置",
+				},
+				{
+					type = "submenu",
+					name = "配置",
+					controls = {
+						{
+							type = "checkbox",
+							name = "始终显示持有资源",
+							tooltip = "关闭时，仅在瞄准可攻击目标时显示",
+						},
+						{
+							type = "checkbox",
+							name = "显示终极点",
+							tooltip = "切换显示终极点",
+						},
+						{
+							type = "slider",
+							name = "终极点标签尺寸",
+							tooltip = "设置终极点标签的尺寸",
+						},
+						{
+							type = "colorpicker",
+							name = "终极点标签颜色",
+							tooltip = "终极点标签颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示耐力（百分比）",
+							tooltip = "切换显示耐力",
+						},
+						{
+							type = "slider",
+							name = "耐力标签尺寸",
+							tooltip = "设置耐力标签的尺寸",
+						},
+						{
+							type = "colorpicker",
+							name = "耐力标签颜色",
+							tooltip = "设置耐力标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示魔力（百分比）",
+							tooltip = "切换显示魔力",
+						},
+						{
+							type = "slider",
+							name = "魔力标签大小",
+							tooltip = "设置魔力标签的大小",
+						},
+						{
+							type = "colorpicker",
+							name = "魔力标签颜色",
+							tooltip = "设置魔力标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "显示目标血量",
+							tooltip = "切换显示目标血量",
+						},
+						{
+							type = "slider",
+							name = "血量标签大小",
+							tooltip = "设置血量标签的大小",
+						},
+						{
+							type = "colorpicker",
+							name = "血量标签颜色",
+							tooltip = "设置血量标签的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "将目标血量吸附在准星上",
+							tooltip = "将目标血量放在准星旁",
+						},
+						{
+							type = "slider",
+							name = "目标血量斩杀线高亮",
+							tooltip = "设置目标血量高亮阈值（0%不高亮）",
+						},
+						{
+							type = "colorpicker",
+							name = "血量高亮颜色",
+							tooltip = "设置目标血量高亮的颜色",
+						},
+						{
+							type = "checkbox",
+							name = "在瞄准守卫时显示资源",
+							tooltip = "在瞄准守卫时显示资源",
+						},
+					},
+				},
+			},
+		},
+		{	type = "divider",},
+		-----------------------
+		---- Stack Tracker ----
+		-----------------------
+		{	
+      type = "submenu",
+			name = "技能层数追踪器",
+			tooltip = "仅为夜刃、巫师、龙骑、奥术启用",
+			controls = {
+				{
+					type = "checkbox",
+					name = "在PVP区域隐藏层数追踪器",
+					tooltip = "在PVP区域隐藏层数追踪器",
+				},
+				{
+					type = "checkbox",
+					name = "预览",
+					tooltip = "在屏幕右侧显示层数追踪器预览，其不可移动",
+					warning = "这将会暂时禁用层数追踪器的移动功能。禁用以解锁层数追踪器。离开设置菜单时重置",
+				},
+        ---------------------------
+        ---- Position and Size ----
+        ---------------------------
+				{
+					type = "submenu",
+					name = "位置 / 尺寸",
+					controls = {
+						{	
+              type = "checkbox",
+							name = "解锁层数追踪器",
+							tooltip = "解锁层数追踪器",
+						},
+						{	
+              type = "slider",
+							name = "层数追踪器尺寸",
+						},
+					},
+				},
+        -------------------------
+        ---- Stacks to track ----
+        -------------------------
+				{
+					type = "submenu",
+					name = "需要追踪的技能层数",
+					controls = {
+						{
+							type = "checkbox",
+							name = "追踪 熔火烈鞭",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 契约武器",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 百折不挠 及其变形",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 魔核",
+						},
+						{
+							type = "checkbox",
+							name = "追踪 火焰颅骨 及其变形",
+						},
+					},
+				},
+        --------------------------
+        ---- Tracker Behavior ----
+        --------------------------
+				{
+					type = "submenu",
+					name = "视听提示",
+					tooltip = "达到满层数时的视听提示设置",
+					controls = {
+						{	type = "checkbox",
+							name = "满层时播放音效",
+							tooltip = "当层数达到最大值时会发出声音",
+						},
+						{
+							type = "slider",
+							name = "音效音量",
+							tooltip = "选择提示音效的音量",
+							warning = "您可能还需要调整游戏音频设置，这样效果才明显",
+						},
+						{
+							type = "dropdown",
+							name = "选择音效",
+						},
+						{	type = "checkbox",
+							name = "满层时播放动画",
+							tooltip = "给你更强烈的视觉提示",
+						},
+          }
+        }
+      }
+    },
+  }
+
+  --Speical Setting
+  BB.SetMenuPatch("CombatMetronomeOptions", NewOption)
+  
+return true end
+
 --CraftStore
 --2.91
-do
+do if not BB.SV.BanList["CraftStoreFixedAndImproved"] then
   local CS = CraftStoreFixedAndImprovedLongClassName
   local lmb,rmb,mmb = '|t16:16:CraftStoreFixedAndImproved/DDS/lmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/rmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/mmb.dds|t'
   local i,o = GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_INTRICATE),GetString('SI_ITEMTRAITTYPE',ITEM_TRAIT_TYPE_ARMOR_ORNATE)
@@ -2086,25 +2781,885 @@ do
     styleNames = {}, 
     reload = "需要重新载入",
   }
-  --Specail Setting
-  local OldFun = ZO_CreateStringId
-  ZO_CreateStringId = function(...)
-    local key, value = ...
-    if key == "SI_BINDING_NAME_CRAFTSTORE" and value == "CraftStore" then
-      CraftStoreFixedAndImprovedLongClassName.Loc = BB.TableCopy(L, CraftStoreFixedAndImprovedLongClassName.Loc)
-    end
-    return OldFun(...)
-  end
 
-  BB.AddonList["CraftStoreFixedAndImproved"] = function()
-    if not CraftStoreFixedAndImprovedLongClassName then return false end
-    return true 
-  end
+  --Specail Setting
+  BB.SetGlobalHook(function() BB.TableCopy(L, CraftStoreFixedAndImprovedLongClassName.Loc) end, "CraftStoreFixedAndImprovedLongClassName", "Quality")
+
+end end
+
+BB.AddonList["CraftStoreFixedAndImproved"] = function()
+  if not CraftStoreFixedAndImprovedLongClassName then return false end
+  return true 
 end
+
+--CrutchAlerts //待翻译//
+--1.0.1
+BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false end
+    local Crutch = CrutchAlerts
+    
+    local function GetNoSubtitlesZoneIdsAndNames()
+      local ids = {}
+      local names = {}
+      for zoneId, _ in pairs(Crutch.savedOptions.subtitlesIgnoredZones) do
+          table.insert(ids, zoneId)
+          table.insert(names, string.format("%s (%d)", GetZoneNameById(zoneId), zoneId))
+      end
+      return ids, names
+    end
+    
+    --此Table中的key值无需翻译,仅需要翻译后两者
+    local Prominent = {
+      [1051] = { --CR
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Direct Current"] = {"震荡光束 警告", "瑞丽昆恩（电）释放可打断的震荡光束时，显示突出警报"},
+        ["Alert Glacial Spikes"] = {"冰爆 警告", "加伦韦（冰）释放可打断的冰爆时，显示突出警报"},
+        ["Alert Creeper Spawn"] = {"藤蔓生成 警告", "藤蔓生成时，显示突出警报"},
+        ["Alert Grievous Retaliation"] = {"队友影子 警告", "当你尝试救一个影子还存在的玩家时，显示突出警报"},
+      },
+      [1344] = { --DSR
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Cascading Boot"] = {"冰踢 警告", "当监管者使用冰踢攻击（击退）你时，显示突出警报"},
+      },
+      [975] = { --HoF
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Direct Current"] = {"震荡光束 警告", "当顶级机械体（二王）释放可以打断的震荡光束时，显示突出警告"},
+        ["Alert Reclaim the Ruined"] = {"自爆机械 警告", "当重组理事（三王）战斗中生成自爆小怪时，显示突出警告"},
+        ["Alert Stomp"] = {"践踏 警告", "当组装大将军（尾王）释放可格挡的践踏时，显示突出警告"},
+      },
+      [1196] = { --KA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Hemorrhage Ended (Tank Only)"] = {"血球爆炸后 警告 (仅对Tank)", "当你是Tank且二楼血球爆炸后，显示突出警告，提醒你嘲讽血球爆炸产生的巨型史莱姆"},
+      },
+      [1478] = { --LC
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Darkness Inflicted"] = {"黑暗侵袭 警告", "当你叠加3层蠕动黑暗，获得黑暗侵袭时，显示突出警告"},
+        ["Alert Fate Sealer"] = {"命运封存球体 警告", "当你是Tank且神秘破裂碎片（三王）召唤命运封存球体时，显示突出警告"},
+      },
+      [725] = { --MoL
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Shattering Strike"] = {"Alert Shattering Strike", "Shows a prominent alert when a Dro-m'Athra Savage targets you to shatter your armor with Shattering Strike"},
+        ["Alert Grip of Lorkhaj"] = {"Alert Grip of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
+        ["Alert Threshing Wings"] = {"Alert Threshing Wings", "Shows a prominent alert when you should block to avoid Rakkhat's knockback"},
+        ["Alert Unstable Void"] = {"Alert Unstable Void", "Shows a prominent alert when you receive Unstable Void and should take the bomb out of group"},
+      },
+      [1263] = { --RG
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥克西尔索（一王）冲锋时，显示突出警告"},
+      },
+      [1427] = { --SE
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Chain Pull"] = {"Alert Chain Pull", "Shows a prominent alert when Yaseyla chains you and you should break free"},
+      },
+      [1121] = { --SS
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Shield Charge"] = {"Alert Shield Charge", "Shows a prominent alert when a Ruin of Alkosh targets you with Shield Charge"},
+        ["Alert Sundering Gale"] = {"Alert Sundering Gale", "Shows a prominent alert when the Eternal Servant in the portal targets you with the Sundering Gale cone"},
+      },
+    
+      [1082] = { --BRP
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Lava Whip"] = {"Alert Lava Whip", "Shows a prominent alert when an Imperial Dread Knight targets you with Lava Whip"},
+      },
+      [635] = { --DSA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+        ["Alert Draining Poison"] = {"Alert Draining Poison", "Shows a prominent alert when a Pacthunter Ranger targets you with Draining Poison. You should dodge to avoid having your resources drained"},
+      },
+      [1436] = { --endlessArchive
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Grasp of Lorkhaj"] = {"Alert Grasp of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
+      },
+      [677] = { --MA
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Poison Arrow Spray"] = {"Alert Poison Arrow Spray", "Shows a prominent alert when you get arrow sprayed by an Argonian Venomshot in the Vault of Umbrage and should cleanse the DoT"},
+        ["Alert Volatile Poison"] = {"Alert Volatile Poison", "Shows a prominent alert when you get poisoned by a plant in the Vault of Umbrage and should cleanse the DoT"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Teleport Strike"] = {"Alert Teleport Strike", "Shows a prominent alert when a Dremora Kynlurker ambushes you"},
+        ["Alert Soul Tether"] = {"Alert Soul Tether", "Shows a prominent alert when a Dremora Kynlurker casts Soul Tether"},
+      },
+      [1227] = { --VH
+        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
+        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+      },
+    }
+
+    local function ReplaceProminent(ID, Old)
+      local New = Prominent[ID]
+      local Start = false
+      for i = 1, #Old do
+        if Start then
+          if Old[i].name and New[Old[i].name] then
+            Old[i].tooltip = New[Old[i].name][2]
+            Old[i].name = New[Old[i].name][1]
+          end
+        else
+          if Old[i].title and New[Old[i].title] then
+            Old[i].text = New[Old[i].title][2]
+            Old[i].title = New[Old[i].title][1]
+            Start = true
+          end
+        end
+      end
+      return Old
+    end
+  
+    --此Table中，type无需翻译
+    local NewTable = {
+        {
+          type = "checkbox",
+          name = "解锁UI",
+          tooltip = "解锁框架的移动功能",
+        },
+---------------------------------------------------------------------
+-- general
+        {
+            type = "submenu",
+            name = "常规设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示 施法开始警告",
+                    tooltip = "在你成为开始施法的目标时显示警报 (ACTION_RESULT_BEGIN)",
+                },
+                {
+                    type = "checkbox",
+                    name = "      忽视非怪物来源施法",
+                    tooltip = "如果施法不是来自怪物（如玩家来源），则不显示开始时警告",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 施法获得警告",
+                    tooltip = "在你从怪物处 \"获得\" 施法时显示警告  (ACTION_RESULT_GAINED 或手动设置的 ACTION_RESULT_GAINED_DURATION)",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 对其他目标的施法警告",
+                    tooltip = "当你队伍中的其他人成为特定能力的目标，或者在某些情况下，当敌人对自身施放某种能力时，显示警告。这是一个手动编辑列表，其中列出了足以影响到你的关键能力",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 可伤害计时器",
+                    tooltip = "对于某些遭遇战，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回竞技场等",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 奥术师计时器",
+                    tooltip = "显示施放奥术师特定引导技能的警告",
+                },
+            }
+        },
+-- boss health bar
+        {
+            type = "submenu",
+            name = "垂直 Boss 血条设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示 BOSS 血条",
+                    tooltip = "为基于百分比的机制显示带有标记的垂直 BOSS 血条",
+                },
+                {
+                    type = "slider",
+                    name = "尺寸",
+                    tooltip = "显示垂直 BOSS 血条的尺寸。注意：某些元素在重新加载前可能无法正确更新尺寸",
+                },
+                {
+                    type = "checkbox",
+                    name = "使用 \"向下取整\" 舍入方式",
+                    tooltip = "是否使用\"向下取整\"或\"四舍五入\"的方式显示 BOSS 血量 %\n\n开启时，血量相对于机制%更加精确\n\n关闭时，血量将与其他UI的表现一致",
+                },
+                {
+                    type = "submenu",
+                    name = "舍入: 为什么?",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "基于血量的机制通常会以 50.999% 这样的百分比显示，但默认用户界面和大多数附加组件都使用 \"zo_round\" 对显示的血量百分比进行四舍五入。这是常见的四舍五入方法，例如 50.4 四舍五入为 50，50.5 四舍五入为 51。这就意味着，当我们说一个机制在 50%时发生，它仍然可以在用户界面上显示 51%！为了解决这个问题，\"向下取整\" 会将小数舍入更小的整数。这意味着 50.999 被舍入为 50，这就与触发 BOSS 机制的方式一致了。不过我还是保留了常用的四舍五入方法作为选项，因为有些人可能更希望整个用户界面保持一致，即使只有半个百分点的差别",
+                        }
+                    },
+                },
+            }
+        },
+-- subtitles
+        {
+            type = "submenu",
+            name = "杂项设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "在聊天中显示字幕",
+                    tooltip = "在聊天中显示 NPC 对话字幕。如果有多行字幕，颜色格式会很奇怪",
+                },
+                {
+                    type = "dropdown",
+                    name = "无字幕区域",
+                    tooltip = "在这些区域中聊天时不会显示字幕。从下拉菜单中选择一个即可移除",
+                    setFunc = function(value)
+                        Crutch.savedOptions.subtitlesIgnoredZones[value] = nil
+                        CHAT_SYSTEM:AddMessage(string.format("从字幕忽略区移除 %s(%d)", GetZoneNameById(value), value))
+                        local ids, names = GetNoSubtitlesZoneIdsAndNames()
+                        CrutchAlerts_NoSubtitlesZones:UpdateChoices(names, ids)
+                    end,
+                },
+                {
+                    type = "editbox",
+                    name = "添加无字幕区域ID",
+                    tooltip = "输入区域ID来添加无字幕列表",
+                    setFunc = function(value)
+                        local zoneId = tonumber(value)
+                        local zoneName = GetZoneNameById(zoneId)
+                        if (not zoneId or not zoneName or zoneName == "") then
+                            CHAT_SYSTEM:AddMessage(value .. " 为非法区域ID！")
+                            return
+                        end
+                        Crutch.savedOptions.subtitlesIgnoredZones[zoneId] = true
+                        CHAT_SYSTEM:AddMessage(string.format("为字幕忽略区添加 %s(%d)", zoneName, zoneId))
+                    end,
+                },
+            }
+        },
+-- debug
+        {
+            type = "submenu",
+            name = "调试设置",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示高难领导诊断",
+                    tooltip = "当发生某些重要事件时，在文本聊天中显示可能的信息。例如，有人在 DSR 中捡到了火穹",
+                },
+                {
+                    type = "checkbox",
+                    name = "在警报中显示调试信息",
+                    tooltip = "在警报上添加一小行文本，显示 ID 和其他调试信息",
+                },
+                {
+                    type = "checkbox",
+                    name = "在聊天框显示调试信息",
+                    tooltip = "几乎每次启用战斗事件时都会在聊天框显示信息 -- 非常吵！",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示其他调试",
+                    tooltip = "显示其他调试信息",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示调试UI",
+                    tooltip = "显示一个用户界面元素，该元素可能包含有用的调试功能，也可能不包含",
+                },
+            },
+        },
+---------------------------------------------------------------------
+-- trials
+        {
+            type = "description",
+            title = "试炼",
+            text = "以下是特定试炼中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "庇护圣所(AS)",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "Play sound for cone on self",
+                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets you",
+                },
+                {
+                    type = "checkbox",
+                    name = "Play sound for cone on others",
+                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets other players",
+                },
+            }
+        },
+        {
+            type = "submenu",
+            name = "云息城(CR)",
+            controls = ReplaceProminent(1051, Crutch.GetProminentSettings(1051, {
+                {
+                    type = "checkbox",
+                    name = "显示 矛机制 指示器",
+                    tooltip = "显示有多少矛上楼、下楼和球被消除",
+                },
+                {
+                    type = "checkbox",
+                    name = "播放 矛机制 音效",
+                    tooltip = "当矛在楼上生成时，播放CP技能提交音效",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 叠火 分组",
+                    tooltip = "当进入泽玛亚斩杀阶段且加火时，显示被点叠火的2人应该去哪一侧(这将与RaidNotifier插件的提示相同)",
+                },
+                {
+                    type = "checkbox",
+                    name = "染色Ody死亡图标",
+                    tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其Ody死亡图标染为紫色",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "恐帆礁石(DSR)",
+            controls = ReplaceProminent(1344, Crutch.GetProminentSettings(1344, {
+                {
+                    type = "checkbox",
+                    name = "Alert Building Static stacks",
+                    tooltip = "Displays a prominent alert and ding sound if you reach too many Building Static (lightning) stacks",
+                },
+                {
+                    type = "slider",
+                    name = "Building Static stacks threshold",
+                    tooltip = "The minimum number of stacks of Building Static to show alert for",
+                },
+                {
+                    type = "checkbox",
+                    name = "Alert Volatile Residue stacks",
+                    tooltip = "Displays a prominent alert and ding sound if you reach too many Volatile Residue (poison) stacks",
+                },
+                {
+                    type = "slider",
+                    name = "Volatile Residue stacks threshold",
+                    tooltip = "The minimum number of stacks of Volatile Residue to show alert for",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "制造大厅(HoF)",
+            controls = ReplaceProminent(975, Crutch.GetProminentSettings(975, {
+                {
+                    type = "checkbox",
+                    name = "Show safe spot for triplets",
+                    tooltip = "In the triplets fight, shows an icon in the world that is outside of Shock Field. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Triplets icon size",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Assembly General icons",
+                    tooltip = "Shows icons in the world for execute positions. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Assembly General icons size",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "凯恩之盾(KA)",
+            controls = ReplaceProminent(1196, Crutch.GetProminentSettings(1196, {
+                {
+                    type = "checkbox",
+                    name = "Show Exploding Spear landing spot",
+                    tooltip = "On trash packs with Half-Giant Raiders, show icons at the approximate locations where Exploding Spears will land. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Blood Prison icon",
+                    tooltip = "Shows icon above player who is targeted by Blood Prison, slightly before the bubble even shows up. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Falgravn 2nd floor DPS stacks",
+                    tooltip = "In the Falgravn fight, shows 1~4 DPS in the world for stacks. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Falgravn icon size",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "卢晶堡垒(LC)",
+            controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478, {
+                {
+                    type = "checkbox",
+                    name = "Show Orphic Shattered Shard mirror icons",
+                    tooltip = "Shows icons for each mirror on the Orphic Shattered Shard fight. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Orphic numbered icons",
+                    tooltip = "Uses numbers 1~8 instead of cardinal directions N/SW/etc. for the mirror icons",
+                },
+                {
+                    type = "slider",
+                    name = "Orphic icon size",
+                    tooltip = "The size of the mirror icons",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Arcane Knot timer",
+                    tooltip = "Shows an \"alert\" timer for the currently held Arcane Knot",
+                },
+                {
+                    type = "dropdown",
+                    name = "Show Weakening Charge timer",
+                    tooltip = "Shows an \"alert\" timer for Weakening Charge. If set to \"Tank Only\" it will display only if your LFG role is tank",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "洛克汗的巨口(MoL)",
+            controls = ReplaceProminent(725, Crutch.GetProminentSettings(725, {
+                {
+                    type = "checkbox",
+                    name = "Show Zhaj'hassa cleanse pad cooldowns",
+                    tooltip = "In the Zhaj'hassa fight, shows tiles with cooldown timers for 25 seconds (veteran)",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Twins Color Swap",
+                    tooltip = "In the twins fight, shows a prominent alert when you receive Shadow/Lunar Conversion",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "石林(RG)",
+            controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, {
+                {
+                    type = "checkbox",
+                    name = "Show Noxious Sludge sides",
+                    tooltip = "Displays who should go left and who should go right for Noxious Sludge, matching Qcell's Rockgrove Helper",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "理智边缘(SE)",
+            controls = ReplaceProminent(1427, Crutch.GetProminentSettings(1427, {
+                {
+                    type = "checkbox",
+                    name = "Show center of Ansuul arena",
+                    tooltip = "In the Ansuul fight, shows an icon in the world on the center of the arena. Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Ansuul icon size",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "太阳尖顶(SS)",
+            controls = ReplaceProminent(1121, Crutch.GetProminentSettings(1121, {
+                {
+                    type = "checkbox",
+                    name = "Show Lokkestiiz HM beam position icons",
+                    tooltip = "During flight phase on Lokkestiiz hardmode, shows 1~8 DPS and 2 healer positions in the world for Storm Fury. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Lokkestiiz solo heal icons",
+                    tooltip = "Use solo healer positions for the Lokkestiiz hardmode icons. This is for 9 damage dealers and 1 healer. If you change this option while at the Lokkestiiz fight, the new icons will show up the next time icons are displayed",
+                },
+                {
+                    type = "slider",
+                    name = "Lokkestiiz HM icon size",
+                    tooltip = "Updated size will show after the icons are hidden and shown again",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Yolnahkriin position icons",
+                    tooltip = "During flight phase on Yolnahkriin, shows icons in the world for where the next head stack and (right) wing stack will be when Yolnahkriin lands. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Yolnahkriin left position icons",
+                    tooltip = "Use left icons instead of right icons during flight phase on Yolnahkriin",
+                },
+                {
+                    type = "slider",
+                    name = "Yolnahkriin icon size",
+                },
+            })),
+        },
+        {
+            type = "description",
+            title = "竞技场",
+            text = "以下是特定竞技场中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "黑玫瑰监狱(BRP)",
+            controls = ReplaceProminent(1082, Crutch.GetProminentSettings(1082, {})),
+        },
+        {
+            type = "submenu",
+            name = "龙星竞技场(DSA)",
+            controls = ReplaceProminent(635, Crutch.GetProminentSettings(635, {
+                {
+                    type = "checkbox",
+                    name = "普通难度下受伤警告",
+                    tooltip = "如果在普通难度龙星竞技场中受到某些技能伤害，则会显示恼人的文字并敲响警钟。这样做是为了方便进行afk伐木，在需要手动干预时通知您。",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "无尽档案塔",
+            controls = ReplaceProminent(1436, Crutch.GetProminentSettings(1436, {
+                {
+                    type = "checkbox",
+                    name = "Auto mark Fabled",
+                    tooltip = "When your reticle passes over Fabled enemies, automatically marks them with basegame target markers to make them easier to focus. It may sometimes mark incorrectly if you move too quickly and particularly if an NPC or your group member walks in front, but is otherwise mostly accurate",
+                },
+                {
+                    type = "checkbox",
+                    name = "Auto mark Negate casters",
+                    tooltip = "The same as auto marking Fabled above, but for enemies that can cast Negate Magic (Silver Rose Stormcaster, Dro-m'Athra Conduit, Dremora Conduit). They only cast Negate when you are close enough to them",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "漩涡竞技场(MA)",
+            controls = ReplaceProminent(677, Crutch.GetProminentSettings(677, {
+                {
+                    type = "checkbox",
+                    name = "显示当前轮数",
+                    tooltip = "在每轮开始时在聊天栏显示信息。同样也在倒数第二轮开始15秒后，提醒马上到最后一轮",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 1 额外文本",
+                    tooltip = "第 1 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 2 额外文本",
+                    tooltip = "第 2 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 3 额外文本",
+                    tooltip = "第 3 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 4 额外文本",
+                    tooltip = "第 4 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 5 额外文本",
+                    tooltip = "第 5 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 6 额外文本",
+                    tooltip = "第 6 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 7 额外文本",
+                    tooltip = "第 7 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 8 额外文本",
+                    tooltip = "第 8 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "editbox",
+                    name = "阶段 9 额外文本",
+                    tooltip = "第 9 阶段 最后一轮提醒时的附加文本",
+                },
+                {
+                    type = "checkbox",
+                    name = "普通难度下受伤警告",
+                    tooltip = "如果在普通难度旋涡竞技场中受到某些技能伤害，则会显示恼人的文字并敲响警钟。这样做是为了方便进行afk伐木，在需要手动干预时通知您。",
+                },
+            })),
+        },
+        {
+            type = "submenu",
+            name = "瓦特什兰洞穴(VH)",
+            controls = ReplaceProminent(1227, Crutch.GetProminentSettings(1227, {
+                {
+                    type = "checkbox",
+                    name = "显示丢失的附加分数",
+                    tooltip = "Works only in veteran, and should be used only if going for score. Skipped adds may be inaccurate if you skip entire pulls. The missed adds detection assumes that you do the secret blue side pull before the final blue side pull prior to Iozuzzunth",
+                },
+            })),
+        },
+        {
+            type = "description",
+            title = "地下城",
+            text = "以下是特定地下城中特殊机制的设置",
+        },
+        {
+            type = "submenu",
+            name = "船工之憾地牢",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "Suggest stacks for Soul Bomb",
+                    tooltip = "Displays a notification for suggested person to stack on for Soul Bomb on Foreman Bradiggan hardmode when there are 2 bombs. If OdySupportIcons is enabled, also shows an icon above that person's head. The suggested stack is alphabetical based on @ name",
+                },
+            }
+        },
+    }
+    
+    --Specail Setting
+    BB.SetMenuPatch("CrutchAlertsOptions", NewTable)
+
+return true end
+
+--Descendants Support Set Tracker
+--1.0.3
+BB.AddonList["DescendantsSupportSetTracker"] = function() if not DSST then return false end
+  local NewOption = {
+		{
+      type = "button",
+      name = "显示 / 隐藏",
+      tooltip = "显示/隐藏 窗口",
+    },
+		{
+			type = "dropdown",
+			name = "套装列表",
+			tooltip = "选择显示的套装列表",
+		},
+		{
+			type = "dropdown",
+			name = "语言",
+			tooltip = "选择插件要显示的语言",
+		},
+		{
+      type = "button",
+      name = "重置位置",
+      tooltip = "将位置重置到屏幕中央",
+    },
+		{
+			type = "divider",
+		},
+    {
+      type = "checkbox",
+      name = "在物品栏中标记物品",
+      tooltip = "在物品栏中标记属于追踪的套装列表的物品（按角色设置）",
+    },
+		{
+      type = "checkbox",
+      name = "显示双手武器",
+      tooltip = "在套装列表中显示双手武器",
+    },
+		{
+      type = "checkbox",
+      name = "显示重构标记",
+      tooltip = "在套装列表中显示蜕变石标记",
+    },
+    {
+      type = "header",
+      name = "自定义套装（Custom）列表",
+    },
+		{
+			type = "dropdown",
+			name = "套装名",
+			tooltip = "用于在自定义列表中添加/移除套装",
+		},
+		{
+      type = "editbox",
+      name = "套装名",
+      tooltip = "写入套装中文全称，套装之间以 ！英文逗号！ 分隔",
+    },
+		{
+      type = "button",
+      name = "添加套装",
+      tooltip = "为自定义列表添加套装",
+    },
+		{
+      type = "button",
+      name = "移除套装",
+      tooltip = "从自定义列表移除套装",
+    },
+		{
+			type = "divider",
+		},
+		{
+      type = "description",
+      text = "通过在聊天栏输入 |caeba00/dsst|r 打开插件UI",
+		},
+	}
+
+  --Special Setting
+  BB.SetMenuPatch("Descendants Support Set Tracker", NewOption)
+  
+  BB.TableCopy({
+    {name="头部"},
+    {name="肩部"},
+    {name="胸甲"},
+    {name="手部"},
+    {name="腰部"},
+    {name="腿部"},
+    {name="足部"},
+    {name="颈部"},
+    {name="戒指"},
+    {name="匕首"},
+    {name="斧头"},
+    {name="钉锤"},
+    {name="剑"},
+    {name="盾牌"},
+    {name="炼狱法杖"},
+    {name="闪电法杖"},
+    {name="寒冰法杖"},
+    {name="治疗法杖"},
+    {name="剑（双手）"},
+    {name="斧头（双手）"},
+    {name="钉锤（双手）", link="esoui/art/tradinghouse/tradinghouse_weapons_2h_mace_down.dds"},
+    {name="弓"},
+    }, DSST.icons
+  )
+  
+  BB.TableCopy({
+    [BAG_BACKPACK] = {name = "背包"},
+    [BAG_WORN] = {name="装备中"},
+    [BAG_BANK] = {name="银行"},
+    [BAG_SUBSCRIBER_BANK] = {name="银行"}
+    }, DSST.Storages
+  )
+  
+return true end
 
 --Display Leads
 --42.1
 BB.AddonList["displayleads"] = function() if not RDL then return false end
+--UI
+  RDL.ZONENAME_ALLZONES = "所有区域"
+  RDL.ZONENAME_BGS = "战场"
+
+  RDL.KEYBINDINGTEXT = "切出线索查询窗口"
+
+  -- UI Filter Elements (Dropdowns) 	
+
+  BB.TableCopy({
+    major = "复杂筛选条件",
+    zone = "按区域筛选",
+    settype = "按套装或古物类型筛选",
+  }, RDL.DropdownTooltips)
+
+  BB.TableCopy({
+    ChoicesMajor  = { "可发现", "可占卜", "缺失宝典条目", "从未挖掘过", "可执行线索", "所有线索", "组队地牢", "最新DLC",},
+    
+    TooltipsMajor  = {
+      "排除已发现但未占卜的线索，以及已发现的不可重复获得的线索",
+      "只显示已发现但还未占卜的线索",
+      "只显示考古宝典条目存在缺失的条目",
+      "只显示从还未挖掘过的古物",
+      "显示除已完成的不可重复获得的线索之外的其他所有线索",
+      "显示包括已完成的不可重复获得的线索的所有线索",
+      "只显示从4人地牢中获得的线索",
+      "只显示最新DLC的新线索",
+    },
+    
+    ChoicesZone = {RDL.ZONENAME_ALLZONES, "当前区域", "最新DLC", "排除次要DLC", },
+    TooltipsZone = { 
+      "显示所有区域的线索",
+      "只显示与当前区域有关的线索",
+      "只显示最新DLC的新线索",
+      "只显示与基础区域或章节区域有关的线索",
+    },
+    TooltipsZoneGenerated = "只显示与 %s 有关的线索",
+    ChoicesSetType  = { "所有", "隐藏简单类", "组合古物",},
+    TooltipsSetType   = {
+      "显示所有类型和套装的线索",
+      "隐藏古地图、免费宝物线索及样式页\n但如果在'可占卜'主模式下，则仅隐藏普通绿色宝物",
+      "仅显示组合古物的线索",
+    },
+    TooltipsSetTypeGenerated = "仅显示 %s 类型/套装的线索",
+  }, RDL.DropdownData)
+
+  -- Alerts Label
+
+  RDL.LABEL_ALERTS_UD_MISSING = "|c%s警告 : %d 7天; %d 1天; %d 1小时; ?? 闯世者日常|r"
+
+  RDL.LABEL_ALERTS = "|c%s警告 : %d 7天; %d 1天; %d 1小时; %d 闯世者日常|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "UndauntedDaily插件缺失！无法",
+    "计算日常任务是否有线索给你",
+  }, RDL.TOOLTIP_ALERTS_UD_MISSING)
+
+  RDL.TOOLTIP_ALERTS_1HOUR = "线索过期<1小时: %d"
+  RDL.TOOLTIP_ALERTS_1DAY = "线索过期<1天: %d"
+  RDL.TOOLTIP_ALERTS_7DAYS = "线索过期<7天: %d"
+  RDL.TOOLTIP_ALERTS_UD_NONEFOUND = "闯世者日常无线索给你"
+  RDL.TOOLTIP_ALERTS_UD_SCRYFIRST = " (您已拥有此线索，请先占卜/挖掘)"
+
+  RDL.LABEL_URL_INITIAL = "目前为止没有发现线索"
+  RDL.LABEL_URL_LEADFOUND = "|c3A92FF报告最新的线索，使用ID %d|r"
+
+  -- LOOP
+  BB.TableCopy({
+    "为了顺畅地报告新地点: ",
+    "如您找到一个线索，本插件将:",
+    " - 将线索ID信息贴出到此框内",
+    " - 将当前地点贴出到右边的栏中",
+    "   (如果我认为位置信息是完整的，它将发布一个请求",
+    "    以确认你的信息确实是最新的)",
+    " - 如果你是在别处发现此线索的，请您:",
+    "   - 删除编辑框中的内容",
+    "   - 描述你的位置",
+    "   - 点击这里的栏",
+    "插件将:",
+    " - 将信息转化为URL",
+    " - 同意ZOS的弹出框后用浏览器打开URL",
+  }, RDL.TOOLTIP_URL)
+
+  RDL.EDITBOX_INITIAL = "如果你找到新位置: 替换将出现在这里的内容; 单击左侧的标签发送到浏览器"
+  RDL.EDITBOX_LOCATION_DATA_COMPLETE = "位置信息被认为是完整的。请仅在确认您的发现未被现有描述涵盖后提交"
+  RDL.EDITBOX_NO_LEAD_FOUND_OR_SELECTED = "首先找到一个线索，或单击要报告的线索行"
+  RDL.EDITBOX_NOT_EDITED = "提交新发现: 首先用新位置替换此编辑框中的内容。然后单击左侧的标签。"
+  RDL.EDITBOX_LOCDATA_EMPTY = "您需要在此编辑框中输入您的新位置。然后单击左侧的标签。"
+  RDL.EDITBOX_THANKS = "感谢您提交新的位置数据"
+
+  BB.TableCopy({
+      "线索", 
+      "区域", 
+      "地点", 
+      "难度", 
+      "知识", 
+      "挖掘", 
+      "套装", 
+      "过期", 
+  }, RDL.SORTHEADER_NAMES)
+
+  BB.TableCopy({
+    "古物的名称",
+    "可找到/占卜线索的区域",
+    "简短的位置描述\n(D) = 洞穴\n(PD) = 公共地牢\n(GD) = 组队地牢\n(WB) = 世界Boss",
+    "线索稀有程度。除非难度为5。",
+    "还有多少知识/宝典条目缺失",
+    "该古物已被挖出多少次",
+    "组合古物组装完成后的物品名。\n或单线索古物的类型",
+    "线索过期剩余时间。\n某些线索在获得后的前几天过期时间不会减少。",
+  }, RDL.SORTHEADER_TOOLTIP)
+
+  -- LOOP
+  BB.TableCopy({
+    "如果你知道其他的获取位置:",
+    "单击行以激活该线索的位置数据更新。",
+    "将编辑框内容替换为您的位置，然后单击左侧的标签"
+  }, RDL.TOOLTIP_LEAD_HOWUPDATE)
+
+  -- LOOP
+  BB.TableCopy({
+    "原始位置数据由@inklings提供 (Discord, Twitch)",
+    "非常感谢你让我使用这些数据",
+  }, RDL.TOOLTIP_INKLING)
+
+  RDL.TOOLTIP_MAPPINS = "已包含在Hoft的MapPins插件中"
+
 --Location
   RDL.LOCDATA_TYPE_ALLLOOTTABLES = "所有拾取列表"
   RDL.LOCDATA_SHORT_ALLLOOTTABLES = "所有拾取列表"
@@ -2693,7 +4248,7 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
     [553] = {RDL.LOCDATA_LONG_DAILY,RDL.LOCDATA_TYPE_DAILY,RDL.LOCDATA_SHORT_DAILY,"TRUE",},
     [554] = {"(GD) 灰烬之城1:最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 灰烬之城1:最终Boss","TRUE",},
     [555] = {"(D) 灰烬藤",RDL.LOCDATA_TYPE_DELVE,"(D) 灰烬藤","TRUE",},
-    [556] = {"凤凰蛾, Magma Frog",RDL.LOCDATA_TYPE_MOB,"凤凰蛾, Magma Frog","TRUE",},
+    [556] = {"凤凰蛾, 牛角岩浆蛙",RDL.LOCDATA_TYPE_MOB,"凤凰蛾, 牛角岩浆蛙","TRUE",},
     [557] = {"(GD) 巴尔桑纳 最终Boss",RDL.LOCDATA_TYPE_GROUPDUNGEON,"(GD) 巴尔桑纳","FALSE",},
     [558] = {"(WB) 克拉莫拉普盆地",RDL.LOCDATA_TYPE_WORLDBOSS,"(WB) 克拉莫拉普盆地","FALSE",},
     [559] = {"(D) 忧虑书房 Boss",RDL.LOCDATA_TYPE_DELVE,"(D) 忧虑书房","FALSE",},
@@ -2847,136 +4402,14 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
     [708] = {"(D) 军团休整地",RDL.LOCDATA_TYPE_DELVE,"(D) 军团休整地","FALSE",},
   }, RDL.Locations)
 
---UI
-  RDL.ZONENAME_ALLZONES = "所有区域"
-  RDL.ZONENAME_BGS = "战场"
-
-  RDL.KEYBINDINGTEXT = "切出线索查询窗口"
-
-  -- UI Filter Elements (Dropdowns) 	
-
-  BB.TableCopy({
-    major = "复杂筛选条件",
-    zone = "按区域筛选",
-    settype = "按套装或古物类型筛选",
-  }, RDL.DropdownTooltips)
-
-  BB.TableCopy({
-    ChoicesMajor  = { "可发现", "可占卜", "缺失宝典条目", "从未挖掘过", "可执行线索", "所有线索", "组队地牢", "最新DLC",},
-    
-    TooltipsMajor  = {
-      "排除已发现但未占卜的线索，以及已发现的不可重复获得的线索",
-      "只显示已发现但还未占卜的线索",
-      "只显示考古宝典条目存在缺失的条目",
-      "只显示从还未挖掘过的古物",
-      "显示除已完成的不可重复获得的线索之外的其他所有线索",
-      "显示包括已完成的不可重复获得的线索的所有线索",
-      "只显示从4人地牢中获得的线索",
-      "只显示最新DLC的新线索",
-    },
-    
-    ChoicesZone = {RDL.ZONENAME_ALLZONES, "当前区域", "最新DLC", "排除次要DLC", },
-    TooltipsZone = { 
-      "显示所有区域的线索",
-      "只显示与当前区域有关的线索",
-      "只显示最新DLC的新线索",
-      "只显示与基础区域或章节区域有关的线索",
-    },
-    TooltipsZoneGenerated = "只显示与 %s 有关的线索",
-    ChoicesSetType  = { "所有", "隐藏简单类", "组合古物",},
-    TooltipsSetType   = {
-      "显示所有类型和套装的线索",
-      "隐藏古地图、免费宝物线索及样式页\n但如果在'可占卜'主模式下，则仅隐藏普通绿色宝物",
-      "仅显示组合古物的线索",
-    },
-    TooltipsSetTypeGenerated = "仅显示 %s 类型/套装的线索",
-  }, RDL.DropdownData)
-
-  -- Alerts Label
-
-  RDL.LABEL_ALERTS_UD_MISSING = "|c%s警告 : %d 7天; %d 1天; %d 1小时; ?? 闯世者日常|r"
-
-  RDL.LABEL_ALERTS = "|c%s警告 : %d 7天; %d 1天; %d 1小时; %d 闯世者日常|r"
-
-  -- LOOP
-  BB.TableCopy({
-    "UndauntedDaily插件缺失！无法",
-    "计算日常任务是否有线索给你",
-  }, RDL.TOOLTIP_ALERTS_UD_MISSING)
-
-  RDL.TOOLTIP_ALERTS_1HOUR = "线索过期<1小时: %d"
-  RDL.TOOLTIP_ALERTS_1DAY = "线索过期<1天: %d"
-  RDL.TOOLTIP_ALERTS_7DAYS = "线索过期<7天: %d"
-  RDL.TOOLTIP_ALERTS_UD_NONEFOUND = "闯世者日常无线索给你"
-  RDL.TOOLTIP_ALERTS_UD_SCRYFIRST = " (您已拥有此线索，请先占卜/挖掘)"
-
-  RDL.LABEL_URL_INITIAL = "目前为止没有发现线索"
-  RDL.LABEL_URL_LEADFOUND = "|c3A92FF报告最新的线索，使用ID %d|r"
-
-  -- LOOP
-  BB.TableCopy({
-    "为了顺畅地报告新地点: ",
-    "如您找到一个线索，本插件将:",
-    " - 将线索ID信息贴出到此框内",
-    " - 将当前地点贴出到右边的栏中",
-    "   (如果我认为位置信息是完整的，它将发布一个请求",
-    "    以确认你的信息确实是最新的)",
-    " - 如果你是在别处发现此线索的，请您:",
-    "   - 删除编辑框中的内容",
-    "   - 描述你的位置",
-    "   - 点击这里的栏",
-    "插件将:",
-    " - 将信息转化为URL",
-    " - 同意ZOS的弹出框后用浏览器打开URL",
-  }, RDL.TOOLTIP_URL)
-
-  RDL.EDITBOX_INITIAL = "如果你找到新位置: 替换将出现在这里的内容; 单击左侧的标签发送到浏览器"
-  RDL.EDITBOX_LOCATION_DATA_COMPLETE = "位置信息被认为是完整的。请仅在确认您的发现未被现有描述涵盖后提交"
-  RDL.EDITBOX_NO_LEAD_FOUND_OR_SELECTED = "首先找到一个线索，或单击要报告的线索行"
-  RDL.EDITBOX_NOT_EDITED = "提交新发现: 首先用新位置替换此编辑框中的内容。然后单击左侧的标签。"
-  RDL.EDITBOX_LOCDATA_EMPTY = "您需要在此编辑框中输入您的新位置。然后单击左侧的标签。"
-  RDL.EDITBOX_THANKS = "感谢您提交新的位置数据"
-
-  BB.TableCopy({
-      "线索", 
-      "区域", 
-      "地点", 
-      "难度", 
-      "知识", 
-      "挖掘", 
-      "套装", 
-      "过期", 
-  }, RDL.SORTHEADER_NAMES)
-
-  BB.TableCopy({
-    "古物的名称",
-    "可找到/占卜线索的区域",
-    "简短的位置描述\n(D) = 洞穴\n(PD) = 公共地牢\n(GD) = 组队地牢\n(WB) = 世界Boss",
-    "线索稀有程度。除非难度为5。",
-    "还有多少知识/宝典条目缺失",
-    "该古物已被挖出多少次",
-    "组合古物组装完成后的物品名。\n或单线索古物的类型",
-    "线索过期剩余时间。\n某些线索在获得后的前几天过期时间不会减少。",
-  }, RDL.SORTHEADER_TOOLTIP)
-
-  -- LOOP
-  BB.TableCopy({
-    "如果你知道其他的获取位置:",
-    "单击行以激活该线索的位置数据更新。",
-    "将编辑框内容替换为您的位置，然后单击左侧的标签"
-  }, RDL.TOOLTIP_LEAD_HOWUPDATE)
-
-  -- LOOP
-  BB.TableCopy({
-    "原始位置数据由@inklings提供 (Discord, Twitch)",
-    "非常感谢你让我使用这些数据",
-  }, RDL.TOOLTIP_INKLING)
-
-  RDL.TOOLTIP_MAPPINS = "已包含在Hoft的MapPins插件中"
-
 --Sepcial Setting
+  BB.TableCopy({
+    [RDL.ZONEID_ALLZONES] = RDL.ZONENAME_ALLZONES,
+    [RDL.ZONEID_BGS] = RDL.ZONENAME_BGS,
+    [RDL.ZONEID_UNKNOWN] = RDL.LOCDATA_ZONENAME_UNKNOWN,
+  }, RDL.ZONENAME_SPECIAL)
+
   BB.SetAfterPart(
-    
     function()
       RDLMainWindowHeadersLeadName:SetText(RDL.SORTHEADER_NAMES[1])
       RDLMainWindowHeadersZoneName:SetText(RDL.SORTHEADER_NAMES[2])
@@ -3723,10 +5156,24 @@ BB.AddonList["DressingRoom"] = function() if not DressingRoom then return false 
   }
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end

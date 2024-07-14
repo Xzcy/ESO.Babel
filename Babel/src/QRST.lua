@@ -2,44 +2,44 @@ local BB = MABabel
 
 --Quest Map
 --10.0.0
-do
+do if not BB.SV.BanList["QuestMap"] then
   local function Fun()
-    local strings = {
+    local Strings = {
       -- General
-      QUESTMAP_COMPANION = "伙伴",
-      QUESTMAP_TRIAL = "试炼",
-      QUESTMAP_STORY_ICON_SET = "主线图标设定",
-      QUESTMAP_SKILLPOINT_ICON_SET = "技能点图标设定",
-      QUESTMAP_CADWELL_ICON_SET = "卡德维尔图标设定",
-      QUESTMAP_COMPANION_ICON_SET = "伙伴图标设定",
-      QUESTMAP_ICON_SETS_HEADER = "任务图标设定",
-      QUESTMAP_SETTINGS_HEADER = "地图图标设置",
-      QUESTMAP_PIN_COLOR_HEADER = "地图图标颜色设置",
-      QUESTMAP_RESET_HIDDEN_HEADER = "重置隐藏的地图图标",
+      [QUESTMAP_COMPANION] = "伙伴",
+      [QUESTMAP_TRIAL] = "试炼",
+      [QUESTMAP_STORY_ICON_SET] = "主线图标设定",
+      [QUESTMAP_SKILLPOINT_ICON_SET] = "技能点图标设定",
+      [QUESTMAP_CADWELL_ICON_SET] = "卡德维尔图标设定",
+      [QUESTMAP_COMPANION_ICON_SET] = "伙伴图标设定",
+      [QUESTMAP_ICON_SETS_HEADER] = "任务图标设定",
+      [QUESTMAP_SETTINGS_HEADER] = "地图图标设置",
+      [QUESTMAP_PIN_COLOR_HEADER] = "地图图标颜色设置",
+      [QUESTMAP_RESET_HIDDEN_HEADER] = "重置隐藏的地图图标",
     }
-    for key, value in pairs(strings) do
-      ZO_CreateStringId(key, value)
-      SafeAddVersion(key, 1)
+    
+    for k, v in pairs(Strings) do
+      SafeAddString(k, v, 2)
     end
-    return strings.QUESTMAP_ICON_SETS_HEADER
+    
+    return Strings[QUESTMAP_ICON_SETS_HEADER]
   end
 
-  local OldFun = GetString
-  GetString = function(...)
-    local Result = OldFun(...)
-    if Result == "Quest Icon Sets" then
-      return Fun() 
+  --Special Setting
+  BB.SetFunHook(function(ID)
+    if QUESTMAP_ICON_SETS_HEADER and QUESTMAP_ICON_SETS_HEADER == ID then
+      return Fun()
     end
-    return Result
-  end
+  end, _G, "GetString", true)
 
-  BB.AddonList["QuestMap"] = function()
-    if not QuestMap then return false end
-    return true
-  end
+end end
+
+BB.AddonList["QuestMap"] = function()
+  if not QuestMap then return false end
+  return true
 end
 
---RaidNotifier
+--RaidNotifier  //有待修正//
 --2.28.1
 BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false end
   local L = {}
@@ -370,8 +370,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Dragonstar_Arena8_Fire_Charge              = "|cFF3113火焰冲锋|r 目标 你 !打断或翻滚!"
   L.Alerts_Dragonstar_Arena8_Fire_Charge_Other        = "|c6699FF火焰冲锋|r 目标 |cFF0000<<!aC:1>>|r !打断!"
 
-
-
   --------------------------------
   ---- Halls Of Fabrication   ----
   --------------------------------
@@ -428,8 +426,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_HallsFab_Fabricant_Spawn                   = "|cFFC000废墟制造者刷新|r"
   L.Alerts_HallsFab_Reclaim_Achieve                   = "|cDCD822[计划报废]|r 成就 |cFF0000失败|r"
 
-
-
   --------------------------------
   ----   Asylum Sanctorium    ----
   --------------------------------
@@ -467,8 +463,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Asylum_Protector_Spawn                  = "|c0000FF保卫者|r 刷新!"
   L.Alerts_Asylum_Protector_Active                 = "|c0000FF保卫者|r 激活!"
 
-
-
   --------------------------------
   ------   CLOUDREST         -----
   --------------------------------
@@ -478,22 +472,22 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Settings_Cloudrest_Olorime_Spears_TT          = "当矛已就绪需要有人捡起它时警告你。"
   L.Settings_Cloudrest_Shadow_Realm_Cast          = "普通: 传送门刷新"
   L.Settings_Cloudrest_Shadow_Realm_Cast_TT       = "当传送门刷新完成，队伍可以进入暗影领域时警告你。"
-  L.Settings_Cloudrest_Hoarfrost                  = "法拉蕾尔: 尖啸冰霜"
-  L.Settings_Cloudrest_Hoarfrost_TT               = "当你获得了尖啸冰霜debuff需要使用协同移除时警告你。"
+  L.Settings_Cloudrest_Hoarfrost                  = "加伦韦: 冰风"
+  L.Settings_Cloudrest_Hoarfrost_TT               = "当你获得了冰风debuff需要使用协同移除时警告你。"
   L.Settings_Cloudrest_Hoarfrost_Countdown        = "       - 使用倒计时"
   L.Settings_Cloudrest_Hoarfrost_Countdown_TT     = "使用倒计时来显示你何时可以丢掉它。"
-  L.Settings_Cloudrest_Hoarfrost_Shed             = "法拉蕾尔: 尖啸冰霜掉落"
-  L.Settings_Cloudrest_Hoarfrost_Shed_TT          = "当尖啸冰霜debuff被其他玩家丢掉，需要被捡起时警告你。"
+  L.Settings_Cloudrest_Hoarfrost_Shed             = "加伦韦: 冰风掉落"
+  L.Settings_Cloudrest_Hoarfrost_Shed_TT          = "当冰风debuff被其他玩家丢掉，需要被捡起时警告你。"
   L.Settings_Cloudrest_Heavy_Attack               = "小Boss: 重击"
   L.Settings_Cloudrest_Heavy_Attack_TT            = "当闪电(震撼猛击), 火焰(炽热割裂) 或寒冰(毁灭一击) 小boss正在施放重击时警告你。"
-  L.Settings_Cloudrest_Chilling_Comet             = "法拉蕾尔: 霜冻彗星"
-  L.Settings_Cloudrest_Chilling_Comet_TT          = "当你获得了霜冻彗星debuff并需要格挡，且遭爆炸前不能与其他拥有相同debuff的玩家重叠的时候警告你。"
-  L.Settings_Cloudrest_Roaring_Flare              = "希罗利亚: 咆哮闪光"
-  L.Settings_Cloudrest_Roaring_Flare_TT           = "当你或任何队员获得了咆哮闪光debuff，且需要最少3个以上队员重叠以抵消此debuff时警告你。"
-  L.Settings_Cloudrest_Track_Roaring_Flare        = "       - 追踪咆哮闪光"
-  L.Settings_Cloudrest_Track_Roaring_Flare_TT     = "显示获得debuff的玩家方向"
-  L.Settings_Cloudrest_Voltaic_Overload           = "贝拉纳里尔: 高压过载"
-  L.Settings_Cloudrest_Voltaic_Overload_TT        = "警告你即将获得高压过载debuff，获得此debuff后你在10秒内无法切换技能条。"
+  L.Settings_Cloudrest_Chilling_Comet             = "加伦韦: 霜冻彗星"
+  L.Settings_Cloudrest_Chilling_Comet_TT          = "当你被点名霜冻彗星时需要格挡，且遭爆炸前不能与其他拥有相同debuff的玩家重叠的时候警告你。"
+  L.Settings_Cloudrest_Roaring_Flare              = "希罗利亚: 叠火"
+  L.Settings_Cloudrest_Roaring_Flare_TT           = "当你或任何队员获得了叠火点名，且需要最少3个或以上队员分摊时警告你（普通难度为2人）"
+  L.Settings_Cloudrest_Track_Roaring_Flare        = "       - 追踪 叠火"
+  L.Settings_Cloudrest_Track_Roaring_Flare_TT     = "显示获得 叠火点名 玩家方向"
+  L.Settings_Cloudrest_Voltaic_Overload           = "瑞丽昆恩: 过载"
+  L.Settings_Cloudrest_Voltaic_Overload_TT        = "警告你即将获得过载debuff，获得此debuff后你在10秒内严禁切手"
   L.Settings_Cloudrest_Nocturnals_Favor	        = "泽玛亚: 诺克图娜尔的青睐"
   L.Settings_Cloudrest_Nocturnals_Favor_TT        = "当泽玛亚将你作为重击的目标时警告你。"
   L.Settings_Cloudrest_Baneful_Barb               = "深海怪: 灾厄钩刺"
@@ -502,44 +496,44 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Settings_Cloudrest_Break_Amulet_TT            = "在斩杀阶段禁用球体, 触手提醒"
   L.Settings_Cloudrest_Sum_Shadow_Beads           = "泽玛亚: 球体"
   L.Settings_Cloudrest_Sum_Shadow_Beads_TT        = "当球体即将刷新时警告你。"
-  L.Settings_Cloudrest_Tentacle_Spawn             = "泽玛亚: 暗夜匍匐者刷新"
-  L.Settings_Cloudrest_Tentacle_Spawn_TT          = "当暗夜匍匐者即将刷新时警告你。"
-  L.Settings_Cloudrest_Crushing_Darkness          = "泽玛亚: 极渊之暗"
-  L.Settings_Cloudrest_Crushing_Darkness_TT       = "当范围AoE正在跟随你并需要对它放风筝时警告你。"
+  L.Settings_Cloudrest_Tentacle_Spawn             = "泽玛亚: 藤蔓刷新"
+  L.Settings_Cloudrest_Tentacle_Spawn_TT          = "当藤蔓即将刷新时警告你。"
+  L.Settings_Cloudrest_Crushing_Darkness          = "泽玛亚: 黑圈引导"
+  L.Settings_Cloudrest_Crushing_Darkness_TT       = "当范围AoE正在跟随你并需要引导时警告你。"
   L.Settings_Cloudrest_Malicious_Strike           = "泽玛亚: 罪恶弹球"
   L.Settings_Cloudrest_Malicious_Strike_TT        = "当球体被摧毁且需要格挡或翻滚时警告你。"
-  L.Settings_Cloudrest_Shadow_Splash              = "泽玛亚: Shadow Splash"
+  L.Settings_Cloudrest_Shadow_Splash              = "泽玛亚: 坠落攻击"
   L.Settings_Cloudrest_Shadow_Splash_TT           = "此功能会在泽玛亚开始引导该法术时提醒你。如果不及时打断，部分玩家会被传送到空中并受到坠落伤害。"
 
   -- Alerts
   L.Alerts_Cloudrest_Olorime_Spears               = "|cffd000矛|r 就绪了! (<<1>>)"
-  L.Alerts_Cloudrest_Hoarfrost0                   = "|c00ddff尖啸冰霜|r 目标 你 !"
-  L.Alerts_Cloudrest_Hoarfrost1                   = "|cff0000最后的|r |c00ddff尖啸冰霜|r 目标 你 !"
-  L.Alerts_Cloudrest_Hoarfrost_Other0             = "|c00ddff尖啸冰霜|r 目标 |cff0000<<!aC:1>>|r !"
-  L.Alerts_Cloudrest_Hoarfrost_Other1             = "|cff0000最后的|r |c00ddff尖啸冰霜|r 目标 |cff0000<<!aC:1>>|r !"
-  L.Alerts_Cloudrest_Hoarfrost_Countdown0         = "丢掉 |c00ddff尖啸冰霜|r 还有..."
-  L.Alerts_Cloudrest_Hoarfrost_Countdown1         = "丢掉 |cff0000最后的|r |c00ddff尖啸冰霜|r 还有..."
-  L.Alerts_Cloudrest_Hoarfrost_Syn                = "|cff0000使用协同|r 丢掉尖啸冰霜!"
-  L.Alerts_Cloudrest_Hoarfrost_Shed               = "|c00ddff尖啸冰霜|r 丢掉了!"
-  L.Alerts_Cloudrest_Hoarfrost_Shed_Other         = "|c00ddff尖啸冰霜|r 被 |cff0000<<!aC:1>>|r 丢掉了!"
+  L.Alerts_Cloudrest_Hoarfrost0                   = "|c00ddff冰风|r 目标 你 !"
+  L.Alerts_Cloudrest_Hoarfrost1                   = "|cff0000最后的|r |c00ddff冰风|r 目标 你 !"
+  L.Alerts_Cloudrest_Hoarfrost_Other0             = "|c00ddff冰风|r 目标 |cff0000<<!aC:1>>|r !"
+  L.Alerts_Cloudrest_Hoarfrost_Other1             = "|cff0000最后的|r |c00ddff冰风|r 目标 |cff0000<<!aC:1>>|r !"
+  L.Alerts_Cloudrest_Hoarfrost_Countdown0         = "丢掉 |c00ddff冰风|r 还有..."
+  L.Alerts_Cloudrest_Hoarfrost_Countdown1         = "丢掉 |cff0000最后的|r |c00ddff冰风|r 还有..."
+  L.Alerts_Cloudrest_Hoarfrost_Syn                = "|cff0000使用协同|r 丢掉冰风!"
+  L.Alerts_Cloudrest_Hoarfrost_Shed               = "|c00ddff冰风|r 丢掉了!"
+  L.Alerts_Cloudrest_Hoarfrost_Shed_Other         = "|c00ddff冰风|r 被 |cff0000<<!aC:1>>|r 丢掉了!"
   L.Alerts_Cloudrest_Heavy_Attack                 = "|c0bf29e重击|r 目标 你 !"
   L.Alerts_Cloudrest_Heavy_Attack_Other           = "|c0bf29e重击|r 目标 |cff0000<<!aC:1>>|r !"
   L.Alerts_Cloudrest_Baneful_Barb                 = "|cff0000灾厄钩刺|r !翻滚!"
   L.Alerts_Cloudrest_Baneful_Barb_Other           = "|cff0000灾厄钩刺|r 目标 |cff0000<<!aC:1>>|r !"
   L.Alerts_Cloudrest_Chilling_Comet               = "|cff0000霜冻彗星|r 目标 你 !格挡!"
-  L.Alerts_Cloudrest_Roaring_Flare                = "|cff7700咆哮闪光|r 目标 你 !"
+  L.Alerts_Cloudrest_Roaring_Flare                = "|cff7700叠火|r 目标 你 !"
   L.Alerts_Cloudrest_Roaring_Flare_2              = "|cff0000<<!aC:1>>|r |t100%:100%:Esoui/Art/Buttons/large_leftarrow_up.dds|t |cff7700咆哮闪光|r |t100%:100%:Esoui/Art/Buttons/large_rightarrow_up.dds|t |cff0000<<!aC:2>>|r"
-  L.Alerts_Cloudrest_Roaring_Flare_Other          = "|cff7700咆哮闪光|r 目标 |cff0000<<!aC:1>>|r !集中起来!"
-  L.Alerts_Cloudrest_Voltaic_Current              = "|c55b4d4高压过载|r 目标 你 !还有"
-  L.Alerts_Cloudrest_Voltaic_Overload             = "|c4d61c1高压过载|r 目标 你 !切技能条!"
-  L.Alerts_Cloudrest_Voltaic_Overload_Cd          = "|c4d61c1高压过载|r 不要切换!"
+  L.Alerts_Cloudrest_Roaring_Flare_Other          = "|cff7700叠火|r 目标 |cff0000<<!aC:1>>|r !集中起来!"
+  L.Alerts_Cloudrest_Voltaic_Current              = "|c55b4d4过载|r 目标 你 !还有"
+  L.Alerts_Cloudrest_Voltaic_Overload             = "|c4d61c1过载|r 目标 你 !切手!"
+  L.Alerts_Cloudrest_Voltaic_Overload_Cd          = "|c4d61c1过载|r 严禁切手!"
   L.Alerts_Cloudrest_Shadow_Realm_Cast            = "|cab82ff传送门|r 刷新 (<<1>>)"
-  L.Alerts_Cloudrest_Tentacle_Spawn               = "|c00a86b爬行者|r 刷新"
+  L.Alerts_Cloudrest_Tentacle_Spawn               = "|c00a86b藤蔓|r 刷新"
   L.Alerts_Cloudrest_Sum_Shadow_Beads             = "|cab82ff球体|r 即将刷新"
   L.Alerts_Cloudrest_Nocturnals_Favor             = "|cff0000诺克图娜尔的青睐|r 目标 你 !"
   L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66极渊之暗|r 目标 你 !放风筝!"
-  L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000罪恶弹球|r 目标 你 !格挡!"
-  L.Alerts_Cloudrest_Shadow_Splash                = "泽玛亚正在施放法术. |cFF0000Interrupt|r!"
+  L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000黑圈引导|r 目标 你 !格挡!"
+  L.Alerts_Cloudrest_Shadow_Splash                = "泽玛亚正在施放法术. |cFF0000打断|r!"
 
   --------------------------------
   ------   SUNSPIRE          -----
@@ -572,8 +566,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Settings_Sunspire_Shock_Bolt_TT         = "震荡闪电倒计时，通知队伍何时聚拢以解放另一个玩家。"
   L.Settings_Sunspire_Apocalypse            = "永恒仆从: 翻译启示录"
   L.Settings_Sunspire_Apocalypse_TT         = "当永恒仆从正在引导他的攻击到楼上的组员时警告你。给你一个倒计时显示何时你可以打断引导并且用一个倒计时显示他何时完成引导攻击。"
-
-
   -- Alerts
   L.Alerts_Sunspire_Chilling_Comet          = "|c00ddff霜冻彗星|r 目标 你 !格挡!"
   L.Alerts_Sunspire_Chilling_Comet_Other    = "|c00ddff霜冻彗星|r 目标 |cff0000<<!aC:1>>|r !"
@@ -597,7 +589,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Sunspire_Shock_Bolt              = "|c00ddff震荡闪电|r !聚在一起以解放"
   L.Alerts_Sunspire_Apocalypse              = "|cffff00翻译启示录|r 打断 还有"
   L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00翻译启示录|r 结束 还有"
-
 
   --------------------------------
   ------   KYNE'S AEGIS      -----
@@ -632,7 +623,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_KynesAegis_FireMage_Meteor                 = "|cffa500流星|r对你来了"
   L.Alerts_KynesAegis_FireMage_Meteor_Other           = "流星来了"
   L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000脓血迸发|r来了"
-
 
   --------------------------------
   ------   ROCKGROVE         -----
@@ -685,7 +675,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_Rockgrove_Bahsei_Portal_Number            = "传送门 #<<1>>"
   L.Alerts_Rockgrove_Xalvakka_Unstable_Charge        = "缘离 |c008C22blob|r!"
 
-
   --------------------------------
   ------   DREADSAIL REEF    -----
   --------------------------------
@@ -734,7 +723,6 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Alerts_DreadsailReef_Rapid_Deluge                = "你受到了 |c1CA3EC极速奔涌|r! 你需要游泳，剩余"
   L.Alerts_DreadsailReef_Rapid_Deluge_Other          = "|cFF0000<<!aC:1>>|r 受到了 |c1CA3EC极速奔涌|r! 需要游泳，剩余"
 
-
   --------------------------------
   ----       Debugging        ----
   --------------------------------
@@ -778,7 +766,7 @@ return true end
 
 --Srendarr
 --2.5.36
-do
+do if not BB.SV.BanList["Srendarr"] then
   local L = {}
 
   ------------------------------------------------------------------------------------------------------------------
@@ -1289,10 +1277,8 @@ do
   L.VolatileAOE    = "异变仆从技能"
 
   --Sepical Setting
-  local OldFun = CALLBACK_MANAGER.FireCallbacks
-  CALLBACK_MANAGER.FireCallbacks = function(...)
+  BB.SetFunHook(function(...)
     local _, name, _, key = ...
-    local Result = OldFun(...)
     if name == "LibMediaProvider_Registered" and key == "Srendarr Ability Proc" then
       local S = _G['Srendarr'].GetLocale()
       L = BB.TableCopy(L, S)
@@ -1300,13 +1286,14 @@ do
         return L
       end
     end
-    return Result
-  end
+    return nil
+  end, CALLBACK_MANAGER, "FireCallbacks")
 
-  BB.AddonList["Srendarr"] = function()
-    if not Srendarr then return false end
-    return true 
-  end
+end end
+
+BB.AddonList["Srendarr"] = function()
+  if not Srendarr then return false end
+  return true 
 end
 
 --Tamriel Trade Centre
@@ -1326,10 +1313,24 @@ BB.AddonList["TamrielTradeCentre"] = function() if not TamrielTradeCentre then r
   ZO_CreateStringId("TTC_MSG_RECORDEDDATACLEARED", "自动记录数据已清除")
 return true end
 
---[[ Template
+--[[ Template 1, "" = folder name
 
 --
 --
+BB.AddonList[""] = function() if not  then return false end
+
+return true end
+
+]]
+
+--[[ Template 2, "" = folder name
+
+--
+--
+do if not BB.SV.BanList[""] then
+
+end end
+
 BB.AddonList[""] = function() if not  then return false end
 
 return true end
