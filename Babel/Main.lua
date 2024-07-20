@@ -10,7 +10,8 @@ BB.Version = "2024.07.14"
 
 --Default/Saved Setting
 BB.Default = {
-  ["BanList"] = {}
+  ["BanList"] = {},
+  ["Warning"] = true,
 }
 
 --Table
@@ -188,14 +189,14 @@ function BB.DoMenuPatch(Name, OldTable)
   else
     --Keep Menu
     BB.SetAfterPart(
-      function()
+      function() if BB.SV.Warning then
         zo_callLater(
           function()
             d("[Babel] "..Name.." 设置界面汉化与插件版本不匹配")
-            d("[Babel] 请更新插件，或等待后续更新修复")
+            d("[Babel] 请更新该插件至最新/等待Babel更新汉化文本")
           end, 5000
         )
-      end
+      end end
     )
     return nil
   end
@@ -211,12 +212,14 @@ end
 
 function BB.DoAfterPart()
   --Error with Translation
-  if OnLoading then
+  if OnLoading and BB.SV.Warning then
     zo_callLater(
       function()
         d("[Babel] "..OnLoading.." 汉化失败")
-        d("[Babel] 请在设置中禁用该插件汉化并重载UI")
-        d("[Babel] 请联系SA公会修复有关插件汉化问题")
+        d("[Babel] 请确保目标插件和Babel的版本均为最新")
+        d("[Babel] 若依然失败")
+        d("[Babel] 建议在设置中禁用该插件汉化并重载UI")
+        d("[Babel] 请联系SA公会修复有关插件的汉化问题")
       end, 5000
     )
   end
@@ -277,6 +280,13 @@ function BB.BuildMenu()
   local SelectedAddon = ""
   local options = {
     {
+			type = "checkbox",
+			name = "插件汉化失败警告",
+			tooltip = "Babel汉化失败，通常发生在目标插件版本过旧或刚更新后。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用Babel对某个插件的汉化，来确保一切正常运行。",
+			getFunc = function() return BB.SV.Warning end,
+			setFunc = function(value) BB.SV.Warning = value end,
+		},
+    {
 			type = "submenu",
 			name = "插件列表",
       controls = {
@@ -334,7 +344,7 @@ function BB.BuildMenu()
       title = "联系方式（|l0:1:0:-35%:3:FFFFFF|l广告位招租|l）\r\n",
       text = "    Splendid Achievers\r\n       美服 公会 QQ群 452116107".."\r\n\r\n"..
              "    Guar Protection\r\n       欧服 公会 QQ群 703671761".."\r\n\r\n"..
-             "    Babel项目仓库见 |c7B68EE'访问网站'|r 链接（墙外）",
+             "Babel项目仓库见 |c7B68EE'访问网站'|r 链接（墙外）",
       width = "full",
     },
 	}

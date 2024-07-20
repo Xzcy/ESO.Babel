@@ -2796,7 +2796,7 @@ end
 --1.0.1
 BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false end
     local Crutch = CrutchAlerts
-    
+
     local function GetNoSubtitlesZoneIdsAndNames()
       local ids = {}
       local names = {}
@@ -3204,6 +3204,16 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "dropdown",
                     name = "Show Weakening Charge timer",
                     tooltip = "Shows an \"alert\" timer for Weakening Charge. If set to \"Tank Only\" it will display only if your LFG role is tank",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Xoryn Tempest position icons",
+                    tooltip = "Shows icons for group member positions on the Xoryn fight for Tempest (and at the beginning of the trial, for practice purposes). Requires OdySupportIcons",
+                },
+                {
+                    type = "slider",
+                    name = "Xoryn Tempest icon size",
+                    tooltip = "The size of the Tempest icons",
                 },
             })),
         },
