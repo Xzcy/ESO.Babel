@@ -1,7 +1,6 @@
 local BB = MABabel
 
 --Advanced Filters
---1.6.4.5
 BB.AddonList["AdvancedFilters"] = function() if not AdvancedFilters then return false end
   local util = AdvancedFilters.util
   local afPrefix = "|cFF0000[AdvancedFilters%s]|r"
@@ -60,7 +59,6 @@ BB.AddonList["AdvancedFilters"] = function() if not AdvancedFilters then return 
 return true end
 
 --AlphaGear 2
---6.17.0
 do if not BB.SV.BanList["AlphaGear"] then
   local lmb, rmb = '|t16:16:AlphaGear/asset/lmb.dds|t', '|t16:16:AlphaGear/asset/rmb.dds|t'
   local msg = {
@@ -219,7 +217,6 @@ BB.AddonList["AlphaGear"] = function()
 end
 
 --Arkadius' Trade Tools
---2.0.0
 BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then return false end
   --Setting
   local ToolString = {
@@ -479,7 +476,6 @@ BB.AddonList["ArkadiusTradeTools"] = function() if not ArkadiusTradeTools then r
 return true end
 
 --Auto Category
---3.6.7
 BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false end
   AutoCategory_localization_strings["zh"] = {
     SI_AC_BAGTYPE_SHOWNAME_BACKPACK = "随身背包",
@@ -689,7 +685,6 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
 return true end
 
 --BeamMeUp
---3.5.5
 BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
   local mkstr = ZO_CreateStringId
   local SI = BMU.SI
@@ -928,7 +923,6 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
 return true end
 
 --BUI
---4.413
 BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false end
   local on,off	="开启","关闭"
   local lmb,rmb,mmb='|t16:16:/BanditsUserInterface/textures/lmb.dds|t','|t16:16:/BanditsUserInterface/textures/rmb.dds|t','|t16:16:/BanditsUserInterface/textures/mmb.dds|t'
@@ -1698,7 +1692,6 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
 return true end
 
 --Buff The Group
---3.5.0
 BB.AddonList["BuffTheGroup"] = function() if not btg then return false end
   local NewOption = {
 		{
@@ -1772,7 +1765,6 @@ BB.AddonList["BuffTheGroup"] = function() if not btg then return false end
 return true end
 
 --Caro's Skill Point Saver
---5.5.0
 BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
   local L = {}
   
@@ -2125,7 +2117,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 return true end
 
 --Combat Metrics
---1.5.16
 BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
   local strings = {
     SI_COMBAT_METRICS_LIVEREPORT_DPSMULTI_TOOLTIP = "多目标DPS",
@@ -2149,7 +2140,6 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
 return true end
 
 --Combat Metronome
---v1.6.6
 BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return false end
   local NewOption = {
     {
@@ -2638,7 +2628,6 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
 return true end
 
 --CraftStore
---2.91
 do if not BB.SV.BanList["CraftStoreFixedAndImproved"] then
   local CS = CraftStoreFixedAndImprovedLongClassName
   local lmb,rmb,mmb = '|t16:16:CraftStoreFixedAndImproved/DDS/lmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/rmb.dds|t','|t16:16:CraftStoreFixedAndImproved/DDS/mmb.dds|t'
@@ -2793,7 +2782,6 @@ BB.AddonList["CraftStoreFixedAndImproved"] = function()
 end
 
 --CrutchAlerts //待翻译//
---1.0.1
 BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false end
     local Crutch = CrutchAlerts
 
@@ -3427,7 +3415,6 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
 return true end
 
 --Descendants Support Set Tracker
---1.0.3
 BB.AddonList["DescendantsSupportSetTracker"] = function() if not DSST then return false end
   local NewOption = {
 		{
@@ -3541,7 +3528,6 @@ BB.AddonList["DescendantsSupportSetTracker"] = function() if not DSST then retur
 return true end
 
 --Display Leads
---42.1
 BB.AddonList["displayleads"] = function() if not RDL then return false end
 --UI
   RDL.ZONENAME_ALLZONES = "所有区域"
@@ -4434,7 +4420,6 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
 return true end
 
 --Dolgubon's Lazy Set (and Furniture!) Crafter
---3.0.4.1
 BB.AddonList["DolgubonsLazySetCrafter"] = function() if not DolgubonSetCrafter then return false end
   DolgubonSetCrafter.localizedStrings.UIStrings.chatRequest      = "聊天发送制作请求"
   DolgubonSetCrafter.localizedStrings.UIStrings.mailRequest      = "邮件发送制造请求"
@@ -4463,7 +4448,6 @@ BB.AddonList["DolgubonsLazySetCrafter"] = function() if not DolgubonSetCrafter t
 return true end
 
 --Dolgubon's Lazy Writ Crafter
---3.1.6.6
 BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then return false end
   local function proper(str)
     if type(str)== "string" then
@@ -5072,7 +5056,6 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
 return true end
 
 --Dressing Room 2018
---0.12.1
 BB.AddonList["DressingRoom"] = function() if not DressingRoom then return false end
   ZO_CreateStringId("SI_BINDING_NAME_DRESSINGROOM_TOGGLE", "显示/隐藏 窗口")
   for i = 1, 12 do
@@ -5169,7 +5152,6 @@ return true end
 --[[ Template 1, "" = folder name
 
 --
---
 BB.AddonList[""] = function() if not  then return false end
 
 return true end
@@ -5178,7 +5160,6 @@ return true end
 
 --[[ Template 2, "" = folder name
 
---
 --
 do if not BB.SV.BanList[""] then
 

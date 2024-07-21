@@ -22,3 +22,5 @@ src/MNOP.lua
 src/QRST.lua
 src/UVWX.lua
 src/YZ.lua
+
+src/AddonsVersion.lua

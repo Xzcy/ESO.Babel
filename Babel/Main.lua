@@ -249,15 +249,17 @@ local function TableOfKey(Table)
 end
 
 local function StatusOfTable(Table)
-  local String = "\r\n"
+  local String = ""
   for i = 1, #Table do
+    local Info = Table[i]
     if BB.SV.BanList[Table[i]] then
-      Table[i] = "|cFF0000"..Table[i].."|r"
+      Info = "|cFF0000"..Table[i].."|r"
+    else
+      if BB.ActiveAddons[Table[i]] then
+        Info = "|c008000"..Table[i].."|r"
+      end
     end
-    if BB.ActiveAddons[Table[i]] then
-      Table[i] = "|c008000"..Table[i].."|r"
-    end
-    String = String..Table[i].."\r\n"
+    String = String.."    "..Info.."|c696969  ~  "..BB.AddonsVersion[Table[i]].."|r\r\n"
   end
   return String
 end
@@ -322,7 +324,7 @@ function BB.BuildMenu()
         },
         {
           type = "description",
-          title = "插件（文件夹名）：已支持 ( "..SupportCount.." 款 ) / |c008000已启用|r / |cFF0000已禁用|r\r\n\r\n  *不推荐在非中文语言下使用Babel，可能造成意外错误|r\r\n\r\n  *部分插件自带的汉化内容无法被Babel禁用",
+          title = "*不推荐在非中文语言下使用Babel，可能造成意外错误\r\n*战斗相关插件较易汉化失败，推荐保持在汉化指定版本\r\n\r\n已支持插件: |cFFD700"..SupportCount.."|r 款\r\n\r\n文件夹名  ~  汉化指定版本   ( |c008000已启用|r / |cFF0000已禁用|r )",
           text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
           width = "full",	
         },
@@ -369,15 +371,20 @@ function BB.TableCopy(Source, Target)
 end
 
 --Confirm the completeness between option table data
+BB.SV.MenuDebug = {}
 function BB.SafeMenuPatch(OldTable, NewTable)
   --Either nil
   if (not OldTable) or (not NewTable) then return false end
   --Check Option Number
-  if #OldTable ~= #NewTable then return false end
+  if #OldTable ~= #NewTable then
+    table.insert(BB.SV.MenuDebug, {"Number", OldTable, NewTable})
+    return false 
+  end
   --Check Option Type
   for i = 1, #OldTable do
     --Check Type
     if OldTable[i]["type"] ~= NewTable[i]["type"] then
+      table.insert(BB.SV.MenuDebug, {"Type", OldTable, NewTable})
       return false
     end
     --Check Sub Options

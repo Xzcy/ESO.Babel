@@ -1,7 +1,6 @@
 local BB = MABabel
 
 --Elm's Markers
---3.1.0
 BB.AddonList["ElmsMarkers"] = function() if not ElmsMarkers then return false end
   local NewOption = {
 		{
@@ -95,7 +94,6 @@ BB.AddonList["ElmsMarkers"] = function() if not ElmsMarkers then return false en
 return true end
 
 --English Tooltips
---1.7.1
 BB.AddonList["EnglishTooltips"] = function() if not EnglishTooltips then return false end
   local Strings = {
     [SI_ENGLISHTOOLTIPS_TOOLTIP_FORMAT] = "弹窗中信息格式",
@@ -151,7 +149,6 @@ BB.AddonList["EnglishTooltips"] = function() if not EnglishTooltips then return 
 return true end
 
 --Furniture Catalogue
---4.83.0
 BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false end
   local filterDisabled = "禁用此过滤器"
   local strings = {
@@ -496,26 +493,7 @@ BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false en
   end
 return true end
 
---GuildDonate
---1.4.11
-BB.AddonList["GuildDonate"] = function() if not GuildDonate then return false end
-  ZO_CreateStringId("GD_DEBUG_LOG",   "显示调试日记")
-  ZO_CreateStringId("GD_AUTO",        "自动向所有公会捐款")
-  ZO_CreateStringId("GD_WEEKLY",      "每周 (从 <<1>> 至 ...)")
-  ZO_CreateStringId("GD_MONDAY",      "周一")
-  ZO_CreateStringId("GD_TUESDAY",     "周二")
-  ZO_CreateStringId("GD_WEDNESDAY",   "周三")
-  ZO_CreateStringId("GD_THURSDAY",    "周四")
-  ZO_CreateStringId("GD_FRIDAY",      "周五")
-  ZO_CreateStringId("GD_SATURDAY",    "周六")
-  ZO_CreateStringId("GD_SUNDAY",      "周日")
-  ZO_CreateStringId("GD_HISTORY",     "历史")
-  ZO_CreateStringId("GD_DATE",        "日期")
-  ZO_CreateStringId("GD_MAX_HISTORY", "历史记录的最大数量")
-return true end
-
 --Guild Hall Button
---2.3.16
 do if not BB.SV.BanList["GuildHallButton"] then
   local function Fun()
     local Strings = {
@@ -646,8 +624,24 @@ BB.AddonList["GuildHallButton"] = function()
   return true
 end
 
+--GuildDonate
+BB.AddonList["GuildDonate"] = function() if not GuildDonate then return false end
+  ZO_CreateStringId("GD_DEBUG_LOG",   "显示调试日记")
+  ZO_CreateStringId("GD_AUTO",        "自动向所有公会捐款")
+  ZO_CreateStringId("GD_WEEKLY",      "每周 (从 <<1>> 至 ...)")
+  ZO_CreateStringId("GD_MONDAY",      "周一")
+  ZO_CreateStringId("GD_TUESDAY",     "周二")
+  ZO_CreateStringId("GD_WEDNESDAY",   "周三")
+  ZO_CreateStringId("GD_THURSDAY",    "周四")
+  ZO_CreateStringId("GD_FRIDAY",      "周五")
+  ZO_CreateStringId("GD_SATURDAY",    "周六")
+  ZO_CreateStringId("GD_SUNDAY",      "周日")
+  ZO_CreateStringId("GD_HISTORY",     "历史")
+  ZO_CreateStringId("GD_DATE",        "日期")
+  ZO_CreateStringId("GD_MAX_HISTORY", "历史记录的最大数量")
+return true end
+
 --Harven's Improved Skills Window
---2.0.8
 BB.AddonList["HarvensImprovedSkillsWindow"] = function()
   BB.SetAfterPart(
     function()
@@ -661,7 +655,6 @@ BB.AddonList["HarvensImprovedSkillsWindow"] = function()
 return false end
 
 --Harvest
---3.15.13
 BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
   Harvest.localizedStrings = {
     -- top level description
@@ -850,7 +843,6 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
 return true end
 
 --HodorReflexes
---2024.05.24
 BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return false end
   local strings = {
     HR_MENU_MISCULTIMATES = "其他终极技能",
@@ -902,7 +894,6 @@ BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return fals
 return true end
 
 --HowToCloudrest
---1.2.2
 BB.AddonList["HowToCloudrest"] = function() if not HowToCloudrest then return false end
   local NewOption = {
 		{
@@ -1496,7 +1487,6 @@ return true end
 --[[ Template 1, "" = folder name
 
 --
---
 BB.AddonList[""] = function() if not  then return false end
 
 return true end
@@ -1505,7 +1495,6 @@ return true end
 
 --[[ Template 2, "" = folder name
 
---
 --
 do if not BB.SV.BanList[""] then
 

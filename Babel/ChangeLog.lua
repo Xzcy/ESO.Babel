@@ -1,9 +1,9 @@
 MABabel.ChangeLog = 
 [[
   2024.07.
-    更新汉化：
-    新增汉化：
-    待办：
+    更新汉化：PersonalAssistant, WPamA
+    新增汉化：LoreBooks, OdySupportIcons, Qcell Dreadsail Reef Helper
+    待办：CrutchAlerts完善, RaidNotifier修正
     
   2024.07.14
     从ESOUI下架，更换发布方式为同步Github仓库
