@@ -2,7 +2,7 @@ MABabel.ChangeLog =
 [[
   2024.07.
     更新汉化：PersonalAssistant, WPamA
-    新增汉化：LoreBooks, OdySupportIcons, Qcell Dreadsail Reef Helper
+    新增汉化：LoreBooks, OdySupportIcons, Qcell Dreadsail Reef Helper, Qcell Rock grove Helper
     待办：CrutchAlerts完善, RaidNotifier修正
     
   2024.07.14

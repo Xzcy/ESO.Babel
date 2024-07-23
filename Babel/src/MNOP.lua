@@ -1968,6 +1968,7 @@ return true end
 
 --PersonalAssistant
 BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then return false end
+  local PAC = PersonalAssistant.Constants
   local strings = {
     --GenericStrings
     SI_PA_SUBMENU_PAB = "PA 银行",
@@ -1975,6 +1976,25 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_SUBMENU_PACO = "PA 消耗品", 
     SI_KEYBINDINGS_CATEGORY_PA_BANKING = "|cFFD700P|rersonal|cFFD700A|rssistant 银行",
     SI_KEYBINDINGS_CATEGORY_PA_JUNK = "|cFFD700P|rersonal|cFFD700A|rssistant 垃圾",
+    --Junk
+      --(2024.07.22-2
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_HEADER = "自动洗白",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER = "在销赃者处自动洗白？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_LOCKPICKS = "自动洗白 开锁器？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_INGREDIENTS = "自动洗白 炼金溶剂？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_MATERIALS = "自动洗白 材料和原材料？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_CRAFTING_BOOSTERS = "自动洗白 品质提升材料？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_ENCHANTING_RUNES = "自动洗白 炼金符文石？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_GLYPHS = "自动洗白 雕文？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_FURNISHING = "自动洗白 家具？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_SOULGEMS = "自动洗白 灵魂石？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_TREASURES = "自动洗白 藏宝图？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_RECIPES = "自动洗白 食谱和家具图纸？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_MOTIFS = "自动洗白 制作样式书？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_EDICTS = "自动洗白 赦免诏书？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_CONTAINERS = "自动洗白 容器？",
+    SI_PA_CHAT_JUNK_AUTO_LAUNDERED = table.concat({PAC.COLOR.ORANGE_RED:Colorize("洗白"), " %d x %s (花费：%s)"}),
+      --2024.07.22-2)
     --Repair
     SI_PA_MENU_REPAIR_REPAIRKIT_GROUP = "使用团队修理包",
     SI_PA_MENU_REPAIR_REPAIRKIT_GROUP_T = "当你组队时进行修理，团队修理包会被优先使用",

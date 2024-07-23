@@ -50,10 +50,11 @@ BB.AddonsVersion = {
   --P
   ["pChat"] =                         "10.0.5.3",
   ["PerfectPixel"] =                  "0.12.19",
-  ["PersonalAssistant"] =             "2024.07.14",
+  ["PersonalAssistant"] =             "2024.07.22-2",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.9.1",
   --Q
+  ["QcellRockgroveHelper"] =          "6.8.2",
   ["QcellDreadsailReefHelper"] =      "2.0.3",
   ["QuestMap"] =                      "3.19",
   --R

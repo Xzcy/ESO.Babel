@@ -2795,7 +2795,6 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       return ids, names
     end
     
-    --此Table中的key值无需翻译,仅需要翻译后两者
     local Prominent = {
       [1051] = { --CR
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
@@ -2832,7 +2831,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       },
       [1263] = { --RG
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥克西尔索（一王）冲锋时，显示突出警告"},
+        ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥西索（一王）冲锋时，显示突出警告"},
       },
       [1427] = { --SE
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
@@ -2846,13 +2845,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
     
       [1082] = { --BRP
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Lava Whip"] = {"Alert Lava Whip", "Shows a prominent alert when an Imperial Dread Knight targets you with Lava Whip"},
+        ["Alert Lava Whip"] = {"熔岩鞭", "当帝国无畏骑士瞄准你释放熔岩鞭时，显示突出警告"},
       },
       [635] = { --DSA
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
-        ["Alert Draining Poison"] = {"Alert Draining Poison", "Shows a prominent alert when a Pacthunter Ranger targets you with Draining Poison. You should dodge to avoid having your resources drained"},
+        ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
+        ["Alert Winter's Reach"] = {"凛冬之触 警告", "当冰法师释放凛冬之触时，显示突出警告"},
+        ["Alert Draining Poison"] = {"汲取资源 警告", "当契约猎手游侠（六层怪）瞄准你释放汲取资源时，显示突出警告。你应该闪避来避免被耗尽资源"},
       },
       [1436] = { --endlessArchive
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
@@ -2860,16 +2859,16 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       },
       [677] = { --MA
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Poison Arrow Spray"] = {"Alert Poison Arrow Spray", "Shows a prominent alert when you get arrow sprayed by an Argonian Venomshot in the Vault of Umbrage and should cleanse the DoT"},
-        ["Alert Volatile Poison"] = {"Alert Volatile Poison", "Shows a prominent alert when you get poisoned by a plant in the Vault of Umbrage and should cleanse the DoT"},
-        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-        ["Alert Teleport Strike"] = {"Alert Teleport Strike", "Shows a prominent alert when a Dremora Kynlurker ambushes you"},
-        ["Alert Soul Tether"] = {"Alert Soul Tether", "Shows a prominent alert when a Dremora Kynlurker casts Soul Tether"},
+        ["Alert Poison Arrow Spray"] = {"剧毒箭矢 警告", "当你在树荫拱顶中被毒箭命中需要解毒时，显示突出警报"},
+        ["Alert Volatile Poison"] = {"暴烈毒素 警告", "当你在树荫拱顶中踩到蘑菇需要解毒时，显示突出警告"},
+        ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
+        ["Alert Teleport Strike"] = {"传送打击 警告", "当夜刃小怪埋伏你时，显示突出警告"},
+        ["Alert Soul Tether"] = {"灵魂束链 警告", "当夜刃小怪释放灵魂束链时，显示突出警告"},
       },
       [1227] = { --VH
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Heat Wave"] = {"Alert Heat Wave", "Shows a prominent alert when a fire mage casts Heat Wave"},
-        ["Alert Winter's Reach"] = {"Alert Winter's Reach", "Shows a prominent alert when an ice mage casts Winter's Reach"},
+        ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
+        ["Alert Winter's Reach"] = {"凛冬之触 警告", "当冰法师释放凛冬之触时，显示突出警告"},
       },
     }
 
@@ -2893,7 +2892,6 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       return Old
     end
   
-    --此Table中，type无需翻译
     local NewTable = {
         {
           type = "checkbox",
@@ -3095,23 +3093,23 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1344, Crutch.GetProminentSettings(1344, {
                 {
                     type = "checkbox",
-                    name = "Alert Building Static stacks",
-                    tooltip = "Displays a prominent alert and ding sound if you reach too many Building Static (lightning) stacks",
+                    name = "警告 电Debuff 层数",
+                    tooltip = "当你身上电Debuff层数过高时，显示突出警告并发生Ding的音效",
                 },
                 {
                     type = "slider",
-                    name = "Building Static stacks threshold",
-                    tooltip = "The minimum number of stacks of Building Static to show alert for",
+                    name = "电Debuff层数阈值",
+                    tooltip = "发出警告的最低层数",
                 },
                 {
                     type = "checkbox",
-                    name = "Alert Volatile Residue stacks",
-                    tooltip = "Displays a prominent alert and ding sound if you reach too many Volatile Residue (poison) stacks",
+                    name = "警告 毒Debuff 层数",
+                    tooltip = "当你身上毒Debuff层数过高时，显示突出警告并发生Ding的音效",
                 },
                 {
                     type = "slider",
-                    name = "Volatile Residue stacks threshold",
-                    tooltip = "The minimum number of stacks of Volatile Residue to show alert for",
+                    name = "毒Debuff层数阈值",
+                    tooltip = "发出警告的最低层数",
                 },
             })),
         },
