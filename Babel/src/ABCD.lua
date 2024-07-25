@@ -2810,24 +2810,24 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       [975] = { --HoF
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Direct Current"] = {"震荡光束 警告", "当顶级机械体（二王）释放可以打断的震荡光束时，显示突出警告"},
-        ["Alert Reclaim the Ruined"] = {"自爆机械 警告", "当重组理事（三王）战斗中生成自爆小怪时，显示突出警告"},
+        ["Alert Reclaim the Ruined"] = {"自爆机械 警告", "当重组理事（四王）战斗中生成自爆小怪时，显示突出警告"},
         ["Alert Stomp"] = {"践踏 警告", "当组装大将军（尾王）释放可格挡的践踏时，显示突出警告"},
       },
       [1196] = { --KA
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Hemorrhage Ended (Tank Only)"] = {"血球爆炸后 警告 (仅对Tank)", "当你是Tank且二楼血球爆炸后，显示突出警告，提醒你嘲讽血球爆炸产生的巨型史莱姆"},
+        ["Alert Hemorrhage Ended (Tank Only)"] = {"血球爆炸后 警告 (仅坦克)", "当你是Tank且二楼血球爆炸后，显示突出警告，提醒你嘲讽血球爆炸产生的巨型史莱姆"},
       },
       [1478] = { --LC
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Darkness Inflicted"] = {"黑暗侵袭 警告", "当你叠加3层蠕动黑暗，获得黑暗侵袭时，显示突出警告"},
-        ["Alert Fate Sealer"] = {"命运封存球体 警告", "当你是Tank且神秘破裂碎片（三王）召唤命运封存球体时，显示突出警告"},
+        ["Alert Darkness Inflicted"] = {"黑暗侵染 警告", "当你叠加3层蠕动黑暗，获得黑暗侵染时，显示突出警告"},
+        ["Alert Fate Sealer"] = {"命运封印者 警告", "当你是Tank且神秘破裂碎片（三王）召唤命运封存球体时，显示突出警告"},
       },
       [725] = { --MoL
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Shattering Strike"] = {"Alert Shattering Strike", "Shows a prominent alert when a Dro-m'Athra Savage targets you to shatter your armor with Shattering Strike"},
-        ["Alert Grip of Lorkhaj"] = {"Alert Grip of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
-        ["Alert Threshing Wings"] = {"Alert Threshing Wings", "Shows a prominent alert when you should block to avoid Rakkhat's knockback"},
-        ["Alert Unstable Void"] = {"Alert Unstable Void", "Shows a prominent alert when you receive Unstable Void and should take the bomb out of group"},
+        ["Alert Shattering Strike"] = {"碎石闪击打击 警告", "当野蛮人小怪瞄准你释放降低护甲的技能时，显示突出警告"},
+        ["Alert Grip of Lorkhaj"] = {"洛克汗之握 警告", "当你被被遗忘的札加萨（一王）诅咒点名时，显示突出警告"},
+        ["Alert Threshing Wings"] = {"翻滚之握 警告", "当你需要用格挡避免拉克哈特（尾王）的击退时，显示突出警告"},
+        ["Alert Unstable Void"] = {"不稳定虚无 警告", "当你被点名不稳定虚无，需要远离队伍处理时，显示突出警告"},
       },
       [1263] = { --RG
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
@@ -2835,14 +2835,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       },
       [1427] = { --SE
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Chain Pull"] = {"Alert Chain Pull", "Shows a prominent alert when Yaseyla chains you and you should break free"},
+        ["Alert Chain Pull"] = {"锁链拉扯 警告", "当大主教亚赛里亚（一王）点名你锁链，需要挣脱时，显示突出警告"},
       },
       [1121] = { --SS
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Shield Charge"] = {"Alert Shield Charge", "Shows a prominent alert when a Ruin of Alkosh targets you with Shield Charge"},
-        ["Alert Sundering Gale"] = {"Alert Sundering Gale", "Shows a prominent alert when the Eternal Servant in the portal targets you with the Sundering Gale cone"},
+        ["Alert Shield Charge"] = {"盾牌冲锋 警告", "当小怪瞄准你释放盾牌冲锋时，显示突出警告"},
+        ["Alert Sundering Gale"] = {"狂风撕裂 警告", "当尾王传送门中Mini对你释放扇形击退AOE时，显示突出警告"},
       },
-    
       [1082] = { --BRP
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Lava Whip"] = {"熔岩鞭", "当帝国无畏骑士瞄准你释放熔岩鞭时，显示突出警告"},
@@ -2855,7 +2854,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       },
       [1436] = { --endlessArchive
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
-        ["Alert Grasp of Lorkhaj"] = {"Alert Grasp of Lorkhaj", "Shows a prominent alert when you are cursed by Zhaj'hassa"},
+        ["Alert Grasp of Lorkhaj"] = {"洛克汗之握 警告", "当你当你被被遗忘的札加萨诅咒点名时，显示突出警告"},
       },
       [677] = { --MA
         ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
@@ -3051,13 +3050,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = {
                 {
                     type = "checkbox",
-                    name = "Play sound for cone on self",
-                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets you",
+                    name = "当亵渎爆破（扇形AOE）点名你时 播放音效",
+                    tooltip = "当洛希斯（一王）点名你释放亵渎爆破（扇形AOE）时，播放音效",
                 },
                 {
                     type = "checkbox",
-                    name = "Play sound for cone on others",
-                    tooltip = "Play a ding sound when Llothis' Defiling Dye Blast targets other players",
+                    name = "当亵渎爆破（扇形AOE）点名其他人时 播放音效",
+                    tooltip = "当洛希斯（一王）点名其他人释放亵渎爆破（扇形AOE）时，播放音效",
                 },
             }
         },
@@ -3078,7 +3077,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 叠火 分组",
-                    tooltip = "当进入泽玛亚斩杀阶段且加火时，显示被点叠火的2人应该去哪一侧(这将与RaidNotifier插件的提示相同)",
+                    tooltip = "当进入泽玛亚斩杀阶段且加火时，显示被点叠火的2人应该去哪侧(这与RaidNotifier插件的提示相同)",
                 },
                 {
                     type = "checkbox",
@@ -3119,21 +3118,21 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(975, Crutch.GetProminentSettings(975, {
                 {
                     type = "checkbox",
-                    name = "Show safe spot for triplets",
-                    tooltip = "In the triplets fight, shows an icon in the world that is outside of Shock Field. Requires OdySupportIcons",
+                    name = "显示重组理事（四王）的安全点",
+                    tooltip = "在重组理事（四王）战斗中，在秒杀护盾外的地方显示图标。需要OdySupportIcons插件",
                 },
                 {
                     type = "slider",
-                    name = "Triplets icon size",
+                    name = "重组理事安全点图标尺寸",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Assembly General icons",
-                    tooltip = "Shows icons in the world for execute positions. Requires OdySupportIcons",
+                    name = "显示组装大将军（尾王）斩杀点位图标",
+                    tooltip = "在地图上显示组装大将军（尾王）斩杀站位图标。需要OdySupportIcons插件",
                 },
                 {
                     type = "slider",
-                    name = "Assembly General icons size",
+                    name = "组装大将军斩杀站位图标尺寸",
                 },
             })),
         },
@@ -3143,22 +3142,22 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1196, Crutch.GetProminentSettings(1196, {
                 {
                     type = "checkbox",
-                    name = "Show Exploding Spear landing spot",
-                    tooltip = "On trash packs with Half-Giant Raiders, show icons at the approximate locations where Exploding Spears will land. Requires OdySupportIcons",
+                    name = "显示 爆炸矛落点",
+                    tooltip = "在存在长枪小怪的战斗中，显示爆炸矛AOE大致的落点。需要OdySupportIcons插件。",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Blood Prison icon",
-                    tooltip = "Shows icon above player who is targeted by Blood Prison, slightly before the bubble even shows up. Requires OdySupportIcons",
+                    name = "显示 血牢图标",
+                    tooltip = "在被点名血牢的玩家头上显示图标，该提示可早于特效。需要OdySupportIcons插件。",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Falgravn 2nd floor DPS stacks",
-                    tooltip = "In the Falgravn fight, shows 1~4 DPS in the world for stacks. Requires OdySupportIcons",
+                    name = "显示 法格拉文领主（尾王） 2楼DD站位图标",
+                    tooltip = "在法格拉文领主（尾王）战斗中，显示DD重叠站位的图标。需要OdySupportIcons插件。",
                 },
                 {
                     type = "slider",
-                    name = "Falgravn icon size",
+                    name = "法格拉文领主 DD重叠站位图标尺寸",
                 },
             })),
         },
@@ -3168,38 +3167,39 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478, {
                 {
                     type = "checkbox",
-                    name = "Show Orphic Shattered Shard mirror icons",
-                    tooltip = "Shows icons for each mirror on the Orphic Shattered Shard fight. Requires OdySupportIcons",
+                    name = "显示 神秘破裂碎片（三王） 镜子图标",
+                    tooltip = "在神秘破裂碎片（三王）战斗中，为每面镜子显示图标",
                 },
                 {
                     type = "checkbox",
-                    name = "    Orphic numbered icons",
-                    tooltip = "Uses numbers 1~8 instead of cardinal directions N/SW/etc. for the mirror icons",
+                    name = "    数字图标",
+                    tooltip = "为镜子使用1~8进行标记显示，而不是方位",
                 },
                 {
                     type = "slider",
-                    name = "Orphic icon size",
-                    tooltip = "The size of the mirror icons",
+                    name = "镜子图标尺寸",
+                    tooltip = "镜子图标尺寸",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Arcane Knot timer",
-                    tooltip = "Shows an \"alert\" timer for the currently held Arcane Knot",
+                    name = "显示 奥术结 计时器",
+                    tooltip = "为当前持有奥术结的玩家，显示警告计时器",
                 },
                 {
                     type = "dropdown",
-                    name = "Show Weakening Charge timer",
-                    tooltip = "Shows an \"alert\" timer for Weakening Charge. If set to \"Tank Only\" it will display only if your LFG role is tank",
+                    name = "显示 冲锋易伤（换T） 计时器",
+                    tooltip = "在佐林（尾王）战斗中，为附带易伤的冲锋重击显示警告计时器。如果设置为'仅坦克'，只有在你职能是坦克时才显示。",
+                    choices = {"从不", "仅坦克", "总是"},
                 },
                 {
                     type = "checkbox",
-                    name = "Show Xoryn Tempest position icons",
-                    tooltip = "Shows icons for group member positions on the Xoryn fight for Tempest (and at the beginning of the trial, for practice purposes). Requires OdySupportIcons",
+                    name = "显示 佐林（尾王）线条AOE 站位图标",
+                    tooltip = "在佐林（尾王）战斗中，为小队成员站位显示图标（也会在试炼开始时显示，以用于练习）。需要OdySupportIcons插件。",
                 },
                 {
                     type = "slider",
-                    name = "Xoryn Tempest icon size",
-                    tooltip = "The size of the Tempest icons",
+                    name = "佐林线条AOE图标尺寸",
+                    tooltip = "佐林线条AOE图标尺寸",
                 },
             })),
         },
@@ -3209,13 +3209,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(725, Crutch.GetProminentSettings(725, {
                 {
                     type = "checkbox",
-                    name = "Show Zhaj'hassa cleanse pad cooldowns",
-                    tooltip = "In the Zhaj'hassa fight, shows tiles with cooldown timers for 25 seconds (veteran)",
+                    name = "显示 净化地板 冷却",
+                    tooltip = "在被遗忘的札加萨（一王）老兵难度战斗中，显示净化地板的冷却情况（25秒）",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Twins Color Swap",
-                    tooltip = "In the twins fight, shows a prominent alert when you receive Shadow/Lunar Conversion",
+                    name = "显示 双子变色机制",
+                    tooltip = "在瓦沙艾和斯金莱（二王）战斗中，如果你被点名变色则显示突出警告",
                 },
             })),
         },
@@ -3225,8 +3225,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, {
                 {
                     type = "checkbox",
-                    name = "Show Noxious Sludge sides",
-                    tooltip = "Displays who should go left and who should go right for Noxious Sludge, matching Qcell's Rockgrove Helper",
+                    name = "显示 毒点名玩家 处理方位",
+                    tooltip = "在奥西索（一王）战斗中，显示毒点名的玩家应该去哪侧解毒。该提示与Qcell's Rockgrove Helper插件的结果相同。",
                 },
             })),
         },
@@ -3236,12 +3236,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1427, Crutch.GetProminentSettings(1427, {
                 {
                     type = "checkbox",
-                    name = "Show center of Ansuul arena",
-                    tooltip = "In the Ansuul fight, shows an icon in the world on the center of the arena. Requires OdySupportIcons",
+                    name = "标记安苏尔（尾王）场地的中央",
+                    tooltip = "在折磨者安苏尔（尾王）战斗中，在场地中央显示图表。需要OdySupportIcons插件",
                 },
                 {
                     type = "slider",
-                    name = "Ansuul icon size",
+                    name = "安苏尔场地图标尺寸",
                 },
             })),
         },
@@ -3251,32 +3251,32 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1121, Crutch.GetProminentSettings(1121, {
                 {
                     type = "checkbox",
-                    name = "Show Lokkestiiz HM beam position icons",
-                    tooltip = "During flight phase on Lokkestiiz hardmode, shows 1~8 DPS and 2 healer positions in the world for Storm Fury. Requires OdySupportIcons",
+                    name = "显示 洛克斯提兹（一王）HM模式光束AOE 站位图标",
+                    tooltip = "在洛克斯提兹（一王）HM模式战斗中，显示8个DD和2个H的防重叠站位图标。需要OdySupportIcons插件。",
                 },
                 {
                     type = "checkbox",
-                    name = "    Lokkestiiz solo heal icons",
-                    tooltip = "Use solo healer positions for the Lokkestiiz hardmode icons. This is for 9 damage dealers and 1 healer. If you change this option while at the Lokkestiiz fight, the new icons will show up the next time icons are displayed",
+                    name = "    洛克斯提兹（一王）单奶图标",
+                    tooltip = "在洛克斯提兹（一王）HM模式战斗中使用单奶站位图标，显示9个DD和1个H的站位图标。如果在与洛克斯提兹战斗中修改该选项，将在下次图标显示时，才会更新图标。",
                 },
                 {
                     type = "slider",
-                    name = "Lokkestiiz HM icon size",
-                    tooltip = "Updated size will show after the icons are hidden and shown again",
+                    name = "洛克斯提兹HM图标尺寸",
+                    tooltip = "在图标隐藏后再次显示时，才会更新图标尺寸",
                 },
                 {
                     type = "checkbox",
-                    name = "Show Yolnahkriin position icons",
-                    tooltip = "During flight phase on Yolnahkriin, shows icons in the world for where the next head stack and (right) wing stack will be when Yolnahkriin lands. Requires OdySupportIcons",
+                    name = "显示 尤尔纳克林（二王）站位图标",
+                    tooltip = "在尤尔纳克林（二王）战斗中，显示尤尔纳克林降落时头部和右翅膀位置图标。需要OdySupportIcons插件。",
                 },
                 {
                     type = "checkbox",
-                    name = "    Yolnahkriin left position icons",
-                    tooltip = "Use left icons instead of right icons during flight phase on Yolnahkriin",
+                    name = "    尤尔纳克林（二王）左侧站位图标",
+                    tooltip = "在尤尔纳克林（二王）战斗中，使用左侧图标代替右侧图标。",
                 },
                 {
                     type = "slider",
-                    name = "Yolnahkriin icon size",
+                    name = "尤尔纳克林图标尺寸",
                 },
             })),
         },
@@ -3307,13 +3307,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1436, Crutch.GetProminentSettings(1436, {
                 {
                     type = "checkbox",
-                    name = "Auto mark Fabled",
-                    tooltip = "When your reticle passes over Fabled enemies, automatically marks them with basegame target markers to make them easier to focus. It may sometimes mark incorrectly if you move too quickly and particularly if an NPC or your group member walks in front, but is otherwise mostly accurate",
+                    name = "自动标记 传奇者",
+                    tooltip = "当你准星扫过传奇者小怪时，自动使用游戏基础图标标记他们。在你移动过快，或有NPC和队友从你面前走过时，有小概率发生标记错误。",
                 },
                 {
                     type = "checkbox",
-                    name = "Auto mark Negate casters",
-                    tooltip = "The same as auto marking Fabled above, but for enemies that can cast Negate Magic (Silver Rose Stormcaster, Dro-m'Athra Conduit, Dremora Conduit). They only cast Negate when you are close enough to them",
+                    name = "自动标记 沉默 施法者",
+                    tooltip = "和上者类似，不过标记可以释放沉默的小怪。它们会在你距离足够近的时候，释放沉默（术士终极技能同款）",
                 },
             })),
         },
@@ -3385,7 +3385,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示丢失的附加分数",
-                    tooltip = "Works only in veteran, and should be used only if going for score. Skipped adds may be inaccurate if you skip entire pulls. The missed adds detection assumes that you do the secret blue side pull before the final blue side pull prior to Iozuzzunth",
+                    tooltip = "仅在老兵难度中起效，且只推荐用于刷分。如果你跳过整组战斗，跳过的追加怪将不准确。",
                 },
             })),
         },
@@ -3400,8 +3400,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = {
                 {
                     type = "checkbox",
-                    name = "Suggest stacks for Soul Bomb",
-                    tooltip = "Displays a notification for suggested person to stack on for Soul Bomb on Foreman Bradiggan hardmode when there are 2 bombs. If OdySupportIcons is enabled, also shows an icon above that person's head. The suggested stack is alphabetical based on @ name",
+                    name = "灵魂炸弹分摊提示",
+                    tooltip = "在工头布拉迪干（一王）HM模式战斗中，当出现2个灵魂炸弹（分摊）点名时，显示推荐的分摊队友。如果有OdySupportIcons插件，则会在对应玩家头上显示标记。该提示按用户名进行分摊选择。",
                 },
             }
         },

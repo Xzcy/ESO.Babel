@@ -5,7 +5,7 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.5",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.1.4",
+  ["AutoCategory"] =                  "4.1.5",
   --B
   ["BeamMeUp"] =                      "3.5.6",
   ["BanditsUserInterface"] =          "4.418",
@@ -60,6 +60,8 @@ BB.AddonsVersion = {
   --R
   ["RaidNotifier"] =                  "2.28.1",
   --S
+  ["SanitysEdgeHelper"] =             "1.2.3",
+  ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.36",
   --T
   ["TamrielTradeCentre"] =            "4.19.943.18329",
