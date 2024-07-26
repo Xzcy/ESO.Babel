@@ -1,7 +1,6 @@
 local BB = MABabel
 
 --Untaunted
---1.1.5
 BB.AddonList["Untaunted"] = function() if not Untaunted then return false end
   local strings = {
     -- Menu --
@@ -42,7 +41,6 @@ BB.AddonList["Untaunted"] = function() if not Untaunted then return false end
 return true end
 
 --Votan's Fisherman
---1.16.0
 BB.AddonList["VotansFisherman"] = function() if not VOTANS_FISHERMAN then return false end
   local Strings = {
     [SI_FISHERMAN_SETTING_PIN_LEVEL] = "图标图层优先度",
@@ -123,14 +121,12 @@ BB.AddonList["VotansFisherman"] = function() if not VOTANS_FISHERMAN then return
 return true end
 
 --Votan's Keybinder
---1.4.5
 BB.AddonList["VotansKeybinder"] = function() if not SI_VOTANS_KEYBINDER_ACCOUNTWIDE then return false end
   ZO_CreateStringId("SI_VOTANS_KEYBINDER_ACCOUNTWIDE", "全账户角色共享键位设置")
   ZO_CreateStringId("SI_VOTANS_KEYBINDER_TOGGLE", "（取消）全选")
 return true end
 
 --Votan's Minimap
---2.0.7
 BB.AddonList["VotansMiniMap"] = function() if not VOTANS_MINIMAP then return false end
   ZO_CreateStringId("SI_KEYBINDINGS_CATEGORY_VOTANS_MINIMAP", "小地图")
   ZO_CreateStringId("SI_BINDING_NAME_VOTANS_TOGGLE_MAP_SHOW", "切换显示地图")
@@ -232,7 +228,6 @@ BB.AddonList["VotansMiniMap"] = function() if not VOTANS_MINIMAP then return fal
 return true end
 
 --Votan's Map Pin Colors
---1.2.3
 BB.AddonList["VotansMapPinColors"] = function() if not SI_VOTANS_MAPPIN_COLORS_SHOW_PLAYER_PIN then return false end
   ZO_CreateStringId("SI_VOTANS_MAPPIN_COLORS_PREFER_ASSISTED", "可重复任务使用聚焦颜色")
   ZO_CreateStringId("SI_VOTANS_MAPPIN_COLORS_PREFER_ASSISTED_TOOLTIP", "将选中的可重复任务的颜色切换为聚焦颜色")
@@ -243,7 +238,6 @@ BB.AddonList["VotansMapPinColors"] = function() if not SI_VOTANS_MAPPIN_COLORS_S
 return true end
 
 --Wizard's Wardrobe
---1.18.3
 BB.AddonList["WizardsWardrobe"] = function() if not WizardsWardrobe then return false end
   local Strings = {
     SI_BINDING_NAME_WW_HOTKEY_SETUP_CURRENT = "重新加载当前设置",
@@ -315,7 +309,6 @@ BB.AddonList["WizardsWardrobe"] = function() if not WizardsWardrobe then return 
 return true end
 
 --WPamA
---2.4.2
 BB.AddonList["WPamA"] = function() if not WPamA then return false end
   local Icon = WPamA.Consts.IconsW
   local OpenWindowText = GetString(SI_ENTER_CODE_CONFIRM_BUTTON)
@@ -541,8 +534,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptDontShowNone = "显示空白而非“无”",
     OptDontShowReady = "\"Ready\"显示空白而非“无”",
     OptTitleToolTip = "为窗口标题显示提示框",
-    OptLargeCalend  = "显示2周的誓约日历",
-    OptLargeCalendF = "启用后,誓约日历显示15天,否则显示8天。",
+    OptLargeCalend  = "誓约日历显示的天数",
+    OptLargeCalendF = "选择在誓约日历界面显示多少天的信息",
     OptDateFrmt  = "日期格式",
     OptDateFrmtF = "选择日历窗口中显示的日期格式",
     OptShowTime  = "同时显示时间",
@@ -564,6 +557,13 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptCorrLongNames = "修改长名称的显示方式",
     OptNamesCorrList = {"默认", "字体大小", "裁切中间", "文本掩码"},
     OptNamesCorrRepl = {"在名称中查找此文本", "并替换为此文本"},
+    OptCurrencyValThres = "将货币数值四舍五入到...",
+    OptCurrencyValThresF = table.concat(
+                         { "将货币数值四舍五入到什么单位\n",
+                           GetString(SI_GAMEPAD_CURRENCY_SELECTOR_HUNDREDS_NARRATION),      " : 123 K\n",
+                           GetString(SI_GAMEPAD_CURRENCY_SELECTOR_THOUSANDS_NARRATION),     " : 1234 K\n",
+                           GetString(SI_GAMEPAD_CURRENCY_SELECTOR_TEN_THOUSANDS_NARRATION), " : 12345 K"
+                         } ),
     OptCompanionRapport = "伙伴默契度显示模式...",
     OptCompanionRprtList = {"数字", "文本"},
     OptCompanionRprtMax = "同时显示最大值",
@@ -1200,7 +1200,6 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
 return true end
 
 --WritWorthy
---7.4.8
 BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   WritWorthy.I18N['static']['zh'] = {
       ["ags_label"                             ] = "WritWorthy 每张委托券花费"
@@ -1365,7 +1364,6 @@ return true end
 --[[ Template 1, "" = folder name
 
 --
---
 BB.AddonList[""] = function() if not  then return false end
 
 return true end
@@ -1374,7 +1372,6 @@ return true end
 
 --[[ Template 2, "" = folder name
 
---
 --
 do if not BB.SV.BanList[""] then
 
