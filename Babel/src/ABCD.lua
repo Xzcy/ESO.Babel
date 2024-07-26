@@ -2781,7 +2781,7 @@ BB.AddonList["CraftStoreFixedAndImproved"] = function()
   return true 
 end
 
---CrutchAlerts //待翻译//
+--CrutchAlerts
 BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false end
     local Crutch = CrutchAlerts
 

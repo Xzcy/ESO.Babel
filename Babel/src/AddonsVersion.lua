@@ -42,6 +42,7 @@ BB.AddonsVersion = {
   --L
   ["LibAddonMenu-2.0"] =              "2.0 r37",
   ["LoreBooks"] =                     "83",
+  ["LucentCitadelHelper"] =           "0.5.5",
   --M
   ["MasterMerchant"] =                "3.8.08",
   --N
@@ -59,6 +60,7 @@ BB.AddonsVersion = {
   ["QuestMap"] =                      "3.19",
   --R
   ["RaidNotifier"] =                  "2.28.1",
+  ["RdKGroupTool"] =                  "2.0.44",
   --S
   ["SanitysEdgeHelper"] =             "1.2.3",
   ["SlightlyImprovedExperienceBar"] = "3.0.1",

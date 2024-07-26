@@ -1,9 +1,10 @@
 MABabel.ChangeLog = 
 [[
   2024.07.26
-    支持插件：46 → 52款
+    支持插件：46 → 54款
     修正汉化：PersonalAssistant, WPamA, CrutchAlerts
-    新增汉化：LoreBooks, OdySupportIcons, Qcell Dreadsail Reef Helper, Qcell Rock grove Helper, SanitysEdgeHelper, RDK Group Tool
+    新增汉化：LoreBooks, OdySupportIcons, Qcell Dreadsail Reef Helper, Qcell Rock grove Helper, SanitysEdgeHelper, RDK Group Tool, Lucent Citadel Helper, Slightly Improved™ Experience Bar
+    待办：RDK Group Tool完善翻译
     |cFFA500插件版本需求|r：CrutchAlerts 1.0.0 → 1.2.0
     
   2024.07.14
