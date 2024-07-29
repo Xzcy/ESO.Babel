@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2024.08.
+    修正汉化：CrutchAlerts
+    待办：
+    |cFFA500插件版本需求|r：CrutchAlerts 1.2.0 → 1.3.1
+    
   2024.07.26
     支持插件：46 → 54款
     修正汉化：PersonalAssistant, WPamA, CrutchAlerts

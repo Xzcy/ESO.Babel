@@ -3186,6 +3186,16 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "为当前持有奥术结的玩家，显示警告计时器",
                 },
                 {
+                    type = "checkbox",
+                    name = "显示 奥术传送 图标",
+                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头上显示图标。需要 OdySupportIcons 插件",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 奥术传送连线",
+                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头顶显示连线的图标",
+                },
+                {
                     type = "dropdown",
                     name = "显示 冲锋易伤（换T） 计时器",
                     tooltip = "在佐林（尾王）战斗中，为附带易伤的冲锋重击显示警告计时器。如果设置为'仅坦克'，只有在你职能是坦克时才显示。",
