@@ -5,7 +5,7 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.5",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.1.7",
+  ["AutoCategory"] =                  "4.1.8",
   --B
   ["BeamMeUp"] =                      "3.5.6",
   ["BanditsUserInterface"] =          "4.418",
