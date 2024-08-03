@@ -1,8 +1,10 @@
 MABabel.ChangeLog = 
 [[
   2024.08.
+    支持插件：54 → 55款
+    新增汉化：Fancy Action Bar+
     修正汉化：CrutchAlerts
-    待办：
+    待办：RDK Group Tool完善翻译
     |cFFA500插件版本需求|r：CrutchAlerts 1.2.0 → 1.3.1
     
   2024.07.26

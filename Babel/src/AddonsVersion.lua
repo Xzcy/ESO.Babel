@@ -5,7 +5,7 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.5",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.1.8",
+  ["AutoCategory"] =                  "4.1.9",
   --B
   ["BeamMeUp"] =                      "3.5.6",
   ["BanditsUserInterface"] =          "4.418",
@@ -26,6 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
+  ["FancyActionBar+"] =               "2.6.7",
   ["FurnitureCatalogue"] =            "4.83.1",
   --G
   ["GuildHallButton"] =               "2.3.16",
