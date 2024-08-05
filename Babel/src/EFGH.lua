@@ -465,13 +465,18 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                   tooltip = "选择字体显示的样式";
                 },
                 {
+                  type = "colorpicker";
+                  name = "层数颜色";
+                },
+                {
                   type = "slider";
-                  name = "调整层数位置";
+                  name = "横向移动";
                   tooltip = "移动层数 [<- 左] 或 [右 ->]";
                 },
                 {
-                  type = "colorpicker";
-                  name = "层数颜色";
+                  type = "slider";
+                  name = "纵向移动";
+                  tooltip = "移动层数 [<- 上] 或 [下 ->]";
                 },
               };
             },
@@ -496,13 +501,18 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                   tooltip = "选择字体显示的样式";
                 },
                 {
+                  type = "colorpicker";
+                  name = "目标颜色";
+                },
+                {
                   type = "slider";
-                  name = "调整目标位置";
+                  name = "横向移动";
                   tooltip = "移动目标 [<- 左] 或 [右 ->]";
                 },
                 {
-                  type = "colorpicker";
-                  name = "目标颜色";
+                  type = "slider";
+                  name = "纵向移动";
+                  tooltip = "移动层数 [<- 上] 或 [下 ->]";
                 },
               };
             },
@@ -734,8 +744,13 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                 },
                 {
                   type = "slider";
-                  name = "调整层数位置";
+                  name = "横向移动";
                   tooltip = "移动层数 [<- 左] 或 [右 ->]";
+                },
+                {
+                  type = "slider";
+                  name = "纵向移动";
+                  tooltip = "移动层数 [<- 上] 或 [下 ->]";
                 },
                 {
                   type = "colorpicker";
@@ -765,8 +780,13 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                 },
                 {
                   type = "slider";
-                  name = "调整目标位置";
+                  name = "横向移动";
                   tooltip = "移动目标 [<- 左] 或 [右 ->]";
+                },
+                {
+                  type = "slider";
+                  name = "纵向移动";
+                  tooltip = "移动目标 [<- 上] or [下 ->]";
                 },
                 {
                   type = "colorpicker";
