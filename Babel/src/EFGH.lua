@@ -182,7 +182,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
         },
         {
           type = "checkbox";
-          name = "启用 技能栏重定位";
+          name = "启用 技能栏重定位（键盘）";
         },
         { type = "divider" },
         {
@@ -197,16 +197,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "slider";
           name = "技能栏尺寸";
         },
-        { type = "divider" },
         {
           type = "checkbox";
-          name = "启用 技能栏重定位";
+          name = "启用 技能栏重定位（手柄）";
         },
         { type = "divider" },
-        {
-          type = "button";
-          tooltip = "解锁/锁定 技能栏位置";
-        },
         { type = "divider" },
         {
           type = "description";
