@@ -15,7 +15,7 @@ BB.AddonsVersion = {
   ["CombatMetrics"] =                 "1.5.16",
   ["CombatMetronome"] =               "1.6.6",
   ["CraftStoreFixedAndImproved"] =    "2.9.3",
-  ["CrutchAlerts"] =                  "1.3.1",
+  ["CrutchAlerts"] =                  "1.3.2",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -26,7 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.6.9",
+  ["FancyActionBar+"] =               "2.6.9.1",
   ["FurnitureCatalogue"] =            "4.83.1",
   --G
   ["GuildHallButton"] =               "2.3.16",

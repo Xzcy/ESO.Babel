@@ -2797,67 +2797,67 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
     
     local Prominent = {
       [1051] = { --CR
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Direct Current"] = {"震荡光束 警告", "瑞丽昆恩（电）释放可打断的震荡光束时，显示突出警报"},
         ["Alert Glacial Spikes"] = {"冰爆 警告", "加伦韦（冰）释放可打断的冰爆时，显示突出警报"},
         ["Alert Creeper Spawn"] = {"藤蔓生成 警告", "藤蔓生成时，显示突出警报"},
         ["Alert Grievous Retaliation"] = {"队友影子 警告", "当你尝试救一个影子还存在的玩家时，显示突出警报"},
       },
       [1344] = { --DSR
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Cascading Boot"] = {"冰踢 警告", "当监管者使用冰踢攻击（击退）你时，显示突出警报"},
       },
       [975] = { --HoF
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Direct Current"] = {"震荡光束 警告", "当顶级机械体（二王）释放可以打断的震荡光束时，显示突出警告"},
         ["Alert Reclaim the Ruined"] = {"自爆机械 警告", "当重组理事（四王）战斗中生成自爆小怪时，显示突出警告"},
         ["Alert Stomp"] = {"践踏 警告", "当组装大将军（尾王）释放可格挡的践踏时，显示突出警告"},
       },
       [1196] = { --KA
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Hemorrhage Ended (Tank Only)"] = {"血球爆炸后 警告 (仅坦克)", "当你是Tank且二楼血球爆炸后，显示突出警告，提醒你嘲讽血球爆炸产生的巨型史莱姆"},
       },
       [1478] = { --LC
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Darkness Inflicted"] = {"黑暗侵染 警告", "当你叠加3层蠕动黑暗，获得黑暗侵染时，显示突出警告"},
         ["Alert Fate Sealer"] = {"命运封印者 警告", "当你是Tank且神秘破裂碎片（三王）召唤命运封存球体时，显示突出警告"},
       },
       [725] = { --MoL
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Shattering Strike"] = {"碎石闪击打击 警告", "当野蛮人小怪瞄准你释放降低护甲的技能时，显示突出警告"},
         ["Alert Grip of Lorkhaj"] = {"洛克汗之握 警告", "当你被被遗忘的札加萨（一王）诅咒点名时，显示突出警告"},
         ["Alert Threshing Wings"] = {"翻滚之握 警告", "当你需要用格挡避免拉克哈特（尾王）的击退时，显示突出警告"},
         ["Alert Unstable Void"] = {"不稳定虚无 警告", "当你被点名不稳定虚无，需要远离队伍处理时，显示突出警告"},
       },
       [1263] = { --RG
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥西索（一王）冲锋时，显示突出警告"},
       },
       [1427] = { --SE
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Chain Pull"] = {"锁链拉扯 警告", "当大主教亚赛里亚（一王）点名你锁链，需要挣脱时，显示突出警告"},
       },
       [1121] = { --SS
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Shield Charge"] = {"盾牌冲锋 警告", "当小怪瞄准你释放盾牌冲锋时，显示突出警告"},
         ["Alert Sundering Gale"] = {"狂风撕裂 警告", "当尾王传送门中Mini对你释放扇形击退AOE时，显示突出警告"},
       },
       [1082] = { --BRP
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Lava Whip"] = {"熔岩鞭", "当帝国无畏骑士瞄准你释放熔岩鞭时，显示突出警告"},
       },
       [635] = { --DSA
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
         ["Alert Winter's Reach"] = {"凛冬之触 警告", "当冰法师释放凛冬之触时，显示突出警告"},
         ["Alert Draining Poison"] = {"汲取资源 警告", "当契约猎手游侠（六层怪）瞄准你释放汲取资源时，显示突出警告。你应该闪避来避免被耗尽资源"},
       },
       [1436] = { --endlessArchive
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Grasp of Lorkhaj"] = {"洛克汗之握 警告", "当你当你被被遗忘的札加萨诅咒点名时，显示突出警告"},
       },
       [677] = { --MA
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Poison Arrow Spray"] = {"剧毒箭矢 警告", "当你在树荫拱顶中被毒箭命中需要解毒时，显示突出警报"},
         ["Alert Volatile Poison"] = {"暴烈毒素 警告", "当你在树荫拱顶中踩到蘑菇需要解毒时，显示突出警告"},
         ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
@@ -2865,29 +2865,71 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         ["Alert Soul Tether"] = {"灵魂束链 警告", "当夜刃小怪释放灵魂束链时，显示突出警告"},
       },
       [1227] = { --VH
-        ["Prominent Alerts"] = {"强烈警告", "以下警告具有强烈的视觉和音效提示"},
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Heat Wave"] = {"热力波 警告", "当火法师释放热力波时，显示突出警告"},
         ["Alert Winter's Reach"] = {"凛冬之触 警告", "当冰法师释放凛冬之触时，显示突出警告"},
       },
     }
-
+    
+    local Effect = {
+      [1051] = { --Cloudrest
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Hoarfrost Timer"] = {"显示 冰风 计时器", "显示一个\"警告\"计时器，当冰风将要杀死你时（老兵难度中）"},
+        ["Show Voltaic Overload Timer"] = {"显示 超载 计时器", "显示一个\"警告\"计时器，当处于超载不应切手时"},
+      },
+      [1478] = { --Lucent Citadel
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Fate Sealer Timer"] = {"显示 命运封印者 计时器", "显示一个\"警告\"计时器，当命运封印球体开始攻击"},
+        ["Show Arcane Knot Timer"] = {"显示 奥术结 计时器", "显示一个\"警告\"计时器，为当前奥术结的持有时间"},
+      },
+      [725] = { --Maw of Lorkhaj
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Shattered Timer"] = {"显示 碎石 计时器", "显示一个\"警告\"计时器，当你的护甲被碎石闪击降低"},
+      },
+    }
+    
     local function ReplaceProminent(ID, Old)
-      local New = Prominent[ID]
+      --Replace Effect
+      local New = Effect[ID]
       local Start = false
-      for i = 1, #Old do
-        if Start then
-          if Old[i].name and New[Old[i].name] then
-            Old[i].tooltip = New[Old[i].name][2]
-            Old[i].name = New[Old[i].name][1]
-          end
-        else
-          if Old[i].title and New[Old[i].title] then
-            Old[i].text = New[Old[i].title][2]
-            Old[i].title = New[Old[i].title][1]
-            Start = true
+      if New then
+        for i = 1, #Old do
+          if Start then
+            if Old[i].name and New[Old[i].name] then
+              Old[i].tooltip = New[Old[i].name][2]
+              Old[i].name = New[Old[i].name][1]
+            end
+          else
+            if Old[i].title and New[Old[i].title] then
+              Old[i].text = New[Old[i].title][2]
+              Old[i].title = New[Old[i].title][1]
+              Start = true
+            end
           end
         end
       end
+      
+      --Replace Prominent
+      New = Prominent[ID]
+      Start = false
+      if New then
+        for i = 1, #Old do
+          if Start then
+            if Old[i].name and New[Old[i].name] then
+              Old[i].tooltip = New[Old[i].name][2]
+              Old[i].name = New[Old[i].name][1]
+            end
+          else
+            if Old[i].title and New[Old[i].title] then
+              Old[i].text = New[Old[i].title][2]
+              Old[i].title = New[Old[i].title][1]
+              Start = true
+            end
+          end
+        end
+      end
+      
+      --Return Results
       return Old
     end
   
@@ -3063,7 +3105,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "云息城(CR)",
-            controls = ReplaceProminent(1051, Crutch.GetProminentSettings(1051, {
+            controls = ReplaceProminent(1051, Crutch.GetProminentSettings(1051, Crutch.GetEffectSettings(1051, {
                 {
                     type = "checkbox",
                     name = "显示 矛机制 指示器",
@@ -3084,7 +3126,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "染色Ody死亡图标",
                     tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其Ody死亡图标染为紫色",
                 },
-            })),
+            }))),
         },
         {
             type = "submenu",
@@ -3164,7 +3206,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "卢晶堡垒(LC)",
-            controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478, {
+            controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478,  Crutch.GetEffectSettings(1478, {
                 {
                     type = "checkbox",
                     name = "显示 神秘破裂碎片（三王） 镜子图标",
@@ -3179,11 +3221,6 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "slider",
                     name = "镜子图标尺寸",
                     tooltip = "镜子图标尺寸",
-                },
-                {
-                    type = "checkbox",
-                    name = "显示 奥术结 计时器",
-                    tooltip = "为当前持有奥术结的玩家，显示警告计时器",
                 },
                 {
                     type = "checkbox",
@@ -3211,12 +3248,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "佐林线条AOE图标尺寸",
                     tooltip = "佐林线条AOE图标尺寸",
                 },
-            })),
+            }))),
         },
         {
             type = "submenu",
             name = "洛克汗的巨口(MoL)",
-            controls = ReplaceProminent(725, Crutch.GetProminentSettings(725, {
+            controls = ReplaceProminent(725, Crutch.GetProminentSettings(725, Crutch.GetEffectSettings(725, {
                 {
                     type = "checkbox",
                     name = "显示 净化地板 冷却",
@@ -3227,7 +3264,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "显示 双子变色机制",
                     tooltip = "在瓦沙艾和斯金莱（二王）战斗中，如果你被点名变色则显示突出警告",
                 },
-            })),
+            }))),
         },
         {
             type = "submenu",
