@@ -5,7 +5,7 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.5",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.1.5",
+  ["AutoCategory"] =                  "4.1.9",
   --B
   ["BeamMeUp"] =                      "3.5.6",
   ["BanditsUserInterface"] =          "4.418",
@@ -15,7 +15,7 @@ BB.AddonsVersion = {
   ["CombatMetrics"] =                 "1.5.16",
   ["CombatMetronome"] =               "1.6.6",
   ["CraftStoreFixedAndImproved"] =    "2.9.3",
-  ["CrutchAlerts"] =                  "1.2.0",
+  ["CrutchAlerts"] =                  "1.3.2",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -26,12 +26,13 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FurnitureCatalogue"] =            "4.83.0",
+  ["FancyActionBar+"] =               "2.7.0.1",
+  ["FurnitureCatalogue"] =            "4.83.1",
   --G
   ["GuildHallButton"] =               "2.3.16",
   ["GuildDonate"] =                   "1.4.11",
   --H
-  ["HarvensImprovedSkillsWindow"] =   "2.0.8",
+  ["HarvensImprovedSkillsWindow"] =   "2.0.9",
   ["HarvestMap"] =                    "3.15.13",
   ["HodorReflexes"] =                 "2024.07.08",
   ["HowToCloudrest"] =                "1.2.2",
@@ -42,7 +43,7 @@ BB.AddonsVersion = {
   --L
   ["LibAddonMenu-2.0"] =              "2.0 r37",
   ["LoreBooks"] =                     "83",
-  ["LucentCitadelHelper"] =           "0.5.5",
+  ["LucentCitadelHelper"] =           "0.5.6",
   --M
   ["MasterMerchant"] =                "3.8.08",
   --N
