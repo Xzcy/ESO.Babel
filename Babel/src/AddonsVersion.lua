@@ -26,7 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.6.9.1",
+  ["FancyActionBar+"] =               "2.7.0.1",
   ["FurnitureCatalogue"] =            "4.83.1",
   --G
   ["GuildHallButton"] =               "2.3.16",

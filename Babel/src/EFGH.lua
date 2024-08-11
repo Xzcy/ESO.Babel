@@ -367,6 +367,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "调整快捷栏摆放";
           tooltip = "当隐藏指针时，使快捷栏更靠近技能栏\n在手柄模式下，还会移动终极技位置（如果|cff6600隐藏|r了终极技的快捷键）";
         },
+        --=============[  Miscellaneous  ]=================
         { type = "divider" },
         {
           type = "description";
@@ -377,6 +378,12 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "checkbox";
           name = "显示 手柄模式终极技快捷键";
           tooltip = "在手柄模式显示 LB RB 字符";
+        },
+        --=============[  OneBar Mode  ]==================
+        {
+          type = "checkbox";
+          name = "隐藏上锁的技能栏";
+          tooltip = "启用时，上锁和不激活的技能栏将被隐藏，比如装备橡木之环或处于狼人变形中";
         },
         --=============[  Skill Styles  ]==================
         {
@@ -1218,12 +1225,6 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             },
             { type = "divider" },
             {
-              type = "checkbox";
-              name = "在技能栏显示 咏唱/引导计时器";
-              tooltip = "当技能为咏唱或引导类型时，在使用时显示计时器";
-            },
-            { type = "divider" },
-            {
               type = "description";
               title = "[ |cffdf80多目标效果追踪选项|r ]";
               text = "配置目标计数的表现和追踪的技能";
@@ -1262,6 +1263,22 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             {
               type = "button",
               name = "从黑名单移除",
+            },
+            { type = "divider" },
+            {
+              type = "description";
+              title = "[ |cffdf80杂项设置|r ]";
+              text = "技能追踪额外设置";
+            },
+            {
+              type = "checkbox";
+              name = "在技能栏显示 咏唱/引导计时器";
+              tooltip = "当技能为咏唱或引导类型时，在使用时显示计时器";
+            },
+            {
+              type = "checkbox";
+              name = "无视陷阱类技能的初始放置";
+              tooltip = "默认下，陷阱类技能初始放置会显示计时器和层数。启用时，仅追踪技能的DOT效果";
             },
           };
         },
