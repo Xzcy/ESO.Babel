@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.08.11"
+BB.Version = "2024.08.26"
 
 --Default/Saved Setting
 BB.Default = {
@@ -192,8 +192,9 @@ function BB.DoMenuPatch(Name, OldTable)
       function() if BB.SV.Warning then
         zo_callLater(
           function()
-            d("[Babel] "..Name.." 设置界面汉化与插件版本不匹配")
-            d("[Babel] 请更新该插件至最新/等待Babel更新汉化文本")
+            d("[Babel] "..Name.." 设置界面 汉化失败！")
+            d("[Babel] 请于Babel设置界面 - 插件列表中，确认目标插件 ~ 指定版本")
+            d("[Babel] 将插件更新至指定版本 / 等待Babel更新适配")
           end, 5000
         )
       end end
@@ -218,8 +219,8 @@ function BB.DoAfterPart()
         d("[Babel] "..OnLoading.." 汉化失败")
         d("[Babel] 请确保目标插件和Babel的版本均为最新")
         d("[Babel] 若依然失败")
-        d("[Babel] 建议在设置中禁用该插件汉化并重载UI")
-        d("[Babel] 请联系SA公会修复有关插件的汉化问题")
+        d("[Babel] 建议于Babel设置 - 插件列表，禁用目标插件的汉化并重载UI")
+        d("[Babel] 请联系SA公会修复有关问题")
       end, 5000
     )
   end
@@ -284,7 +285,7 @@ function BB.BuildMenu()
     {
 			type = "checkbox",
 			name = "插件汉化失败警告",
-			tooltip = "Babel汉化失败，通常发生在目标插件版本过旧或刚更新后。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用Babel对某个插件的汉化，来确保一切正常运行。",
+			tooltip = "Babel汉化失败，通常因目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用某个插件的汉化，来确保其余一切正常运行。",
 			getFunc = function() return BB.SV.Warning end,
 			setFunc = function(value) BB.SV.Warning = value end,
 		},

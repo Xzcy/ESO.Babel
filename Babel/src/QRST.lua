@@ -1835,112 +1835,112 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.AM_DAEDRIC_ARTIFACT_OBJECTIVE_STATE_CHANGED = "神器状态 信息"
 
   --Util
-  RdKGToolMenu.constants.UTIL_HEADER = "|cFF8174Util Settings|r"
+  RdKGToolMenu.constants.UTIL_HEADER = "|cFF8174通用设置|r"
 
   --Util Networking
-  RdKGToolMenu.constants.NET_HEADER = "|c4592FFNetworking|r"
-  RdKGToolMenu.constants.NET_ENABLED = "Enabled"
-  RdKGToolMenu.constants.NET_URGENT_MODE = "Urgent Mode"
-  RdKGToolMenu.constants.NET_INTERVAL = "Update Interval"
+  RdKGToolMenu.constants.NET_HEADER = "|c4592FF网络|r"
+  RdKGToolMenu.constants.NET_ENABLED = "启用"
+  RdKGToolMenu.constants.NET_URGENT_MODE = "紧急模式"
+  RdKGToolMenu.constants.NET_INTERVAL = "更新间隔"
 
   --Util Group
-  RdKGToolMenu.constants.UTIL_GROUP_HEADER = "|c4592FFGroup|r"
-  RdKGToolMenu.constants.UTIL_GROUP_DISPLAY_TYPE = "Display Type"
+  RdKGToolMenu.constants.UTIL_GROUP_HEADER = "|c4592FF队伍|r"
+  RdKGToolMenu.constants.UTIL_GROUP_DISPLAY_TYPE = "显示类型"
 
   --Util Alliance Color
-  RdKGToolMenu.constants.AC_HEADER = "|c4592FFAlliance Colors|r"
-  RdKGToolMenu.constants.AC_DC_COLOR = "DC Color"
-  RdKGToolMenu.constants.AC_EP_COLOR = "EP Color"
-  RdKGToolMenu.constants.AC_AD_COLOR = "AD Color"
-  RdKGToolMenu.constants.AC_NO_ALLIANCE_COLOR = "No Alliance Color"
+  RdKGToolMenu.constants.AC_HEADER = "|c4592FF联盟颜色|r"
+  RdKGToolMenu.constants.AC_DC_COLOR = "DC 颜色"
+  RdKGToolMenu.constants.AC_EP_COLOR = "EP 颜色"
+  RdKGToolMenu.constants.AC_AD_COLOR = "AD 颜色"
+  RdKGToolMenu.constants.AC_NO_ALLIANCE_COLOR = "无联盟颜色"
 
   --Chat System
-  RdKGToolMenu.constants.CHAT_HEADER = "|c4592FFChat System|r"
-  RdKGToolMenu.constants.CHAT_ENABLED = "Enabled"
-  RdKGToolMenu.constants.CHAT_SELECTED_TAB = "Selected Tab"
-  RdKGToolMenu.constants.CHAT_REFRESH = "Refresh"
-  RdKGToolMenu.constants.CHAT_WARNINGS_ONLY = "Show Warnings"
-  RdKGToolMenu.constants.CHAT_DEBUG_ONLY = "Show Debug"
-  RdKGToolMenu.constants.CHAT_NORMAL_ONLY = "Show Normal"
-  RdKGToolMenu.constants.CHAT_PREFIX_ENABLED = "Prefix Enabled"
-  RdKGToolMenu.constants.CHAT_RDK_PREFIX_ENABLED = "RdK Prefix Enabled"
-  RdKGToolMenu.constants.CHAT_COLOR_PREFIX = "Prefix Color"
-  RdKGToolMenu.constants.CHAT_COLOR_BODY = "Body Color"
-  RdKGToolMenu.constants.CHAT_COLOR_WARNING = "Warning Color"
-  RdKGToolMenu.constants.CHAT_COLOR_DEBUG = "Debug Color"
-  RdKGToolMenu.constants.CHAT_COLOR_PLAYER = "Player Color"
-  RdKGToolMenu.constants.CHAT_ADD_TIMESTAMP = "Add Timestamp"
-  RdKGToolMenu.constants.CHAT_HIDE_SECONDS = "Hide Timestamp Seconds"
-  RdKGToolMenu.constants.CHAT_COLOR_TIMESTAMP = "Timestamp Color"
+  RdKGToolMenu.constants.CHAT_HEADER = "|c4592FF聊天系统|r"
+  RdKGToolMenu.constants.CHAT_ENABLED = "启用"
+  RdKGToolMenu.constants.CHAT_SELECTED_TAB = "选择的聊天选项卡"
+  RdKGToolMenu.constants.CHAT_REFRESH = "刷新"
+  RdKGToolMenu.constants.CHAT_WARNINGS_ONLY = "显示警告"
+  RdKGToolMenu.constants.CHAT_DEBUG_ONLY = "显示Debug"
+  RdKGToolMenu.constants.CHAT_NORMAL_ONLY = "显示普通"
+  RdKGToolMenu.constants.CHAT_PREFIX_ENABLED = "启用前缀"
+  RdKGToolMenu.constants.CHAT_RDK_PREFIX_ENABLED = "启用RdK前缀"
+  RdKGToolMenu.constants.CHAT_COLOR_PREFIX = "前缀颜色"
+  RdKGToolMenu.constants.CHAT_COLOR_BODY = "正文颜色"
+  RdKGToolMenu.constants.CHAT_COLOR_WARNING = "警告颜色"
+  RdKGToolMenu.constants.CHAT_COLOR_DEBUG = "Debug颜色"
+  RdKGToolMenu.constants.CHAT_COLOR_PLAYER = "玩家颜色"
+  RdKGToolMenu.constants.CHAT_ADD_TIMESTAMP = "添加时间戳"
+  RdKGToolMenu.constants.CHAT_HIDE_SECONDS = "隐藏时间戳的秒数"
+  RdKGToolMenu.constants.CHAT_COLOR_TIMESTAMP = "时间戳颜色"
 
   --Class Role
-  RdKGToolMenu.constants.CR_HEADER = "|cFF8174Class / Role|r"
+  RdKGToolMenu.constants.CR_HEADER = "|cFF8174职业 / 职能|r"
 
   --BG Templar Heal
-  RdKGToolMenu.constants.CRBG_TPHEAL_HEADER = "|c4592FFTemplar Healer (Group)|r"
-  RdKGToolMenu.constants.CRBG_TPHEAL_ENABLED = "Enabled"
-  RdKGToolMenu.constants.CRBG_TPHEAL_PVP_ONLY = "PvP Only"
-  RdKGToolMenu.constants.CRBG_TPHEAL_POSITION_FIXED = "Position Fixed"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_DAMAGE = "Progress Damage"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_DAMAGE = "Label Damage"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_HEALING = "Progress Healing"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_HEALING = "Label Healing"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_RECOVERY = "Progress Recovery"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_RECOVERY = "Label Recovery"
-  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_COOLDOWN = "Label Cooldown"
+  RdKGToolMenu.constants.CRBG_TPHEAL_HEADER = "|c4592FF圣骑治疗（队伍）|r"
+  RdKGToolMenu.constants.CRBG_TPHEAL_ENABLED = "启用"
+  RdKGToolMenu.constants.CRBG_TPHEAL_PVP_ONLY = "仅PvP"
+  RdKGToolMenu.constants.CRBG_TPHEAL_POSITION_FIXED = "固定位置"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_DAMAGE = "伤害进度"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_DAMAGE = "伤害标签"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_HEALING = "治疗进度"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_HEALING = "治疗标签"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_PROGRESS_RECOVERY = "回复进度"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_RECOVERY = "回复标签"
+  RdKGToolMenu.constants.CRBG_TPHEAL_COLOR_LABEL_COOLDOWN = "冷却标签"
 
   --AddOn Integration
-  RdKGToolMenu.constants.ADDON_INTEGRATION_HEADER = "|cFF8174AddOn Integration Settings|r"
+  RdKGToolMenu.constants.ADDON_INTEGRATION_HEADER = "|cFF8174插件集成设置|r"
   --Miats Pvp Alerts
   RdKGToolMenu.constants.MPAI_HEADER = "|c4592FFMiat Pvp Alerts|r"
-  RdKGToolMenu.constants.MPAI_ENABLED = "Clear After Login (Enabled)"
-  RdKGToolMenu.constants.MPAI_ONPLAYERACTIVATION = "Clear After Loading Screen"
-  RdKGToolMenu.constants.MPAI_CLEAR_VARS = "Clear Vars"
+  RdKGToolMenu.constants.MPAI_ENABLED = "登陆后清除（启用）"
+  RdKGToolMenu.constants.MPAI_ONPLAYERACTIVATION = "加载界面后清除"
+  RdKGToolMenu.constants.MPAI_CLEAR_VARS = "清除变量"
 
   --Admin
-  RdKGToolMenu.constants.ADMIN_HEADER = "|cFF8174Admin Settings|r"
+  RdKGToolMenu.constants.ADMIN_HEADER = "|cFF8174管理设置|r"
   --Group Share
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_HEADER = "|c4592FFGroup Share|r"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ENABLED = "Enabled"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_WARNING = "|cFF0000Enabling this will allow ranks 1 to 3 of any of your guilds to query the allowed configurations|r"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_CLIENT_CONFIGURATION = "Allow Client Configuration"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_ADDON_CONFIGURATION = "Allow AddOn Configuration"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_STATS = "Allow Stats"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_SKILLS = "Allow Skills"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_EQUIPMENT = "Allow Equipment"
-  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_CP = "Allow CP"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_HEADER = "|c4592FF团队共享|r"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ENABLED = "启用"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_WARNING = "|cFF0000启用此功能将允许任何公会的 1 至 3 级成员查询允许的配置|r"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_CLIENT_CONFIGURATION = "允许客户端配置"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_ADDON_CONFIGURATION = "允许插件配置"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_STATS = "允许状态"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_SKILLS = "允许技能"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_EQUIPMENT = "允许装备"
+  RdKGToolMenu.constants.ADMIN_GROUP_SHARE_ALLOW_CP = "允许CP"
 
   --Base
   --Crown
   RdKGToolCrown.constants = RdKGToolCrown.constants or {}
-  RdKGToolCrown.constants.PAPA_CROWN_DETECTED = "Papa Crown has been detected. Crown Settings aren't applied."
-  RdKGToolCrown.constants.SANCTS_ULTIMATE_ORGANIZER_DETECTED = "Sancts Ultimate Organizer has been detected. Crown Settings aren't applied."
-  RdKGToolCrown.constants.CROWN_OF_CYRODIIL_DETECTED = "Crown of Cyrodiil has been detected. Crown Settings aren't applied."
-  RdKGToolCrown.config.crowns[1].name = "Crown: Standard"
-  RdKGToolCrown.config.crowns[2].name = "Arrow: White"
-  RdKGToolCrown.config.crowns[3].name = "Arrow: Blue"
-  RdKGToolCrown.config.crowns[4].name = "Arrow: Light Blue"
-  RdKGToolCrown.config.crowns[5].name = "Arrow: Yellow"
-  RdKGToolCrown.config.crowns[6].name = "Arrow: Light Green"
-  RdKGToolCrown.config.crowns[7].name = "Arrow: Red"
-  RdKGToolCrown.config.crowns[8].name = "Arrow: Pink"
-  RdKGToolCrown.config.crowns[9].name = "Crown: White"
-  RdKGToolCrown.config.crowns[10].name = "RdK: White"
+  RdKGToolCrown.constants.PAPA_CROWN_DETECTED = "检测到Papa Crown插件，RDK皇冠设置不会应用"
+  RdKGToolCrown.constants.SANCTS_ULTIMATE_ORGANIZER_DETECTED = "检测到Sancts Ultimate Organizer插件，RDK皇冠设置不会应用"
+  RdKGToolCrown.constants.CROWN_OF_CYRODIIL_DETECTED = "检测到Crown of Cyrodiil插件，RDK皇冠设置不会应用"
+  RdKGToolCrown.config.crowns[1].name = "皇冠: 标准"
+  RdKGToolCrown.config.crowns[2].name = "箭头: 白"
+  RdKGToolCrown.config.crowns[3].name = "箭头: 蓝"
+  RdKGToolCrown.config.crowns[4].name = "箭头: 亮蓝"
+  RdKGToolCrown.config.crowns[5].name = "箭头: 黄"
+  RdKGToolCrown.config.crowns[6].name = "箭头: 亮绿"
+  RdKGToolCrown.config.crowns[7].name = "箭头: 红"
+  RdKGToolCrown.config.crowns[8].name = "箭头: 粉"
+  RdKGToolCrown.config.crowns[9].name = "箭头: 白"
+  RdKGToolCrown.config.crowns[10].name = "RdK: 白"
 
   --Auto Invite
   RdKGToolAI.constants = RdKGToolAI.constants or {}
-  RdKGToolAI.constants.AI_MENU_NAME = "Auto Invite"
-  RdKGToolAI.constants.AI_ENABLED = "Enabled"
-  RdKGToolAI.constants.AI_INVITE_TEXT = "Invite String"
-  RdKGToolAI.constants.AI_SENT_INVITE_TO = "Sent invite to|c%s%s|c%s.|r"
-  RdKGToolAI.constants.AI_NOT_LEADER_SEND_TO = "Invitation has not been sent to|r |c%s%s|c%s. You don't have the crown.|r"
-  RdKGToolAI.constants.AI_FULL_GROUP = "No invitation has been sent. The group is already full."
-  RdKGToolAI.constants.AI_REQUIREMENTS_NOT_MET = "Invitation has not been sent to|r |c%s%s |c%s. The requirements aren't fulfilled.|r"
-  RdKGToolAI.constants.AI_AUTO_KICK_MESSAGE = "Group member|r |c%s%s|r |c%swill be removed from the group.|r"
-  RdKGToolAI.constants.TOGGLE_AI = "Toggle Auto Invite"
-  RdKGToolAI.constants.AI_ENABLED_TRUE = "Auto Invite activated."
-  RdKGToolAI.constants.AI_ENABLED_FALSE = "Auto Invite deactivated."
-  RdKGToolAI.constants.AI_MEMBER_LEFT = "Member|r |c%s%s|r |c%shas left the group."
+  RdKGToolAI.constants.AI_MENU_NAME = "自动邀请"
+  RdKGToolAI.constants.AI_ENABLED = "启用"
+  RdKGToolAI.constants.AI_INVITE_TEXT = "邀请关键词"
+  RdKGToolAI.constants.AI_SENT_INVITE_TO = "向 |c%s%s|c%s|r 发送邀请"
+  RdKGToolAI.constants.AI_NOT_LEADER_SEND_TO = "未向 |r |c%s%s|c%s 发送邀请，你并非队长|r"
+  RdKGToolAI.constants.AI_FULL_GROUP = "未发送邀请，队伍已满"
+  RdKGToolAI.constants.AI_REQUIREMENTS_NOT_MET = "未向 |r |c%s%s |c%s 发送邀请，不满足条件|r"
+  RdKGToolAI.constants.AI_AUTO_KICK_MESSAGE = "队员 |r |c%s%s|r |c%s 将被移出队伍|r"
+  RdKGToolAI.constants.TOGGLE_AI = "切换自动邀请"
+  RdKGToolAI.constants.AI_ENABLED_TRUE = "激活 自动邀请"
+  RdKGToolAI.constants.AI_ENABLED_FALSE = "关闭 自动邀请"
+  RdKGToolAI.constants.AI_MEMBER_LEFT = "队员 |r |c%s%s|r |c%s 已离开队伍"
 
   --Follow The Crown Visual
   RdKGToolFtcv.textures[1].name = "箭头 1"
@@ -1958,43 +1958,43 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
 
   --Resource Overview
   RdKGToolOverview.config.ultimateModes = RdKGToolOverview.config.ultimateModes or {}
-  RdKGToolOverview.config.ultimateModes[RdKGToolOverview.constants.ultimateModes.ORDER_BY_READINESS] = "Readiness"
-  RdKGToolOverview.config.ultimateModes[RdKGToolOverview.constants.ultimateModes.ORDER_BY_NAME] = "Name"
+  RdKGToolOverview.config.ultimateModes[RdKGToolOverview.constants.ultimateModes.ORDER_BY_READINESS] = "准备情况"
+  RdKGToolOverview.config.ultimateModes[RdKGToolOverview.constants.ultimateModes.ORDER_BY_NAME] = "名称"
   RdKGToolOverview.constants.BOOM = "BOOM"
-  RdKGToolOverview.constants.TOGGLE_BOOM = "Send BOOM"
+  RdKGToolOverview.constants.TOGGLE_BOOM = "发送BOOM"
   RdKGToolOverview.constants.IDENENTIFIER_DESTRUCTION = "Destro"
   RdKGToolOverview.constants.IDENENTIFIER_STORM = "Storm"
   RdKGToolOverview.constants.IDENENTIFIER_NEGATE = "Neg."
   RdKGToolOverview.constants.IDENENTIFIER_NOVA = "Nova"
   RdKGToolOverview.config.groupsModes = RdKGToolOverview.config.groupsModes or {}
-  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PRIORITY_NAME] = "Priority - Name"
-  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PRIORITY_PERCENT] = "Priority - Percent"
-  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PERCENT] = "Percent"
+  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PRIORITY_NAME] = "优先级 - 名称"
+  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PRIORITY_PERCENT] = "优先级 - 百分比"
+  RdKGToolOverview.config.groupsModes[RdKGToolOverview.constants.groupsModes.MODE_PERCENT] = "百分比"
   RdKGToolOverview.config.displayModes = RdKGToolOverview.config.displayModes or {}
-  RdKGToolOverview.config.displayModes[RdKGToolOverview.constants.displayModes.CLASSIC] = "Classic"
-  RdKGToolOverview.config.displayModes[RdKGToolOverview.constants.displayModes.SWIMLANES] = "Swimlanes"
+  RdKGToolOverview.config.displayModes[RdKGToolOverview.constants.displayModes.CLASSIC] = "经典"
+  RdKGToolOverview.config.displayModes[RdKGToolOverview.constants.displayModes.SWIMLANES] = "泳道"
 
   --Healing / Damage Meter
   RdKGToolHdm.constants = RdKGToolHdm.constants or {}
-  RdKGToolHdm.constants.TITLE_HEALING = "Healing"
-  RdKGToolHdm.constants.TITLE_DAMAGE = "Damage"
+  RdKGToolHdm.constants.TITLE_HEALING = "治疗"
+  RdKGToolHdm.constants.TITLE_DAMAGE = "输出"
   RdKGToolHdm.constants.viewModes = RdKGToolHdm.constants.viewModes or {}
-  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_BOTH] = "Both"
-  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_HEALING] = "Healing"
-  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_DAMAGE] = "Damage"
-  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_BOTH_ON_TOP] = "Both (Vertically)"
-  RdKGToolHdm.constants.RESET_COUNTER = "Reset Counter"
+  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_BOTH] = "两者"
+  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_HEALING] = "治疗"
+  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_DAMAGE] = "输出"
+  RdKGToolHdm.constants.viewModes[RdKGToolHdm.constants.VIEWMODE_BOTH_ON_TOP] = "两者 (纵向)"
+  RdKGToolHdm.constants.RESET_COUNTER = "重置计数器"
 
   --Detonation Tracker
   RdKGToolDt.constants.modes = RdKGToolDt.constants.modes or {}
-  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_BOTH] = "Both"
-  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_DETONATION] = "Detonation"
-  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_SHALK] = "Shalk"
+  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_BOTH] = "两者"
+  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_DETONATION] = "魔力引爆"
+  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_SHALK] = "虫爆"
 
   --I See Dead People
   RdKGToolIsdp.constants = RdKGToolIsdp.constants or {}
-  RdKGToolIsdp.constants.BEAM_SKULL_USING_BUFFER = "Skull"
-  RdKGToolIsdp.constants.BEAM_SKULL_NOT_USING_BUFFER = "Skull (w/o Buffer)"
+  RdKGToolIsdp.constants.BEAM_SKULL_USING_BUFFER = "骷髅"
+  RdKGToolIsdp.constants.BEAM_SKULL_NOT_USING_BUFFER = "骷髅 (无Buffer)"
 
   --Compass
   --YACS
@@ -2022,7 +2022,7 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolYacs.compasses[22].name = "Compass Fr. 2"
   RdKGToolYacs.compasses[23].name = "Compass Fr. 3"
   RdKGToolYacs.compasses[24].name = "Compass Fr. 4"
-  RdKGToolYacs.config.constants.TOGGLE_YACS = "Toggle Compass"
+  RdKGToolYacs.config.constants.TOGGLE_YACS = "切换罗盘"
 
   --SC
   RdKGToolSC.constants = RdKGToolSC.constants or {}
@@ -2038,32 +2038,32 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   --Toolbox
   --Siege Merchant
   RdKGToolSm.paymentOptions = RdKGToolSm.paymentOptions or {}
-  RdKGToolSm.paymentOptions[1] = "Only AP"
-  RdKGToolSm.paymentOptions[2] = "Only Gold"
-  RdKGToolSm.paymentOptions[3] = "First AP, Then Gold"
-  RdKGToolSm.paymentOptions[4] = "First Gold, Then AP"
+  RdKGToolSm.paymentOptions[1] = "仅AP"
+  RdKGToolSm.paymentOptions[2] = "仅金币"
+  RdKGToolSm.paymentOptions[3] = "优先AP，随后金币"
+  RdKGToolSm.paymentOptions[4] = "优先金币，随后AP"
   RdKGToolSm.constants = RdKGToolSm.constants or {}
-  RdKGToolSm.constants.ERROR_UNKNOWN = "An unknown error occurred."
-  RdKGToolSm.constants.ERROR_UNKNOWN_PAYMENT_OPTION = "Unkown payment option has been selected."
-  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_GOLD = "Not enough gold present to buy more items."
-  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_AP = "Not enough AP present to buy more items."
-  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_AP_OR_GOLD = "Not enough AP or gold present to buy more items."
-  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_INVENTORY_SLOTS = "Not enough inventory slots available to buy more items."
-  RdKGToolSm.constants.SUCCESS_MESSAGE = "Purchase completed."
+  RdKGToolSm.constants.ERROR_UNKNOWN = "发生未知错误"
+  RdKGToolSm.constants.ERROR_UNKNOWN_PAYMENT_OPTION = "选择了未知交易选项"
+  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_GOLD = "金币不足"
+  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_AP = "AP不足"
+  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_AP_OR_GOLD = "AP或金币不足"
+  RdKGToolSm.constants.ERROR_PAYMENT_NOT_ENOUGH_INVENTORY_SLOTS = "物品空位不足"
+  RdKGToolSm.constants.SUCCESS_MESSAGE = "购买完成"
 
   --Recharger
   RdKGToolRecharger.constants = RdKGToolRecharger.constants or {}
-  RdKGToolRecharger.constants.MESSAGE_SUCCESS = "%s (%d%%) has been recharged."
-  RdKGToolRecharger.constants.MESSAGE_WARNING_LOW_SOULGEMS = "Less than %d soul gems are available."
-  RdKGToolRecharger.constants.MESSAGE_WARNING_NO_SOULGEMS = "No more soul gems are left."
+  RdKGToolRecharger.constants.MESSAGE_SUCCESS = "%s (%d%%) 已充能"
+  RdKGToolRecharger.constants.MESSAGE_WARNING_LOW_SOULGEMS = "可用灵魂水晶少于 %d "
+  RdKGToolRecharger.constants.MESSAGE_WARNING_NO_SOULGEMS = "灵魂水晶耗尽"
 
   --Buff Food Tracking
   RdKGToolBft.constants = RdKGToolBft.constants or {}
-  RdKGToolBft.constants.BUFF_FOOD_STRING = "Buff Food: %s"
+  RdKGToolBft.constants.BUFF_FOOD_STRING = "食物Buff: %s"
 
   --Siege
   RdKGToolSiege.constants = RdKGToolSiege.constants or {}
-  RdKGToolSiege.constants.TOGGLE_SIEGE = "|c4592FFRdK: Toggle View|r"
+  RdKGToolSiege.constants.TOGGLE_SIEGE = "|c4592FFRdK: 切换视角|r"
 
   --Cyrodiil Log
   RdKGToolCL.constants = RdKGToolCL.constants or {}
