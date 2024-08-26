@@ -534,6 +534,12 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptDontShowNone = "显示空白而非“无”",
     OptDontShowReady = "\"Ready\"显示空白而非“无”",
     OptTitleToolTip = "为窗口标题显示提示框",
+    OptHintUncomplPlg  = "为未完成的地下城提示誓约",
+    OptHintUncomplPlgF = table.concat( {
+                       "如果今日誓约的地下城未完成，在无畏者誓约窗口中提示\n",
+                       "未完成地下城：技能点任务未完成/未击杀所有\n",
+                       "(地下城需要在当前账户/角色可用或已解锁)",
+                       } ),
     OptLargeCalend  = "誓约日历显示的天数",
     OptLargeCalendF = "选择在誓约日历界面显示多少天的信息",
     OptDateFrmt  = "日期格式",

@@ -202,6 +202,23 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "启用 技能栏重定位（手柄）";
         },
         { type = "divider" },
+                {
+          type = "button";
+          name = "水平居中";
+        },
+        {
+          type = "button";
+          name = "垂直居中";
+        },
+        { type = "divider" },
+        {
+          type = "button";
+          name = "撤回上次移动";
+        },
+        {
+          type = "button";
+          name = "重置技能栏位置";
+        },
         { type = "divider" },
         {
           type = "description";
@@ -379,6 +396,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "显示 手柄模式终极技快捷键";
           tooltip = "在手柄模式显示 LB RB 字符";
         },
+        {
+          type = "checkbox",
+          name = "隐藏 伙伴终极技能栏",
+          tooltip = "无论伙伴是否装备终极技能，隐藏其栏位";
+        },
         --=============[  OneBar Mode  ]==================
         {
           type = "checkbox";
@@ -389,6 +411,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
         {
           type = "checkbox";
           name = "在技能栏显示技能样式图标";
+          tooltip = "启用时，如果已装备的技能应用了样式，则改为显示对应技能样式的图标"
         },
       };
     },
@@ -2096,7 +2119,7 @@ BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return fals
     HR_MENU_ATRONACH_SHARE = "分享终极技能",
     HR_MENU_ATRONACH_SHOW_TT = "分享你的终极技能情况给队友",
     HR_MENU_COLOS_SHOW_PERCENT_TT = "显示经计算的死灵巨像终极点百分比",
-    HR_BINDING_MISCULTIMATES_SHARE = "切换其他终极技能共享",
+    
     HR_MENU_COLOS_SHOW_RAW_TT = "显示玩家的原始终极点",
     HR_MENU_ATRONACH_SHOW_RAW_TT = "显示玩家的原始终极点",
     HR_MENU_MISCULTIMATES_SHARE = "分享其他终极技能",
@@ -2122,9 +2145,15 @@ BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return fals
     HR_MENU_MISC_DISABLEDEPENDENCYWARNING = "禁用依赖性警告",
     HR_MENU_ATRONACH_SHARE_TT = "将终极技能状态共享给队伍(仅当装备风暴侍灵时).",
     HR_MENU_MISCULTIMATES_SHOW = "显示其他终极技能",
+    
     HR_BINDING_HORN_SHARE = "切换战争号角分享",
     HR_BINDING_COLOS_SHARE = "切换死灵巨像分享",
     HR_BINDING_DPS_SHARE = "切换伤害分享",
+    HR_BINDING_MISCULTIMATES_SHARE = "切换其他终极技能共享",
+    HR_BINDING_COUNTDOWN = "冷却",
+    HR_BINDING_EXIT_INSTANCE = "立刻退出队伍",
+    HR_BINDING_SEND_EXIT_INSTANCE = "离开队伍",
+    HR_BINDING_CLOSE_UPDATE_POPUP = "关闭更新弹窗",
   }
   --Special setting
   for id, val in pairs(strings) do

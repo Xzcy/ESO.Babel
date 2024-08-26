@@ -2794,7 +2794,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       end
       return ids, names
     end
-    
+    --/script d(GetAbilityName())
     local Prominent = {
       [1051] = { --CR
         ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
@@ -2855,6 +2855,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       [1436] = { --endlessArchive
         ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Grasp of Lorkhaj"] = {"洛克汗之握 警告", "当你当你被被遗忘的札加萨诅咒点名时，显示突出警告"},
+        ["Alert Meteor Call"] = {"召唤流星 警告", "当传奇神秘人召唤流星时，显示突出警告"},
+        ["Alert Venomous Arrow (Arc 4+)"] = {"剧毒箭矢 警告 (Arc 4+)", "当在Arc4+以上进度时，弓箭怪物瞄准你释放剧毒箭矢且其身上无高级怯懦时，显示突出警告。该Dot会快照当前的怪物面板，因此在之后给怪物施加Debuff后该Dot依然保持较高伤害。所以最好躲开这个技能"},
       },
       [677] = { --MA
         ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
@@ -2876,6 +2878,10 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
         ["Show Hoarfrost Timer"] = {"显示 冰风 计时器", "显示一个\"警告\"计时器，当冰风将要杀死你时（老兵难度中）"},
         ["Show Voltaic Overload Timer"] = {"显示 超载 计时器", "显示一个\"警告\"计时器，当处于超载不应切手时"},
+      },
+      [1263] = {
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Death Touch Timer"] = {"显示 死亡之触 计时器", "显示一个\"警告\"计时器，当你的巴塞诅咒即将爆炸"},
       },
       [1478] = { --Lucent Citadel
         ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
@@ -3054,7 +3060,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = {
                 {
                     type = "checkbox",
-                    name = "显示高难领导诊断",
+                    name = "显示高难队长判断",
                     tooltip = "当发生某些重要事件时，在文本聊天中显示可能的信息。例如，有人在 DSR 中捡到了火穹",
                 },
                 {
@@ -3269,13 +3275,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         {
             type = "submenu",
             name = "石林(RG)",
-            controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, {
+            controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, Crutch.GetEffectSettings(1263, {
                 {
                     type = "checkbox",
                     name = "显示 毒点名玩家 处理方位",
                     tooltip = "在奥西索（一王）战斗中，显示毒点名的玩家应该去哪侧解毒。该提示与Qcell's Rockgrove Helper插件的结果相同。",
                 },
-            })),
+            }))),
         },
         {
             type = "submenu",
@@ -3361,6 +3367,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "自动标记 沉默 施法者",
                     tooltip = "和上者类似，不过标记可以释放沉默的小怪。它们会在你距离足够近的时候，释放沉默（术士终极技能同款）",
+                },
+                {
+                    type = "checkbox",
+                    name = "音效提示 升天击 / 威力猛击",
+                    tooltip = "当你被双手或持盾敌人，选为升天击或威力猛击的吗吗目标时，播放音效提示",
                 },
             })),
         },
@@ -5000,8 +5011,10 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['reticleColourTooltip']						= "如果你在工作台有未完成或已完成的令状，改变光标颜色"
   WritCreater.optionStrings['autoCloseBank']								= "自动银行对话框"
   WritCreater.optionStrings['autoCloseBankTooltip']						= "如有要取出的物品，则自动进入和退出银行对话框"
-  WritCreater.optionStrings['despawnBanker']							= "解散银行助手"
+  WritCreater.optionStrings['despawnBanker']							= "解散银行助手（取出）"
   WritCreater.optionStrings['despawnBankerTooltip']					= "取出物品后自动解散银行助手"
+  WritCreater.optionStrings['despawnBankerDeposit']						= "解散银行助手（存储）"
+WritCreater.optionStrings['despawnBankerDepositTooltip']				= "存储物品后自动解散银行助手"
   WritCreater.optionStrings['dailyResetWarnTime']								= "距重置剩余分钟"
   WritCreater.optionStrings['dailyResetWarnTimeTooltip']						= "在日常任务重置前多少分钟显示警告"
   WritCreater.optionStrings['dailyResetWarnType']							= "日常重置提醒"

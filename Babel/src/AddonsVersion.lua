@@ -11,30 +11,30 @@ BB.AddonsVersion = {
   ["BanditsUserInterface"] =          "4.418",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
-  ["CarosSkillPointSaver"] =          "5.5.0",
-  ["CombatMetrics"] =                 "1.5.16",
+  ["CarosSkillPointSaver"] =          "5.5.1",
+  ["CombatMetrics"] =                 "1.5.17",
   ["CombatMetronome"] =               "1.6.6",
   ["CraftStoreFixedAndImproved"] =    "2.9.3",
-  ["CrutchAlerts"] =                  "1.3.2",
+  ["CrutchAlerts"] =                  "1.5.1",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
-  ["DolgubonsLazySetCrafter"] =       "3.0.4.1",
-  ["DolgubonsLazyWritCreator"] =      "3.1.6.6",
+  ["DolgubonsLazySetCrafter"] =       "3.0.4.3",
+  ["DolgubonsLazyWritCreator"] =      "3.1.7",
   ["DressingRoom"] =                  "0.12.1",
   --E
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.7.0.1",
+  ["FancyActionBar+"] =               "2.7.4",
   ["FurnitureCatalogue"] =            "4.83.1",
   --G
-  ["GuildHallButton"] =               "2.3.16",
+  ["GuildHallButton"] =               "2.3.18",
   ["GuildDonate"] =                   "1.4.11",
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.9",
   ["HarvestMap"] =                    "3.15.13",
-  ["HodorReflexes"] =                 "2024.07.08",
+  ["HodorReflexes"] =                 "2024.08.25",
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
@@ -42,17 +42,17 @@ BB.AddonsVersion = {
   --K
   --L
   ["LibAddonMenu-2.0"] =              "2.0 r37",
-  ["LoreBooks"] =                     "83",
+  ["LoreBooks"] =                     "84",
   ["LucentCitadelHelper"] =           "0.5.6",
   --M
-  ["MasterMerchant"] =                "3.8.08",
+  ["MasterMerchant"] =                "3.8.09",
   --N
   --O
   ["OdySupportIcons"] =               "1.10.0",
   --P
   ["pChat"] =                         "10.0.5.3",
-  ["PerfectPixel"] =                  "0.12.19",
-  ["PersonalAssistant"] =             "2024.07.22-2",
+  ["PerfectPixel"] =                  "0.13.12",
+  ["PersonalAssistant"] =             "2024.08.25",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.9.1",
   --Q
@@ -74,10 +74,10 @@ BB.AddonsVersion = {
   ["VotansFisherman"] =               "1.16.0",
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
-  ["VotansMiniMap"] =                 "2.0.7",
+  ["VotansMiniMap"] =                 "2.0.8",
   --W
   ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.3",
+  ["WPamA"] =                         "2.4.4",
   ["WritWorthy"] =                    "7.4.8",
   --X
   --Y

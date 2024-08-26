@@ -2036,6 +2036,9 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_MENU_LOOT_AUTO_LEARN_STYLEPAGES_T = table.concat({"当一份 ", GetString("SI_SPECIALIZEDITEMTYPE", SPECIALIZED_ITEMTYPE_CONTAINER_STYLE_PAGE), " 被未学习的角色获取，则自动学习"}),
     SI_PA_MENU_LOOT_APPARELWEAPONS_AUTOBIND = "自动绑定未收藏套装物品",
     SI_PA_MENU_LOOT_APPARELWEAPONS_AUTOBIND_T = table.concat({"当拾取到套装中未收藏的", GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ARMOR), ",", GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_WEAPONS), "或", GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_JEWELRY), "，自动将其绑定"}),
+    SI_PA_MENU_LOOT_ICONS_SCRIBING_HEADER = table.concat({"标记 ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72)}),
+    SI_PA_MENU_LOOT_ICONS_SCRIBING_SHOW_KNOWN = table.concat({">", PAC.ICONS.OTHERS.KNOWN.NORMAL, "当一份 ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72), " 已知"}),
+    SI_PA_MENU_LOOT_ICONS_SCRIBING_SHOW_UNKNOWN = table.concat({">", PAC.ICONS.OTHERS.UNKNOWN.NORMAL, "when a ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72), " 未知"}),
     --worker
     SI_PA_MENU_WORKER_DESCRIPTION = "PAWorker 可自动分解物品或提炼材料",
     SI_PA_MENU_WORKER_METICULOUS_ENABLE = "细致拆装 检查",
