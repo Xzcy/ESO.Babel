@@ -1,5 +1,12 @@
 MABabel.ChangeLog = 
 [[
+  2024.09.0
+    修正汉化：
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.6.7
+      Fancy Action Bar+ → 
+      Crutch Alerts → 
+
   2024.08.26
     修正汉化：Fancy Action Bar+, Dolgubon's Lazy Writ Creator, WPamA
     待办汉化：RDK Group Tool完善翻译

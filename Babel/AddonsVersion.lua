@@ -2,10 +2,10 @@ local BB = MABabel
 
 BB.AddonsVersion = {
   --A
-  ["AdvancedFilters"] =               "1.6.4.5",
+  ["AdvancedFilters"] =               "1.6.4.7",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.1.9",
+  ["AutoCategory"] =                  "4.2",
   --B
   ["BeamMeUp"] =                      "3.5.6",
   ["BanditsUserInterface"] =          "4.418",
@@ -13,9 +13,9 @@ BB.AddonsVersion = {
   --C
   ["CarosSkillPointSaver"] =          "5.5.1",
   ["CombatMetrics"] =                 "1.5.17",
-  ["CombatMetronome"] =               "1.6.6",
-  ["CraftStoreFixedAndImproved"] =    "2.9.3",
-  ["CrutchAlerts"] =                  "1.5.1",
+  ["CombatMetronome"] =               "1.6.7",
+  ["CraftStoreFixedAndImproved"] =    "2.94",
+  ["CrutchAlerts"] =                  "1.6.1",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -27,12 +27,12 @@ BB.AddonsVersion = {
   ["EnglishTooltips"] =               "1.7.1",
   --F
   ["FancyActionBar+"] =               "2.7.4",
-  ["FurnitureCatalogue"] =            "4.83.1",
+  ["FurnitureCatalogue"] =            "4.84.0",
   --G
-  ["GuildHallButton"] =               "2.3.18",
   ["GuildDonate"] =                   "1.4.11",
+  ["GuildHallButton"] =               "2.3.18",
   --H
-  ["HarvensImprovedSkillsWindow"] =   "2.0.9",
+  ["HarvensImprovedSkillsWindow"] =   "2.0.10",
   ["HarvestMap"] =                    "3.15.13",
   ["HodorReflexes"] =                 "2024.08.25",
   ["HowToCloudrest"] =                "1.2.2",
@@ -54,10 +54,10 @@ BB.AddonsVersion = {
   ["PerfectPixel"] =                  "0.13.12",
   ["PersonalAssistant"] =             "2024.08.25",
   ["Postmaster"] =                    "4.1.8",
-  ["PotionMaker"] =                   "5.9.1",
+  ["PotionMaker"] =                   "5.9.2",
   --Q
-  ["QcellRockgroveHelper"] =          "6.8.2",
   ["QcellDreadsailReefHelper"] =      "2.0.3",
+  ["QcellRockgroveHelper"] =          "6.8.2",
   ["QuestMap"] =                      "3.19",
   --R
   ["RaidNotifier"] =                  "2.28.1",
@@ -67,7 +67,7 @@ BB.AddonsVersion = {
   ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.36",
   --T
-  ["TamrielTradeCentre"] =            "4.19.943.18329",
+  ["TamrielTradeCentre"] =            "4.20.834.27184",
   --U
   ["Untaunted"] =                     "1.1.5",
   --V
@@ -82,4 +82,20 @@ BB.AddonsVersion = {
   --X
   --Y
   --Z
+}
+
+BB.CurrentVersion = {
+  ["BuffTheGroupOptions"] =           "BuffTheGroup",
+  ["CombatMetronomeOptions"] =        "CombatMetronome",
+  ["CrutchAlertsOptions"] =           "CrutchAlerts",
+  ["Descendants Support Set Tracker"]="DescendantsSupportSetTracker", --Get Version Info From Namespace
+  ["ElmsMarkersOptions"] =            "ElmsMarkers",
+  ["FancyActionBar+Menu"] =           "FancyActionBar+",
+  ["HowToCloudrest_Settings"] =       "HowToCloudrest",
+  ["LucentCitadelHelperOptions"] =    "LucentCitadelHelper",
+  ["OdySupportIconsOptions"] =        "OdySupportIcons",
+  ["QcellDreadsailReefHelperOptions"]="QcellDreadsailReefHelper",
+  ["QcellRockgroveHelperOptions"] =   "QcellRockgroveHelper",
+  ["SanitysEdgeHelperOptions"] =      "SanitysEdgeHelper",
+  ["SlightlyImprovedExperienceBar"] = "SlightlyImprovedExperienceBar",
 }

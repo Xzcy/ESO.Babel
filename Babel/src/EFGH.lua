@@ -1645,6 +1645,9 @@ BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false en
     SI_FURC_FILTER_VERSION_NECROM = 	"死灵之地",
     SI_FURC_FILTER_VERSION_BASED = "基础游戏补丁",
     SI_FURC_FILTER_VERSION_ENDLESS = "泰尔瓦尼的秘密",
+    
+    SI_FURC_FILTER_VERSION_BASE43 = "U43补丁",
+    SI_FURC_FILTER_VERSION_BASE43_TT = "住宅巡览",
 
     -- =============================== --
     -- = GUI: Dropdown entry tooltip = --

@@ -2141,6 +2141,7 @@ return true end
 
 --Combat Metronome
 BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return false end
+  --CMSettings.lua
   local NewOption = {
     {
       type = "header",
@@ -2302,6 +2303,119 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
 							type = "checkbox",
 							name = "显示GCD",
 							tooltip = "在非战斗状态下跟踪 GCD",
+						},
+            {
+							type = "submenu",
+							name = "显示更多GCD信息（注:因原作奇妙代码，无法汉化）",
+							controls = {
+								{
+									type = "checkbox",
+									name = "Dodgeroll",
+                  tooltip = "显示 翻滚信息",
+								},
+								{
+									type = "checkbox",
+									name = "Mounting/Dismounting",
+                  tooltip = "显示 上下坐骑信息",
+								},
+								{
+									type = "checkbox",
+									name = "Show mount nickname",
+                  tooltip = "显示 坐骑名称",
+								},
+								{
+									type = "checkbox",
+									name = "Assistants and companions",
+                  tooltip = "显示 助手和伙伴",
+								},
+								{
+									type = "checkbox",
+									name = "Usage of items",
+                  tooltip = "显示 道具使用",
+								},
+								{
+									type = "checkbox",
+									name = "Killing actions",
+									tooltip = "显示 吸血鬼喂食和哀伤之刃等杀戮技能",
+								},
+								{
+									type = "checkbox",
+									name = "Breaking free",
+                  tooltip = "显示 挣脱控制",
+								},
+								-- {
+									-- type = "checkbox",
+									-- name = "Other synergies that cause GCD",
+									-- disabled = function() return not self.config.trackGCD end,
+									-- default = false,
+									-- getFunc = function() return self.config.trackOthers end,
+									-- setFunc = function(value)
+										-- self.config.trackOthers = value
+										-- if value and not self.collectiblesTrackerRegistered then
+												-- CombatMetronome:RegisterCollectiblesTracker()
+										-- elseif not value and self.config.combatEventsRegistered and not (self.config.trackMounting or self.config.trackKillingActions or self.config.trackBreakingFree) then
+												-- CombatMetronome:UnregisterCollectiblesTracker()
+										-- end
+									-- end,
+								-- },
+								-- {
+									-- type = "submenu",
+									-- name = "Collectible types",
+									-- disabled = function() return not self.config.trackCollectibles end,
+									-- controls = {
+										-- {
+											-- type = "checkbox",
+											-- name = "Assistants",
+											-- disabled = function() return not self.config.trackCollectibles end,
+											-- default = false,
+											-- getFunc = function() return self.config.trackRolldodge end,
+											-- setFunc = function(value)
+												-- self.config.trackRolldodge = value
+											-- end,
+										-- },
+										-- {
+											-- type = "checkbox",
+											-- name = "Companions",
+											-- disabled = function() return not self.config.trackCollectibles end,
+											-- default = false,
+											-- getFunc = function() return self.config.trackRolldodge end,
+											-- setFunc = function(value)
+												-- self.config.trackRolldodge = value
+											-- end,
+										-- },
+										-- {
+											-- type = "checkbox",
+											-- name = "Costumes",
+											-- disabled = function() return not self.config.trackCollectibles end,
+											-- default = false,
+											-- getFunc = function() return self.config.trackRolldodge end,
+											-- setFunc = function(value)
+												-- self.config.trackRolldodge = value
+											-- end,
+										-- },
+										-- {
+											-- type = "checkbox",
+											-- name = "Polymorphs",
+											-- disabled = function() return not self.config.trackCollectibles end,
+											-- default = false,
+											-- getFunc = function() return self.config.trackRolldodge end,
+											-- setFunc = function(value)
+												-- self.config.trackRolldodge = value
+											-- end,
+										-- },
+										-- {
+											-- type = "checkbox",
+											-- name = "Vanity pets",
+											-- disabled = function() return not self.config.trackCollectibles end,
+											-- default = false,
+											-- getFunc = function() return self.config.trackRolldodge end,
+											-- setFunc = function(value)
+												-- self.config.trackRolldodge = value
+											-- end,
+										-- },
+									-- },
+								-- },
+							},
 						},
 						{
 							type = "checkbox",
@@ -2620,6 +2734,37 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
         }
       }
     },
+    {	type = "divider",},
+		------------------------------
+		---- Light Attack Tracker ----
+		------------------------------
+		{	type = "submenu",
+			name = "轻攻击追踪",
+			tooltip = "让你可以追踪轻攻击，更好分析数据结果",
+			controls = {
+				{
+					type = "checkbox",
+					name = "PVP区域隐藏轻攻击追踪",
+					tooltip = "在PVP区域隐藏轻攻击追踪，保持UI整洁",
+				},
+				{	type = "checkbox",
+					name = "解锁 轻攻击追踪",
+					tooltip = "使轻攻击追踪UI可以移动",
+				},
+				{	type = "dropdown",
+					name = "追踪何物",
+					tooltip = "定义追踪器是否显示 每秒轻攻击、轻攻击时间间隔或其他",	
+				},
+				{	type = "slider",
+					name = "战斗后追踪器显示维持时间",
+					tooltip = "这是战斗结束后，跟踪器会持续显示结果的秒数",
+				},
+				{	type = "checkbox",
+					name = "在战斗后显示轻攻击记录",
+					tooltip = "为你提供 战斗时间、每秒轻攻击、轻攻击总数的记录",
+				},
+			},
+		},
   }
 
   --Speical Setting
@@ -2794,7 +2939,9 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       end
       return ids, names
     end
+    
     --/script d(GetAbilityName())
+    --ProminentV2.lua
     local Prominent = {
       [1051] = { --CR
         ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
@@ -2873,6 +3020,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       },
     }
     
+    --Effects.lua
     local Effect = {
       [1051] = { --Cloudrest
         ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
@@ -2938,7 +3086,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       --Return Results
       return Old
     end
-  
+    
+    --Settings.lua
     local NewTable = {
         {
           type = "checkbox",
@@ -3215,7 +3364,17 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1478, Crutch.GetProminentSettings(1478,  Crutch.GetEffectSettings(1478, {
                 {
                     type = "checkbox",
-                    name = "显示 神秘破裂碎片（三王） 镜子图标",
+                    name = "显示 卡沃特·阿格南 出生点",
+                    tooltip = "为卡沃特·阿格南 出生点显示图标，需要OdySupportIcons插件",
+                },
+                {
+                    type = "slider",
+                    name = "卡沃特·阿格南 图标尺寸",
+                    tooltip = "卡沃特·阿格南 出生点图标尺寸",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 神秘破裂碎片（三王）镜子图标",
                     tooltip = "在神秘破裂碎片（三王）战斗中，为每面镜子显示图标",
                 },
                 {
@@ -3370,8 +3529,18 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
+                    name = "显示 酿酒师药剂点",
+                    tooltip = "在酿酒师可能投掷了缩小药剂的地方显示图标。注意这对扔向队友召唤物的药剂无效。需要OdySupportIcons插件",
+                },
+                {
+                    type = "checkbox",
                     name = "音效提示 升天击 / 威力猛击",
-                    tooltip = "当你被双手或持盾敌人，选为升天击或威力猛击的吗吗目标时，播放音效提示",
+                    tooltip = "当你被双手或持盾敌人，选为升天击或威力猛击的目标时，播放音效提示",
+                },
+                {
+                    type = "checkbox",
+                    name = "音效提示 危险技能",
+                    tooltip = "为特定的高危技能，播放音效提示",
                 },
             })),
         },
