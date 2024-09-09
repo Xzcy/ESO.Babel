@@ -741,6 +741,7 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
   mkstr(SI.TELE_UI_TOGGLE_SORT_RELEASE, "按发布时间排序")
   mkstr(SI.TELE_UI_TOGGLE_ACRONYM, "显示缩写")
   mkstr(SI.TELE_UI_TOOGLE_DUNGEON_NAME, "显示副本名")
+  mkstr(SI.TELE_UI_TRAVEL_PARENT_ZONE, "传送至父区域")
   -----------------------------------------------------------------------------
   -- CHAT OUTPUTS
   -----------------------------------------------------------------------------

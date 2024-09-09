@@ -3,7 +3,7 @@ MABabel.ChangeLog =
   2024.09.0
     修正汉化：
     |cFFA500插件版本需求|r：
-      Combat Metronome → 1.6.7
+      Combat Metronome → 
       Fancy Action Bar+ → 
       Crutch Alerts → 
 

@@ -245,6 +245,20 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "slider";
           name = "纵向 (Y轴) 位置";
         },
+        { type = "divider" },
+        {
+          type = "description";
+          title = "[ |cffdf80调整主副手栏的相对位置|r ]";
+          width = "full";
+        },
+        {
+          type = "slider";
+          name = "横向 (X轴) 位置";
+        },
+        {
+          type = "slider";
+          name = "纵向 (Y轴) 位置";
+        },
       };
     },
     --===========[    General    ]===================
@@ -390,6 +404,12 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "description";
           title = "[ |cffdf80杂项|r ]";
           text = "额外杂项设置";
+        },
+        {
+          type = "checkbox",
+          name = "强制启用 手柄技能栏风格",
+          tooltip =
+          "通常只有使用手柄或开启辅助模式后，才可使用手柄UI有关的技能栏风格和动画。该设置可以强制启用这一技能栏风格";
         },
         {
           type = "checkbox";
@@ -1292,6 +1312,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "description";
               title = "[ |cffdf80杂项设置|r ]";
               text = "技能追踪额外设置";
+            },
+            {
+              type = "checkbox";
+              name = "显示 堆叠计数器";
+              tooltip = "为那些拥有多个层数或可多次叠加的技能显示堆叠计数器";
             },
             {
               type = "checkbox";

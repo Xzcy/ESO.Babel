@@ -2,12 +2,12 @@ local BB = MABabel
 
 BB.AddonsVersion = {
   --A
-  ["AdvancedFilters"] =               "1.6.4.7",
+  ["AdvancedFilters"] =               "1.6.4.8",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
   ["AutoCategory"] =                  "4.2",
   --B
-  ["BeamMeUp"] =                      "3.5.6",
+  ["BeamMeUp"] =                      "3.5.7",
   ["BanditsUserInterface"] =          "4.418",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
@@ -26,7 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.7.4",
+  ["FancyActionBar+"] =               "2.8.0",
   ["FurnitureCatalogue"] =            "4.84.0",
   --G
   ["GuildDonate"] =                   "1.4.11",
