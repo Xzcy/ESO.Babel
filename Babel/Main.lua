@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.08.26"
+BB.Version = "2024.09.10"
 
 --Default/Saved Setting
 BB.Default = {
