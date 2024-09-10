@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.08.26"
+BB.Version = "2024.09.10"
 
 --Default/Saved Setting
 BB.Default = {
@@ -18,6 +18,7 @@ BB.Default = {
 BB.AddonList = {}
 BB.AfterPart = {}
 BB.LAMList = {}
+BB.VersionList = {}
 
 BB.ActiveAddons = {}
 
@@ -64,13 +65,16 @@ local function OnAddOnLoaded(eventCode, addonName)
   --LAM Injection
   if LibAddonMenu2 then
     local OldFun = LibAddonMenu2.RegisterOptionControls
+    local OldFun2 = LibAddonMenu2.RegisterAddonPanel
     --Set Undo Fun Change
     BB.SetAfterPart(
       function()
         LibAddonMenu2.RegisterOptionControls = OldFun
+        LibAddonMenu2.RegisterAddonPanel = OldFun2
       end
     )
     --Inject LAM
+      --Replace Setting
     LibAddonMenu2.RegisterOptionControls = function(...)
       local Self, Name, OptionTable = ...
       local NewTable = BB.DoMenuPatch(Name, OptionTable)
@@ -81,6 +85,14 @@ local function OnAddOnLoaded(eventCode, addonName)
         --Replace
         return OldFun(Self, Name, NewTable)
       end
+    end
+      --Get Versions Info
+    LibAddonMenu2.RegisterAddonPanel = function(...)
+      local Self, Name, Table = ...
+      if Name and Table and Table.version then
+        BB.VersionList[Name] = Table.version
+      end
+      return OldFun2(...)
     end
   end
   
@@ -192,9 +204,13 @@ function BB.DoMenuPatch(Name, OldTable)
       function() if BB.SV.Warning then
         zo_callLater(
           function()
-            d("[Babel] "..Name.." 设置界面 汉化失败！")
-            d("[Babel] 请于Babel设置界面 - 插件列表中，确认目标插件 ~ 指定版本")
-            d("[Babel] 将插件更新至指定版本 / 等待Babel更新适配")
+            local OnLoading = BB.CurrentVersion[Name] or Name
+            local CurrentV = BB.VersionList[Name] or "无法获取"
+            local TargetV = BB.AddonsVersion[OnLoading] or "无法获取"
+            d("[Babel] "..OnLoading.." 设置界面 汉化失败！")
+            d("[Babel] 插件当前版本："..CurrentV)
+            d("[Babel] 汉化指定版本："..TargetV)
+            d("[Babel] 请更新插件 / 等待Babel适配")
           end, 5000
         )
       end end
@@ -212,15 +228,18 @@ function BB.SetAfterPart(Fun)
 end
 
 function BB.DoAfterPart()
+  --Patch for Version
+  if DSST then BB.VersionList["Descendants Support Set Tracker"] = DSST.version end
   --Error with Translation
   if OnLoading and BB.SV.Warning then
     zo_callLater(
       function()
-        d("[Babel] "..OnLoading.." 汉化失败")
-        d("[Babel] 请确保目标插件和Babel的版本均为最新")
-        d("[Babel] 若依然失败")
-        d("[Babel] 建议于Babel设置 - 插件列表，禁用目标插件的汉化并重载UI")
-        d("[Babel] 请联系SA公会修复有关问题")
+        local TargetV = BB.AddonsVersion[OnLoading] or "未知"
+        d("[Babel] 汉化 "..OnLoading.." 时严重错误")
+        d("[Babel] 汉化指定版本："..TargetV)
+        d("[Babel] 1. 更新插件后重试")
+        d("[Babel] 2. 若依然失败，请于Babel设置 - 插件列表，禁用目标插件的汉化并重载UI")
+        d("[Babel] 3. 请联系SA公会修复有关问题")
       end, 5000
     )
   end
@@ -312,7 +331,7 @@ function BB.BuildMenu()
         },
         {
           type = "button",
-          name = "启用/禁用 插件汉化",
+          name = "启用/禁用 所选插件汉化",
           warning = "修改后需重新加载UI",
           func = function()
             if not BB.SV.BanList[SelectedAddon] then
@@ -325,7 +344,7 @@ function BB.BuildMenu()
         },
         {
           type = "description",
-          title = "*不推荐在非中文语言下使用Babel，可能造成意外错误\r\n*战斗相关插件较易汉化失败，推荐保持在汉化指定版本\r\n\r\n已支持插件: |cFFD700"..SupportCount.."|r 款\r\n\r\n文件夹名  ~  汉化指定版本   ( |c008000已启用|r / |cFF0000已禁用|r )",
+          title = "* 不推荐在非中文语言下使用Babel，可能造成意外错误\r\n* 战斗相关插件较易汉化失败，推荐保持在汉化指定版本\r\n\r\n已支持插件: |cFFD700"..SupportCount.."|r 款\r\n\r\n文件夹名  ~  汉化指定版本   ( 未安装 / |c008000启用汉化|r / |cFF0000禁用汉化|r )",
           text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
           width = "full",	
         },
