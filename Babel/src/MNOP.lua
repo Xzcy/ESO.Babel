@@ -1316,6 +1316,13 @@ BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
   --Sepcial Setting
   BB.SetMenuPatch(OSI.name.."Options", NewOption)
   
+  BB.SetMenuItemPatch("Assign Custom Icon", "分配自定义图标")
+  BB.SetMenuItemPatch("Change Custom Icon", "改变自定义图标")
+  BB.SetMenuItemPatch("Remove Custom Icon", "移除自定义图标")
+  BB.SetMenuItemPatch("Change Raid Icon", "改变Raid图标")
+  BB.SetMenuItemPatch("Remove Raid Icon", "移除Raid图标")
+  BB.SetMenuItemPatch("Assign Raid Icon", "分配Raid图标")
+  BB.SetMenuItemPatch("Remove all Raid Icons", "移除所有Raid图标")
 return true end
 
 --pChat
@@ -2039,6 +2046,11 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_MENU_LOOT_ICONS_SCRIBING_HEADER = table.concat({"标记 ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72)}),
     SI_PA_MENU_LOOT_ICONS_SCRIBING_SHOW_KNOWN = table.concat({">", PAC.ICONS.OTHERS.KNOWN.NORMAL, "当一份 ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72), " 已知"}),
     SI_PA_MENU_LOOT_ICONS_SCRIBING_SHOW_UNKNOWN = table.concat({">", PAC.ICONS.OTHERS.UNKNOWN.NORMAL, "when a ", GetString(SI_NOTIFICATIONTYPE20), " ", GetString(SI_ITEMTYPE73), "/", GetString(SI_ITEMTYPE72), " 未知"}),
+    SI_PA_MENU_LOOT_AUTO_COMBINE_HEADER = table.concat({"当拾取 ", GetString(SI_SPECIALIZEDITEMTYPE109)}), 
+    SI_PA_MENU_LOOT_AUTO_COMBINE = "自动组合解锁的收藏品碎片",
+    SI_PA_MENU_LOOT_AUTO_COMBINE_T = "自动组合碎片以解锁收藏品",
+    SI_PA_MENU_LOOT_AUTO_MARK_AS_JUNK_KNOWN = "自动标记已知物品为垃圾",
+    SI_PA_MENU_LOOT_AUTO_MARK_AS_JUNK_KNOWN_T = "自动标记已知物品为垃圾，从而在商人处自动出售",
     --worker
     SI_PA_MENU_WORKER_DESCRIPTION = "PAWorker 可自动分解物品或提炼材料",
     SI_PA_MENU_WORKER_METICULOUS_ENABLE = "细致拆装 检查",

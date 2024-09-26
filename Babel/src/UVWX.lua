@@ -422,7 +422,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
           [2] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES5), W=120,},
           [3] = {N=GetString(SI_DAILY_LOGIN_REWARDS_TILE_HEADER), W=120,},
           [4] = {N="奖励&标志", W=180,},
-  --        [5] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES4), W=100,},
+  --      [5] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES4), W=100,},
         },
       },
       [6] = {

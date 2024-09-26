@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2024.09.26
+    更新：增加右键菜单内容的汉化功能（如BUI和Ody等）
+    |cFFA500插件版本需求|r：
+      Fancy Action Bar+ → 2.8.5
+
   2024.09.10
     更新：修改版本不匹配时的提示
     修正汉化：RDK Group Tool, Fancy Action Bar+, Combat Metronome, Crutch Alerts, BeamMeUp
