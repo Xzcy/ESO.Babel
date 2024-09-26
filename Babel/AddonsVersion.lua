@@ -15,7 +15,7 @@ BB.AddonsVersion = {
   ["CombatMetrics"] =                 "1.5.17",
   ["CombatMetronome"] =               "1.6.7",
   ["CraftStoreFixedAndImproved"] =    "2.94",
-  ["CrutchAlerts"] =                  "1.6.1",
+  ["CrutchAlerts"] =                  "1.6.2",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -26,7 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.8.1",
+  ["FancyActionBar+"] =               "2.8.5",
   ["FurnitureCatalogue"] =            "4.84.0",
   --G
   ["GuildDonate"] =                   "1.4.11",
@@ -52,7 +52,7 @@ BB.AddonsVersion = {
   --P
   ["pChat"] =                         "10.0.5.3",
   ["PerfectPixel"] =                  "0.13.12",
-  ["PersonalAssistant"] =             "2024.08.25",
+  ["PersonalAssistant"] =             "2024.09.22",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.9.2",
   --Q
@@ -77,13 +77,14 @@ BB.AddonsVersion = {
   ["VotansMiniMap"] =                 "2.0.8",
   --W
   ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.4",
+  ["WPamA"] =                         "2.4.5",
   ["WritWorthy"] =                    "7.4.8",
   --X
   --Y
   --Z
 }
 
+--[The Name Sended to LAM] = key in BB.AddonsVersion,
 BB.CurrentVersion = {
   ["BuffTheGroupOptions"] =           "BuffTheGroup",
   ["CombatMetronomeOptions"] =        "CombatMetronome",

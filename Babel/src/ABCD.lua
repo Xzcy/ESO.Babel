@@ -682,6 +682,8 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
   }
   --Special Setting
   AutoCategory.LoadLanguage(AutoCategory_localization_strings, "en")
+  
+  BB.SetMenuItemPatch("AC: Get itemId", "获取物品ID")
 return true end
 
 --BeamMeUp
@@ -1690,6 +1692,14 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     Markers_Icon="在找到宝箱时显示图标",
     Markers_HeavySack="发现重袋时也会显示标记",
   }
+  --Special Setting
+  BB.SetMenuItemPatch("Post DPS", "发布DPS统计")
+  BB.SetMenuItemPatch("Post death count", "发布死亡计数")
+  BB.SetMenuItemPatch("Clear death count", "清空死亡计数")
+  BB.SetMenuItemPatch("Save group list", "保存队伍列表")
+  BB.SetMenuItemPatch("Post group list", "发布队伍列表")
+  BB.SetMenuItemPatch("Regroup", "重组")
+  BB.SetMenuItemPatch("Refresh frame", "刷新框架")
 return true end
 
 --Buff The Group

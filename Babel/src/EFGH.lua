@@ -259,6 +259,10 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "slider";
           name = "纵向 (Y轴) 位置";
         },
+                {
+          type = "slider";
+          name = "横向 (X轴) 图标间距";
+        },
       };
     },
     --===========[    General    ]===================
@@ -415,6 +419,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "checkbox";
           name = "显示 手柄模式终极技快捷键";
           tooltip = "在手柄模式显示 LB RB 字符";
+        },
+        {
+          type = "checkbox";
+          name = "在手柄模式中为图标使用细边框";
+          tooltip = "仅在手柄模式中生效";
         },
         {
           type = "checkbox",
@@ -940,6 +949,21 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                 {
                   type = "slider";
                   name = "终极技 '几乎可用' 阈值 %";
+                },
+                { type = "divider";
+                },
+                {
+                  type = "description";
+                  title = "终极技 充能框架透明度";
+                  text = "包含边框和填充的透明度设置";
+                },
+                {
+                  type = "slider";
+                  name = "终极技充能框架 边框透明度";
+                },
+                {
+                  type = "slider";
+                  name = "终极技充能框架 填充透明度";
                 },
                 { type = "divider";
                 },

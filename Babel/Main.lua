@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.09.10"
+BB.Version = "2024.09.26"
 
 --Default/Saved Setting
 BB.Default = {
@@ -15,12 +15,13 @@ BB.Default = {
 }
 
 --Table
-BB.AddonList = {}
-BB.AfterPart = {}
-BB.LAMList = {}
-BB.VersionList = {}
+BB.AddonList = {} -- Translations Already Supported
+BB.AfterPart = {} -- Funs Work when Screen loading
+BB.LAMList = {} -- Patch LAM Setting Menu
+BB.VersionList = {} -- Addon Version Registered in LAM
+BB.MenuItemscList = {} -- Patch Menu Items
 
-BB.ActiveAddons = {}
+BB.ActiveAddons = {} -- Addons Translated
 
 --Setting
 BB.SV = ZO_SavedVars:NewAccountWide("SA_Babel_Vars", 1, nil, BB.Default, GetWorldName())
@@ -249,6 +250,37 @@ function BB.DoAfterPart()
   end
   --Finish
   EVENT_MANAGER:UnregisterForEvent(BB.Name, EVENT_PLAYER_ACTIVATED)
+end
+
+-----------------------
+----Menu Items Part----
+-----------------------
+
+local NeedMenuItemsPatch = false
+
+function BB.SetMenuItemPatch(OldString, NewString)
+  --Just for first time
+  if not NeedMenuItemsPatch then
+    --Hook AddMenuItem
+    local OldFun1 = AddMenuItem
+    AddMenuItem = function(Old, ...)
+      local New = BB.MenuItemscList[Old]
+      if New then return OldFun1(New, ...) end
+      return OldFun1(Old, ...)
+    end
+    --Hook LCM
+    if LibCustomMenu then
+      local OldFun2 = AddCustomMenuItem
+      AddCustomMenuItem = function(Old, ...)
+        local New = BB.MenuItemscList[Old]
+        if New then return OldFun2(New, ...) end
+        return OldFun2(Old, ...)
+      end
+    end
+  NeedMenuItemsPatch = true
+  end
+  --Add Patch
+  BB.MenuItemscList[OldString] = NewString
 end
 
 -----------------
