@@ -688,7 +688,10 @@ return true end
 
 --BeamMeUp
 BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
-  local mkstr = ZO_CreateStringId
+  local mkstr = function(Id, String)
+    if not Id then return end
+    ZO_CreateStringId(Id, String)
+  end
   local SI = BMU.SI
   -----------------------------------------------------------------------------
   -- INTERFACE
