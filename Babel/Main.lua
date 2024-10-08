@@ -208,10 +208,13 @@ function BB.DoMenuPatch(Name, OldTable)
             local OnLoading = BB.CurrentVersion[Name] or Name
             local CurrentV = BB.VersionList[Name] or "无法获取"
             local TargetV = BB.AddonsVersion[OnLoading] or "无法获取"
+            d("[Babel] --------------------------------")
             d("[Babel] "..OnLoading.." 设置界面 汉化失败！")
             d("[Babel] 插件当前版本："..CurrentV)
             d("[Babel] 汉化指定版本："..TargetV)
             d("[Babel] 请更新插件 / 等待Babel适配")
+            d("[Babel] *该错误不会影响其余插件的汉化")
+            d("[Babel] --------------------------------")
           end, 5000
         )
       end end
@@ -236,11 +239,14 @@ function BB.DoAfterPart()
     zo_callLater(
       function()
         local TargetV = BB.AddonsVersion[OnLoading] or "未知"
+        d("[Babel] --------------------------------")
         d("[Babel] 汉化 "..OnLoading.." 时严重错误")
         d("[Babel] 汉化指定版本："..TargetV)
-        d("[Babel] 1. 更新插件后重试")
-        d("[Babel] 2. 若依然失败，请于Babel设置 - 插件列表，禁用目标插件的汉化并重载UI")
+        d("[Babel] 1. 请更新 "..OnLoading.." 插件 ≥ 指定版本后，重试")
+        d("[Babel] 2. 若依然失败，请于【设置 - 插件 - Babel集束型汉化 - 插件列表】禁用目标插件汉化并重载UI")
         d("[Babel] 3. 请联系SA公会修复有关问题")
+        d("[Babel] *该错误将阻止其余插件的汉化")
+        d("[Babel] --------------------------------")
       end, 5000
     )
   end

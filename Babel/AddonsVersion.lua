@@ -8,7 +8,7 @@ BB.AddonsVersion = {
   ["AutoCategory"] =                  "4.2",
   --B
   ["BeamMeUp"] =                      "3.5.7",
-  ["BanditsUserInterface"] =          "4.418",
+  ["BanditsUserInterface"] =          "4.419",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
   ["CarosSkillPointSaver"] =          "5.5.1",
@@ -27,7 +27,7 @@ BB.AddonsVersion = {
   ["EnglishTooltips"] =               "1.7.1",
   --F
   ["FancyActionBar+"] =               "2.8.5",
-  ["FurnitureCatalogue"] =            "4.84.0",
+  ["FurnitureCatalogue"] =            "4.84.1",
   --G
   ["GuildDonate"] =                   "1.4.11",
   ["GuildHallButton"] =               "2.3.18",
@@ -52,9 +52,9 @@ BB.AddonsVersion = {
   --P
   ["pChat"] =                         "10.0.5.3",
   ["PerfectPixel"] =                  "0.13.12",
-  ["PersonalAssistant"] =             "2024.09.22",
+  ["PersonalAssistant"] =             "2024.10.06",
   ["Postmaster"] =                    "4.1.8",
-  ["PotionMaker"] =                   "5.9.2",
+  ["PotionMaker"] =                   "5.10.1",
   --Q
   ["QcellDreadsailReefHelper"] =      "2.0.3",
   ["QcellRockgroveHelper"] =          "6.8.2",

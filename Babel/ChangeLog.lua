@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2024.10.08
+    修正：报错信息
+    |cFFA500插件版本需求|r：
+      Fancy Action Bar+ → 2.8.8
+
   2024.09.26
     更新：增加右键菜单内容的汉化功能（如BUI和Ody等）
     |cFFA500插件版本需求|r：
