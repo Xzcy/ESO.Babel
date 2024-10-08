@@ -436,6 +436,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "隐藏上锁的技能栏";
           tooltip = "启用时，上锁和不激活的技能栏将被隐藏，比如装备橡木之环或处于狼人变形中";
         },
+        {
+          type = "checkbox";
+          name = "当有技能栏上锁时，调整UI";
+          tooltip = "当上锁的技能栏被隐藏时，调整技能栏UI";
+        },
         --=============[  Skill Styles  ]==================
         {
           type = "checkbox";
@@ -1379,6 +1384,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "checkbox";
           name = "启用 Perfect Weave 插件兼容";
           tooltip = "如果你想同时使用 FAB+ 和 Perfect Weave 插件，推荐开启";
+        },
+        {
+          type = "checkbox",
+          name = "调整生命值栏位置",
+          tooltip = "启用时，若FAB技能栏在原位，则会调整生命值位置避免遮挡。当FAB技能栏被移动过，将不会调整生命值位置。禁用时需要重新加载UI。装有Azurah插件时，该设置无效",
         },
         { type = "description"},
         --============[	Enemy Markers	]=======================
