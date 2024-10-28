@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.10.08"
+BB.Version = "2024.10.28"
 
 --Default/Saved Setting
 BB.Default = {
@@ -94,6 +94,39 @@ local function OnAddOnLoaded(eventCode, addonName)
         BB.VersionList[Name] = Table.version
       end
       return OldFun2(...)
+    end
+  end
+  
+  --BUI Menu Injection
+  if BUI then
+    local OldFun = BUI.Menu.RegisterPanel
+    local OldFun2 = BUI.Menu.RegisterOptions
+    --Set Undo Fun Change
+    BB.SetAfterPart(
+      function()
+        BUI.Menu.RegisterPanel = OldFun
+        BUI.Menu.RegisterOptions = OldFun2
+      end
+    )
+    --Replace Setting
+    BUI.Menu.RegisterOptions = function(...)
+      local Name, OptionTable = ...
+      local NewTable = BB.DoMenuPatch(Name, OptionTable)
+      if not NewTable then
+        --Do Nothing
+        return OldFun2(...)
+      else
+        --Replace
+        return OldFun2(Name, NewTable)
+      end
+    end
+    --Get Versions Info
+    BUI.Menu.RegisterPanel = function(...)
+      local Name, Table = ...
+      if Name and Table and Table.version then
+        BB.VersionList[Name] = Table.version
+      end
+      return OldFun(...)
     end
   end
   
