@@ -1,5 +1,9 @@
 MABabel.ChangeLog = 
 [[
+  2024.10.28
+    新增汉化：GridList, Group Loot Notifier
+    更新：开始支持对BUI设置界面内的插件汉化
+
   2024.10.08
     修正：报错信息
     |cFFA500插件版本需求|r：

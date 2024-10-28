@@ -15,11 +15,11 @@ BB.AddonsVersion = {
   ["CombatMetrics"] =                 "1.5.17",
   ["CombatMetronome"] =               "1.6.7",
   ["CraftStoreFixedAndImproved"] =    "2.94",
-  ["CrutchAlerts"] =                  "1.6.2",
+  ["CrutchAlerts"] =                  "1.6.3",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
-  ["DolgubonsLazySetCrafter"] =       "3.0.4.3",
+  ["DolgubonsLazySetCrafter"] =       "3.0.4.4",
   ["DolgubonsLazyWritCreator"] =      "3.1.7",
   ["DressingRoom"] =                  "0.12.1",
   --E
@@ -29,12 +29,14 @@ BB.AddonsVersion = {
   ["FancyActionBar+"] =               "2.8.5",
   ["FurnitureCatalogue"] =            "4.84.1",
   --G
+  ["GridList"] =                      "1.3.1",
+  ["GroupLootNotifier"] =             "2.17",
   ["GuildDonate"] =                   "1.4.11",
   ["GuildHallButton"] =               "2.3.18",
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.10",
   ["HarvestMap"] =                    "3.15.13",
-  ["HodorReflexes"] =                 "2024.08.25",
+  ["HodorReflexes"] =                 "2024.10.12",
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
@@ -51,8 +53,8 @@ BB.AddonsVersion = {
   ["OdySupportIcons"] =               "1.10.0",
   --P
   ["pChat"] =                         "10.0.5.3",
-  ["PerfectPixel"] =                  "0.13.12",
-  ["PersonalAssistant"] =             "2024.10.06",
+  ["PerfectPixel"] =                  "0.13.13",
+  ["PersonalAssistant"] =             "2024.10.27",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.10.1",
   --Q
@@ -92,6 +94,8 @@ BB.CurrentVersion = {
   ["Descendants Support Set Tracker"]="DescendantsSupportSetTracker", --Get Version Info From Namespace
   ["ElmsMarkersOptions"] =            "ElmsMarkers",
   ["FancyActionBar+Menu"] =           "FancyActionBar+",
+  ["GridListOptions"] =               "GridList",
+  ["GLN_Menu"] =                      "GroupLootNotifier",
   ["HowToCloudrest_Settings"] =       "HowToCloudrest",
   ["LucentCitadelHelperOptions"] =    "LucentCitadelHelper",
   ["OdySupportIconsOptions"] =        "OdySupportIcons",
