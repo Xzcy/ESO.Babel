@@ -7,7 +7,7 @@ BB.AddonsVersion = {
   ["ArkadiusTradeTools"] =            "2.0.0",
   ["AutoCategory"] =                  "4.2",
   --B
-  ["BeamMeUp"] =                      "3.5.7",
+  ["BeamMeUp"] =                      "3.5.8",
   ["BanditsUserInterface"] =          "4.419",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
@@ -26,13 +26,13 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.8.5",
+  ["FancyActionBar+"] =               "2.9.1",
   ["FurnitureCatalogue"] =            "4.84.1",
   --G
   ["GridList"] =                      "1.3.1",
   ["GroupLootNotifier"] =             "2.17",
   ["GuildDonate"] =                   "1.4.11",
-  ["GuildHallButton"] =               "2.3.18",
+  ["GuildHallButton"] =               "2.3.19",
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.10",
   ["HarvestMap"] =                    "3.15.13",
@@ -69,7 +69,7 @@ BB.AddonsVersion = {
   ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.36",
   --T
-  ["TamrielTradeCentre"] =            "4.20.834.27184",
+  ["TamrielTradeCentre"] =            "4.21.762.18254",
   --U
   ["Untaunted"] =                     "1.1.5",
   --V

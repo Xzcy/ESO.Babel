@@ -158,6 +158,12 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
       tooltip = "仅在当前设置界面中应用";
       func = function() ACTION_BAR:SetHidden(not ACTION_BAR:IsHidden()) end;
     },
+    {
+      type = "button";
+      name = "开发者预设";
+      tooltip = "将一系列设置调节为开发者偏好的设置";
+      warning = "修改将会重载UI";
+    },
     --===========[	Actionbar Scaling	]===================
     {
       type = "submenu";
@@ -1247,6 +1253,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "button";
               name = "从黑名单移除";
             },
+            
           };
         },
         --==================[  Target Debuffs  ]==================
@@ -1356,6 +1363,16 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "checkbox";
               name = "无视陷阱类技能的初始放置";
               tooltip = "默认下，陷阱类技能初始放置会显示计时器和层数。启用时，仅追踪技能的DOT效果";
+            },
+            {
+              type = "checkbox";
+              name = "为最快过期目标显示计时器";
+              tooltip = "默认显示最后一次释放技能的持续时间\n启用后，将显示最快过期目标的持续时间";
+            },
+            {
+              type = "checkbox";
+              name = "无视非组队盟友";
+              tooltip = "默认追踪施加给所有友方单位的Buffs\n启用后，你在队伍中时仅追踪对队友施加的Buffs";
             },
           };
         },
