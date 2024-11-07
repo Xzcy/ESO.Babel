@@ -8,12 +8,12 @@ BB.AddonsVersion = {
   ["AutoCategory"] =                  "4.2",
   --B
   ["BeamMeUp"] =                      "3.5.8",
-  ["BanditsUserInterface"] =          "4.419",
+  ["BanditsUserInterface"] =          "4.421",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
   ["CarosSkillPointSaver"] =          "5.5.1",
   ["CombatMetrics"] =                 "1.5.17",
-  ["CombatMetronome"] =               "1.6.7",
+  ["CombatMetronome"] =               "1.6.11",
   ["CraftStoreFixedAndImproved"] =    "2.94",
   ["CrutchAlerts"] =                  "1.6.3",
   --D
@@ -26,7 +26,7 @@ BB.AddonsVersion = {
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   --F
-  ["FancyActionBar+"] =               "2.9.1",
+  ["FancyActionBar+"] =               "2.9.10",
   ["FurnitureCatalogue"] =            "4.84.1",
   --G
   ["GridList"] =                      "1.3.1",
@@ -44,15 +44,15 @@ BB.AddonsVersion = {
   --K
   --L
   ["LibAddonMenu-2.0"] =              "2.0 r37",
-  ["LoreBooks"] =                     "84",
+  ["LoreBooks"] =                     "85",
   ["LucentCitadelHelper"] =           "0.5.6",
   --M
-  ["MasterMerchant"] =                "3.8.09",
+  ["MasterMerchant"] =                "3.8.10",
   --N
   --O
   ["OdySupportIcons"] =               "1.10.0",
   --P
-  ["pChat"] =                         "10.0.5.3",
+  ["pChat"] =                         "10.0.5.5",
   ["PerfectPixel"] =                  "0.13.13",
   ["PersonalAssistant"] =             "2024.10.27",
   ["Postmaster"] =                    "4.1.8",
@@ -60,7 +60,7 @@ BB.AddonsVersion = {
   --Q
   ["QcellDreadsailReefHelper"] =      "2.0.3",
   ["QcellRockgroveHelper"] =          "6.8.2",
-  ["QuestMap"] =                      "3.19",
+  ["QuestMap"] =                      "3.20",
   --R
   ["RaidNotifier"] =                  "2.28.1",
   ["RdKGroupTool"] =                  "2.0.44",
@@ -79,7 +79,7 @@ BB.AddonsVersion = {
   ["VotansMiniMap"] =                 "2.0.8",
   --W
   ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.5",
+  ["WPamA"] =                         "2.4.6",
   ["WritWorthy"] =                    "7.4.8",
   --X
   --Y

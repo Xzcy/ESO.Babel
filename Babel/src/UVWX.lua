@@ -315,8 +315,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
   local L = {
     Lng = "ZH",
   -- DateTime settings
-    DateTimePart = {dd = 2, mm = 1, yy = 0, },
-    DateFrmt = 4, -- 1 default:m.d.yyy ; 2:yyyy-mm-dd; 3:dd.mm.yyyy; 4:yyyy/mm/dd; 5:dd.mm.yy; 6:mm/dd; 7:dd.mm
+    DateTimePart = {dd = 1, mm = 0, yy = 2, },
+    DateFrmt = 2, -- 1 default:m.d.yyy ; 2:yyyy-mm-dd; 3:dd.mm.yyyy; 4:yyyy/mm/dd; 5:dd.mm.yy; 6:mm/dd; 7:dd.mm
     DateFrmtList = {"ESO默认","yyyy-mm-dd","dd.mm.yyyy","yyyy/mm/dd","dd.mm.yy","mm/dd","dd.mm"},
     DayMarker = "日",
     MetricPrefix = {"K","M","G","T","P","E"},
@@ -352,23 +352,23 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     KeyBindRGLAStp  = "RGLA: 停止",
     KeyBindRGLAPst  = "RGLA: 发到聊天",
     KeyBindRGLAShr  = "RGLA: 共享任务",
-    KeyBindLFGP     = "开启/关闭 GFP (誓约组队查找器)",
-    KeyBindLFGPMode = "GFP模式选择 - 3/4/5/6钥匙",
+    KeyBindLFGP     = "开始/取消 排本（需先接任务）",
+    KeyBindLFGPMode = "模式选择 - 3/4/5/6钥匙",
   -- Caption
     Wind = {
       [0] = {
         Capt = "地下城",
         Tab = {
-          [1] = {N="誓约", W=110,},
-          [2] = {N="日历", W=95,},
-          [3] = {N="随机活动", W=200,}, 
+          [1] = {N="誓约", W=65,},
+          [2] = {N="日历", W=72,},
+          [3] = {N="随机活动", W=124,}, 
           [4] = {N=GetString(SI_ENDLESS_DUNGEON_LEADERBOARDS_CATEGORIES_HEADER), W=181,},
         },
       },
       [1] = {
         Capt = "试炼",
         Tab = {
-          [1] = {N="AA, HRC, SO, MOL, CR, SS", W=200,},
+          [1] = {N="AA, HRC, SO, MOL, CR, SS", W=192,},
           [2] = {N="HOF, AS, KA, RG, DSR, SE", W=192,},
           [3] = {N="LC", W=192,},
         },
@@ -376,26 +376,27 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       [2] = {
         Capt = GetString(SI_ZONECOMPLETIONTYPE9), -- "World Bosses"
         Tab = {
-          [1] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds|t", W=28, S=true, A="沃斯加",},
-          [2] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_morrowind_up.dds|t", W=28, S=true, A="瓦登费尔",},
-          [3] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds|t", W=28, S=true, A="黄金海岸",},
-          [4] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_summerset_up.dds|t", W=28, S=true, A="夏暮岛",},
-          [5] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_elsweyr_up.dds|t", W=28, S=true, A="北艾斯维尔",},
-          [6] = {N="|t24:24:esoui/art/treeicons/tutorial_indexicon_greymoor_up.dds|t", W=28, S=true, A="西天际",},
-          [7] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_blackwood_up.dds|t", W=28, S=true, A="黑木",},
-          [8] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_highisle_up.dds|t", W=28, S=true, A="高岛",},
-          [9] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_necrom_up.dds|t", W=28, S=true, A="死灵之地",},
+          [ 1] = {N=WPamA.Textures.GetTexture(18, 24), W=28, S=true, A="沃斯加",},
+          [ 2] = {N=WPamA.Textures.GetTexture(25, 24), W=28, S=true, A="瓦登费尔",},
+          [ 3] = {N=WPamA.Textures.GetTexture(22, 24), W=28, S=true, A="黄金海岸",},
+          [ 4] = {N=WPamA.Textures.GetTexture(26, 24), W=28, S=true, A="夏暮岛",},
+          [ 5] = {N=WPamA.Textures.GetTexture(28, 24), W=28, S=true, A="北艾斯维尔",},
+          [ 6] = {N=WPamA.Textures.GetTexture(30, 24), W=28, S=true, A="西天际",},
+          [ 7] = {N=WPamA.Textures.GetTexture(34, 24), W=28, S=true, A=GetString(SI_CHAPTER5)},
+          [ 8] = {N=WPamA.Textures.GetTexture(40, 24), W=28, S=true, A=GetString(SI_CHAPTER6)},
+          [ 9] = {N=WPamA.Textures.GetTexture(43, 24), W=28, S=true, A=GetString(SI_CHAPTER7)},
+          [10] = {N=WPamA.Textures.GetTexture(43, 24), W=28, S=true, A=GetString(SI_CHAPTER8)},
         },
       },
       [3] = {
         Capt = "技能",
         Tab = {
-          [1] = {N="职业&联盟战争", W=90,},
-          [2] = {N="制造", W=60,},
-          [3] = {N="公会", W=50,},
+          [1] = {N="职业&联盟战争", W=95,},
+          [2] = {N="制造", W=41,},
+          [3] = {N="公会", W=43,},
           [4] = {N="世界", W=50,},
-          [5] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_mounts_up.dds|t", W=28, S=true, A=GetString(SI_STATS_RIDING_SKILL),},
-          [6] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds|t", W=28, S=true, A="暗影供应者",},
+          [5] = {N=WPamA.Textures.GetTexture(27, 24), W=28, S=true, A=GetString(SI_STATS_RIDING_SKILL),},
+          [6] = {N=WPamA.Textures.GetTexture(22, 24), W=28, S=true, A="暗影供应者",},
           [7] = {N="|t22:22:esoui/art/champion/champion_points_stamina_icon.dds|t" ..
                    "|t22:22:esoui/art/champion/champion_points_magicka_icon.dds|t" ..
                    "|t22:22:esoui/art/champion/champion_points_health_icon.dds|t", W=70, S=true, A=GetString(SI_STAT_GAMEPAD_CHAMPION_POINTS_LABEL),},
@@ -404,11 +405,11 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       [4] = {
         Capt = GetString(SI_BINDING_NAME_TOGGLE_INVENTORY),
         Tab = {
-          [1] = {N="货币", W=50,},
-          [2] = {N="物品", W=70,},
-          [3] = {N="|t24:24:esoui/art/icons/store_experiencescroll_001.dds|t", W=28, S=true, A="经验卷轴",},
+          [1] = {N="货币", W=74,},
+          [2] = {N="物品", W=46,},
+          [3] = {N=WPamA.Textures.GetTexture(32, 24), W=28, S=true, A="经验卷轴",},
           [4] = {N="|t24:24:esoui/art/icons/crafting_runecrafter_potion_sp_001.dds|t", W=28, S=true, A="蜕变晶石球",},
-          [5] = {N="|t24:24:esoui/art/treeicons/tutorial_idexicon_items_up.dds|t", W=28, S=true,
+          [5] = {N=WPamA.Textures.GetTexture(31, 24), W=28, S=true,
                  A=GetString(SI_GAMEPAD_PLAYER_INVENTORY_CAPACITY_FOOTER_LABEL),},
           [6] = {N="|t24:24:esoui/art/icons/quest_scroll_001.dds|t", W=28, S=true,
                  A=GetString(SI_SPECIALIZEDITEMTYPE100) .. ", " .. GetString(SI_SPECIALIZEDITEMTYPE101),},
@@ -418,32 +419,30 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       [5] = {
         Capt = GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKCATEGORIES1),
         Tab = {
-          [1] = {N=GetString(SI_CAMPAIGNRULESETTYPE1), W=80,},
-          [2] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES5), W=120,},
-          [3] = {N=GetString(SI_DAILY_LOGIN_REWARDS_TILE_HEADER), W=120,},
-          [4] = {N="奖励&标志", W=180,},
+          [1] = {N=GetString(SI_CAMPAIGNRULESETTYPE1), W=61,},
+          [2] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES5), W=112,},
+          [3] = {N=GetString(SI_DAILY_LOGIN_REWARDS_TILE_HEADER), W=112,},
+          [4] = {N="奖励&标志", W=132,},
   --      [5] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES4), W=100,},
         },
       },
       [6] = {
         Capt = GetString(SI_MAPFILTER14),
         Tab = {
-          [1] = {N=GetString(SI_COMPANION_OVERVIEW_RAPPORT), W=84,},
-          [2] = {N="|t24:24:esoui/art/progression/progression_indexicon_class_up.dds|t" ..
-                   "|t24:24:esoui/art/icons/progression_tabicon_fightersguild_up.dds|t" ..
-                   "|t24:24:esoui/art/tutorial/progression_tabicon_armorheavy_up.dds|t", W=70, S=true,
-                 A="技能：职业、公会、护甲",},
-          [3] = {N="|t24:24:esoui/art/progression/icon_2handed.dds|t" ..
-                   "|t24:24:esoui/art/progression/icon_bows.dds|t" ..
-                   "|t24:24:esoui/art/progression/icon_healstaff.dds|t", W=70, S=true,
+          [1] = {N=WPamA.Textures.GetTexture(45, 24) .. "1", W=70, S=true, A=GetString(SI_COMPANION_OVERVIEW_RAPPORT)},
+          [2] = {N=WPamA.Textures.GetTexture(45, 24) .. "2", W=70, S=true, A=GetString(SI_COMPANION_OVERVIEW_RAPPORT)},
+          [3] = {N=WPamA.Textures.GetTexture(24, 24) .. WPamA.Textures.GetTexture(35, 24) .. WPamA.Textures.GetTexture(39, 24),
+                 W=70, S=true, A="技能：职业、公会、护甲"},
+          [4] = {N="|t24:24:esoui/art/progression/icon_2handed.dds|t" ..
+                 "|t24:24:esoui/art/progression/icon_bows.dds|t" ..
+                 "|t24:24:esoui/art/progression/icon_healstaff.dds|t", W=70, S=true,
                  A="技能：武器",},
-          [4] = {N="|t24:24:esoui/art/tutorial/progression_tabicon_armormedium_up.dds|t" ..
-                   "|t24:24:esoui/art/tutorial/progression_tabicon_armorheavy_up.dds|t" ..
-                   "|t24:24:esoui/art/tutorial/progression_tabicon_armorlight_up.dds|t", W=70, S=true,
-                 A=GetString(SI_ARMORY_EQUIPMENT_LABEL) .. ": " .. GetString(SI_EQUIPSLOTVISUALCATEGORY2),},
-          [5] = {N="|t24:24:esoui/art/tradinghouse/tradinghouse_apparel_accessories_necklace_up.dds|t" ..
-                   "|t24:24:esoui/art/progression/icon_2handed.dds|t" ..
-                   "|t24:24:esoui/art/tradinghouse/tradinghouse_apparel_accessories_ring_up.dds|t", W=70, S=true,
+          [5] = {N=WPamA.Textures.GetTexture(38, 24) .. WPamA.Textures.GetTexture(39, 24) ..
+                 WPamA.Textures.GetTexture(37, 24), W=70, S=true,
+                 A=GetString(SI_ARMORY_EQUIPMENT_LABEL) .. ": " .. GetString(SI_EQUIPSLOTVISUALCATEGORY2)},
+          [6] = {N="|t24:24:esoui/art/tradinghouse/tradinghouse_apparel_accessories_necklace_up.dds|t" ..
+                 "|t24:24:esoui/art/progression/icon_2handed.dds|t" ..
+                 "|t24:24:esoui/art/tradinghouse/tradinghouse_apparel_accessories_ring_up.dds|t", W=70, S=true,
                  A=GetString(SI_ARMORY_EQUIPMENT_LABEL) .. ": " .. GetString(SI_EQUIPSLOTVISUALCATEGORY1) .. ", " ..
                    GetString(SI_EQUIPSLOTVISUALCATEGORY3),},
         },
@@ -451,7 +450,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       [7] = {
         Capt = GetString(SI_JOURNAL_MENU_ACHIEVEMENTS) .. ", " .. GetString(SI_COLLECTIONS_MENU_ROOT_TITLE),
         Tab = {
-          [1] = {N="季节性庆典", W=100,},
+          [1] = {N="季节性庆典", W=146,},
           [2] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES803), W=70,},
         },
       },
@@ -460,7 +459,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
         Tab = {
           [1] = {N=GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES), W=102,},
           [2] = {N="委托", W=48,},
-          [3] = {N="|t24:24:esoui/art/tutorial/achievements_indexicon_darkanchors_up.dds|t", W=28, S=true,
+          [3] = {N=WPamA.Textures.GetTexture(41, 24), W=28, S=true,
                  A=GetString(SI_ZONECOMPLETIONTYPE8),}, -- World Events
           [4] = {N="|t28:28:esoui/art/help/help_tabicon_overview_up.dds|t", W=28, S=true,
                  A=GetString(SI_CUSTOMER_SERVICE_OVERVIEW),}, -- Overview
@@ -485,7 +484,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       },
   --------
     }, -- ModeSettings
-    SelModeWin = {x = 170, y = 2, dy = 24,},
+    SelModeWin = {x = 220, y = 2, dy = 24,},
   -- Labels
     TotalRow = {[1] = "银行",[2] = "总计",},
     HdrLvl = "等级",
@@ -502,6 +501,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     SendInvTo = "向<<1>>发邀请",
     ShareSubstr = "共享",
     EndeavorTypeNames = { [1] = "日常勉励任务", [2] = "周常勉励任务", },
+    PromoEventName = WPamA.Textures.GetTexture(47, 20, true) ..
+                     GetString(SI_ACTIVITY_FINDER_CATEGORY_PROMOTIONAL_EVENTS) .. " : <<1>>", -- "Golden Pursuits"
     NoWorldEventsHere = "此处无世界事件",
     WECalculating = "计算中",
     WEDistance = "距离",
@@ -575,12 +576,6 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptCompanionRprtMax = "同时显示最大值",
     OptCompanionEquip = "伙伴装备显示模式...",
     OptCompanionEquipList = {"装备名", "装备类型", "装备特质", "类型和特质"},
-    OptEndeavorRewardMode = "勉励任务奖励显示模式...",
-    OptEndeavorRewardList = {"单个", "当前", "最大"},
-    OptEndeavorChatMsg  = "在聊天窗口中显示进度",
-    OptEndeavorChatMsgF = "在聊天窗口中显示进度相关信息",
-    OptEndeavorChatChnl = "聊天框通知进度",
-    OptEndeavorChatChnlF = "在聊天窗口中通知进度相关信息",
   --> 2
     OptModeSetHdr = "选项和模式设置",
     OptAutoActionsHdr = "自动接日常任务",
@@ -591,6 +586,18 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptAutoTakeDBList = {"帐号", "角色"},
     OptChoiceDBSupplies = "接收物品类型",
     OptDBSuppliesList = {"默认", "毒药/药水", "不显示", "装备"},
+    ---
+    --OptEndeavorRewardMode = "勉励任务奖励显示模式...",
+    --OptEndeavorRewardList = {"单个", "当前", "最大"},
+    OptEndeavorChatMsg  = "在聊天窗口中显示勉励任务进度",
+    OptEndeavorChatMsgF = "在聊天窗口中显示勉励任务进度相关信息",
+    OptEndeavorChatChnl = "显示进度的聊天频道",
+    OptEndeavorChatChnlF = "用于显示勉励进度相关信息的聊天频道",
+    OptPursuitChatMsg  = "在聊天窗口中显示金典追觅进度",
+    OptPursuitChatMsgF = "在聊天窗口中显示金典追觅进度相关信息",
+    OptPursuitChatChnlF = "用于显示金典追觅进度相关信息的聊天频道",
+    OptPursuitAutoClaim = "自动获取金典追觅奖励",
+    ---
     OptLFGPHdr = "GFP(誓约组队查找器)",
     OptLFGPOnOff = "允许使用GFP",
     OptLFGPMode = "同时将组队模式设置为...",
@@ -694,7 +701,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [ 7] = "无畏者钥匙、开锁器、灵魂石及其他...",
     [ 8] = "您的角色在启迪状态",
     [ 9] = "您的角色未在启迪状态",
-    [10] = Icon.LMB .. " " .. L.KeyBindLFGP .. "\n" .. Icon.RMB .. " " .. L.KeyBindLFGPMode,
+    [10] = table.concat({ Icon.LMB, " ", L.KeyBindLFGP, "\n", Icon.RMB, " ", L.KeyBindLFGPMode }),
     [11] = "蜕变水晶",
   --
     [12] = "您当前在世界技能方面的进展。",
@@ -796,10 +803,9 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [112] = "", -- an overridden string
     [113] = "", -- an overridden string
     [114] = "", -- an overridden string
-    [115] = "|t24:24:esoui/art/progression/progression_tabicon_weapons_active.dds|t" ..
-            "- 从检测到可用事件到现在已经过去了多长时间。\n" ..
-            "|t28:28:esoui/art/progression/progression_crafting_delevel_up.dds|t" ..
-            "- 从事件完成到现在已经过去了多长时间。",
+    [115] = table.concat({
+          WPamA.Textures.GetTexture(14, 24), "- 从检测到可用事件到现在已经过去了多长时间。\n",
+          WPamA.Textures.GetTexture(13, 28), "- 从事件完成到现在已经过去了多长时间。" }),
     [116] = "活动进行了多长时间。\n（玩家完成活动用了多长时间）",
     [117] = "到世界事件可用的预计时间。\n" ..
             "至少需要完成 2 个事件才能计算时间。\n" ..
@@ -883,9 +889,9 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [245] = "阿梅诺斯水池\n - 冲动之斯凯拉德, 冲动之罗萨拉",
     [246] = "莫尔纳德瀑布\n - 海螯首领, 海螯配偶",
   --247-249 Books Category (Init by WPamA:InitLoreBookMode)
-  -- Hireling mail and crafting profession certification
-    [250] = "\n" .. Icon.Mail .. " - 可使用雇工邮件（需要重登游戏或更改位置）" ..
-            "\n" .. Icon.NoCert .. " - 未完成生产认证任务",
+  -- Hireling mail and crafting profession certification'
+    [250] = table.concat({ "\n", Icon.Mail, " - 可使用雇工邮件（需要重登游戏或更改位置）",
+                           "\n", Icon.NoCert, " - 未完成生产认证任务" }),
   -- WB Necrom
     [251] = "梦魇巢穴\n - 行走的梦魇",
     [252] = "克拉莫拉普盆地\n - 制链者科里恩",
@@ -1007,7 +1013,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     },
   -- Shadows of the Hist DLC dungeons
     [29] = { -- EP, Shadowfen, Ruins of Mazzatun
-      N = "谜城遗迹",
+      N = "马扎顿遗迹",
     },
     [30] = { -- EP, Shadowfen, Cradle of Shadows
       N = "暗影摇篮",
@@ -1165,6 +1171,13 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [48] = {C = "击败瓦金纳兹·德克",}, -- DEK
     [49] = {C = "击败首席编者",}, -- CATL
     [50] = {C = "击败符文大师希奥马拉",}, -- XIOM
+  -- Gold Road
+    [51] = {C = "Defeat Spinner Urthrendir",}, -- URTH
+    [52] = {C = "Defeat Stri the Fate-Eater",}, -- STRI
+    [53] = {C = "Defeat Fang and Talon",}, -- FANG
+    [54] = {C = "Defeat Hessedaz the Baleful",}, -- HESS
+    [55] = {C = "Defeat Recollection Leaders",}, -- RECO
+    [56] = {C = "Defeat Oakenclaw",}, -- OAK
   }
   L.DayOfWeek = {
     [0] = "周日",

@@ -1,5 +1,12 @@
 MABabel.ChangeLog = 
 [[
+  2024.11.07
+    修正：BUI、pChat、WPamA等
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.6.11
+      Fancy Action Bar+ → 2.9.10
+      WPamA → 2.4.6
+    
   2024.10.29
     新增汉化：GridList, Group Loot Notifier
     更新：开始支持对BUI设置界面内的插件汉化

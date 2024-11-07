@@ -1564,9 +1564,12 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
 
   SafeAddString(PCHAT_WANTTOPROTECT                    ,"忽略求交易消息",1)
   SafeAddString(PCHAT_WANTTOPROTECTTT                  ,"忽略玩家寻求买卖交易的信息",1)
+  
+  SafeAddString(PCHAT_WANTTOPROTECTWWANDVAMP           ,"忽略求被咬狼人/吸血鬼消息",1)
+	SafeAddString(PCHAT_WANTTOPROTECTWWANDVAMPTT         ,"忽略玩家寻求狼人/吸血鬼技能线的信息",1)
 
-  SafeAddString(PCHAT_WANTTOPROTECT_GOLDCROWNSSPAM                    ,"忽略皇冠金币交易消息",1)
-  SafeAddString(PCHAT_WANTTOPROTECT_GOLDCROWNSSPAMTT                  ,"忽略玩家寻求买卖皇冠和金币的信息",1)
+  SafeAddString(PCHAT_WANTTOPROTECT_GOLDCROWNSSPAM     ,"忽略皇冠金币交易消息",1)
+  SafeAddString(PCHAT_WANTTOPROTECT_GOLDCROWNSSPAMTT   ,"忽略玩家寻求买卖皇冠和金币的信息",1)
 
 
   SafeAddString(PCHAT_SPAMGRACEPERIOD                  ,"临时刷屏阻止",1)
@@ -1831,15 +1834,17 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
   SafeAddString(PCHAT_SHOWACCANDCHARATCONTEXTMENU_TT,"在复制上下文菜单中显示@账号名/角色名。前提是已经为相应的聊天频道启用了@账号名/角色名标题！私聊频道将不会显示！",1)
   SafeAddString(PCHAT_SHOWCHARLEVELATCONTEXTMENU,"复制菜单中显示角色等级",1)
   SafeAddString(PCHAT_SHOWCHARLEVELATCONTEXTMENU_TT,"在复制右键菜单中显示角色等级，前提是启用了@账号名/角色名标题，允许在聊天消息中显示角色名称，并且该角色当前在线，位于您的队伍、公会或好友列表中时，此功能才有效！",1)
-  SafeAddString(PCHAT_ASKBEFOREIGNORE					, "对于忽略的玩家显示额外的 \'!警告!\'",1)
-  SafeAddString(PCHAT_ASKBEFOREIGNORETT					, '如果玩家位于您的忽略列表中，则在聊天右键菜单中添加警告提示。',1)
-  SafeAddString(PCHAT_SHOWIGNOREDWARNINGCONTEXTMENU	, "对于忽略的玩家添加 是/否 对话框 \'忽略\'  (聊天, 好友, ...)",1)
-  SafeAddString(PCHAT_SHOWIGNOREDWARNINGCONTEXTMENUTT	, "在忽略玩家的右键菜单（如聊天窗口、好友列表等）中添加了一个带有“是/否”按钮的对话框，这样您就不会意外地忽略原本打算进行其他操作（例如，误点击了想要密语的玩家）的玩家。",1)
+  SafeAddString(PCHAT_SHOWIGNOREDWARNINGCONTEXTMENU					, "对于忽略的玩家显示额外的 \'!警告!\'",1)
+  SafeAddString(PCHAT_SHOWIGNOREDWARNINGCONTEXTMENUTT					, '如果玩家位于您的忽略列表中，则在聊天右键菜单中添加警告提示。',1)
+  SafeAddString(PCHAT_ASKBEFOREIGNORE	, "对于忽略的玩家添加 是/否 对话框 \'忽略\'  (聊天, 好友, ...)",1)
+  SafeAddString(PCHAT_ASKBEFOREIGNORETT	, "在忽略玩家的右键菜单（如聊天窗口、好友列表等）中添加了一个带有“是/否”按钮的对话框，这样您就不会意外地忽略原本打算进行其他操作（例如，误点击了想要密语的玩家）的玩家。",1)
   SafeAddString(PCHAT_SHOWSENDMAILCONTEXTMENU			, "添加 \'发送邮件\' 选项",1)
   SafeAddString(PCHAT_SHOWSENDMAILCONTEXTMENUTT			, "在右键菜单中添加一个选项，直接向角色/帐户发送新邮件",1)
   SafeAddString(PCHAT_SHOWTELEPORTTOCONTEXTMENU		, "添加传送到玩家的选项",1)
-  SafeAddString(PCHAT_SHOWTELEPORTTOCONTEXTMENUTT		, "右键菜单中显示一个传送到队友、公会成员或好友的选项。注意：这不适用于非好友、队友或公会成员的普通区域聊天玩家！",1)
-  SafeAddString(PCHAT_CHATCONTEXTMENUTPTO,"Teleport to",1)
+  SafeAddString(PCHAT_SHOWTELEPORTTOCONTEXTMENUTT		, "右键菜单中添加一个传送到队友、公会成员或好友的选项。注意：这不适用于非好友、队友或公会成员的普通区域聊天玩家！",1)
+  SafeAddString(PCHAT_SHOWWHERECONTEXTMENU, "添加显示玩家位置的选项",1)
+  SafeAddString(PCHAT_SHOWWHERECONTEXTMENUTT, "右键菜单中添加一个显示玩家位置的选项。注意：这不适用于非好友、队友或公会成员的普通区域聊天玩家！",1)
+  SafeAddString(PCHAT_CHATCONTEXTMENUTPTO,"传送至",1)
   SafeAddString(PCHAT_CHATCONTEXTMENUTPFRIEND,"好头 %q",1)
   SafeAddString(PCHAT_CHATCONTEXTMENUTPGUILD,"公会 #%s 成员 %q",1)
   SafeAddString(PCHAT_CHATCONTEXTMENUTPGROUP,"队伍 成员 %q",1)
@@ -1888,6 +1893,7 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
   SafeAddString(PCHAT_CHARCOUNT_ENABLE_CHECKBOX_TOOLTIP ,"显示当前输入到聊天文本框超过350的最大限制以外的字符数。它将出现在聊天窗口的顶部中心位置。",1)
   SafeAddString(PCHAT_CHARCOUNT_ZONE_POST_TRACKER_NAME ,"显示区域发布追踪",1)
   SafeAddString(PCHAT_CHARCOUNT_ZONE_POST_TRACKER_TOOLTIP ,"显示您最后一次在当前区域的区域聊天频道中发布内容的时间戳。当你改变区域时,时间会重置。对于在区域聊天频道中发布公告很有用。它将出现在聊天窗口的顶部中心位置。",1)
+
 return true end
 
 --PerfectPixel

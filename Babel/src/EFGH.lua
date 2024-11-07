@@ -1361,6 +1361,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             },
             {
               type = "checkbox";
+              name = "[实验性] 为切换类技能显示判定时点";
+              tooltip = "部分切换类技能会有周期性效果，例如冥想技能每秒给予资源。启用时，技能栏将会显示下一次触发周期性效果的倒计时。重载UI后需要再次切换技能使倒计时同步";
+            },
+            {
+              type = "checkbox";
               name = "无视陷阱类技能的初始放置";
               tooltip = "默认下，陷阱类技能初始放置会显示计时器和层数。启用时，仅追踪技能的DOT效果";
             },
