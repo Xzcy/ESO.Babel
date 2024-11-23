@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.11.07"
+BB.Version = "2024.11.23"
 
 --Default/Saved Setting
 BB.Default = {
@@ -155,11 +155,13 @@ local IGVList = {}
 
 --[[Example
   BB.SetGlobalHook(function() BB.TableCopy(t1, t2) end, "CraftStore", "Quality")
-  when CraftStore.Quality has benn created, triggle function 
+  when CraftStore.Quality has bean created, triggle function 
 ]]
 function BB.SetGlobalHook(Fun, key1, key2)
   if key2 then
     IGVList[key1] = function(t1, k1, v1)
+      --Patch for some addons missed namespace = {}, and make it userdata instead of table
+      if type(t1[k1]) == "userdata" then t1[k1] = {} end
       setmetatable(t1[k1], {
         __newindex = function(t2, k2, v2)
           rawset(t2, k2, v2)

@@ -1,5 +1,12 @@
 MABabel.ChangeLog = 
 [[
+  2024.11.23
+    新增汉化：Azurah, Vestige's Epic Quest
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.6.12
+      Fancy Action Bar+ → 2.10.7
+      OdySupportIcons → 1.11.0
+    
   2024.11.07
     修正：BUI、pChat、WPamA等
     |cFFA500插件版本需求|r：

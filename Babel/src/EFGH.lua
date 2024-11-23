@@ -151,6 +151,7 @@ return true end
 --Fancy Action Bar+
 BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return false end
   local ACTION_BAR = GetControl("ZO_ActionBar1")
+  --menu.lua
   local NewOption = {
     {
       type = "button";
@@ -1379,6 +1380,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               name = "无视非组队盟友";
               tooltip = "默认追踪施加给所有友方单位的Buffs\n启用后，你在队伍中时仅追踪对队友施加的Buffs";
             },
+            {
+              type = "checkbox";
+              name = "允许回退计时器";
+              tooltip = "默认情况下，配置过的技能只会追踪特定效果的持续时间。启用后，当追踪的特定效果持续时间短于技能本身，将允许计时器在之后追踪技能本身的剩余时间。举例来说，将硬化护甲配置为追踪护盾时间（默认为追踪高信时间）：不启用时，仅追踪该技能提供的护盾时间；启用后，在护盾消耗/过期后，计时器转而追踪高信时间";
+            },
           };
         },
       };
@@ -1729,7 +1735,8 @@ BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false en
     
     SI_FURC_FILTER_VERSION_BASE43 = "U43补丁",
     SI_FURC_FILTER_VERSION_BASE43_TT = "住宅巡览",
-
+    SI_FURC_FILTER_VERSION_BASE44 = "U44补丁",
+    SI_FURC_FILTER_VERSION_BASE44_TT = "双方斗争",
     -- =============================== --
     -- = GUI: Dropdown entry tooltip = --
     -- =============================== --

@@ -1011,6 +1011,50 @@ BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
     type       = "iconpicker",
     name       = "材质",
     },
+    --Tanlorin
+    {
+    type  = "description",
+    text  = "",
+    title = "\n|cffff00坦洛林（伙伴） 图标|r",
+    },
+    {
+    type    = "checkbox",
+    name    = "显示3D图标",
+    },
+    {
+    type    = "checkbox",
+    name    = "死亡时使用玩家死亡图标",
+    },
+    {
+    type     = "colorpicker",
+    name     = "图标颜色",
+    },
+    {
+    type       = "iconpicker",
+    name       = "材质",
+    },
+    --Zerith-var
+    {
+    type  = "description",
+    text  = "",
+    title = "\n|cffff00泽里斯·瓦尔（伙伴） 图标|r",
+    },
+    {
+    type    = "checkbox",
+    name    = "显示3D图标",
+    },
+    {
+    type    = "checkbox",
+    name    = "死亡时使用玩家死亡图标",
+    },
+    {
+    type     = "colorpicker",
+    name     = "图标颜色",
+    },
+    {
+    type       = "iconpicker",
+    name       = "材质",
+    },
   }
 
   -- custom icon options
