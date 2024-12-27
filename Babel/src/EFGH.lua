@@ -148,6 +148,47 @@ BB.AddonList["EnglishTooltips"] = function() if not EnglishTooltips then return 
   
 return true end
 
+--Essential Housing Tools
+BB.AddonList["EssentialHousingTools"] = function() if not EHT then return false end
+--String Match and Replace
+  local L = {}
+  --Control Texts
+  L["|cffffff".."Hi! You seem to have a new installation of Essential Housing Tools. That's great! :) Just to confirm though..."] = "你好！看上去你刚安装了 Essential Housing Tools 插件，请确认以下信息..."
+  --Dialog Texts
+  
+  --Menu Options
+  local NewOption = {
+    
+  }
+  
+--Special Setting
+  
+  --Control Part
+  local OldCreate = EHT.CreateControl
+  EHT.CreateControl = function(...)
+    local control = OldCreate(...)
+    local OldText = control.SetText
+    --Some Controls without SetText function
+    if not OldText then return control end
+    --Change SetText functions for controls created by EHT
+    control.SetText = function(c, t)
+      if L[t] then
+        OldText(c, L[t])
+      else
+        OldText(c, t)
+      end
+    end
+    return control
+  end
+  
+  --Menu Part
+  
+  
+  --Dialog Part
+  
+  
+return true end
+
 --Fancy Action Bar+
 BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return false end
   local ACTION_BAR = GetControl("ZO_ActionBar1")
@@ -2253,12 +2294,12 @@ do if not BB.SV.BanList["GuildHallButton"] then
 
 end end
 
+--GuildDonate
 BB.AddonList["GuildHallButton"] = function() 
   if not GuildHallButton then return false end
   return true
 end
 
---GuildDonate
 BB.AddonList["GuildDonate"] = function() if not GuildDonate then return false end
   ZO_CreateStringId("GD_DEBUG_LOG",   "显示调试日记")
   ZO_CreateStringId("GD_AUTO",        "自动向所有公会捐款")

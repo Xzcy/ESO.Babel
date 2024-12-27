@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2024.12.28
+    待办：开始翻译 Essential Housing Tools (计划于几次更新内完成)
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.6.13
+    
   2024.11.23
     新增汉化：Azurah, Vestige's Epic Quest
     |cFFA500插件版本需求|r：

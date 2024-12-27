@@ -2837,8 +2837,6 @@ do if not BB.SV.BanList["Srendarr"] then
   L.General_UnlockDefaults    = "默认"
   L.General_UnlockDefaultsAgain    = "确认默认"
   L.General_UnlockReset    = "重置"
-  L.General_CombatOnly    = "只在战斗中显示"
-  L.General_CombatOnlyTip    = "设置光环窗口是否只在战斗时可见。"
   L.General_PassivesAlways    = "一直显示被动"
   L.General_PassivesAlwaysTip    = "显示被动/长时间光环，即便未在战斗中及上面选项已勾选。"
   L.HideOnDeadTargets    = "死亡目标上隐藏"
@@ -3048,8 +3046,8 @@ do if not BB.SV.BanList["Srendarr"] then
   -- ------------------------
   L.CastBar_Enable    = "开启释放&引导条"
   L.CastBar_EnableTip    = "设置是否启用可移动的施法条，以在激活前显示具有施法时间或引导时间的技能进度。"
-  L.CastBar_Alpha    = "透明度"
-  L.CastBar_AlphaTip    = "设置施放条在可见时的不透明程度。设置为100使该栏完全不透明。"
+  L.CastBar_AlphaTip    = "设置施法条在战斗外的不透明度。设置为0时完全隐藏。"
+  L.CastBar_CAlphaTip		= "设置施法条在战斗中的不透明度。设置为0时完全隐藏。"
   L.CastBar_Scale    = "比例"
   L.CastBar_ScaleTip    = "以百分比设置施放条的尺寸。设置为100是默认大小。"
 
@@ -3073,8 +3071,10 @@ do if not BB.SV.BanList["Srendarr"] then
   -- ------------------------
   -- SETTINGS: DISPLAY FRAMES
   -- ------------------------
-  L.DisplayFrame_Alpha    = "窗口透明度"
-  L.DisplayFrame_AlphaTip    = "设置此光环窗口在可见时的不透明程度。设置为100使窗口完全不透明。"
+  L.DisplayFrame_Alpha    = "脱战时透明度"
+  L.DisplayFrame_AlphaTip    = "设置此光环窗口在脱战时的不透明程度。设置为0时，窗口完全隐藏。"
+  L.DisplayFrame_CAlpha		= "战斗中透明度"
+  L.DisplayFrame_CAlphaTip	 = "设置此光环窗口在战斗中的不透明程度。设置为0时，窗口完全隐藏。"
   L.DisplayFrame_Scale    = "窗口比例"
   L.DisplayFrame_ScaleTip    = "以百分比设置光环窗口的尺寸。设置为100是默认大小。"
 

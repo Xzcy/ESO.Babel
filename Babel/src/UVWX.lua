@@ -311,10 +311,10 @@ BB.AddonList["VEQ"] = function() if not VEQ then return false end
     ["lang_mouse_ctrl_remove"] = "删除任务",
     
     -- Console
-    ["lang_console_autoshare"] = "你自动分享一个任务",
-    ["lang_console_share"] = "你分享了一个任务",
-    ["lang_console_noshare"] = "此任务不可共享",
-    ["lang_console_abandon"] = "放弃任务",
+    ["lang_console_autoshare"] = "[VEQ] 你自动分享一个任务",
+    ["lang_console_share"] = "[VEQ] 你分享了一个任务",
+    ["lang_console_noshare"] = "[VEQ] 此任务不可共享",
+    ["lang_console_abandon"] = "[VEQ] 放弃任务",
     ["lang_choose"] = "选择：",
 
   ----------------------------------- NEW STUFF

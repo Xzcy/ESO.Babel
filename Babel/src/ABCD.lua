@@ -2743,31 +2743,45 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
 							tooltip = "启用音效 'tick'，其标志技能的起始或中间部分",
 						},
             {
-							type = "checkbox",
-							name = "在技能起始处播放 音效 'tick'",
-							tooltip = "用 tick去标志技能的起始处",
-						},
-            {
-							type = "checkbox",
-							name = "不要为重击播放 音效 'tick'",
-							tooltip = "重击很容易被取消，不推荐为其启用 音效 tick",
+              type = "checkbox",
+							name = "音效 'tock'",
+							tooltip = "启用音效 'tock'，其标志技能的结束部分",
+							warning = "如果你没有听到这个提示，要么是你装了 perfect weave 插件，当然更大可能是你漏了轻击 ¯\\_(ツ)_/¯",
 						},
 						{
 							type = "dropdown",
 							name = "音效 'tick' 效果",
 						},
 						{
-							type = "checkbox",
-							name = "音效 'tock'",
-              tooltip = "启用音效 'tock'，其标志技能的结束部分",
-						},
-						{
 							type = "dropdown",
 							name = "音效 'tock' 效果",
 						},
+            {
+							type = "slider",
+							name = "音效 'tick' 偏移量",
+						},
+						{
+							type = "slider",
+							name = "音效 'tock' 偏移量",
+						},
 						{
 							type = "checkbox",
-							name = "在战斗外也播放音效Play sounds ooc",
+							name = "在技能的起始部分播放 'tick' 音效",
+							tooltip = "使 'tick' 音效标志技能的起始部分",
+						},
+						{
+							type = "checkbox",
+							name = "重击时不要播放 'tick' 音效",
+							tooltip = "因为重击很容易被取消，所以不推荐为其播放音效",
+						},
+						{
+							type = "checkbox",
+							name = "强制播放 'tock' 音效",
+							tooltip = "即使你错过了轻击，并且下一个技能已在队列中，也播放 'tock' 音效以保持节奏",
+						},
+						{
+							type = "checkbox",
+							name = "在战斗外也播放音效",
 							tooltip = "启用后，在战斗外也将播放 音效 'tick' 和 'tock'",
 						},
 					},
