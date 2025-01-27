@@ -9,14 +9,14 @@ BB.AddonsVersion = {
   ["Azurah"] =                        "2.4.47",
   --B
   ["BeamMeUp"] =                      "3.6.1",
-  ["BanditsUserInterface"] =          "4.423",
+  ["BanditsUserInterface"] =          "4.425",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
   ["CarosSkillPointSaver"] =          "5.5.1",
   ["CombatMetrics"] =                 "1.5.18",
   ["CombatMetronome"] =               "1.6.13",
   ["CraftStoreFixedAndImproved"] =    "2.94",
-  ["CrutchAlerts"] =                  "1.6.4",
+  ["CrutchAlerts"] =                  "1.7.1",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -28,7 +28,7 @@ BB.AddonsVersion = {
   ["EnglishTooltips"] =               "1.7.1",
   ["EssentialHousingTools"] =         "1774",
   --F
-  ["FancyActionBar+"] =               "2.10.14",
+  ["FancyActionBar+"] =               "2.13.6",
   ["FurnitureCatalogue"] =            "4.85.0",
   --G
   ["GridList"] =                      "1.3.1",
@@ -37,8 +37,8 @@ BB.AddonsVersion = {
   ["GuildHallButton"] =               "2.3.19",
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.10",
-  ["HarvestMap"] =                    "3.15.13",
-  ["HodorReflexes"] =                 "2024.12.15",
+  ["HarvestMap"] =                    "3.15.14",
+  ["HodorReflexes"] =                 "2025.01.23",
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
@@ -52,11 +52,11 @@ BB.AddonsVersion = {
   ["MasterMerchant"] =                "3.8.11",
   --N
   --O
-  ["OdySupportIcons"] =               "1.11.0",
+  ["OdySupportIcons"] =               "1.12.0",
   --P
   ["pChat"] =                         "10.0.5.8",
-  ["PerfectPixel"] =                  "0.13.13",
-  ["PersonalAssistant"] =             "2024.12.27",
+  ["PerfectPixel"] =                  "0.13.17",
+  ["PersonalAssistant"] =             "2025.01.12",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.10.1",
   --Q
@@ -70,6 +70,7 @@ BB.AddonsVersion = {
   ["SanitysEdgeHelper"] =             "1.2.3",
   ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.44",
+  ["SynergyToggle"] =                 "1.12.0",
   --T
   ["TamrielTradeCentre"] =            "4.21.762.18254",
   --U
@@ -79,17 +80,17 @@ BB.AddonsVersion = {
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
   ["VotansMiniMap"] =                 "2.0.8",
-  ["VEQ"] =                           "2024.12.08-2",
+  ["VEQ"] =                           "2025.01.08",
   --W
   ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.6",
+  ["WPamA"] =                         "2.4.7",
   ["WritWorthy"] =                    "7.4.9",
   --X
   --Y
   --Z
 }
 
---[The Name Sended to LAM] = key in BB.AddonsVersion,
+--[The Name of Table Sended to LAM] = key in BB.AddonsVersion,
 BB.CurrentVersion = {
   ["BuffTheGroupOptions"] =           "BuffTheGroup",
   ["CombatMetronomeOptions"] =        "CombatMetronome",
@@ -106,4 +107,5 @@ BB.CurrentVersion = {
   ["QcellRockgroveHelperOptions"] =   "QcellRockgroveHelper",
   ["SanitysEdgeHelperOptions"] =      "SanitysEdgeHelper",
   ["SlightlyImprovedExperienceBar"] = "SlightlyImprovedExperienceBar",
+  ["STS"] =                           "SynergyToggle",
 }

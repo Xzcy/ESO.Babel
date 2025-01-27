@@ -149,50 +149,277 @@ BB.AddonList["EnglishTooltips"] = function() if not EnglishTooltips then return 
 return true end
 
 --Essential Housing Tools
-BB.AddonList["EssentialHousingTools"] = function() if not EHT then return false end
+BB.AddonList["EssentialHousingTools"] = function() if not EHTUndone then return false end
 --String Match and Replace
-  local L = {}
-  --Control Texts
-  L["|cffffff".."Hi! You seem to have a new installation of Essential Housing Tools. That's great! :) Just to confirm though..."] = "你好！看上去你刚安装了 Essential Housing Tools 插件，请确认以下信息..."
-  --Dialog Texts
+  local cL, dL, tL, pL, fL = {}, {}, {}, {}, {}
+--Control Texts
+  cL["|cffffff".."Hi! You seem to have a new installation of Essential Housing Tools. That's great! :) Just to confirm though..."] = "你好！看上去你刚安装了 Essential Housing Tools 插件，请确认以下信息..."
+  cL["Move Forward"] = ""
+  cL["Move North"] = ""
+  cL["Move Backward"] = ""
+  cL["Move South"] = ""
+  cL["Move Left"] = ""
+  cL["Move West"] = ""
+  cL["Move Right"] = ""
+  cL["Move East"] = ""
+  cL["Move Up"] = ""
+  cL["Move Down"] = ""
+  cL["Rotate Clockwise"] = ""
+  cL["Rotate Counterclockwise"] = ""
+  cL["No items are close enough to snap to."] = ""
+  cL["Your effects have been replaced with the published version\n".."You may undo this change with |c00ffffEHT button |cffffff|||c00ffff Undo"] = ""
+  cL["A process is already running"] = ""
+  cL["You are not in your home"] = ""
+  cL["Link pasted to chat"] = ""
+  cL["Clipboard is empty."] = ""
+  cL["No history."] = ""
+  --SetText(Text)                         --14765
+  --EHT.UI.ShowWarning(Text)
+  --EHT.UI.DisplayNotification(Text)      --5234
+  --EHT.UI.AddBufferText(1, 2, 3, Text)
+
+--Dialog Texts
+  dL["Do you want to publish this home's effects to the Community, allowing all Community members to see this home's effects (as these effects exist right now) when visiting this home?"] = ""
+  dL["|cffffffYour home |c00ff00will|cffffff also be registered as an Open House.\n\n".."|c00ffffReload UI now to publish your changes immediately?"] = ""
+  dL["|cffffffYour home |cff0000will not|cffffff be registered as an Open House.\n\n".."|c00ffffReload UI now to publish your changes immediately?"] = ""
+  dL["|c00ffffReload UI now to publish your changes immediately?"] = ""
+  dL["Do you want to unpublish this home's effects from the Community?\n\n".."Note that Community members will no longer be able to see your effects unless you share them using another method, such as Chat, Mail or Guild."] = ""
+  dL["|cffffff".."Your FX data will be unpublished once you reload the UI or log out.\n\n".."|c00ffff".."Reload UI now to unpublish your changes immediately?"] = ""
+  dL["You have not published a copy of this home's effects to the Community."] = ""
+  dL["Invalid effects data."] = ""
+  dL["Cannot preview effects while in secure render mode."] = ""
+  dL["You must be in a house."] = ""
+  dL["You must be the homeowner."] = ""
+  dL["Cannot preview published effects:\n".."Invalid effects data."] = ""
+  dL["Cannot preview published effects:\n".."Cannot preview effects while in secure render mode."] = ""
+  dL["Cannot preview published effects:\n".."You must be in a house."] = ""
+  dL["Cannot preview published effects:\n".."You must be the homeowner."] = ""
+  dL["Cannot preview published effects:\n".."Unknown error"] = ""
+  dL["Failed to cancel effects preview."] = ""
+  dL["Effects preview ended"] = ""
+  dL["Failed to accept preview effects."] = ""
+  dL["Copy to Clipboard"] = ""
+  dL["Cut to Clipboard"] = ""
+  dL["The virtual clipboard is empty.\nYou must copy a selection of items to the virtual clipboard first."] = ""
+  dL["Paste to your current location or to the original location from which these items were copied?"] = ""
+  dL["Current Location"] = ""
+  dL["Original Location"] = ""
+  dL["Cloning a Scene will replace your current Scene.\n".."You should save any changes to the current Scene first.\n\n".."Continue with cloning a Scene?"] = ""
+  dL["Replace current selection with this Scene's furniture?"] = ""
+  dL["Scene is empty."] = ""
+  dL["Reverse the order of this Scene's Frames?"] = ""
+  dL["Add selected items to this Scene?"] = ""
+  dL["Remove selected items from this Scene?\n\nThis change cannot be undone.\nIt is recommended that you save a copy of this Scene first."] = ""
+  dL["|cff0000We apologize for the inconvenience.|r\n\n" ..
+     "A recent Essential Housing Tools update may have caused your Community app to stop working.\n\n" ..
+     "If you had installed the Community app and find that you can no longer sign Guest Journals, list Open Houses or Publish FX, " ..
+     "please update to the latest version of Essential Housing Tools and simply re-run the Community app installation."] = ""
+  dL["Would you like to view the brief Community App Setup Guide video now?"] = ""
+  --Show Alert/Error Dialog(1, text)
+  --Show Confirmation Dialog(1, text)
+  --Show Custom Dialog(text, text, 3, text)
+
+--Tooltip Texts
   
-  --Menu Options
+--Prompt Texts
+  pL["Select an item"] = ""
+  --EHT.UI.ChooseAnItem(1, 2, 3, 4, Text)
+  --EHT.UI.ShowInteractionPrompt(1, Text)
+
+--Format Texts
+  fL["|cffffffWould you also like to also register your \"|c00ffff%s|cffffff\" as an |c88ffffOpen House for the Community|cffffff?"] = "|cffffffWould you also like to also register your \"|c00ffff%s|cffffff\" as an |c88ffffOpen House for the Community|cffffff?"
+  fL["|cffffff" .. "You are currently previewing the version of your effects that was last shared or published " .. "|cffff00%s|cffffff.\n\n" .. "While previewing, you may optionally choose to replace your effects with this published version of your effects.\n\n" .. "Note that if you choose to replace your effects, you may undo those changes with " .. "|c00ffffEHT button |cffffff|||c00ffff Undo|cffffff"] = "|cffffff" .. "You are currently previewing the version of your effects that was last shared or published " .. "|cffff00%s|cffffff.\n\n" .. "While previewing, you may optionally choose to replace your effects with this published version of your effects.\n\n" .. "Note that if you choose to replace your effects, you may undo those changes with " .. "|c00ffffEHT button |cffffff|||c00ffff Undo|cffffff"
+  fL["Some time"] = "Some time"
+  fL["Cannot preview published effects:\n%s"] = "Cannot preview published effects:\n%s"
+  fL["Unknown error"] = "Unknown error"
+  fL["Previewing your effects published to Community %s"] = "Previewing your effects published to Community %s"
+  fL["Dismissing %s..."] = "Dismissing %s..."
+  fL["Summoning %s..."] = "Summoning %s..."
+  fL["Copy the %d selected item(s) to the virtual clipboard?"] = "Copy the %d selected item(s) to the virtual clipboard?"
+  fL["Cut the %d selected item(s), removing those items to your inventory?"] = "Cut the %d selected item(s), removing those items to your inventory?"
+  fL["Copy the %d selected item(s) to the virtual clipboard and remove all selected items to your inventory?"] = "Copy the %d selected item(s) to the virtual clipboard and remove all selected items to your inventory?"
+  fL["%d separate groups"] = "%d separate groups"
+  fL["Stack all selected items into %s?"] = "Stack all selected items into %s?"
+  fL["Deselect all %s numbered items?"] = "Deselect all %s numbered items?"
+  fL["%s\n\nThis item is |caa99ffselected|cffffff\n|c00ffffLeft-click|cffffff to deselect\n|c00ffffRight-click|cffffff to identify\n\n%s\n\n\n\n%s\n\n|c000000_"] = "%s\n\nThis item is |caa99ffselected|cffffff\n|c00ffffLeft-click|cffffff to deselect\n|c00ffffRight-click|cffffff to identify\n\n%s\n\n\n\n%s\n\n|c000000_"
+  fL["%s\n\nThis item is |cffff00not selected|cffffff\n|c00ffffLeft-click|cffffff to select\n|c00ffffRight-click|cffffff to identify\n\n%s\n\n\n\n%s\n\n|c000000_"] = "%s\n\nThis item is |cffff00not selected|cffffff\n|c00ffffLeft-click|cffffff to select\n|c00ffffRight-click|cffffff to identify\n\n%s\n\n\n\n%s\n\n|c000000_"
+  fL["%d |cffffffof |c00ffff%d |cffffffselected"] = "%d |cffffffof |c00ffff%d |cffffffselected"
+  fL["%d |cffffffselected"] = "%d |cffffffselected"
+  fL["%d item%s missing."] = "%d item%s missing."
+  fL["|cffffffMove selected items using\n|c88ffff%s|r"] = "|cffffffMove selected items using\n|c88ffff%s|r"
+  fL["|cffffffManually move any selected item to\n|c88ffff%s"] = "|cffffffManually move any selected item to\n|c88ffff%s"
+  fL["move all selected items as a group"] = "move all selected items as a group"
+  fL["adjust that individual item"] = "adjust that individual item"
+  fL["|cffffffMove items by |c88ffff%s\n|cffffffRotate items by |c88ffff%.2f degrees"] = "|cffffffMove items by |c88ffff%s\n|cffffffRotate items by |c88ffff%.2f degrees"
+  fL["%d centimeters"] = "%d centimeters"
+  fL["%d meters"] = "%d meters"
+  fL["%d changed item%s"] = "%d changed item%s"
+  fL["items"] = "items"
+  fL["|cffffffRestore %s in |c00ffff%s|cffffff to the last saved position%s|r?"] = "|cffffffRestore %s in |c00ffff%s|cffffff to the last saved position%s|r?"
+  fL["Delete the Saved Selection \"%s\"?"] = "Delete the Saved Selection \"%s\"?"
+  fL["Overwrite the Saved Selection \"%s\"?"] = "Overwrite the Saved Selection \"%s\"?"
+  fL["Delete the saved scene \"%s\"?"] = "Delete the saved scene \"%s\"?"
+  fL["Delete the Saved Selection \"%s\"?"] = "Delete the Saved Selection \"%s\"?"
+  fL["Overwrite the Saved Selection \"%s\"?"] = "Overwrite the Saved Selection \"%s\"?"
+  fL["%s Now paste part %d of the clipboard above."] = "%s Now paste part %d of the clipboard above."
+  fL["Excellent."] = "Excellent."
+  fL["Great."] = "Great."
+  fL["Nice."] = "Nice."
+  fL["Clipboard import failed:\n\n%s"] = "Clipboard import failed:\n\n%s"
+  fL["Unspecified exception."] = "Unspecified exception."
+  fL["Copy part %d of %d of your Clipboard Export from above"] = "Copy part %d of %d of your Clipboard Export from above"
+  fL["Show part %d of %d"] = "Show part %d of %d"
+  fL["Scene clone failed:\n%s"] = "Scene clone failed:\n%s"
+  fL["%s can periodically save a backup of your furniture placement automatically:\n" .. "- Separate backups are maintained for each home.\n" .. "- The %d most recent backups are retained for each home.\n" .. "- A new backup is saved upon leaving your home.\n" .. "  * Avoid force closing the game (such as ALT + F4) as this will lose any unsaved add-on data (including the latest snapshot of your home)"] = "%s can periodically save a backup of your furniture placement automatically:\n" .. "- Separate backups are maintained for each home.\n" .. "- The %d most recent backups are retained for each home.\n" .. "- A new backup is saved upon leaving your home.\n" .. "  * Avoid force closing the game (such as ALT + F4) as this will lose any unsaved add-on data (including the latest snapshot of your home)"
+  fL["Restore the backup\n\"%s\"?"] = "Restore the backup\n\"%s\"?"
+  fL["%s at %s (%d items) [Before Restore]"] = "%s at %s (%d items) [Before Restore]"
+  fL["(|c00ffffGroup %d|cffffff) "] = "(|c00ffffGroup %d|cffffff) "
+  fL["%d effect%s"] = "%d effect%s"
+  fL["Mail a snapshot of this home's Essential Effects(TM) data to |cffff66%s|r?\n\n" .. "Note that sharing your data by mail will send one or more mail messages to the recipient, " .. "depending on the number of effects that you have placed in this home."] = "Mail a snapshot of this home's Essential Effects(TM) data to |cffff66%s|r?\n\n" .. "Note that sharing your data by mail will send one or more mail messages to the recipient, " .. "depending on the number of effects that you have placed in this home."
+  fL["|cffff33%s|r (NEW)"] = "|cffff33%s|r (NEW)"
+  fL["   |cffff33%s|r (NEW)"] = "   |cffff33%s|r (NEW)"
+  fL["|rpitch: %s%.2f|rdeg  yaw: %s%.2f|rdeg  roll: %s%.2f|rdeg"] = "|rpitch: %s%.2f|rdeg  yaw: %s%.2f|rdeg  roll: %s%.2f|rdeg"
+  fL["|rx: %s%d|rcm  y: %s%d|rcm  z: %s%d|rcm  (%s%d|rcm away)"] = "|rx: %s%d|rcm  y: %s%d|rcm  z: %s%d|rcm  (%s%d|rcm away)"
+  fL["|rwidth: %s%d|rcm  height: %s%d|rcm  depth: %s%d|rcm"] = "|rwidth: %s%d|rcm  height: %s%d|rcm  depth: %s%d|rcm"
+  fL["Item"] = "Item"
+  fL["%s %d item%s"] = "%s %d item%s"
+  fL["Selected"] = "Selected"
+  fL["Deselected"] = "Deselected"
+  fL["Sending %s data..."] = "Sending %s data..."
+  fL["Receiving %s data..."] = "Receiving %s data..."
+  fL["%s's %s still appears to be inaccessible at the moment - but they have been notified. :)"] = "%s's %s still appears to be inaccessible at the moment - but they have been notified. :)"
+  fL["|c00ffff%s|cffffff's |c00ffff%s|cffffff does not appear to be open for visitors (most likely a simple oversight).\n\n" .. "|cffff00Would you like to automatically notify this homeowner to make them aware of the issue?"] = "|c00ffff%s|cffffff's |c00ffff%s|cffffff does not appear to be open for visitors (most likely a simple oversight).\n\n" .. "|cffff00Would you like to automatically notify this homeowner to make them aware of the issue?"
+  fL["Hello! This is an automated message sent via Essential Housing Tools just to let you know that I was " .. "unable to visit the Open House you are hosting at your %s. If possible, would you be able to check that " .. "home's Settings in the Housing Editor to verify that your Default Visitor Access is set to allow visitors? " .. "Thank you so much!"] = "Hello! This is an automated message sent via Essential Housing Tools just to let you know that I was " .. "unable to visit the Open House you are hosting at your %s. If possible, would you be able to check that " .. "home's Settings in the Housing Editor to verify that your Default Visitor Access is set to allow visitors? " .. "Thank you so much!"
+  fL["An in-game mail has been sent to %s regarding visitor access for their %s. Thanks for letting them know!"] = "An in-game mail has been sent to %s regarding visitor access for their %s. Thanks for letting them know!"
+  fL["%d second(s)"] = "%d second(s)"
+  fL["%d minute(s), %d second(s)"] = "%d minute(s), %d second(s)"
+  fL["%d minute(s)"] = "%d minute(s)"
+  fL["Sharing has started and is estimated to take approximately:\n|c00ffff%s"] = "Sharing has started and is estimated to take approximately:\n|c00ffff%s"
+  fL["Not long"] = "Not long"
+  fL["Published |cffff33%d|rk / |cffff33700|rk FX data"] = "Published |cffff33%d|rk / |cffff33700|rk FX data"
+  fL["Publish to Community (|cffff33%d|rk)"] = "Publish to Community (|cffff33%d|rk)"
+  fL["\n\n%s wishes you a pleasant visit and politely asks that first-time guests sign in...\n"] = "\n\n%s wishes you a pleasant visit and politely asks that first-time guests sign in...\n"
+  fL["Request failed:\n%s"] = "Request failed:\n%s"
+  fL["No saved data was found for @player account \"%s\"."] = "No saved data was found for @player account \"%s\"."
+  fL["The account \"%s\" contains data for %d home(s), including:\n\n" .. "%-5d Saved Selection(s)\n" .. "%-5d Scenes(s)\n" .. "%-5d Triggers(s)\n" .. "%-5d Build(s)\n\n" .. "|cff9900Do you want to OVERWRITE your saved data with these records?|r"] = "The account \"%s\" contains data for %d home(s), including:\n\n" .. "%-5d Saved Selection(s)\n" .. "%-5d Scenes(s)\n" .. "%-5d Triggers(s)\n" .. "%-5d Build(s)\n\n" .. "|cff9900Do you want to OVERWRITE your saved data with these records?|r"
+
+--Menu Options
   local NewOption = {
     
   }
-  
+
 --Special Setting
+  --Menu Part
   
+  --String Format Part
+  local FunList = {
+    "PublishFX",
+    "RefreshEffectsPreviewState",
+    "PreviewPublishedFX",
+    "SummonKiosk",
+    "CopySelectionToClipboard",
+    "StackInGroups",
+    "DeselectAlternateItems",
+    "RefreshSelection",
+    "RefreshDirectionalPad",
+    "RefreshSelectionLinkItemsMode",
+    "SetPrecisionInfoTooltip",
+    "SetupToolDialogSelectionTab",
+    "SetupToolDialogAnimateTab",
+    "SetupManageSelectionsDialog",
+    "ProcessClipboardImport",
+    "ProcessClipboardExport",
+    "SetupCloneSceneDialog",
+    "SetupBackupsDialog",
+    "QueueRefreshBackups",
+    "RefreshPlacedEffectsList",
+    "SetupEHTEffectsButtonContextMenu",
+    "RefreshItemInfoDialog",
+    "DisplaySelectionChangeNotification",
+    "ShowSendingMapcast",
+    "ShowReceivingMapcast",
+    "ConfirmNotifyOpenHouseOwner",
+    "SetupGuildcast",
+    "ShowShareFXContextMenu",
+    "ShowMultiPlaceContextMenu",
+    "ShowGuestbook",
+    "ResetGuestbook",
+    "InitiateTransferData",
+  }
+  local OldFormat = string.format
+  for i = 1, #FunList do
+    ZO_PreHook(EHT.UI, FunList[i], 
+      function()
+        string.format = function(text1, text2, text3, ...)
+          text1 = fL[text1] or text1
+          text2 = fL[text2] or text2
+          text3 = fL[text3] or text3
+          return OldFormat(text1, text2, text3, ...)
+        end
+      end
+    )
+    ZO_PostHook(EHT.UI, FunList[i],
+      function()
+        string.format = OldFormat
+      end
+    )
+  end
+
   --Control Part
-  local OldCreate = EHT.CreateControl
+  local OldControl = EHT.CreateControl
   EHT.CreateControl = function(...)
-    local control = OldCreate(...)
+    local control = OldControl(...)
     local OldText = control.SetText
     --Some Controls without SetText function
     if not OldText then return control end
     --Change SetText functions for controls created by EHT
     control.SetText = function(c, t)
-      if L[t] then
-        OldText(c, L[t])
-      else
-        OldText(c, t)
-      end
+      t = cL[t] or t
+      OldText(c, t)
     end
     return control
   end
-  
-  --Menu Part
-  
-  
+
   --Dialog Part
-  
-  
+  local OldAlertDialog = EHT.UI.ShowAlertDialog
+  EHT.UI.ShowAlertDialog = function(title, body, ...)
+    body = dL[body] or body
+    OldAlertDialog(title, body, ...)
+  end
+
+  local OldConfirmDialog = EHT.UI.ShowConfirmationDialog
+  EHT.UI.ShowConfirmationDialog = function(title, body, ...)
+    body = dL[body] or body
+    OldConfirmDialog(title, body, ...)
+  end
+
+  local OldCustomDialog = EHT.UI.ShowCustomDialog
+  EHT.UI.ShowCustomDialog = function(message, b1, b1cb, b2, b2cb)
+    message = dL[message] or message
+    b1 = dL[b1] or b1
+    b2 = dL[b2] or b2
+    OldCustomDialog(message, b1, b1cb, b2, b2cb)
+  end
+
+  --InfoTooltip Part
+  local OldTooltip = EHT.UI.ShowTooltip
+  EHT.UI.ShowTooltip = function(tooltip, control, message, ...)
+    message = tL[message] or message
+    OldTooltip(tooltip, control, message, ...)
+  end
+
+  --Interaction Prompt Part
+  local OldPrompt =  EHT.UI.ShowInteractionPrompt
+  EHT.UI.ShowInteractionPrompt = function(keybind, label, ...)
+    label = pL[label] or label
+    OldPrompt(keybind, label, ...)
+  end
 return true end
 
 --Fancy Action Bar+
 BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return false end
   local ACTION_BAR = GetControl("ZO_ActionBar1")
-  --menu.lua
+  --menu.lua  local options =
   local NewOption = {
     {
       type = "button";
@@ -200,12 +427,21 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
       tooltip = "仅在当前设置界面中应用";
       func = function() ACTION_BAR:SetHidden(not ACTION_BAR:IsHidden()) end;
     },
+    -- ===========[	UI Presets	]===================
     {
-      type = "button";
-      name = "开发者预设";
-      tooltip = "将一系列设置调节为开发者偏好的设置";
-      warning = "修改将会重载UI";
+      type = "submenu",
+      name = "|cFFFACDUI 预设|r",
+      controls =
+      {
+        {
+          type = "dropdown",
+          name = "选择一个UI预设",
+          tooltip = "选择一种UI预设配置",
+          warning = "修改后将会重载UI",
+        },
+      },
     },
+    { type = "divider" },
     --===========[	Actionbar Scaling	]===================
     {
       type = "submenu";
@@ -250,7 +486,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "启用 技能栏重定位（手柄）";
         },
         { type = "divider" },
-                {
+        {
           type = "button";
           name = "水平居中";
         },
@@ -489,12 +725,18 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           name = "当有技能栏上锁时，调整UI";
           tooltip = "当上锁的技能栏被隐藏时，调整技能栏UI";
         },
+        {
+          type = "checkbox",
+          name = "隐藏非激活栏上的非激活技能",
+          tooltip = "将非激活技能栏上的非激活技能（无计时器的）隐藏",
+        },
         --=============[  Skill Styles  ]==================
         {
           type = "checkbox";
           name = "在技能栏显示技能样式图标";
           tooltip = "启用时，如果已装备的技能应用了样式，则改为显示对应技能样式的图标"
         },
+        
       };
     },
     --=============[  Timer Display  ]=======================
@@ -761,21 +1003,21 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                 { type = "description" },
                 {
                   type = "dropdown";
-                  name = "字体";
-                  tooltip = "选择显示的字体";
+                  name = "计时器 字体";
+                  tooltip = "选择计时器的显示字体";
                 },
                 {
                   type = "slider";
-                  name = "字体尺寸";
+                  name = "计时器 字体尺寸";
                 },
                 {
                   type = "dropdown";
-                  name = "字体样式";
-                  tooltip = "选择显示字体的样式";
+                  name = "计时器 字体样式";
+                  tooltip = "选择计时器的字体样式";
                 },
                 {
                   type = "colorpicker";
-                  name = "计时器颜色";
+                  name = "计时器 颜色";
                 },
                 {
                   type = "slider";
@@ -786,6 +1028,25 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                   type = "slider";
                   name = "横向移动";
                   tooltip = "[<- 左] 或 [右 ->]";
+                },
+                { type = "divider" },
+                {
+                  type = "dropdown",
+                  name = "数量 字体",
+                  tooltip = "选择剩余数量的显示字体",
+                },
+                {
+                  type = "slider",
+                  name = "数量 字体尺寸",
+                },
+                {
+                  type = "dropdown",
+                  name = "数量 字体样式",
+                  tooltip = "选择数量的字体样式",
+                },
+                {
+                  type = "colorpicker",
+                  name = "数量 颜色",
                 },
               };
             },
@@ -940,6 +1201,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                   name = "横向移动";
                   tooltip = "[<- 左] 或 [右 ->]";
                 },
+                
               };
             },
             --===========[ Gamepad Ultimate Value ]===============
@@ -1085,6 +1347,25 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
                   name = "横向移动";
                   tooltip = "[<- 左] 或 [右 ->]";
                 },
+                { type = "divider" },
+                {
+                  type = "dropdown",
+                  name = "数量 字体",
+                  tooltip = "选择剩余数量的显示字体Select which font to display the stack count in.",
+                },
+                {
+                  type = "slider",
+                  name = "数量 字体尺寸",
+                },
+                {
+                  type = "dropdown",
+                  name = "数量 字体样式",
+                  tooltip = "选择数量的字体样式",
+                },
+                {
+                  type = "colorpicker",
+                  name = "数量 颜色",
+                },
               };
             },
           };
@@ -1131,7 +1412,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             --============[  Expiring Effect Start  ]=============
             {
               type = "description";
-              title = "[ |cffdf80过期计时器显示效果|r ]";
+              title = "[ |cffdf80过期计时器显示设置|r ]";
             },
             {
               type = "slider";
@@ -1141,7 +1422,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             --============[	Expiring Timer Color	]=============
             { 
               type = "description"; 
-              title = "[ |cffdf80计时器文本|r ]";
+              title = "[ |cffdf80过期计时器文本|r ]";
             },
             {
               type = "checkbox";
@@ -1156,7 +1437,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
             --============[	Expiring Highlight Color	]=========
             { 
               type = "description"; 
-              title = "[ |cffdf80高亮|r ]";
+              title = "[ |cffdf80过期计时器高亮|r ]";
             },
             {
               type = "checkbox";
@@ -1167,6 +1448,36 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "colorpicker";
               name = "选择高亮颜色";
             },
+            -- ============[	Tick Alert	]=============
+            {
+              type = "description",
+              title = "[ |cffdf80切换类效果显示设置|r ]",
+            },
+            {
+              type = "checkbox",
+              name = "显示切换类效果的判定时点",
+              tooltip = "部分切换类技能具有判定时点，比如冥想给予资源回复。启用时，将显示距离下一个判定时点的计时器。转场加载会导致该计时器与游戏引擎脱节，直到该技能再次被切换。",
+            },
+            {
+              type = "slider",
+              name = "判定时点阈值",
+              tooltip = "如果启用了下方设置，当判定时点的计时数少于选定秒数后，改变计时器高亮",
+            },
+            -- ============[	Tick Alert Color	]=============
+            { 
+              type = "description", 
+              title = "[ |cffdf80切换类效果文本|r ]",
+            },
+            {
+              type = "checkbox",
+              name = "改变切换类效果判定时点计时器的文本颜色",
+              tooltip = "如果切换类效果的计时器小于阈值或被取消，改变计时器高亮",
+            },
+            {
+              type = "colorpicker",
+              name = "选择高亮颜色",
+            },
+            { type = "description"},
           };
         },
       };
@@ -1438,7 +1749,6 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
       name = "|cFFFACD杂项|r";
       controls =
       {
-
         {
           type = "checkbox";
           name = "死亡时显示技能栏";
@@ -1458,6 +1768,11 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
           type = "checkbox",
           name = "调整生命值栏位置",
           tooltip = "启用时，若FAB技能栏在原位，则会调整生命值位置避免遮挡。当FAB技能栏被移动过，将不会调整生命值位置。禁用时需要重新加载UI。装有Azurah插件时，该设置无效",
+        },
+        {
+          type = "checkbox",
+          name = "调整法力/耐力值栏位置",
+          tooltip = "调整法力和耐力值栏位置，对齐生命值栏",
         },
         { type = "description"},
         --============[	Enemy Markers	]=======================
@@ -1494,9 +1809,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "checkbox";
               name = "仅战斗中";
             },
-
             { type = "divider" },
-
             {
               type = "slider";
               name = "高度";
@@ -1545,7 +1858,6 @@ BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false en
   local strings = {
     FURC_AV_RAZ = "拉祖法",
     FURC_AV_MUL = "穆尔维瑟·瓦林",
-
     FURC_AV_NAR = "纳瓦文德",
     FURC_AV_ALI = "阿里诺尔, 河边集市",
     FURC_AV_UNW = "安沃尔蒂",
@@ -2331,6 +2643,10 @@ return false end
 
 --Harvest
 BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
+  --[[ 
+  Translation Files:
+    HarvestMap\Modules\HarvestMap\Localization\default.lua
+  ]]
   Harvest.localizedStrings = {
     -- top level description
     esouidescription = "有关插件描述和常见问题，请访问esoui.com上的插件页面",
@@ -2346,7 +2662,7 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
     outdateddata = "过时的数据设置",
     outdateddatainfo = "这些数据相关的设置在这台计算机上的所有帐户和角色之间共享.",
     timedifference = "只保存最近的数据",
-    timedifferencetooltip = "HarvestMap 收获地图将只保存最近X天的数据。\n这可以防止显示可能已经过时的旧数据。\n设置为0以保存任何数据，不论其时间.",
+    timedifferencetooltip = "HarvestMap 收获地图将只保存最近X天的数据。\n这可以防止显示可能已经过时的旧数据。\n设置为0以保存所有数据，不论其时间.",
     applywarning = "旧数据一旦删除，就无法恢复!",
 
     -- account wide settings
@@ -2386,10 +2702,9 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
     worldpinwidthtooltip = "3D标记的宽度，单位为厘米。",
     worldpinheight = "3D标记高度",
     worldpinheighttooltip = "3D标记的高度，单位为厘米。",
-    worldpinsdepth = "为3D标记使用深度提升",
-    worldpinsdepthtooltip = "关闭时, 3D标记将不会隐藏在其他物体后面。",
+    worldpinsdepth = "透视墙后的3D标记",
+    worldpinsdepthtooltip = "启用时，将显示墙壁或其他物体后方的3D标记",
     worldpinsdepthwarning = "由于一个游戏BUG, 当在游戏的视频选项中将二次取样质量设置为中等或者低时，此选项无法生效。",
-
 
     -- respawn timer settings
     visitednodes = "访问节点和采集助手",
@@ -2405,7 +2720,7 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
     -- spawn filter
     spawnfilter = "已生成资源筛选",
     nodedetectionmissing = "仅当NodeDetection库启用时，以下选项方有效",
-    spawnfilterdescription = "当启用时，HarvestMap将会隐藏未生成资源的图标。\r\n举例来说，如果其他玩家已经采集该资源点，此处的图标将被隐藏直到资源再生。\r\n该选项仅对可收获的制造材料有效。HarvestMap无法检测生成的地图容器，如箱子，重麻袋和塞伊克传送门等。\r\n如果其他插件隐藏或重新缩放罗盘，该筛选将失效。",
+    spawnfilterdescription = "当启用时，HarvestMap将会隐藏未生成资源的图标。\r\n举例来说，如果其他玩家已经采集该资源点，此处的图标将被隐藏直到资源再生。\r\n该选项仅对可收获的制造材料有效。HarvestMap无法检测生成的地图容器，如箱子，重麻袋和塞伊克传送门等。\r\n如果其他插件隐藏或重新缩放罗盘，该筛选将失效。\r\n该功能仅对附近的采集点有效",
     spawnfilter_map = "在主地图上应用筛选",
     spawnfilter_minimap = "在小地图上应用筛选",
     spawnfilter_compass = "在罗盘上应用筛选",
@@ -2519,6 +2834,10 @@ return true end
 
 --HodorReflexes
 BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return false end
+  --[[
+  Translation Files:
+    HodorReflexes\lang\en.lua
+  ]]
   local strings = {
     HR_MENU_MISCULTIMATES = "其他终极技能",
     HR_MENU_STYLE_BERSERK_COLOR = "高级狂怒持续颜色",

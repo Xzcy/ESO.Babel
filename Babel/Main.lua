@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2024.12.28"
+BB.Version = "2025.01.27"
 
 --Default/Saved Setting
 BB.Default = {
@@ -245,11 +245,9 @@ function BB.DoMenuPatch(Name, OldTable)
             local TargetV = BB.AddonsVersion[OnLoading] or "无法获取"
             d("[Babel] --------------------------------")
             d("[Babel] "..OnLoading.." 设置界面 汉化失败！")
-            d("[Babel] 插件当前版本："..CurrentV)
-            d("[Babel] 汉化指定版本："..TargetV)
+            d("[Babel] 当前/指定版本："..CurrentV.." / "..TargetV)
             d("[Babel] 请更新插件 / 等待Babel适配")
-            d("[Babel] *该错误不会影响其余插件的汉化")
-            d("[Babel] --------------------------------")
+            d("[Babel] *该错误 不影响 其余插件汉化")
           end, 5000
         )
       end end
@@ -267,6 +265,17 @@ function BB.SetAfterPart(Fun)
 end
 
 function BB.DoAfterPart()
+  --Update Info
+  if BB.SV.UpdateVersion ~= BB.Version then
+    BB.SV.UpdateVersion = BB.Version
+    zo_callLater(
+      function()
+        d("[Babel] --------------------------------")
+        d("[Babel] 更新至 "..BB.Version.." 版本")
+        d("[Babel] --------------------------------")
+      end, 7000
+    )
+  end
   --Patch for Version
   if DSST then BB.VersionList["Descendants Support Set Tracker"] = DSST.version end
   --Error with Translation
@@ -280,7 +289,7 @@ function BB.DoAfterPart()
         d("[Babel] 1. 请更新 "..OnLoading.." 插件 ≥ 指定版本后，重试")
         d("[Babel] 2. 若依然失败，请于【设置 - 插件 - Babel集束型汉化 - 插件列表】禁用目标插件汉化并重载UI")
         d("[Babel] 3. 请联系SA公会修复有关问题")
-        d("[Babel] *该错误将阻止其余插件的汉化")
+        d("[Babel] *该错误将 阻止 其余插件汉化")
         d("[Babel] --------------------------------")
       end, 5000
     )
@@ -377,7 +386,7 @@ function BB.BuildMenu()
     {
 			type = "checkbox",
 			name = "插件汉化失败警告",
-			tooltip = "Babel汉化失败，通常因目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用某个插件的汉化，来确保其余一切正常运行。",
+			tooltip = "Babel汉化失败，通常因目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用某个插件的汉化，来确保其余插件正常汉化。",
 			getFunc = function() return BB.SV.Warning end,
 			setFunc = function(value) BB.SV.Warning = value end,
 		},
@@ -468,25 +477,26 @@ BB.SV.MenuDebug = {}
 function BB.SafeMenuPatch(OldTable, NewTable)
   --Either nil
   if (not OldTable) or (not NewTable) then return false end
-  --Check Option Number
-  if #OldTable ~= #NewTable then
-    table.insert(BB.SV.MenuDebug, {"Number", OldTable, NewTable})
-    return false 
-  end
-  --Check Option Type
+  
   for i = 1, #OldTable do
-    --Check Type
-    if OldTable[i]["type"] ~= NewTable[i]["type"] then
-      table.insert(BB.SV.MenuDebug, {"Type", OldTable, NewTable})
+    --Option Number Error
+    if not NewTable[i] then 
+      table.insert(BB.SV.MenuDebug, {"Number Error: "..i, OldTable, NewTable[i-1] or {}})
       return false
     end
-    --Check Sub Options
+    --Option Type Error
+    if OldTable[i]["type"] ~= NewTable[i]["type"] then
+      table.insert(BB.SV.MenuDebug, {"Type Error: "..i, OldTable, NewTable})
+      return false
+    end
+    --SubMenu
     if OldTable[i]["controls"] then
       if not BB.SafeMenuPatch(OldTable[i]["controls"], NewTable[i]["controls"]) then
         return false
       end
     end
   end
+  
   --Safe for Replace
   return true
 end

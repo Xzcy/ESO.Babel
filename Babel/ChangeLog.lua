@@ -1,5 +1,14 @@
 MABabel.ChangeLog = 
 [[
+  2025.01.27
+    待办：Essential Housing Tools 翻译（进度约30%）
+    新增：Synergy Toggle
+    修正：BUI、Harvest Map、Hodor Reflexes、PerfectPixel、Personal Assistant、VEQ、WPamA
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 1.7.1
+      Fancy Action Bar+ → 2.13.6
+      OdySupportIcons → 1.12.0
+    
   2024.12.28
     待办：开始翻译 Essential Housing Tools (计划于几次更新内完成)
     |cFFA500插件版本需求|r：

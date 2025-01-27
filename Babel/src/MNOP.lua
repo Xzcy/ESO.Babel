@@ -588,6 +588,10 @@ end
 
 --OdySupportIcons
 BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
+  --[[
+  Translation Files:
+    OdySupportIcons\FuncAddonOptions.lua
+  ]]
   local icon3dOptions = {
     {
     type  = "description",
@@ -1286,74 +1290,77 @@ BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
     },
   }
   
+--The Whole Options
   local NewOption = {
     {
-    type = "description",
-    text = "这个插件可在地下城和试炼中为小队成员显示图标（在使用皇冠箱技巧隐藏队友时也可生效）",
+      type = "description",
+      text = "这个插件可在地下城和试炼中为小队成员显示图标（在使用皇冠箱技巧隐藏队友时也可生效）",
     },
     {
-    type = "description",
-    text = "使用 |cffff00/osi|r 指令打开插件设置（账户全局）。你还可在按键设置中为快速切换图标显示分配 |c00ffff快捷键|r\n",
+      type = "description",
+      text = "使用 |cffff00/osi|r 指令打开插件设置（账户全局）。你还可在按键设置中为快速切换图标显示分配 |c00ffff快捷键|r\n",
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd一般设置|r",
-    controls = icon3dOptions,
+      type     = "submenu",
+      name     = "|cfffacd一般设置|r",
+      controls = icon3dOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd小队图标|r",
-    controls = groupIconOptions,
+      type     = "submenu",
+      name     = "|cfffacd小队图标|r",
+      controls = groupIconOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd友方NPC图标|r",
-    controls = allyIconOptions,
+      type     = "submenu",
+      name     = "|cfffacd友方NPC图标|r",
+      controls = allyIconOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd自定义图标|r",
-    controls = customIconOptions,
+      type     = "submenu",
+      name     = "|cfffacd自定义图标|r",
+      controls = customIconOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd独特图标|r",
-    controls = uniqueIconOptions,
+      type     = "submenu",
+      name     = "|cfffacd独特图标|r",
+      controls = uniqueIconOptions,
+    },
+    --[[
+    {
+      type     = "submenu",
+      name     = "|cfffacdRAID图标|r |cff0000测试版|r",
+      controls = raidIconOptions,
+    },
+    ]]
+    {
+      type     = "submenu",
+      name     = "|cfffacd世界地图|r",
+      controls = worldmapOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacdRAID图标|r |cff0000测试版|r",
-    controls = raidIconOptions,
+      type     = "submenu",
+      name     = "|cfffacd小队栏|r",
+      controls = groupwindowOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd世界地图|r",
-    controls = worldmapOptions,
+      type     = "submenu",
+      name     = "|cfffacd聊天栏|r",
+      controls = chatwindowOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd小队栏|r",
-    controls = groupwindowOptions,
+      type     = "submenu",
+      name     = "|cfffacd好友列表|r",
+      controls = friendslistOptions,
     },
     {
-    type     = "submenu",
-    name     = "|cfffacd聊天栏|r",
-    controls = chatwindowOptions,
-    },
-    {
-    type     = "submenu",
-    name     = "|cfffacd好友列表|r",
-    controls = friendslistOptions,
-    },
-    {
-    type     = "submenu",
-    name     = "|cfffacd公会列表|r",
-    controls = guildrosterOptions,
+      type     = "submenu",
+      name     = "|cfffacd公会列表|r",
+      controls = guildrosterOptions,
     },
     -- end of options
     {
-    type = "description",
-    text = "",
+      type = "description",
+      text = "",
     },
   }
 
@@ -1371,6 +1378,10 @@ return true end
 
 --pChat
 BB.AddonList["pChat"] = function() if not pChat then return false end
+  --[[
+  Translation Files:
+    pChat\i18n\en.lua
+  ]]
   SafeAddString(PCHAT_Tab1                ,"选择聊天标签 1",1)
   SafeAddString(PCHAT_Tab2                ,"选择聊天标签 2",1)
   SafeAddString(PCHAT_Tab3                ,"选择聊天标签 3",1)
@@ -1637,7 +1648,7 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
   SafeAddString(PCHAT_TIMESTAMPCOLORISLCOLTT           ,"忽略时间戳颜色并使用与玩家/NPC名称相同的颜色",1)
 
   SafeAddString(PCHAT_TIMESTAMPFORMAT                  ,"时间戳格式",1)
-  SafeAddString(PCHAT_TIMESTAMPFORMATTT                ,"格式:\nHH: 小时(24)\nhh: 小时(12)\nH: 小时(24, 不含0)\nh: 小时(12, 不含0)\nA: AM/PM\na: am/pm\nm: 分钟\ns: 秒钟",1)
+  SafeAddString(PCHAT_TIMESTAMPFORMATTT                ,"格式:\nHH: 小时(24)\nhh: 小时(12)\nH: 小时(24, 不含0)\nh: 小时(12, 不含0)\nA: AM/PM\na: am/pm\nm: 分钟\ns: 秒钟\nxy: 毫秒",1)
 
   SafeAddString(PCHAT_TIMESTAMP                        ,"时间戳",1)
   SafeAddString(PCHAT_TIMESTAMPTT                      ,"为时间戳设置颜色",1)
@@ -1721,6 +1732,8 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
     -- Other colors
 
   SafeAddString(PCHAT_OTHERCOLORSH                     ,"其他颜色",1)
+  SafeAddString(PCHAT_USEESOCOLORS_INFO                ,"如果 \'" .. GetString(PCHAT_USEESOCOLORS) .."\' 启用，以下颜色将无法被修改！",1)
+  SafeAddString(PCHAT_USEESOCOLORS_SUBMENU_INFO        ,GetString(PCHAT_USEESOCOLORS_INFO) .. "\n如果 \'" .. GetString(PCHAT_ALLZONESSAMECOLOUR) .."\' 启用，你将无法单独改变该区域的颜色\n如果 \'" .. GetString(PCHAT_USEONECOLORFORLINES) .. "\' 设置启用，你将无法单独改变该角色和聊天信息的颜色",1)
 
   SafeAddString(PCHAT_EMOTES                           ,"表情 - 名称",1)
   SafeAddString(PCHAT_EMOTESTT                         ,"为 表情 频道设置玩家名称颜色",1)
@@ -1942,6 +1955,10 @@ return true end
 
 --PerfectPixel
 BB.AddonList["PerfectPixel"] = function() if not PP then return false end
+  --[[
+  Translation Files:
+    PerfectPixel\lang\en.lua
+  ]]
   local stringsZh = {
     --[LAM settings]
     PP_LAM_ACTIVATE									= "启用",
@@ -2015,6 +2032,8 @@ BB.AddonList["PerfectPixel"] = function() if not PP then return false end
     PP_LAM_KEYBINDSTRIP								= "菜单底部栏",
     --Chat
     PP_LAM_SCENE_CHAT								= GetString(SI_CHAT_TAB_GENERAL),
+    --Companion SkillsScene
+    PP_LAM_SCENE_COMPANION_SKILLS		= "伙伴技能界面",
   }
   --Create the strings so they are available via function GetString(stringId) ingame
   for stringId, stringValue in pairs(stringsZh) do
@@ -2025,6 +2044,10 @@ return true end
 
 --PersonalAssistant
 BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then return false end
+  --[[
+  Translation Files:
+    \localization\en.lua
+  ]]
   local PAC = PersonalAssistant.Constants
   local strings = {
     --GenericStrings
@@ -2045,7 +2068,8 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_MENU_JUNK_AUTO_LAUNDER_GLYPHS = "自动洗白 雕文？",
     SI_PA_MENU_JUNK_AUTO_LAUNDER_FURNISHING = "自动洗白 家具？",
     SI_PA_MENU_JUNK_AUTO_LAUNDER_SOULGEMS = "自动洗白 灵魂石？",
-    SI_PA_MENU_JUNK_AUTO_LAUNDER_TREASURES = "自动洗白 藏宝图？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_TREASURES = "自动洗白 宝藏？",
+    SI_PA_MENU_JUNK_AUTO_LAUNDER_TREASURE_MAPS = "自动洗白 藏宝图？",
     SI_PA_MENU_JUNK_AUTO_LAUNDER_RECIPES = "自动洗白 食谱和家具图纸？",
     SI_PA_MENU_JUNK_AUTO_LAUNDER_MOTIFS = "自动洗白 制作样式书？",
     SI_PA_MENU_JUNK_AUTO_LAUNDER_EDICTS = "自动洗白 赦免诏书？",

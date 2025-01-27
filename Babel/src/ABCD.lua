@@ -3779,6 +3779,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "显示 毒点名玩家 处理方位",
                     tooltip = "在奥西索（一王）战斗中，显示毒点名的玩家应该去哪侧解毒。该提示与Qcell's Rockgrove Helper插件的结果相同。",
                 },
+                {
+                    type = "dropdown",
+                    name = "显示 流血dot 计时器",
+                    tooltip = "在火焰先驱巴塞（二王）战斗中，显示胖子造成的流血dot的计时器。如果设置为\"仅自身/治疗位\"，仅当你为治疗职能或dot作用于自身时，显示计时器",
+                    choices = {"从不", "仅自身/治疗位", "总是"},
+                    choicesValues = {"NEVER", "HEAL", "ALWAYS"},
+                },
             }))),
         },
         {
