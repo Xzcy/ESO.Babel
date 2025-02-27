@@ -44,7 +44,7 @@ return true end
 BB.AddonList["VEQ"] = function() if not VEQ then return false end
   --[[
   Translation Files: 大部分已由AK-ESO汉化完成，仅做补充及修缮
-    
+    \Langs\en.lua
   ]]
   local L = {
   -- Menu
@@ -923,8 +923,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     KeyFavRadMenu   = "收藏夹选项卡的径向菜单",
     KeyBindCharStr  = "显示/隐藏角色窗口",
     KeyBindClndStr  = "显示/隐藏日历窗口", 
-    KeyBindPostTd   = "将今天的誓约发到聊天（英语）",
-    KeyBindPostTdCL = "将今天的誓约发到聊天（中文）",
+    KeyBindPostTd   = "将今天的无畏者誓约发到聊天（英语）",
+    KeyBindPostTdCL = "将今天的无畏者誓约发到聊天（中文）",
     KeyBindWindow0  = OpenWindowText .. ": " .. "组队",
     KeyBindWindow1  = OpenWindowText .. ": " .. "试炼",
     KeyBindWindow2  = OpenWindowText .. ": " .. GetString(SI_ZONECOMPLETIONTYPE9),
@@ -940,8 +940,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     KeyBindRGLAStp  = "RGLA: 停止",
     KeyBindRGLAPst  = "RGLA: 发到聊天",
     KeyBindRGLAShr  = "RGLA: 共享任务",
-    KeyBindLFGP     = "开始/取消 排本（需先接任务）",
-    KeyBindLFGPMode = "模式选择 - 3/4/5/6钥匙",
+    KeyBindLFGP     = "GFP：开始/取消 排本",
+    KeyBindLFGPMode = "GFP：模式选择",
   -- Caption
     Wind = {
       [0] = {
@@ -1049,7 +1049,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
         Tab = {
           [1] = {N=GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES), W=102,},
           [2] = {N="委托", W=48,},
-          [3] = {N=GetIcon(41,28), NC=GetIcon(41,28,true), W=28, S=true, A=GetString(SI_ZONECOMPLETIONTYPE8)}, -- World Events
+          [3] = {N=GetIcon(12,28), NC=GetIcon(12,28,true), W=28, S=true, A=GetString(SI_ZONECOMPLETIONTYPE8)}, -- World Events
           [4] = {N=GetIcon(56,28), NC=GetIcon(56,28,true),
                  W=28, S=true, A=GetString(SI_CUSTOMER_SERVICE_OVERVIEW)}, -- Overview
         },
@@ -1190,7 +1190,13 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptLFGPHdr = "GFP(誓约组队查找器)",
     OptLFGPOnOff = "允许使用GFP",
     OptLFGPMode = "同时将组队模式设置为...",
-    OptLFGPModeList = {"总是3钥匙","总是4钥匙","总是5钥匙","总是6钥匙","依角色而定"},
+    OptLFGPModeList = {
+      zo_strformat("总是 <<1>><<1>><<1>> (<<2>>)", Icon.Norm, Icon.LfgpKeys[1]),              -- NNN
+      zo_strformat("总是 <<1>><<1>><<2>> (<<3>>)", Icon.Vet,  Icon.Minus, Icon.LfgpKeys[2]),  -- VV-
+      zo_strformat("总是 <<1>><<1>><<2>> (<<3>>)", Icon.Vet,  Icon.Norm, Icon.LfgpKeys[3]),   -- VVN
+      zo_strformat("总是 <<1>><<1>><<1>> (<<2>>)", Icon.Vet,  Icon.LfgpKeys[4]),              -- VVV
+      "依角色而定"
+    },
     OptLFGPIgnPledge = "忽略“誓约已完成”检查标记",
     OptLFGPAlert = "屏幕中通知",
     OptLFGPChat = "聊天框通知",
@@ -1290,7 +1296,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [ 7] = "无畏者钥匙、开锁器、灵魂石及其他...",
     [ 8] = "您的角色在启迪状态",
     [ 9] = "您的角色未在启迪状态",
-    [10] = table.concat({ Icon.LMB, " ", L.KeyBindLFGP, "\n", Icon.RMB, " ", L.KeyBindLFGPMode }),
+    [10] = table.concat({ "无畏者誓约队伍查找器\n", Icon.LMB, " ", WPamA.i18n.KeyBindLFGP, "\n", Icon.RMB, " ", WPamA.i18n.KeyBindLFGPMode }),
     [11] = "蜕变水晶",
   --
     [12] = "您当前在世界技能方面的进展。",
@@ -1311,8 +1317,11 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [26] = "被诅咒的繁殖场\n - “憎恶”科林萨克",
   --
     [27] = "成就倒计时",
-    [29] = "当前GFP模式",
-    [30] = "紫色奖励可获取",
+    [29] = table.concat({ "无畏者誓约队伍查找器\n",
+           Icon.Minus, " - GFP 在插件设置中未启用\n",
+           GetIcon(62,18), " - 钥匙的可能数量 (包含HM)\n",
+           Icon.Norm, "/", Icon.Vet, " - 队伍查找器模式 (在地下城名称之前)" }),
+    [30] = "日常奖励可获取",
   -- 31-39 Class skills + Guild skills
     [31] = "第一职业技能线",
     [32] = "第二职业技能线",
@@ -1340,7 +1349,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [62] = "委托券",
     [63] = "联盟点数",
     [64] = "泰尔瓦石",
-  --65-69 Item name
+  --65-70 Item name
   -- WB Vvardenfell
     [71] = "米希尔-达达利特蛋矿\n - 女王的配偶",
     [72] = "塞洛珊的议会\n - 塞洛珊",
@@ -1761,12 +1770,12 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [49] = {C = "击败首席编者",}, -- CATL
     [50] = {C = "击败符文大师希奥马拉",}, -- XIOM
   -- Gold Road
-    [51] = {C = "Defeat Spinner Urthrendir",}, -- URTH
-    [52] = {C = "Defeat Stri the Fate-Eater",}, -- STRI
-    [53] = {C = "Defeat Fang and Talon",}, -- FANG
-    [54] = {C = "Defeat Hessedaz the Baleful",}, -- HESS
-    [55] = {C = "Defeat Recollection Leaders",}, -- RECO
-    [56] = {C = "Defeat Oakenclaw",}, -- OAK
+    [51] = {C = "击败织工厄森迪尔",}, -- URTH
+    [52] = {C = "击败命运吞食者斯特里",}, -- STRI
+    [53] = {C = "击败獠牙和利爪",}, -- FANG
+    [54] = {C = "击败恶毒海瑟达兹",}, -- HESS
+    [55] = {C = "击败追忆军团首领",}, -- RECO
+    [56] = {C = "击败橡木爪",}, -- OAK
   }
   L.DayOfWeek = {
     [0] = "周日",

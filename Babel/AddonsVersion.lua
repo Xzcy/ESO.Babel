@@ -5,7 +5,7 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.8",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.2",
+  ["AutoCategory"] =                  "4.3.6",
   ["Azurah"] =                        "2.4.47",
   --B
   ["BeamMeUp"] =                      "3.6.1",
@@ -13,7 +13,7 @@ BB.AddonsVersion = {
   ["BuffTheGroup"] =                  "3.5.0",
   --C
   ["CarosSkillPointSaver"] =          "5.5.1",
-  ["CombatMetrics"] =                 "1.5.18",
+  ["CombatMetrics"] =                 "1.6.6",
   ["CombatMetronome"] =               "1.6.13",
   ["CraftStoreFixedAndImproved"] =    "2.94",
   ["CrutchAlerts"] =                  "1.7.1",
@@ -31,14 +31,14 @@ BB.AddonsVersion = {
   ["FancyActionBar+"] =               "2.13.6",
   ["FurnitureCatalogue"] =            "4.85.0",
   --G
-  ["GridList"] =                      "1.3.1",
+  ["GridList"] =                      "1.3.2",
   ["GroupLootNotifier"] =             "2.17",
   ["GuildDonate"] =                   "1.4.11",
   ["GuildHallButton"] =               "2.3.19",
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.10",
   ["HarvestMap"] =                    "3.15.14",
-  ["HodorReflexes"] =                 "2025.01.23",
+  ["HodorReflexes"] =                 "2025.02.12",
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
@@ -54,9 +54,9 @@ BB.AddonsVersion = {
   --O
   ["OdySupportIcons"] =               "1.12.0",
   --P
-  ["pChat"] =                         "10.0.5.8",
-  ["PerfectPixel"] =                  "0.13.17",
-  ["PersonalAssistant"] =             "2025.01.12",
+  ["pChat"] =                         "10.0.6.4",
+  ["PerfectPixel"] =                  "0.13.21",
+  ["PersonalAssistant"] =             "2025.02.07",
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.10.1",
   --Q
@@ -80,10 +80,10 @@ BB.AddonsVersion = {
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
   ["VotansMiniMap"] =                 "2.0.8",
-  ["VEQ"] =                           "2025.01.08",
+  ["VEQ"] =                           "2025.02.06",
   --W
   ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.7",
+  ["WPamA"] =                         "2.4.8",
   ["WritWorthy"] =                    "7.4.9",
   --X
   --Y

@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2025.01.27"
+BB.Version = "2025.02.27"
 
 --Default/Saved Setting
 BB.Default = {
@@ -18,6 +18,7 @@ BB.Default = {
 BB.AddonList = {} -- Translations Already Supported
 BB.AfterPart = {} -- Funs Work when Screen loading
 BB.LAMList = {} -- Patch LAM Setting Menu
+BB.LAMReList = {} -- Replace some string in LAM Setting Menu
 BB.VersionList = {} -- Addon Version Registered in LAM
 BB.MenuItemscList = {} -- Patch Menu Items
 
@@ -78,7 +79,7 @@ local function OnAddOnLoaded(eventCode, addonName)
       --Replace Setting
     LibAddonMenu2.RegisterOptionControls = function(...)
       local Self, Name, OptionTable = ...
-      local NewTable = BB.DoMenuPatch(Name, OptionTable)
+      local NewTable = BB.DoMenuPatch(Name, OptionTable) or BB.DoMenuReplace(Name, OptionTable)
       if not NewTable then
         --Do Nothing
         return OldFun(...)
@@ -145,6 +146,12 @@ local function OnAddOnLoaded(eventCode, addonName)
   
   --Succeed with All Addons
   OnLoading = nil
+  
+  --Fixed the wrong exact name of item in guild store in chinese
+  if GetCVar("language.2") == "zh" then
+    SafeAddString(SI_TRADING_HOUSE_EXACT_NAME_SEARCH_START_DELIMITER, "", 2)
+    SafeAddString(SI_TRADING_HOUSE_EXACT_NAME_SEARCH_END_DELIMITER, "", 2)
+  end
 end
 
 -----------------------------
@@ -256,6 +263,33 @@ function BB.DoMenuPatch(Name, OldTable)
   end
 end
 
+function BB.SetMenuReplace(Name, StringTable)
+  BB.LAMReList[Name] = StringTable
+end
+
+function BB.DoMenuReplace(Name, OptionTable)
+  local StringTable = BB.LAMReList[Name]
+  --Need Replace?
+  if not StringTable then return nil end
+  --Replace Function
+  local function Replace(TepTable, StringDict)
+    for i = 1, #TepTable do
+      --Controls
+      if TepTable[i].controls then 
+        TepTable[i].controls = Replace(TepTable[i].controls, StringDict) or TepTable[i].controls 
+      end
+      --Common
+      for k, v in pairs(TepTable[i]) do
+        if StringTable[k] then
+          TepTable[i][k] = StringTable[k][v] or v
+        end
+      end
+    end
+    return TepTable
+  end
+  --Do Replace
+  return Replace(OptionTable, StringTable)
+end
 -----------------------------------
 ----Set Part After Other Addons----
 -----------------------------------
@@ -477,6 +511,12 @@ BB.SV.MenuDebug = {}
 function BB.SafeMenuPatch(OldTable, NewTable)
   --Either nil
   if (not OldTable) or (not NewTable) then return false end
+  
+  --More options then old one
+  if #NewTable > #OldTable then
+    table.insert(BB.SV.MenuDebug, {"More Options: "..#NewTable.." > "..#OldTable, OldTable, NewTable})
+    return false
+  end
   
   for i = 1, #OldTable do
     --Option Number Error

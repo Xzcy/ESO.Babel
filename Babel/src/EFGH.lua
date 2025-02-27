@@ -173,10 +173,104 @@ BB.AddonList["EssentialHousingTools"] = function() if not EHTUndone then return 
   cL["Link pasted to chat"] = ""
   cL["Clipboard is empty."] = ""
   cL["No history."] = ""
-  --SetText(Text)                         --14765
+  cL["Character Spacing"] = ""
+  cL["meters"] = ""
+  --cL["degrees"] = ""
+  cL["items"] = ""
+  cL["Line Spacing"] = ""
+  cL["Radius"] = ""
+  cL["Radius (X)"] = ""
+  cL["Radius (Y)"] = ""
+  cL["Radius (Z)"] = ""
+  cL["Radius (Start)"] = ""
+  cL["Radius (End)"] = ""
+  cL["Arc Length"] = ""
+  cL["Circumference"] = ""
+  cL["Length"] = ""
+  cL["Width"] = ""
+  cL["Height"] = ""
+  cL["Item Orientation"] = ""
+  cL["Item Pitch"] = ""
+  cL["Item Yaw"] = ""
+  cL["Item Roll"] = ""
+  cL["Item Spacing"] = ""
+  cL["Item Dimensions"] = ""
+  cL["Item Length"] = ""
+  cL["Item Width"] = ""
+  cL["Item Height"] = ""
+  cL["Overall Orientation"] = ""
+  cL["Pitch"] = ""
+  cL["Yaw"] = ""
+  cL["Roll"] = ""
+  cL["Overall Position"] = ""
+  cL["Fwd"] = ""
+  cL["Back"] = ""
+  cL["Left"] = ""
+  cL["Right"] = ""
+  cL["North"] = ""
+  cL["South"] = ""
+  cL["West"] = ""
+  cL["East"] = ""
+  cL["Up"] = ""
+  cL["Down"] = ""
+  cL["Turn"] = ""
+  cL["Changes"] = ""
+  cL["small"] = ""
+  cL["large"] = ""
+  cL["Load a saved selection"] = ""
+  cL["Revert to Last Save"] = ""
+  cL["Clear/New Selection"] = ""
+  cL["Delete"] = ""
+  cL["Save"] = ""
+  cL["Selection name"] = ""
+  cL["Selection mode"] = ""
+  cL["Copy/Paste"] = ""
+  cL["Lock/Unlock"] = ""
+  cL["|cffffffSwitch to |c00ffffSelected Items Only|cffffff View to reorder items with drag-and-drop."] = ""
+  cL["Drag-and-drop is disabled."] = ""
+  cL["Cut & Copy Selection"] = ""
+  cL["Copy Selection"] = ""
+  cL["Copy Saved Selection"] = ""
+  cL["Paste from Selection"] = ""
+  cL["Paste from House Items"] = ""
+  cL["Paste from Inventory"] = ""
+  cL["Export"] = ""
+  cL["Import"] = ""
+  cL["Clear"] = ""
+  cL["New"] = ""
+  cL["Load"] = ""
+  cL["Save"] = ""
+  cL["Stop"] = ""
+  cL["<< Rew"] = ""
+  cL["Play >>"] = ""
+  cL["|cff3333Record|r"] = ""
+  cL["Frame"] = ""
+  cL["Save Frame"] = ""
+  cL["< Insert"] = ""
+  cL["Insert >"] = ""
+  cL["Frame duration"] = ""
+  cL["sec"] = ""
+  cL["Update Remaining Frames"] = ""
+  cL["Load a saved Scene: "] = ""
+  cL["Save as Existing Scene: "] = ""
+  cL["Overwrite Saved Scene"] = ""
+  cL["Save as New Scene: "] = ""
+  cL["Save Scene As"] = ""
+  cL["Merge with Scene: "] = ""
+  cL["Merge as New Scene: "] = ""
+  cL["Loop frames if necessary to match Scene lengths"] = ""
+  cL["Merge Scenes"] = ""
+  cL["Scene to append at the end: "] = ""
+  cL["Save as New Scene: "] = ""
+  cL["Append Scenes"] = ""
+  --?:SetText(Text)                         --14765，6297, 6418
   --EHT.UI.ShowWarning(Text)
   --EHT.UI.DisplayNotification(Text)      --5234
   --EHT.UI.AddBufferText(1, 2, 3, Text)
+  --EHT.UI.CreateHeading(1, 2, Text)
+  --EHT.UI.CreateButton(1, 2, Text)
+  --EHT.UI.CreateTabButton(1, 2, Text)
+  --EHT.UI.CreateSlider(1, Text, Text)
 
 --Dialog Texts
   dL["Do you want to publish this home's effects to the Community, allowing all Community members to see this home's effects (as these effects exist right now) when visiting this home?"] = ""
@@ -215,14 +309,137 @@ BB.AddonList["EssentialHousingTools"] = function() if not EHTUndone then return 
      "If you had installed the Community app and find that you can no longer sign Guest Journals, list Open Houses or Publish FX, " ..
      "please update to the latest version of Essential Housing Tools and simply re-run the Community app installation."] = ""
   dL["Would you like to view the brief Community App Setup Guide video now?"] = ""
-  --Show Alert/Error Dialog(1, text)
-  --Show Confirmation Dialog(1, text)
-  --Show Custom Dialog(text, text, 3, text)
+  dL["Measure the selected items again and adjust the Item Dimensions?"] = ""
+  dL["Reset all build parameters?"] = ""
+  dL["Begin randomization of different parameters?\n\nNote: Click this button again to stop the process at any time."] = ""
+  dL["Center the build at this location?"] = ""
+  dL["The initial Radius of the shape, measured in meters.\n\nExample: You may create a cone-shaped Spiral using a larger Start Radius (ex: 5.0m) and a smaller End Radius (ex: 1.0m)."] = ""
+  dL["Choose a selection to restore."] = ""
+  dL["Start a new selection?\n\nPlease save your current selection first if you wish to keep any changes."] = ""
+  dL["Choose a Saved Selection to delete."] = ""
+  dL["Select " .. "all items |cccffffexcept|r effects" .. " in this house?"] = ""
+  dL["Select " .. "all items |cccffffexcept|r crafting stations" .. " in this house?"] = ""
+  dL["Select " .. "all |cffffffitems and effects|r" .. " in this house?"] = ""
+  dL["Select all |cffffffeffects|r in the house?"] = ""
+  dL["Find the items in your current selection that match the items on the clipboard and then rearrange those items to match the clipboard's layout?"] = ""
+  dL["Find the items in your house that match the items on the clipboard and then rearrange those items to match the clipboard's layout?\n\n".."Note: The items nearest to you will be matched first whenever possible."] = ""
+  dL["Empty the virtual Clipboard?"] = ""
+  dL["Abandon current Scene and replace with the currently selected furniture?"] = ""
+  dL["To create a new Scene, first select one or more furniture items."] = ""
+  dL["Recording will insert new frames after the current frame.\n\nBegin recording now?"] = ""
+  dL["Frames must be added to a Scene first."] = ""
+  dL["Select a Saved Scene to load."] = ""
+  dL["Select a saved scene to delete."] = ""
+  dL["Loading a Scene restores all of the Scene's furniture to their positions in the first Frame."] = ""
+  dL["Select a Saved Scene to overwrite."] = ""
+  dL["Enter a Scene Name."] = ""
+  dL["Select a Scene to merge with."] = ""
+  dL["Merge complete."] = ""
+  dL["Select a Scene to Append onto the end of the current Scene."] = ""
+  dL["Enter a Scene Name."] = ""
+  dL["Append complete."] = ""
+  --EHT.UI.ShowAlertDialog(1, Text) ← EHT.UI.ShowErrorDialog  8457, 8545
+  --EHT.UI.ShowConfirmationDialog(1, Text)    8117, 8244, 8317, 8354, 8468, 8556
+  --Show Custom Dialog(Text, Text, 3, Text)
 
 --Tooltip Texts
+  tL["The template defines the general shape that is constructed."]  = ""
+  tL["Save your Build parameters or load a previously saved Build."] = ""
+  tL["Measure your selected items for more accurate construction."] = ""
+  tL["Reset your Build parameters and measure your selected items for more accurate construction."] = ""
+  tL["Begin construction using your selected items and the parameters configured below."] = ""
+  tL["When enabled, construction begins automatically whenever you change the Build's parameters.\n\nWhen disabled, click the |caaaaffBuild|r button to manually begin construction."] = ""
+  tL["Randomizes parameters of this build, slowly evolving the shape.\n\nOnce started, click this button again to stop the process at any time."] = ""
+  tL["Center the build at your current location.\n\nUse this when you do not know where your build is currently located."] = ""
+  tL["Arrange your selected items using a variety of options."] = ""
+  tL["|cffffaaOverall Dimensions|r allow you to customize options that are specific to the Shape template that you selected above."] = ""
+  tL["The number of Items used in construction.\n\n" ..
+		"Enter a number |caaffffless than|r the number of items in your selection to construct with fewer items.\n\n" ..
+		"Enter a number |caaffffgreater than|r the number of items in your selection to simulate motion.\n\n" ..
+		"|ce0e0e0* This is particularly useful while you are recording an animation.|r"] = ""
+  tL["The message to construct from the items in your selection.\n\nMessage length limit will vary by the number of items in your selection as well as the specific letters, digits and punctuation used."] = ""
+  tL["The distance between each letter, measured in meters."] = ""
+  tL["The distance between each line for multi-line messages, measured in meters."] = ""
+  tL["The Radius of the shape, measured in meters."] = ""
+  tL["The X-axis Radius of the shape, measured in meters."] = ""
+  tL["The Y-axis Radius of the shape, measured in meters."] = ""
+  tL["The Z-axis Radius of the shape, measured in meters."] = ""
+  tL["The final Radius of the shape, measured in meters.\n\nExample: You may create a cone-shaped Spiral using a larger Start Radius (ex: 5.0m) and a smaller End Radius (ex: 1.0m)."] = ""
+  tL["The measure of the shape's circumference in degrees.\n\nExample: A full circle uses an Arc Length of 360 degrees.\nExample: A half circle uses an Arc Length of 180 degrees."] = ""
+  tL["The number of items placed around the Circumference of the shape.\n\nNote:\nFor shapes that use a Start Radius and End Radius, the Circumference is the number of items placed at the Start Radius.\nIn this case, the number of items placed would increase or decrease automatically as the shape approached the End Radius."] = ""
+  tL["The number of items placed along the Length of the shape."] = ""
+  tL["The number of items placed along the Width of the shape."] = ""
+  tL["The number of items placed along the Height of the shape."] = ""
+  tL["|cffffaaItem Orientation|r allows you to control the orientation of the individual items.\n\nFor example, you can rotate the individual items by adjusting the |caaffffItem Yaw|r."] = ""
+  tL["The initial Pitch of the first item in the shape, measured in degrees. Adjusting this will typically pitch the item forward or backward."] = ""
+  tL["The initial Yaw of the first item in the shape, measured in degrees. Adjusting this will typically rotate the item left or right."] = ""
+  tL["The initial Roll of the first item in the shape, measured in degrees. Adjusting this will typically roll the item on its left or right side."] = ""
+  tL["|cffffaaItem Spacing|r allows you to control the space between each individual item."] = ""
+  tL["The space between items along the Length, measured in meters."] = ""
+  tL["The space between items along the Width, measured in meters."] = ""
+  tL["The space between items along the Height, measured in meters."] = ""
+  tL["|cffffaaItem Dimensions|r specify the length, width and height of one individual item.\n\nThis is set automatically whenever you click |caaffffReset|r; you can also automatically measure your selected item(s) by clicking |caaffffMeasure|r."] = ""
+  tL["|cffffaaItem Dimensions|r specify the length, width and height of one individual item.\n\nThis is set automatically whenever you click |caaffffReset|r; you can also automatically measure your selected item(s) by clicking |caaffffMeasure|r."] = ""
+  tL["The Length of a single item, measured in meters.\nAdjusting this value can increase or decrease the space between individual items.\n\nNote: The Length is auto-populated with the measured length of the first item in your selection."] = ""
+  tL["The Width of a single item, measured in meters.\nAdjusting this value can increase or decrease the space between individual items.\n\nNote: The Width is auto-populated with the measured width of the first item in your selection."] = ""
+  tL["The Height of a single item, measured in meters.\nAdjusting this value can increase or decrease the space between individual items.\n\nNote: The Height is auto-populated with the measured height of the first item in your selection."] = ""
+  tL["|cffffaaOverall Orientation|r allows you to control the orientation of the entire shape that you are building.\n\nFor example, if you are building a Floor, you can rotate the entire floor by adjusting the |caaffffYaw|r.\n\nNote: While you are in the |caaffffBuilds|r tab, you may use the Directional Pads at the bottom to adjust the orientation of your shape."] = ""
+  tL["The overall Pitch of the shape, measured in degrees. Adjusting this will typically pitch the entire shape forwards or backwards."] = ""
+  tL["The overall Yaw of the shape, measured in degrees. Adjusting this will typically rotate the entire shape left or right."] = ""
+  tL["The overall Roll of the shape, measured in degrees. Adjusting this will typically roll the entire shape on its left or right side."] = ""
+  tL["|cffffaaOverall Position|r allows you to change the position of the entire shape that you are building.\n\nFor example, if you are building a Wall, you can use the |cffffaaOverall Position|r options to relocate the wall.\n\nNote: While you are in the |caaffffBuilds|r tab, you may use the Directional Pads at the bottom to adjust the position of your shape."] = ""
+  tL["The X-axis Position of the overall shape, measured in meters. Adjusting this will move the entire shape east or west."] = ""
+  tL["The Y-axis Position of the overall shape, measured in meters. Adjusting this will move the entire shape up or down."] = ""
+  tL["The Z-axis Position of the overall shape, measured in meters. Adjusting this will move the entire shape north or south."] = ""
+  tL["|cffffffMove selected items using\n|c88ffffForward / Backward / Left / Right|r"] = ""
+  tL["|cffffffMove selected items using\n|c88ffffNorth / South / East / West|r"] = ""
+  tL["|cffffffManually move any selected item to\n|c88ffffmove all selected items as a group"] = ""
+  tL["|cffffffManually move any selected item to\n|c88ffffadjust that individual item"] = ""
+  tL["|cffffffEnable |c88ffffCustom Move and Rotate Precision|cffffff\n\nTo change these custom values go to\n|c88ffffSettings > Addons > Essential Housing Tools"] = ""
+  tL["Restores a saved selection's items to their last saved positions."] = ""
+  tL["Select a saved selection to edit or delete, or click \"New\" to create a new selection."] = ""
+  tL["Create a new selection."] = ""
+  tL["Deletes the current selection."] = ""
+  tL["Save your current selection or load a previously saved selection."] = ""
+  tL["A brief description of this selection."] = ""
+  tL["When you target and Group Select an item, the Select Mode controls if and how other nearby items are also automatically selected.".."\n\n"..EHT.CONST.COLORS.HIGHLIGHT.."Radius"..EHT.CONST.COLORS.NORMAL.." includes any items near the targeted item.\n"..EHT.CONST.COLORS.HIGHLIGHT.."Connected"..EHT.CONST.COLORS.NORMAL.." includes any items directly or indirectly touching the targeted item.\n"..EHT.CONST.COLORS.HIGHLIGHT.."Same As Target"..EHT.CONST.COLORS.NORMAL.." selects only the exact same items as the targeted item."] = ""
+  tL["Align, center, flip, level, reorder, stack, copy/paste/remove, or toggle on/off your selected items."] = ""
+  tL["Copy/Cut the selected items, Paste copied items and Import/Export copied items."] = ""
+  tL["Lock/Unlock the selected items to prevent you from moving them.\n\nNote: Locked items are only locked for yourself - other decorators can still edit locked items."] = ""
+  tL["Choose whether to see all placed items or only those which you have selected, as well as how to sort the list."] = ""
+  tL["These are the items that you have selected.\n\nLeft-click an item to show a pointer to it.\nRight-click an item to unselect it."] = ""
+  tL["Copies all selected items to the clipboard and removes the items from your home, placing them back into your inventory."] = ""
+  tL["Copies all selected items to the clipboard."] = ""
+  tL["Copies all items from a Saved Selection to the clipboard."] = ""
+  tL["Rerranges the matching items that are in your current selection using the layout stored in the clipboard."] = ""
+  tL["Rerranges the matching items that are already placed in your home using the layout stored in the clipboard."] = ""
+  tL["Pastes the clipboard items into your home using items from your inventory, bank and home storage containers."] = ""
+  tL["Export this clipboard to text."] = ""
+  tL["Import a clipboard from text."] = ""
+  tL["Clears the items from your clipboard."] = ""
+  tL["These are the items in your virtual clipboard.\n\nRight-click an item to remove it from the clipboard."] = ""
+  tL["Create a new Scene using the items in your current Selection."] = ""
+  tL["Load a previously saved Scene from this house."] = ""
+  tL["Save the current Scene into this house."] = ""
+  tL["When ON, items will be moved to their saved positions for the current Frame.\n\nWhen OFF, items will NOT be moved to their saved positions.\n\nNOTE: You may use this feature to copy Frames. To do so, check Preview while on the Frame that you wish to copy. Next, uncheck Preview and move to the Frame that you want to copy it into. Finally, click Save Frame."] = ""
+  tL["Loop this scene any time it is played."] = ""
+  tL["Begin recording all changes made to this scene's furniture.\nA new frame will be created for each change made."] = ""
+  tL["Save changes made to this frame."] = ""
+  tL["Delete this frame."] = ""
+  tL["Insert a new frame before this frame."] = ""
+  tL["Insert a new frame after this frame."] = ""
+  tL["Update the duration of all frames that follow to match this frame's duration."] = ""
+  tL["Select a sound effect for this frame during playback.\n\n".."Please note the following:\n\n".. "Verify that your \"Settings > Audio > Interface Volume\" is sufficiently loud enough to hear these sounds.\n\n".."Other players that are in your Group and in your House, and that have Essential Housing Tools installed can also hear these sound effects as this Scene is playing."] = ""
+  tL["Arrange and edit your Scene with a variety of tools."] = ""
+  tL["When enabled while merging two Scenes of different run times, the Frames from the shorter run time Scene will be repeated as necessary to match the run time of the longer duration Scene."] = ""
+  --EHT.UI.ShowTooltip
+  --EHT.UI.ShowControlTooltip
+  --EHT.UI.SetInfoTooltip
   
 --Prompt Texts
   pL["Select an item"] = ""
+  pL["Select 2nd item"] = ""
+  pL["Select 1st item"] = ""
   --EHT.UI.ChooseAnItem(1, 2, 3, 4, Text)
   --EHT.UI.ShowInteractionPrompt(1, Text)
 
@@ -414,6 +631,7 @@ BB.AddonList["EssentialHousingTools"] = function() if not EHTUndone then return 
     label = pL[label] or label
     OldPrompt(keybind, label, ...)
   end
+
 return true end
 
 --Fancy Action Bar+
@@ -1711,11 +1929,6 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
               type = "checkbox";
               name = "在技能栏显示 咏唱/引导计时器";
               tooltip = "当技能为咏唱或引导类型时，在使用时显示计时器";
-            },
-            {
-              type = "checkbox";
-              name = "[实验性] 为切换类技能显示判定时点";
-              tooltip = "部分切换类技能会有周期性效果，例如冥想技能每秒给予资源。启用时，技能栏将会显示下一次触发周期性效果的倒计时。重载UI后需要再次切换技能使倒计时同步";
             },
             {
               type = "checkbox";

@@ -1988,7 +1988,7 @@ BB.AddonList["PerfectPixel"] = function() if not PP then return false end
     PP_LAM_OTHERS									  = "其他",
     PP_LAM_DONOTINTERRUPT						= "不要打断互动操作",
     PP_LAM_BLUR_BG									= "模糊背景",
-    -- PP_LAM_FADE_SCENE_DURATION						= "Fade scene duration (ms)",
+    PP_LAM_FADE_SCENE_DURATION			= "界面渐隐时长 (ms)",
     --Reticle
     PP_LAM_RETICLE									= "准星",
     PP_LAM_RETICLE_HIDE_STEALTH			= "取消显示 \"" .. GetString(SI_STEALTH_HIDDEN) .. "\" 文字",
@@ -2032,6 +2032,7 @@ BB.AddonList["PerfectPixel"] = function() if not PP then return false end
     PP_LAM_KEYBINDSTRIP								= "菜单底部栏",
     --Chat
     PP_LAM_SCENE_CHAT								= GetString(SI_CHAT_TAB_GENERAL),
+    PP_LAM_CHAT_MINBAR							= "应用于最小化聊天窗口",
     --Companion SkillsScene
     PP_LAM_SCENE_COMPANION_SKILLS		= "伙伴技能界面",
   }
@@ -2040,6 +2041,30 @@ BB.AddonList["PerfectPixel"] = function() if not PP then return false end
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
   end
+  
+  --Sepical Setting
+  local ReplaceList = {
+    ["name"] = {
+      ["Edge color"] = "边框颜色",
+      ["Stolen Item"] = "偷取的物品",
+      ["Mythic Item"] = "古物",
+      ["Boss Bar"] = "Boss生命条",
+      ["Hide boss bar"] = "隐藏Boss生命条",
+      ["Scrolling"] = "滚动条",
+      ["Scrolling (BETA)"] = "滚动条 (BETA)",
+      ["Duration"] = "平滑度",
+      ["Intensity"] = "速度",
+      ["Height"] = "高度",
+      ["Individual background settings"] = "独立的背景设置",
+      ["Loot Scene"] = "拾取界面",
+      ["Movable window"] = "可移动窗口",
+      ["Mouse focus by first slot"] = "拾取时将鼠标移动至第一栏",
+      ["Adaptive size window"] = "自适应窗口尺寸",
+      ["Max size (slots)"] = "最大尺寸(栏位)",
+    },
+  }
+  BB.SetMenuReplace("PerfectPixelOptions", ReplaceList)
+  
 return true end
 
 --PersonalAssistant

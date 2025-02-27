@@ -2,8 +2,8 @@
 ## Description: Clustered Chinese Localization Tools
 ## Author: SplendidAchievers
 ## APIVersion: 101044
-## AddOnVersion: 20250127
-## Version: 2025.01.27
+## AddOnVersion: 20250227
+## Version: 2025.02.27
 ## DependsOn: LibBabel
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 

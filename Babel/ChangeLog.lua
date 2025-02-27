@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2025.02.27
+    待办：Essential Housing Tools 翻译（进度约45%）
+    新增：使Crutch Alerts支持在中文情况下播报上天倒计时、修复商店物品名匹配（去除双引号）
+    修正：PerfectPixel、WPamA
+
   2025.01.27
     待办：Essential Housing Tools 翻译（进度约30%）
     新增：Synergy Toggle
