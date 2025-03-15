@@ -2101,6 +2101,7 @@ return true end
 
 --Caro's Skill Point Saver
 BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
+  --\lang\en.lua
   local L = {}
   
 	L.SI_BINDING_NAME_CSPS_SHOW = "显示 Skill Point Saver"
@@ -2361,9 +2362,10 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LAM_SortCP_2 = "按字母顺序"
 	L.CSPS_LAM_SortCP_3 = "按字母顺序, 被动技能独立"
 	L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
-	
+	L.CSPS_IgnoreEmptyOutfitSlots = "无视空置的外观装备栏"
+  
 	-- Presets
-	L.CSPS_MSG_SwitchCP = "Invest points into |c<<1>>'<<2>>'|r instead of one of the other slottables whenever you might profit from it."
+	L.CSPS_MSG_SwitchCP = "将CP点投入 |c<<1>>'<<2>>'|r，而不是其他插槽技能，确保始终可能有收益"
 	L.CSPS_MSG_SituationalCP = "根据情况，考虑用以下技能之一来代替插槽: "
 	L.CSPS_CPP_Tank = "坦克"
 	L.CSPS_AOE = "AOE伤害"
@@ -2477,6 +2479,8 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
     SI_COMBAT_METRICS_MENU_MAXSAVEDFIGHTS_NAME = "已保存的战斗",
     SI_COMBAT_METRICS_MENU_MAXSAVEDFIGHTS_TOOLTIP = "可保存的最大战斗数量",
     SI_COMBAT_METRICS_MENU_MAXSAVEDFIGHTS_WARNING = "保存太多战斗可导致加载时间延长",
+    SI_COMBAT_METRICS_STATS_MAGICKA7 = "状态效果几率",
+    SI_COMBAT_METRICS_STATS_STAMINA7 = "状态效果几率",
   }
 
   for stringId, stringValue in pairs(strings) do
@@ -2938,6 +2942,11 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
 							type = "checkbox",
 							name = "将目标血量吸附在准星上",
 							tooltip = "将目标血量放在准星旁",
+						},
+            {
+							type = "checkbox",
+							name = "将玩家法力和耐力吸附在准星上",
+							tooltip = "将玩家法力和耐力放在准星旁",
 						},
 						{
 							type = "slider",
@@ -4020,14 +4029,19 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["荆棘夫人"] = "Lady Thorn",
       ["塔尔菲格"] = "Talfyg",
       ["贾卡恩"] = "Jakarn",
+      ["萨利迪尔"] = "Sarydil",
       ["德拉诺斯·维拉多尔"] = "Dranos Velador",
       ["悲泣之女"] = "The Weeping Woman",
       ["莎莱雅"] = "Tharayya",
       ["德鲁伊劳蕾尔"] = "Druid Laurel",
+      ["科拓·阿不思"] = "Cato Albus",
+      ["首席术士范多拉伦"] = "Prime Sorcerer Vandorallen",
+      ["卢西娜·卡普雷尼亚"] = "Lucilla Caprenia",
       ["塞伦农"] = "Cernunnon",
       ["斯科阿尔莫领主"] = "Jarl Skjoralmor",
       ["乌黑者奥瑞恩"] = "Orryn the Black",
       ["夕月"] = "Selene",
+      ["诺丽纹"] = "Noriwen",
       ["尼撒兹达"] = "Nisaazda",
       ["格伦德伍尔夫"] = "Grundwulf",
       ["飞升的维科萨"] = "Vykosa the Ascendant",
@@ -4040,8 +4054,10 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["卡斯卡"] = "Caska",
       ["扎吉船长"] = "Captain Za'ji",
       ["队长努米利尔"] = "Captain Numirril",
+      ["守护者苏德哈里姆"] = "Guardian Sud-Hareem",
       ["佐德鲁斯男爵"] = "Baron Zaudrus",
       ["马图斯·图留斯"] = "Martus Tullius",
+      ["佩林加尔大师"] = "Master Pellingare",
       ["库·塔拉"] = "K'Tora",
     }
     
@@ -4143,6 +4159,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["你竟敢拒绝荆棘夫人？看啊！这本是你可以获得的力量，颤抖吧！"] = "How dare you reject Lady Thorn's offer? Look! Tremble before the power you might have wielded!",
       --"Jakarn",
       ["哈！你以为我会马上砸开它吗？我可是贾卡恩啊！或者贾——卡伦？"] = "Hah! You thought I'd crack that soon? I'm Jakarn! The Jak—Kaleen?",
+      --"Sarydil",
+      ["好呀，好呀。看看是什么掉进了我们的深海怪陷阱里。要么投降，要么等着被深海怪吞掉，你自己选吧。"] = "Well, well. Look what washed into our yaghra trap. You can surrender, or you can become bait. Choose.",
       --"Dranos Velador",
       ["做得好，我的鳞片朋友。你已经褪去了旧皮，蛛丝社欢迎你成为兄弟。找到薇利德雷斯，然后接受你的祝福吧。"] = "Well done, my scaled friend. You have cast off your old skin, and the Silken Ring welcomes you as a brother. Seek out Velidreth and receive your blessing.",
       --"The Weeping Woman",
@@ -4151,6 +4169,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["感觉到了吧？一阵凉爽的微风，我们肯定离出口不远了！"] = "Feel that? A chill breeze. We must be nearing an exit!",
       --"Druid Laurel",
       ["他正在杀死灵体。他拿到了种子。阻止他，求你阻止他！"] = "He's killing the spirit. He has the seed. Stop him. Please stop him!",
+      --"Cato Albus",
+      ["谁敢来打断我？我需要这些人的性命，才能为我儿子复仇！"] = "Who dares interrupt? I cannot avenge my son without tese deaths!",
+      --"Prime Sorcerer Vandorallen",
+      ["没人能阻止我们。你毫无胜算！"] = "No one can stop us. You stand no chance!",
+      --"Lucilla Caprenia"
+      ["科拓！一切都结束了。别再疯狂下去了！"] = "Cato! It's over. Stop this madness!",
       --"Cernunnon",
       ["醒来吧，渺小的领主。看到你的国家遭受的痛苦了吗？复仇吧。"] = "Wake, little Jarl. See how your kingdom burns? Reap your vengeance.",
       --"Jarl Skjoralmor",
@@ -4161,6 +4185,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["你弄坏的所有东西我都能轻易替换，但卡鲁里昂……他是独一无二的。他再也回不到从前了。"] = "So many of the things you've broken I can easily replace, but Caluurion … he was a unique specimen. He'll never be the same.",
       --"Selene",
       ["该给东西了。轮到我来研究研究你了，法士！"] = "Now for payment in kind. It's my turn to study your insides, warlock!",
+      --"Noriwen",
+      ["阿尔库纳！"] = "Alcunar!",
       --"Nisaazda",
       ["我可以不那么做。"] = "This one won't have to.",
       --"Grundwulf",
@@ -4189,10 +4215,14 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["回来，你这满身鳞片的无赖！你夺走了本该是扎吉船长的东西！"] = "Come back you scaly scallywags! You take what is rightfully Captain Za'ji's!",
       --"Captain Numirril",
       ["我是恐帆，海洋之子。我是不可战胜的！"] = "I am Dreadsail, born of the sea. I cannot be defeated!",
+      --"Guardian Sud-Hareem",
+      ["在那边！是梅雷尔！"] = "Over there! It's Mereel!",
       --"Baron Zaudrus",
       ["你想要的就在这儿，丽兰斯。来拿啊。"] = "What you want is right here, Lyranth. Come take it.",
       --"Martus Tullius",
       ["魔族正在把它们的能量倾注到那台机器中。"] = "The Daedra are pouring their energy into that machine!",
+      --"Master Pellingare"
+      ["亚琳！瓦莱尼！是爸爸！我爱你们，我想和你们聊聊！"] = "Allene! Varaine! It's your father! I love you, and I want to talk to you!",
       --"K'Tora",
       ["多爪的鲁拉，我召唤你，从深邃的重生池中出来吧！"] = "Ruella",
       ["凡人是多爪的鲁拉产卵的完美宿主。"] = "Ruella",
@@ -5249,12 +5279,17 @@ return true end
 
 --Dolgubon's Lazy Set (and Furniture!) Crafter
 BB.AddonList["DolgubonsLazySetCrafter"] = function() if not DolgubonSetCrafter then return false end
-  DolgubonSetCrafter.localizedStrings.UIStrings.chatRequest      = "聊天发送制作请求"
-  DolgubonSetCrafter.localizedStrings.UIStrings.mailRequest      = "邮件发送制造请求"
-  DolgubonSetCrafter.localizedStrings.UIStrings.FavouritesTitle  = "收藏"
-  DolgubonSetCrafter.localizedStrings.UIStrings.resetPatterns		 = "重置所选"
-  DolgubonSetCrafter.localizedStrings.UIStrings.totalCostTitle	 = "总花费"
-  DolgubonSetCrafter.localizedStrings.UIStrings.onlyKnownRecipes = "仅已知配方"
+  --\Lang\en.lua
+  DolgubonSetCrafter.localizedStrings.UIStrings.chatRequest       = "聊天发送制作请求"
+  DolgubonSetCrafter.localizedStrings.UIStrings.mailRequest       = "邮件发送制造请求"
+  DolgubonSetCrafter.localizedStrings.UIStrings.FavouritesTitle   = "收藏"
+  DolgubonSetCrafter.localizedStrings.UIStrings.resetPatterns		  = "重置所选"
+  DolgubonSetCrafter.localizedStrings.UIStrings.totalCostTitle	  = "总花费"
+  DolgubonSetCrafter.localizedStrings.UIStrings.onlyKnownRecipes  = "仅已知配方"
+  DolgubonSetCrafter.localizedStrings.UIStrings.furnitureCrafting	= "家具制造"
+  DolgubonSetCrafter.localizedStrings.UIStrings.gearCrafting			= "装备制造"
+  DolgubonSetCrafter.localizedStrings.UIStrings.recipePrompt			= "请选择要合成的配方!"
+  
   --Special Setting
   local OldFun = DolgubonSetCrafter.scroll.SetupEntry
   DolgubonSetCrafter.scroll.SetupEntry = function(...)
@@ -5266,6 +5301,7 @@ BB.AddonList["DolgubonsLazySetCrafter"] = function() if not DolgubonSetCrafter t
     end
     return Result
   end
+  
   --
   BB.SetAfterPart(
     function()
@@ -5806,7 +5842,6 @@ WritCreater.optionStrings['despawnBankerDepositTooltip']				= "存储物品后�
   WritCreater.optionStrings['hireling behaviour tooltip']					= "如何处理雇佣邮件"
   WritCreater.optionStrings['hireling behaviour choices']					= { "无处理","拿取并删除", "仅拿取"}
 
-
   WritCreater.optionStrings["allReward"]									= "所有制造"
   WritCreater.optionStrings["allRewardTooltip"]							= "对所有制造类所采取的动作"
 
@@ -5883,6 +5918,11 @@ WritCreater.optionStrings['despawnBankerDepositTooltip']				= "存储物品后�
 
   WritCreater.lang = "zh"
   WritCreater.langIsMasterWritSupported = true
+  
+  WritCreater.cheeseyLocalizations["alreadyUnlocked"] = "令状助手皮肤已解锁"
+  WritCreater.cheeseyLocalizations["alreadyUnlockedTooltip"] = "你已在2023年愚人节解锁皮肤。再做一次只是为了好玩！"
+  WritCreater.cheeseyLocalizations["settingsChooseSkin"] = "你可以在设置界面变更插件皮肤"
+
 return true end
 
 --Dressing Room 2018

@@ -686,14 +686,14 @@ BB.AddonList["VotansFisherman"] = function() if not VOTANS_FISHERMAN then return
 
     [SI_FISHERMAN_INTERACT1] = "脏水",
     [SI_FISHERMAN_INTERACT1B] = "油污",
-    [SI_FISHERMAN_INTERACT2] = "河水",
-    [SI_FISHERMAN_INTERACT3] = "湖水",
+    [SI_FISHERMAN_INTERACT2] = "河流",
+    [SI_FISHERMAN_INTERACT3] = "湖泊",
     [SI_FISHERMAN_INTERACT4] = "咸水",
     [SI_FISHERMAN_INTERACT4B] = "神秘商人",
 
     [SI_FISHERMAN_ACTIONNAME1] = "脏水钓鱼",
-    [SI_FISHERMAN_ACTIONNAME2] = "河水钓鱼",
-    [SI_FISHERMAN_ACTIONNAME3] = "湖水钓鱼",
+    [SI_FISHERMAN_ACTIONNAME2] = "河流钓鱼",
+    [SI_FISHERMAN_ACTIONNAME3] = "湖泊钓鱼",
     [SI_FISHERMAN_ACTIONNAME4] = "咸水钓鱼",
   }
 
@@ -808,6 +808,14 @@ BB.AddonList["VotansMiniMap"] = function() if not VOTANS_MINIMAP then return fal
   ZO_CreateStringId("SI_VOTANSMINIMAP_PINSIZE_KEEP_FAST_TRAVEL", "传送神龛")
   ZO_CreateStringId("SI_VOTANSMINIMAP_PINSIZE_KEEPS", "要塞")
   ZO_CreateStringId("SI_VOTANSMINIMAP_PINSIZE_DISTRICTS", "区域")
+  
+  ZO_CreateStringId("SI_VOTANSMINIMAP_SHOW_ALL_TRAVEL_NODES", "显示所有路点神龛")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_SHOW_IN_SETTINGS", "在设置界面预览小地图")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_GRID_X", "预览位置 - X轴")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_GRID_Y", "预览位置 - Y轴")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_GRID_W", "预览尺寸 - 宽度")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_GRID_H", "预览尺寸 - 高度")
+  ZO_CreateStringId("SI_VOTANSMINIMAP_GRID_TOOLTIP", "也可通过鼠标拖拽改变尺寸和位置")
 return true end
 
 --Votan's Map Pin Colors
@@ -1706,6 +1714,12 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     },
     [56] = { -- Any -> Wrothgar - Bedlam Veil
       N = "癫狂之幕",
+    },
+    [57] = { -- Any -> The Gold Road - Exiled Redoubt
+      N = "流亡哨所",
+    },
+    [58] = { -- Any -> Hew's Bane - Lep Seclusa
+      N = "秀跃隐修院",
     },
   }
   L.DailyBoss = {

@@ -5,23 +5,23 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.8",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.3.6",
+  ["AutoCategory"] =                  "4.3.10",
   ["Azurah"] =                        "2.4.47",
   --B
   ["BeamMeUp"] =                      "3.6.1",
   ["BanditsUserInterface"] =          "4.425",
   ["BuffTheGroup"] =                  "3.5.0",
   --C
-  ["CarosSkillPointSaver"] =          "5.5.1",
-  ["CombatMetrics"] =                 "1.6.6",
-  ["CombatMetronome"] =               "1.6.13",
+  ["CarosSkillPointSaver"] =          "5.5.2",
+  ["CombatMetrics"] =                 "1.7.0",
+  ["CombatMetronome"] =               "1.6.14",
   ["CraftStoreFixedAndImproved"] =    "2.94",
-  ["CrutchAlerts"] =                  "1.7.1",
+  ["CrutchAlerts"] =                  "1.8.3",
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
-  ["DolgubonsLazySetCrafter"] =       "3.0.4.4",
-  ["DolgubonsLazyWritCreator"] =      "3.1.7",
+  ["DolgubonsLazySetCrafter"] =       "3.0.5",
+  ["DolgubonsLazyWritCreator"] =      "3.1.7.2",
   ["DressingRoom"] =                  "0.12.1",
   --E
   ["ElmsMarkers"] =                   "3.1.0",
@@ -38,14 +38,14 @@ BB.AddonsVersion = {
   --H
   ["HarvensImprovedSkillsWindow"] =   "2.0.10",
   ["HarvestMap"] =                    "3.15.14",
-  ["HodorReflexes"] =                 "2025.02.12",
+  ["HodorReflexes"] =                 "2025.03.11",
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
   --J
   --K
   --L
-  ["LibAddonMenu-2.0"] =              "2.0 r37",
+  ["LibAddonMenu-2.0"] =              "2.0 r38",
   ["LoreBooks"] =                     "85",
   ["LucentCitadelHelper"] =           "0.5.6",
   --M
@@ -67,19 +67,19 @@ BB.AddonsVersion = {
   ["RaidNotifier"] =                  "2.28.1",
   ["RdKGroupTool"] =                  "2.0.44",
   --S
-  ["SanitysEdgeHelper"] =             "1.2.3",
+  ["SanitysEdgeHelper"] =             "1.2.4",
   ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.44",
   ["SynergyToggle"] =                 "1.12.0",
   --T
-  ["TamrielTradeCentre"] =            "4.21.762.18254",
+  ["TamrielTradeCentre"] =            "4.22.018.01634",
   --U
   ["Untaunted"] =                     "1.1.5",
   --V
-  ["VotansFisherman"] =               "1.16.0",
+  ["VotansFisherman"] =               "1.16.1",
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
-  ["VotansMiniMap"] =                 "2.0.8",
+  ["VotansMiniMap"] =                 "2.1.1",
   ["VEQ"] =                           "2025.02.06",
   --W
   ["WizardsWardrobe"] =               "1.18.3",

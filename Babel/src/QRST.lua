@@ -2513,6 +2513,7 @@ return true end
 
 --Sanity's Edge Helper
 BB.AddonList["SanitysEdgeHelper"] = function() if not SEH then return false end
+  --SanitysEdgeHelperMenu.lua
   local NewOption = {
     {
       type = "description",
@@ -2554,6 +2555,10 @@ BB.AddonList["SanitysEdgeHelper"] = function() if not SEH then return false end
     },
     {
       type    = "checkbox",
+      name    = "雷光蜥蜴充能 图标",
+    },
+    {
+      type    = "checkbox",
       name    = "面板: 弹片(HM)计时器",
     },
     {
@@ -2571,6 +2576,10 @@ BB.AddonList["SanitysEdgeHelper"] = function() if not SEH then return false end
     {
       type    = "checkbox",
       name    = "大号火焰炸弹 倒计时",
+    },
+    {
+      type = "description",
+      text = "注意：在亚赛拉血量低于26%时，火焰炸弹的冷却将从约23.5s降低为11s。因此当距离末次火焰炸弹经过11s以上（倒计时小于12.5s），亚赛拉血量被打入26%后，会立即释放火焰炸弹。在接近这一阈值时，倒计时将会以特殊样式提醒，如 FIREBOMBS: |cB2E80B15.5s|r [0.5%]",
     },
     {
       type = "divider",
@@ -3399,6 +3408,7 @@ BB.AddonList["TamrielTradeCentre"] = function() if not TamrielTradeCentre then r
   ZO_CreateStringId("TTC_PRICE_XSALESYITEMS", "(%s 条已售/共%s 件)")
   ZO_CreateStringId("TTC_PRICE_XSALES", "(%s 条已售)")
   ZO_CreateStringId("TTC_MSG_RECORDEDDATACLEARED", "自动记录数据已清除")
+  ZO_CreateStringId("TTC_SETTING_ENABLESUBMENUS", "启用子菜单")
 return true end
 
 --[[ Template 1, "" = folder name

@@ -1,5 +1,14 @@
 MABabel.ChangeLog = 
 [[
+  2025.03.15
+    待办：Essential Housing Tools 翻译（进度约45%）
+    U45追加更新：AutoCategory、CarosSkillPointSaver、CombatMetrics、CombatMetronome、CrutchAlerts、DolgubonsLazySetCrafter、DolgubonsLazyWritCreator、HodorReflexes、SanitysEdgeHelper、TamrielTradeCentre、VotansFisherman、VotansMiniMap
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 1.8.3
+      Combat Metrics → 1.7.0
+      Combat Metronome → 1.6.14
+      SanitysEdge Helper → 1.2.4
+    
   2025.02.27
     待办：Essential Housing Tools 翻译（进度约45%）
     新增：使Crutch Alerts支持在中文情况下播报上天倒计时、修复商店物品名匹配（去除双引号）
