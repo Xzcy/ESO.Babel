@@ -548,6 +548,8 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_MENU_CS_DROPDOWN_TAG = "选择标签",
     SI_AC_MENU_CS_DROPDOWN_TAG_TOOLTIP = "为分类添加标签以方便搜索",
     SI_AC_MENU_CS_DROPDOWN_CATEGORY = "选择分类",
+    SI_AC_MENU_CS_CATEGORY_DESC = "选择现有分类:",
+    SI_AC_MENU_CS_CREATENEW_DESC = "创建/复制新分类:",
 
     SI_AC_MENU_HEADER_EDIT_CATEGORY = "编辑分类",
     SI_AC_MENU_EC_BUTTON_PREDEFINED = "|cFF0000预定设置，只读|r",
@@ -580,7 +582,8 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_MENU_EC_DROPDOWN_CATEGORY_TEXT_ALIGNMENT = "水平对齐",
     SI_AC_MENU_EC_DROPDOWN_CATEGORY_TEXT_FONT_SIZE = "字号",
     SI_AC_MENU_EC_DROPDOWN_CATEGORY_TEXT_COLOR = "字体颜色",
-    SI_AC_MENU_EC_DROPDOWN_HIDDEN_CATEGORY_TEXT_COLOR = "隐藏分类字体颜色",
+    SI_AC_MENU_EC_DROPDOWN_HIDDEN_CATEGORY_TEXT_COLOR = "隐藏分类的字体颜色",
+    SI_AC_MENU_EC_DROPDOWN_HIDDEN_CATEGORY_TEXT_COLOR_TT = "被隐藏的分类名称将以此颜色显示在背包中，但不会显示该分类下的物品",
     SI_AC_MENU_EC_EDITBOX_CATEGORY_UNGROUPED_TITLE = "未分组分类名称",
     SI_AC_MENU_EC_EDITBOX_CATEGORY_UNGROUPED_TITLE_TOOLTIP = "如果物品没有匹配的分类，将会放到这个分类里",
     SI_AC_MENU_EC_SLIDER_CATEGORY_HEADER_HEIGHT = "分类标题高度",
@@ -613,11 +616,11 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
 
     SI_AC_DEFAULT_CATEGORY_ARMOR= "护甲",
     SI_AC_DEFAULT_CATEGORY_BOE= "BoE装备",
-    SI_AC_DEFAULT_CATEGORY_BOE_DESC= "可以出售的BoE装备",
+    SI_AC_DEFAULT_CATEGORY_BOE_DESC= "穿戴绑定类装备(交易无限时)",
     SI_AC_DEFAULT_CATEGORY_BOP_TRADEABLE= "BoP装备",
-    SI_AC_DEFAULT_CATEGORY_BOP_TRADEABLE_DESC= "可以限时交易的BoP装备",
+    SI_AC_DEFAULT_CATEGORY_BOP_TRADEABLE_DESC= "拾取绑定类装备(限时内队友交易)",
     SI_AC_DEFAULT_CATEGORY_DECONSTRUCT= "分解",
-    SI_AC_DEFAULT_CATEGORY_DECONSTRUCT_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_DECONSTRUCT_DESC= "准备分解的装备",
     SI_AC_DEFAULT_CATEGORY_EQUIPPING= "装备中",
     SI_AC_DEFAULT_CATEGORY_EQUIPPING_DESC= "正在装备着的装备(仅游戏手柄模式)",
     SI_AC_DEFAULT_CATEGORY_LOW_LEVEL= "低等级",
@@ -636,15 +639,15 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_DEFAULT_CATEGORY_CONSUMABLES= "消耗品",
     SI_AC_DEFAULT_CATEGORY_CONSUMABLES_DESC= "食物，饮料，药水",
     SI_AC_DEFAULT_CATEGORY_CONTAINER= "容器",
-    SI_AC_DEFAULT_CATEGORY_CONTAINER_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_CONTAINER_DESC= "未打开的容器",
     SI_AC_DEFAULT_CATEGORY_FURNISHING= "家具",
-    SI_AC_DEFAULT_CATEGORY_FURNISHING_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_FURNISHING_DESC= "可放置于住宅的物品",
     SI_AC_DEFAULT_CATEGORY_GLYPHS_AND_GEMS= "符文&宝石",
     SI_AC_DEFAULT_CATEGORY_GLYPHS_AND_GEMS_DESC= "",
     SI_AC_DEFAULT_CATEGORY_NEW= "新物品",
     SI_AC_DEFAULT_CATEGORY_NEW_DESC= "最近刚刚得到的新物品",
     SI_AC_DEFAULT_CATEGORY_POISON= "毒药",
-    SI_AC_DEFAULT_CATEGORY_POISON_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_POISON_DESC= "各种炼金毒药",
     SI_AC_DEFAULT_CATEGORY_QUICKSLOTS= "快捷栏",
     SI_AC_DEFAULT_CATEGORY_QUICKSLOTS_DESC= "装备在快捷栏里的物品",
     SI_AC_DEFAULT_CATEGORY_RECIPES_AND_MOTIFS= "配方&书籍",
@@ -652,12 +655,12 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_DEFAULT_CATEGORY_SELLING= "出售",
     SI_AC_DEFAULT_CATEGORY_SELLING_DESC= "",
     SI_AC_DEFAULT_CATEGORY_STOLEN= "偷取的",
-    SI_AC_DEFAULT_CATEGORY_STOLEN_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_STOLEN_DESC= "偷取的物品",
     SI_AC_DEFAULT_CATEGORY_TREASURE_MAPS= "藏宝图",
     SI_AC_DEFAULT_CATEGORY_TREASURE_MAPS_DESC= "包括藏宝图和调查报告",
     
     SI_AC_DEFAULT_CATEGORY_ALCHEMY= "炼金",
-    SI_AC_DEFAULT_CATEGORY_ALCHEMY_DESC= "",
+    SI_AC_DEFAULT_CATEGORY_ALCHEMY_DESC= "炼金材料和炼金溶剂",
     SI_AC_DEFAULT_CATEGORY_BLACKSMITHING= "锻造",
     SI_AC_DEFAULT_CATEGORY_BLACKSMITHING_DESC= "",
     SI_AC_DEFAULT_CATEGORY_CLOTHING= "裁缝",
@@ -1014,6 +1017,7 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
     ZO_CreateStringId(Id, String)
   end
   local SI = BMU.SI
+  --SI.lua
   -----------------------------------------------------------------------------
   -- INTERFACE
   -----------------------------------------------------------------------------
@@ -1184,6 +1188,15 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
   mkstr(SI.TELE_SETTINGS_VIEWED_ZONE_ALWAYS_TOP_TOOLTIP, "将目前所在区域和子区域（打开世界地图时）显示在列表的最上方")
   mkstr(SI.TELE_SETTINGS_DEFAULT_TAB, "默认列表")
   mkstr(SI.TELE_SETTINGS_DEFAULT_TAB_TOOLTIP, "打开BeamMeUp时显示默认列表.")
+  mkstr(SI.TELE_SETTINGS_HEADER_CHAT_OUTPUT, "聊天栏输出")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_FAST_TRAVEL, "快速旅行信息")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_FAST_TRAVEL_TOOLTIP, "即将执行的快速旅行的信息输出。错误信息始终会显示在聊天栏。")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_ADDITIONAL, "辅助信息")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_ADDITIONAL_TOOLTIP, "更多该插件功能的辅助信息输出")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_UNLOCK, "自动发现信息")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_UNLOCK_TOOLTIP, "自动发现过程中的信息输出（解锁的神龛、获得的经验等）")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_DEBUG, "Debug信息")
+  mkstr(SI.TELE_SETTINGS_OUTPUT_DEBUG_TOOLTIP, "用于排查插件故障的技术信息输出，这会导致大量聊天栏信息，普通玩家请勿开启！")
   -----------------------------------------------------------------------------
   -- KEY BINDING
   -----------------------------------------------------------------------------
@@ -1969,16 +1982,16 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     --FeedSynergyDesc	="禁用吸血鬼的\"进食\"协同技能来使用 \"哀伤匕首\".",
     AdvancedSynergy	="高级协同",
     AdvancedSynergyDesc	="为坦克和治疗者禁用\"充能闪电\"。\n云栖城: 自动禁用可能阻碍进入传送门或掉落“移除尖啸冰霜”的协同，如果它们恰好出现在具有更高优先级的协同之前。\n"..default..(BUI.Defaults.AdvancedSynergy and on or off),
-    BlockAnnouncement	="阻挡公告",
-    BlockAnnouncementDesc	="阻挡初始公告",
+    BlockAnnouncement	="拦截公告",
+    BlockAnnouncementDesc	="拦截登录时系统公告",
     ContainerHandler	="容器处理器",
     ContainerHandlerDesc	="添加物品栏选项来自动打开容器或切片鱼肉.",
     StealthWield	="在潜行状态下显示武器",
     StealthWieldDesc	="",
     LootStolen	="潜行时自动偷窃物品",
     LootStolenDesc	="",
-    UndauntedPledges	="活动查找器：闯世者誓约",
-    UndauntedPledgesDesc	="在活动查找器中添加一个按钮来标记与当前闯世者任务相关的地牢。\n添加地牢成就信息。",
+    UndauntedPledges	="活动查找器：无畏者誓约",
+    UndauntedPledgesDesc	="在活动查找器中添加一个按钮来标记与当前无畏者誓约相关的地下城。\n添加地下城成就信息。",
     CollapseNormalDungeon	="折叠普通地下城",
     CollapseNormalDungeonDesc	="在地牢查找器窗口中折叠普通地牢。\n仅在启用无畏誓言时可用。",
     ConfirmLocked	="自动确认被锁定的物品",
@@ -2015,6 +2028,10 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     Markers_Message="在聊天框中显示找到宝箱的消息",
     Markers_Icon="在找到宝箱时显示图标",
     Markers_HeavySack="发现重袋时也会显示标记",
+    
+    Daily_NPC_Glirion="红胡子格利里恩",
+    Daily_NPC_Maj="玛吉·阿尔拉加斯",
+    Daily_NPC_Urgarlag="乌尔加拉格·酋长克星",
   }
   --Special Setting
   BB.SetMenuItemPatch("Post DPS", "发布DPS统计")
@@ -3382,6 +3399,10 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
     
     --Effects.lua
     local Effect = {
+      [-1] = { --General
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Magma Shell Timer"] = {"显示熔岩护甲(龙骑)计时器", "显示一个\"警告\"计时器，提示你熔岩护甲的持续时间"}
+      },
       [1051] = { --Cloudrest
         ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
         ["Show Hoarfrost Timer"] = {"显示 冰风 计时器", "显示一个\"警告\"计时器，当冰风将要杀死你时（老兵难度中）"},
@@ -3483,12 +3504,20 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 可伤害计时器",
-                    tooltip = "对于某些遭遇战，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回竞技场等",
+                    tooltip = "对于某些遭遇战，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回场地等",
+                },
+                {
+                    type = "divider",
                 },
                 {
                     type = "checkbox",
-                    name = "显示 奥术师计时器",
-                    tooltip = "显示施放奥术师特定引导技能的警告",
+                    name = "显示 奥术师 引导计时器",
+                    tooltip = "显示施放奥术师特定引导技能的计时器",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 龙骑 熔岩护甲计时器",
+                    tooltip = "显示熔岩护甲持续时间的计时器",
                 },
             }
         },
@@ -4042,6 +4071,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["乌黑者奥瑞恩"] = "Orryn the Black",
       ["夕月"] = "Selene",
       ["诺丽纹"] = "Noriwen",
+      ["查娜·尼林修女"] = "Sister Chana Nirine",
       ["尼撒兹达"] = "Nisaazda",
       ["格伦德伍尔夫"] = "Grundwulf",
       ["飞升的维科萨"] = "Vykosa the Ascendant",
@@ -4092,6 +4122,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["我不想独占所有的兴奋。特里，为什么你不加入呢？"] = "I don't wish to hog all the excitement. Turli, why don't you get in on the action?",
       ["这是一种无力的表现，特里。我会让他们知道什么才是真正的力量。"] = "That was a limp performance, Turli. I'll show them what true power is.",
       ["你看起来并不比我好到哪去，特里。"] = "You don't look to be fairing any better than I did, Turli.",
+      ["快来，特里，让我们巩固胜果。"] = "Come on, Turli, let's secure the victory.",
       --"Fleet Queen Taleria",
       ["你很大胆，竟敢闯入一位女士的私人房间。"] = "Barging into a lady's private chambers. You are bold.",
       --"Assembly General",
@@ -4170,7 +4201,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       --"Druid Laurel",
       ["他正在杀死灵体。他拿到了种子。阻止他，求你阻止他！"] = "He's killing the spirit. He has the seed. Stop him. Please stop him!",
       --"Cato Albus",
-      ["谁敢来打断我？我需要这些人的性命，才能为我儿子复仇！"] = "Who dares interrupt? I cannot avenge my son without tese deaths!",
+      ["谁敢来打断我？我需要这些人的性命，才能为我儿子复仇！"] = "Who dares interrupt? I cannot avenge my son without these deaths!",
       --"Prime Sorcerer Vandorallen",
       ["没人能阻止我们。你毫无胜算！"] = "No one can stop us. You stand no chance!",
       --"Lucilla Caprenia"
@@ -4187,6 +4218,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["该给东西了。轮到我来研究研究你了，法士！"] = "Now for payment in kind. It's my turn to study your insides, warlock!",
       --"Noriwen",
       ["阿尔库纳！"] = "Alcunar!",
+      --"Sister Chana Nirine"
+      ["你永远无法读到这卷轴的内容！"] = "You'll never read this scroll!",
       --"Nisaazda",
       ["我可以不那么做。"] = "This one won't have to.",
       --"Grundwulf",
@@ -5321,6 +5354,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
     end
   end
   
+  --default.lua
+  
   WritCreater.hirelingMailSubjects["铁匠原材料"] = true
   WritCreater.hirelingMailSubjects["制衣匠材料"] = true
   WritCreater.hirelingMailSubjects["木匠原材料"] = true
@@ -5793,7 +5828,7 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings["exit when done"]								= "退出制造窗口"
   WritCreater.optionStrings["exit when done tooltip"]						= "完成所有的制造后退出制造窗口"
   WritCreater.optionStrings["automatic complete"]							= "自动任务对话框"
-  WritCreater.optionStrings["automatic complete tooltip"]					= "在需要的地方自动接受和完成任务"
+  WritCreater.optionStrings["automatic complete tooltip"]					= "在公告板和货物箱处自动接受和完成任务"
   WritCreater.optionStrings["new container"]								= "保持新状态"
   WritCreater.optionStrings["new container tooltip"]						= "保持令状奖励容器的新状态"
   WritCreater.optionStrings["master"]										= "大师令状"
@@ -5837,7 +5872,7 @@ WritCreater.optionStrings['despawnBankerDepositTooltip']				= "存储物品后�
   WritCreater.optionStrings["questBuffer"]								= "令状任务缓冲区"
   WritCreater.optionStrings["questBufferTooltip"]							= "保留一个任务缓冲区，这样就可以保障你有空间去接令状任务"
   WritCreater.optionStrings["craftMultiplier"]							= "批量制造器"
-  WritCreater.optionStrings["craftMultiplierTooltip"]						= "制作多份所需物品以便下次出现相同令状的时候，你不需要再次制造。注意: 每增加1个以上，节省大约37个栏位"
+  WritCreater.optionStrings["craftMultiplierTooltip"]						= "制作多份所需物品以便下次出现相同令状的时候，你不需要再次制造。注: 每增加1件物品，可节省大约37个物品栏"
   WritCreater.optionStrings['hireling behaviour']							= "雇佣邮件动作"
   WritCreater.optionStrings['hireling behaviour tooltip']					= "如何处理雇佣邮件"
   WritCreater.optionStrings['hireling behaviour choices']					= { "无处理","拿取并删除", "仅拿取"}
@@ -5902,6 +5937,8 @@ WritCreater.optionStrings['despawnBankerDepositTooltip']				= "存储物品后�
   WritCreater.optionStrings['transparentStatusBarTooltip']= "将状态条背景设置为透明"
   WritCreater.optionStrings['statusBarInventory'] = "背包跟踪器"
   WritCreater.optionStrings['statusBarInventoryTooltip']	= "在状态条中显示背包总容量及已使用量"
+  WritCreater.optionStrings['incompleteColour']							= "未完成任务颜色"
+  WritCreater.optionStrings['completeColour']								= "已完成任务颜色"
 
   WritCreater.optionStrings["rewardChoices"]								= {"无","存入银行","垃圾", "摧毁", "分解"}
   WritCreater.optionStrings["scan for unopened"]							

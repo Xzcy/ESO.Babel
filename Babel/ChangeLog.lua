@@ -1,5 +1,9 @@
 MABabel.ChangeLog = 
 [[
+  2025.04.14
+    待办：Essential Housing Tools 翻译（搁置中）
+    修正：Furniture Catalogue翻译重制、Dolgubon’s Lazy Writ Creator、Hodor Reflexes、Personal Assistant
+
   2025.03.15
     待办：Essential Housing Tools 翻译（进度约45%）
     U45追加更新：AutoCategory、CarosSkillPointSaver、CombatMetrics、CombatMetronome、CrutchAlerts、DolgubonsLazySetCrafter、DolgubonsLazyWritCreator、HodorReflexes、SanitysEdgeHelper、TamrielTradeCentre、VotansFisherman、VotansMiniMap

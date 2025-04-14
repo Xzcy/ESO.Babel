@@ -2150,6 +2150,7 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_MENU_LOOT_AUTO_COMBINE_T = "自动组合碎片以解锁收藏品",
     SI_PA_MENU_LOOT_AUTO_MARK_AS_JUNK_KNOWN = "自动标记已知物品为垃圾",
     SI_PA_MENU_LOOT_AUTO_MARK_AS_JUNK_KNOWN_T = "自动标记已知物品为垃圾，从而在商人处自动出售",
+    SI_PA_ITEM_OTHERUNKNOWN = "其他角色未知",
     --worker
     SI_PA_MENU_WORKER_DESCRIPTION = "PAWorker 可自动分解物品或提炼材料",
     SI_PA_MENU_WORKER_METICULOUS_ENABLE = "细致拆装 检查",
@@ -2190,6 +2191,9 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_CHAT_NO_EXTRACTION = "因 %s 等级未满，自动分解/提炼已停止",
     SI_PA_CHAT_NO_EXTRACTION_FOR_ITEM = "%s 等级未满，所以 %s 不会被自动分解",
     SI_PA_CHAT_CRAFTING_QUEST = "因为你持有一项进行中的制造任务，自动分解、提炼和研究已停止",
+    --banking
+    SI_PA_MENU_BANKING_ADVANCED_KNOWN_STYLE_PAGE = table.concat({PAC.ICONS.OTHERS.KNOWN.NORMAL, "已知样式书"}),
+    SI_PA_MENU_BANKING_ADVANCED_UNKNOWN_STYLE_PAGE = table.concat({PAC.ICONS.OTHERS.UNKNOWN.NORMAL, "未知样式书"}),
   }
   for key, value in pairs(strings) do
     ZO_CreateStringId(key, value)

@@ -2672,6 +2672,7 @@ return true end
 do if not BB.SV.BanList["Srendarr"] then
   local L = {}
 
+--Local_en.lua
   ------------------------------------------------------------------------------------------------------------------
   -- chinese (zh)
   -- Format and phrasing by Phinix

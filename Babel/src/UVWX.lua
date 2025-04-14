@@ -711,6 +711,7 @@ return true end
 
 --Votan's Minimap
 BB.AddonList["VotansMiniMap"] = function() if not VOTANS_MINIMAP then return false end
+  --strings.lua
   ZO_CreateStringId("SI_KEYBINDINGS_CATEGORY_VOTANS_MINIMAP", "小地图")
   ZO_CreateStringId("SI_BINDING_NAME_VOTANS_TOGGLE_MAP_SHOW", "切换显示地图")
   ZO_CreateStringId("SI_BINDING_NAME_VOTANS_TOGGLE_MAP_SHOW_HUD", "切换显示HUD")
