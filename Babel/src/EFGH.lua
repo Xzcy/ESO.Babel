@@ -90,7 +90,11 @@ BB.AddonList["ElmsMarkers"] = function() if not ElmsMarkers then return false en
       ElmsMarkers_Frame_Button_Group_Remove_Publish_Button:SetText("移除并发布")
     end
   )
-
+  
+  BB.SetKeybindingsReplace("EM_PLACE_MARKER", "放置标记")
+  BB.SetKeybindingsReplace("EM_REMOVE_MARKER", "移除标记")
+  BB.SetKeybindingsReplace("EM_PLACE_RENDEZVOUS", "放置集合点")
+  
 return true end
 
 --English Tooltips
@@ -2485,6 +2489,9 @@ BB.AddonList["FurnitureCatalogue"] = function() if not FurC then return false en
   }
   
   BB.SetMenuReplace("FurC_OptionsPanel", replaceLists)
+  BB.SetKeybindingsReplace("TOGGLE_FURNITURE_CATALOGUE", "开关UI界面")
+  BB.SetKeybindingsReplace("TOGGLE_FURNITURE_CATALOGUE_RECIPE", "开关家具制造材料显示")
+  BB.SetKeybindingsReplace("FURC_CONCAT_TO_TEXTBOX", "添加至 |cFF3333FurCDev|r 文本框")
   
 return true end
 
@@ -3116,8 +3123,25 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
   local default = Harvest.defaultLocalizedStrings
   local current = Harvest.localizedStrings or {}
   function Harvest.GetLocalization(tag)
-    return (current[ tag ] or default[ tag ]) or tag
+    return (current[tag] or default[tag]) or tag
   end
+  
+  local UIStrings = {
+    "SI_BINDING_NAME_HARVEST_SHOW_FILTER", 
+    "SI_BINDING_NAME_SKIP_TARGET", 
+    "SI_BINDING_NAME_TOGGLE_WORLDPINS", 
+    "SI_BINDING_NAME_TOGGLE_MAPPINS", 
+    "SI_BINDING_NAME_TOGGLE_MINIMAPPINS", 
+    "SI_BINDING_NAME_HARVEST_SHOW_PANEL",
+		"HARVESTFARM_GENERATOR",
+    "HARVESTFARM_EDITOR",
+    "HARVESTFARM_SAVE"
+  }
+
+  for _, str in pairs(UIStrings) do
+    SafeAddString(_G[str], Harvest.GetLocalization(str), 2)
+  end
+  
 return true end
 
 --HodorReflexes

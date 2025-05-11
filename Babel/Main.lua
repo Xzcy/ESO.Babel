@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2025.04.14"
+BB.Version = "2025.05.11"
 
 --Default/Saved Setting
 BB.Default = {
@@ -21,6 +21,7 @@ BB.LAMList = {} -- Patch LAM Setting Menu
 BB.LAMReList = {} -- Replace some string in LAM Setting Menu
 BB.VersionList = {} -- Addon Version Registered in LAM
 BB.MenuItemscList = {} -- Patch Menu Items
+BB.KeybindingsList = {} -- Replace keybingding's name
 
 BB.ActiveAddons = {} -- Addons Translated
 
@@ -112,7 +113,7 @@ local function OnAddOnLoaded(eventCode, addonName)
     --Replace Setting
     BUI.Menu.RegisterOptions = function(...)
       local Name, OptionTable = ...
-      local NewTable = BB.DoMenuPatch(Name, OptionTable)
+      local NewTable = BB.DoMenuPatch(Name, OptionTable) or BB.DoMenuReplace(Name, OptionTable)
       if not NewTable then
         --Do Nothing
         return OldFun2(...)
@@ -164,6 +165,7 @@ local IGVList = {}
   BB.SetGlobalHook(function() BB.TableCopy(t1, t2) end, "CraftStore", "Quality")
   when CraftStore.Quality has bean created, triggle function 
 ]]
+
 function BB.SetGlobalHook(Fun, key1, key2)
   if key2 then
     IGVList[key1] = function(t1, k1, v1)
@@ -191,9 +193,9 @@ setmetatable(_G, {
   }
 )
 
-----------------
-----Hook Fun----
-----------------
+-----------------------
+----Hook Game's Fun----
+-----------------------
 
 --[[Example
   BB.SetFunHook(
@@ -228,7 +230,7 @@ end
 ----------------------------------
 ----Intercepting Settings Menu----
 ----------------------------------
-
+--Entire Options
 function BB.SetMenuPatch(Name, NewTable)
   BB.LAMList[Name] = NewTable
 end
@@ -263,6 +265,7 @@ function BB.DoMenuPatch(Name, OldTable)
   end
 end
 
+--Part Options
 function BB.SetMenuReplace(Name, StringTable)
   BB.LAMReList[Name] = StringTable
 end
@@ -290,6 +293,7 @@ function BB.DoMenuReplace(Name, OptionTable)
   --Do Replace
   return Replace(OptionTable, StringTable)
 end
+
 -----------------------------------
 ----Set Part After Other Addons----
 -----------------------------------
@@ -366,6 +370,31 @@ function BB.SetMenuItemPatch(OldString, NewString)
   --Add Patch
   BB.MenuItemscList[OldString] = NewString
 end
+
+-----------------------
+----Keybinding Part----
+-----------------------
+
+--[[Example
+  BB.SetKeybindingsReplace("EM_PLACE_RENDEZVOUS"， "...)
+  <Action name="EM_PLACE_RENDEZVOUS"> in bindings.xml
+]]
+
+function BB.SetKeybindingsReplace(ActionName, NewString)
+  if not ActionName then return end
+  BB.KeybindingsList[ActionName] = NewString
+end
+
+function BB.DoKeybindingsReplace()
+  for k, v in pairs(BB.KeybindingsList) do
+    local Id = _G["SI_BINDING_NAME_"..k]
+    if Id then
+      SafeAddString(Id, v, 2)
+    end
+  end
+end
+
+ZO_PreHook(KEYBINDINGS_MANAGER, "InitializeKeybindData", BB.DoKeybindingsReplace)
 
 -----------------
 ----Menu Part----

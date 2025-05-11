@@ -1,5 +1,11 @@
 MABabel.ChangeLog = 
 [[
+  2025.05.11
+    待办：Essential Housing Tools 翻译（搁置中）
+    修正：Wizards Wardrobe翻译重制、多个插件的快捷键设置部分新增汉化
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 1.11.0
+    
   2025.04.14
     待办：Essential Housing Tools 翻译（搁置中）
     修正：Furniture Catalogue翻译重制、Dolgubon’s Lazy Writ Creator、Hodor Reflexes、Personal Assistant

@@ -5,18 +5,18 @@ BB.AddonsVersion = {
   ["AdvancedFilters"] =               "1.6.4.8",
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.3.12",
+  ["AutoCategory"] =                  "4.3.13",           --strings.lua
   ["Azurah"] =                        "2.4.47",
   --B
   ["BeamMeUp"] =                      "3.7.0",
-  ["BanditsUserInterface"] =          "4.426",
+  ["BanditsUserInterface"] =          "4.428",            --\lang\en.lua
   ["BuffTheGroup"] =                  "3.5.0",
   --C
   ["CarosSkillPointSaver"] =          "5.5.4",
-  ["CombatMetrics"] =                 "1.7.1",
+  ["CombatMetrics"] =                 "1.7.4",            --\lang\en.lua
   ["CombatMetronome"] =               "1.6.14",
   ["CraftStoreFixedAndImproved"] =    "2.96",
-  ["CrutchAlerts"] =                  "1.9.1",
+  ["CrutchAlerts"] =                  "1.11.0",           --ProminentV2.lua, Effects.lua, Settings.lua, Damageable.lua
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
@@ -56,7 +56,7 @@ BB.AddonsVersion = {
   --P
   ["pChat"] =                         "10.0.6.4",
   ["PerfectPixel"] =                  "0.13.21",
-  ["PersonalAssistant"] =             "2025.04.13",
+  ["PersonalAssistant"] =             "2025.04.29",       --*\localization\en.lua
   ["Postmaster"] =                    "4.1.8",
   ["PotionMaker"] =                   "5.10.1",
   --Q
@@ -76,14 +76,15 @@ BB.AddonsVersion = {
   --U
   ["Untaunted"] =                     "1.1.5",
   --V
-  ["VotansFisherman"] =               "1.16.1",
+  ["VotansFisherman"] =               "1.16.2",
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
-  ["VotansMiniMap"] =                 "2.1.3",
-  ["VEQ"] =                           "2025.04.02",
+  ["VotansMiniMap"] =                 "2.1.4",            --\lang\strings.lua
+  ["VEQ"] =                           "2025.04.21",       --\Langs\en.lua
   --W
-  ["WizardsWardrobe"] =               "1.18.3",
-  ["WPamA"] =                         "2.4.8",
+  ["WeaveDelays"] =                   "1.0.1",            --\WeaveDelays.lua
+  ["WizardsWardrobe"] =               "1.21.0",           --\lang\en.lua, zones\*.lua
+  ["WPamA"] =                         "2.5.0",            --\i18n\EN.lua
   ["WritWorthy"] =                    "7.4.9",
   --X
   --Y
@@ -108,4 +109,5 @@ BB.CurrentVersion = {
   ["SanitysEdgeHelperOptions"] =      "SanitysEdgeHelper",
   ["SlightlyImprovedExperienceBar"] = "SlightlyImprovedExperienceBar",
   ["STS"] =                           "SynergyToggle",
+  ["WeaveDelays"] =                   "WritWorthy",
 }

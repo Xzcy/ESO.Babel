@@ -1260,10 +1260,15 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
   -----------------------------------------------------------------------------
   mkstr(SI.CONSTANT_TREASURE_MAP, "藏宝图") -- need a part of the item name that is in every treasure map item the same no matter which zone
   mkstr(SI.CONSTANT_SURVEY_MAP, "调查：") -- need a part of the item name that is in every survey map item the same no matter which zone and kind of craft
+  
+  --Special Setting
+  BB.SetKeybindingsReplace("BMU_ANY_ZONE", "传送至任意区域")
+  
 return true end
 
 --BUI
 BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false end
+  --\lang\en.lua
   local on,off	="开启","关闭"
   local lmb,rmb,mmb='|t16:16:/BanditsUserInterface/textures/lmb.dds|t','|t16:16:/BanditsUserInterface/textures/rmb.dds|t','|t16:16:/BanditsUserInterface/textures/mmb.dds|t'
   local AlignValues	={[8]="左",[128]="中",[2]="右"}
@@ -1810,13 +1815,13 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     StatsGroupDPSDesc	="在小组成员面板贴出dps(简洁模式下禁用)\n"..default..(BUI.Defaults.StatsGroupDPS and on or off),
     StatsGroupDPSframe	="在额外框架上的DPS",
     StatsGroupDPSframeDesc	="显示小组成员DPS\n"..default..(BUI.Defaults.StatsGroupDPSframe and on or off),
-    StatsSplitElements	="分裂元素",
-    StatsSplitElementsDesc	="为轻重击, 力量冲击, 伊拉姆布里斯 分裂元素\n"..default..(BUI.Defaults.StatsSplitElements and on or off),
+    StatsSplitElements	="标注元素类型",
+    StatsSplitElementsDesc	="为轻击、重击、力量冲击、伊拉姆布里斯等标注元素类型\n"..default..(BUI.Defaults.StatsSplitElements and on or off),
     StatsBuffs	="玩家和目标增益报告",
     StatsBuffsDesc	="在伤害报告窗口开启玩家和目标的增益/减益部分\n"..default..(BUI.Defaults.StatsBuffs and on or off),
 
     Log	="战斗日志",
-    LogDesc	="用作详细的死亡回顾或游戏机制的开发人员信息。处理启用的统计信息和通知模块。控件设置中的绑定键.\n"..default..(BUI.Defaults.Log and on or off),
+    LogDesc	="用于复盘战斗，根据已启用的统计和提醒模块功能进行记录。需要在键位设置中绑定一个按键用于打开报告界面"..default..(BUI.Defaults.Log and on or off),
 
     --Buffs
     PlayerBuffs	="玩家增益",
@@ -1991,11 +1996,13 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     LootStolen	="潜行时自动偷窃物品",
     LootStolenDesc	="",
     UndauntedPledges	="活动查找器：无畏者誓约",
-    UndauntedPledgesDesc	="在活动查找器中添加一个按钮来标记与当前无畏者誓约相关的地下城。\n添加地下城成就信息。",
+    UndauntedPledgesDesc	="在活动查找器中添加一个按钮来标记与当前无畏者誓约相关的地下城\n添加地下城成就信息",
+    DungeonQuests	="活动查找器：地下城技能点任务",
+    DungeonQuestsDesc	="在活动查找器中添加一个按钮来标记未完成的地下城技能点任务\n在成就信息中添加任务图标",
     CollapseNormalDungeon	="折叠普通地下城",
     CollapseNormalDungeonDesc	="在地牢查找器窗口中折叠普通地牢。\n仅在启用无畏誓言时可用。",
     ConfirmLocked	="自动确认被锁定的物品",
-    ConfirmLockedDesc	="转化/提升/附魔 被锁定的物品时，自动添加 \"CONFIRM\" 文本到确认对话框中。",
+    ConfirmLockedDesc	="转化/提升/附魔 被锁定的物品时，自动添加 \"确认\" 文本到确认对话框中。",
     PlayerToPlayer	="玩家对玩家提示",
     PlayerToPlayerDesc	="移除踢出队伍选项 (这是为了消除在试图复活玩家时不小心将玩家踢出队伍的可能性)",
     BuiltInGlobalCooldown="启用内置全局冷却时间",
@@ -2010,15 +2017,15 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     Meter_Speed	="速度",
     Meter_SpeedDesc	="显示玩家移动速度。",
     Meter_Power	="力量",
-    Meter_PowerDesc	="显示玩家魔力或武器力量。",
+    Meter_PowerDesc	="显示玩家法术或武器伤害。",
     Meter_Crit	="暴击",
-    Meter_CritDesc	="显示玩家魔力或武器暴击几率。",
+    Meter_CritDesc	="显示玩家法术或武器暴击几率。",
     Meter_Exp	="经验",
     Meter_ExpDesc	="显示玩家经验。",
     Meter_DPS	="DPS",
     Meter_DPSDesc	="显示当前和最后的DPS值。",
     Meter_Criminal	="犯罪",
-    Meter_CriminalDesc	="显示赏金和热力仪。",
+    Meter_CriminalDesc	="显示赏金和热度仪。",
     Meter_Scale	="计量仪尺寸",
 
     Markers_Header="标记",
@@ -2032,7 +2039,56 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
     Daily_NPC_Glirion="红胡子格利里恩",
     Daily_NPC_Maj="玛吉·阿尔拉加斯",
     Daily_NPC_Urgarlag="乌尔加拉格·酋长克星",
+
+    STATISTICS_Incoming="承伤",
+    STATISTICS_Group="小队",
+    STATISTICS_GroupMember="小队成员",
+    STATISTICS_Item="装备",
+    STATISTICS_Trait="特性",
+    STATISTICS_Enchant="附魔",
+    STATISTICS_Recovery="恢复",
+    STATISTICS_PEN_AVG_MAX="穿透 平均/最大",
+    STATISTICS_Fire="火焰",
+    STATISTICS_Shock="电击",
+    STATISTICS_Cold="寒霜",
+    STATISTICS_Magic="魔法",
+    STATISTICS_Physical="物理",
+    STATISTICS_Poison="毒素",
+    STATISTICS_Disease="疾病",
+    STATISTICS_Bleed="流血",
+    STATISTICS_Direct_Dmg="直接伤害",
+    STATISTICS_Weapon_Attack="武器攻击/技能",
+    STATISTICS_Rotation_Speed="转速",
+    STATISTICS_Weapon="武器",
+    STATISTICS_Spell="法术",
+    STATISTICS_Uptimes="时间轴",
+    STATISTICS_Uptimes_For="战斗时长: ",
+    STATISTICS_Swap="切手",
+    STATISTICS_Up="覆盖",
+    STATISTICS_Death="死亡",
+    STATISTICS_Report="报告",
+    STATISTICS_Report_Deleted="已发现",
+    STATISTICS_Report_Saved="已保存",
+    STATISTICS_Group_DMG_Results="团伤报告",
+    STATISTICS_In="在",
+    STATISTICS_TotalDamage="总伤",
+    STATISTICS_Over="在",
+    STATISTICS_Every="每",
+
+    SETTINGS_ReloadingUI="重新加载UI",
+
+    ACTIVITYFINDER_DailyPledges = "无畏者日常",
+
+    AUTOMATION_Left="左键",
+    AUTOMATION_Stop="停止",
+    AUTOMATION_SETTINGS_MAP_PIN_All="所有",
+    AUTOMATION_SETTINGS_MAP_PIN_Owned="已拥有",
+    AUTOMATION_SETTINGS_MAP_PIN_Unowned="未拥有",
+    AUTOMATION_SETTINGS_MAP_PIN_Disabled="禁用",
+    AUTOMATION_Global_Cooldown="设置全局冷却",
+    AUTOMATION_Quest_Low_Reward="低收益任务已被跳过",
   }
+  
   --Special Setting
   BB.SetMenuItemPatch("Post DPS", "发布DPS统计")
   BB.SetMenuItemPatch("Post death count", "发布死亡计数")
@@ -2041,6 +2097,27 @@ BB.AddonList["BanditsUserInterface"] = function() if not BUI then return false e
   BB.SetMenuItemPatch("Post group list", "发布队伍列表")
   BB.SetMenuItemPatch("Regroup", "重组")
   BB.SetMenuItemPatch("Refresh frame", "刷新框架")
+  
+  local icons = {
+    zo_iconFormat("/EsoUI/Art/Compass/groupLeader.dds",32,32),
+    zo_iconFormat("/EsoUI/Art/MapPins/UI-WorldMapGroupPip.dds",32,32),
+    zo_iconFormat("/esoui/art/icons/poi/poi_areaofinterest_complete.dds",32,32),
+    zo_iconFormat("/esoui/art/icons/poi/poi_wayshrine_complete.dds",32,32),
+    zo_iconFormat("/esoui/art/compass/quest_icon_assisted.dds",32,32),
+  }
+  
+  local replaceLists = {
+    ["name"] = {
+      [icons[1].." Group leader"]   = icons[1].." 小队成员",
+      [icons[2].." Group member"]   = icons[2].." 队长",
+      [icons[3].." POI complete"]   = icons[3].." 已知标记性地点",
+      [icons[4].." Wayshrine"]      = icons[4].." 路点神龛",
+      [icons[5].." Quest complete"] = icons[5].." 已完成任务",
+    },
+  }
+  
+  BB.SetMenuReplace("BUI_MenuMinimap", replaceLists)
+  
 return true end
 
 --Buff The Group
@@ -2472,7 +2549,7 @@ return true end
 
 --Combat Metrics
 BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
-  --en.lua
+  --\lang\en.lua
   local strings = {
     SI_COMBAT_METRICS_LOADING = "加载中...",
     SI_COMBAT_METRICS_LIVEREPORT_DPSMULTI_TOOLTIP = "多目标DPS",
@@ -2498,6 +2575,7 @@ BB.AddonList["CombatMetrics"] = function() if not CMX then return false end
     SI_COMBAT_METRICS_MENU_MAXSAVEDFIGHTS_WARNING = "保存太多战斗可导致加载时间延长",
     SI_COMBAT_METRICS_STATS_MAGICKA7 = "状态效果几率",
     SI_COMBAT_METRICS_STATS_STAMINA7 = "状态效果几率",
+    SI_COMBAT_METRICS_COPY_PASTE = "切换战斗记录的复制粘贴模式",
   }
 
   for stringId, stringValue in pairs(strings) do
@@ -3146,6 +3224,10 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
 
   --Speical Setting
   BB.SetMenuPatch("CombatMetronomeOptions", NewOption)
+  BB.SetKeybindingsReplace("COMBATMETRONOME_FORCE", "切换强制显示")
+  BB.SetKeybindingsReplace("COMBATMETRONOME_TOGGLE_SOUND_CUES", "开关节拍器音效")
+  BB.SetKeybindingsReplace("COMBATMETRONOME_TOGGLE_TICK", "开关'TICK'音效")
+  BB.SetKeybindingsReplace("COMBATMETRONOME_TOGGLE_TOCK", "开关'TOCK'音效")
   
 return true end
 
@@ -3519,6 +3601,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "显示 龙骑 熔岩护甲计时器",
                     tooltip = "显示熔岩护甲持续时间的计时器",
                 },
+                {
+                    type = "checkbox",
+                    name = "显示 圣殿骑士 辐光毁灭计时器",
+                    tooltip = "显示辐光毁灭引导时间的计时器S",
+                },
             }
         },
 -- boss health bar
@@ -3620,6 +3707,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示调试UI",
                     tooltip = "显示一个用户界面元素，该元素可能包含有用的调试功能，也可能不包含",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示画线距离",
+                    tooltip = "启用时，Crutch在被机制点名的玩家间画线，并在线条上显示距离",
                 },
             },
         },
@@ -3778,13 +3870,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
-                    name = "显示 奥术传送 图标",
-                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头上显示图标。需要 OdySupportIcons 插件",
-                },
-                {
-                    type = "checkbox",
-                    name = "显示 奥术传送连线",
-                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头顶显示连线的图标",
+                    name = "显示 奥术传送 图标和连线",
+                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头顶显示图标和连线",
                 },
                 {
                     type = "dropdown",
@@ -3819,6 +3906,23 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "在瓦沙艾和斯金莱（二王）战斗中，如果你被点名变色则显示突出警告",
                 },
             }))),
+        },
+        {
+            type = "submenu",
+            name = "骨笼(OC)",
+            controls = {
+                {
+                    type = "dropdown",
+                    name = "Show Stricken timer",
+                    tooltip = "Shows an \"alert\" timer for Stricken. If set to \"Tank Only\" it will display only if your LFG role is tank",
+                    choices = {"关闭", "仅坦克", "开启"},
+                },
+                {
+                    type = "checkbox",
+                    name = "Show Dominator's Chains tether",
+                    tooltip = "Shows icons above and a line connecting group members who are about to (or have already received) the Dominator's Chains tether from Overfiend Kazpian. Requires OdySupportIcons",
+                },
+            },
         },
         {
             type = "submenu",
@@ -4416,6 +4520,8 @@ BB.AddonList["DescendantsSupportSetTracker"] = function() if not DSST then retur
     }, DSST.Storages
   )
   
+  BB.SetKeybindingsReplace("DSST_TOGGLE", "开关UI界面")
+  
 return true end
 
 --Display Leads
@@ -4423,7 +4529,7 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
 --UI
   RDL.ZONENAME_ALLZONES = "所有区域"
   RDL.ZONENAME_BGS = "战场"
-
+  
   RDL.KEYBINDINGTEXT = "切出线索查询窗口"
 
   -- UI Filter Elements (Dropdowns) 	
@@ -5308,6 +5414,9 @@ BB.AddonList["displayleads"] = function() if not RDL then return false end
       RDLMainWindowHeadersExpirationName:SetText(RDL.SORTHEADER_NAMES[8])
     end
   )
+  
+  BB.SetKeybindingsReplace("TOGGLE_DISPLAY_LEADS", RDL.KEYBINDINGTEXT)
+  
 return true end
 
 --Dolgubon's Lazy Set (and Furniture!) Crafter
