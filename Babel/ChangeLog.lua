@@ -1,5 +1,14 @@
 MABabel.ChangeLog = 
 [[
+  2025.07.01
+    修正：大量U46插件修正; 
+    其他：WritWorthy报错为插件自身问题，已向作者反馈；
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.7.2
+      Crutch Alerts → 1.14.1
+      Fancy Action Bar+ → 2.14.8
+      LoreBooks → 95
+      
   2025.05.11
     待办：Essential Housing Tools 翻译（搁置中）
     修正：Wizards Wardrobe翻译重制、多个插件的快捷键设置部分新增汉化
