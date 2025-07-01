@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2025.05.11"
+BB.Version = "2025.07.01"
 
 --Default/Saved Setting
 BB.Default = {
@@ -15,15 +15,15 @@ BB.Default = {
 }
 
 --Table
-BB.AddonList = {} -- Translations Already Supported
-BB.AfterPart = {} -- Funs Work when Screen loading
-BB.LAMList = {} -- Patch LAM Setting Menu
-BB.LAMReList = {} -- Replace some string in LAM Setting Menu
-BB.VersionList = {} -- Addon Version Registered in LAM
-BB.MenuItemscList = {} -- Patch Menu Items
+BB.AddonList = {}       -- Translations Already Supported
+BB.AfterPart = {}       -- Funs Work when Screen loading
+BB.LAMList = {}         -- Patch LAM Setting Menu
+BB.LAMReList = {}       -- Replace some string in LAM Setting Menu
+BB.VersionList = {}     -- Addon Version Registered in LAM
+BB.MenuItemscList = {}  -- Patch Menu Items
 BB.KeybindingsList = {} -- Replace keybingding's name
 
-BB.ActiveAddons = {} -- Addons Translated
+BB.ActiveAddons = {}    -- Addons Translated
 
 --Setting
 BB.SV = ZO_SavedVars:NewAccountWide("SA_Babel_Vars", 1, nil, BB.Default, GetWorldName())
@@ -240,7 +240,7 @@ function BB.DoMenuPatch(Name, OldTable)
   --Need Patch?
   if not NewTable then return nil end
   --Check the degree of match
-  if BB.SafeMenuPatch(OldTable, NewTable) then
+  if BB.SafeMenuPatch(OldTable, NewTable, Name) then
     --Replace Menu
     return BB.TableCopy(NewTable, OldTable)
   else
@@ -537,30 +537,44 @@ end
 
 --Confirm the completeness between option table data
 BB.SV.MenuDebug = {}
-function BB.SafeMenuPatch(OldTable, NewTable)
+function BB.SafeMenuPatch(OldTable, NewTable, Name)
   --Either nil
   if (not OldTable) or (not NewTable) then return false end
   
   --More options then old one
   if #NewTable > #OldTable then
-    table.insert(BB.SV.MenuDebug, {"More Options: "..#NewTable.." > "..#OldTable, OldTable, NewTable})
+    table.insert(BB.SV.MenuDebug, 
+      {
+        [Name] = "More Options: "..#NewTable.." > "..#OldTable, 
+        ["Old"] = OldTable, 
+        ["New"] = NewTable,
+      })
     return false
   end
   
   for i = 1, #OldTable do
     --Option Number Error
-    if not NewTable[i] then 
-      table.insert(BB.SV.MenuDebug, {"Number Error: "..i, OldTable, NewTable[i-1] or {}})
+    if not NewTable[i] then
+      table.insert(BB.SV.MenuDebug, 
+        {
+          [Name] = "Less Options: "..i, 
+          ["Old"] = OldTable, 
+          ["New"] = NewTable[i-1] or {},
+        })
       return false
     end
     --Option Type Error
     if OldTable[i]["type"] ~= NewTable[i]["type"] then
-      table.insert(BB.SV.MenuDebug, {"Type Error: "..i, OldTable, NewTable})
+      table.insert(BB.SV.MenuDebug, 
+        {
+          [Name] = "Type Error: "..i, 
+          ["Old"] = OldTable, 
+          ["New"] = NewTable})
       return false
     end
     --SubMenu
     if OldTable[i]["controls"] then
-      if not BB.SafeMenuPatch(OldTable[i]["controls"], NewTable[i]["controls"]) then
+      if not BB.SafeMenuPatch(OldTable[i]["controls"], NewTable[i]["controls"], Name) then
         return false
       end
     end

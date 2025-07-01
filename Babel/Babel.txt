@@ -1,9 +1,9 @@
 ## Title: Babel
 ## Description: Clustered Chinese Localization Tools
 ## Author: SplendidAchievers
-## APIVersion: 101044 101045
-## AddOnVersion: 20250511
-## Version: 2025.05.11
+## APIVersion: 101045 101046
+## AddOnVersion: 20250701
+## Version: 2025.07.01
 ## DependsOn: LibBabel
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
@@ -14,13 +14,115 @@
 
 Main.lua
 ChangeLog.lua
-
-src/ABCD.lua
-src/EFGH.lua
-src/IJKL.lua
-src/MNOP.lua
-src/QRST.lua
-src/UVWX.lua
-src/YZ.lua
-
 AddonsVersion.lua
+
+## A
+src\AdvancedFilters.lua
+src\AlphaGear.lua
+src\ArkadiusTradeTools.lua
+src\AutoCategory.lua
+src\Azurah.lua
+
+## B
+src\BeamMeUp.lua
+src\BuffTheGroup.lua
+src\BUI.lua
+
+## C
+src\CarosSkillPointSaver.lua
+src\CombatMetrics.lua
+src\CombatMetronome.lua
+src\CraftStore.lua
+src\CrutchAlerts.lua
+
+## D
+src\DescendantsSupportSetTracker.lua
+src\Displayleads.lua
+src\DolgubonsLazySetCrafter.lua
+src\DolgubonsLazyWritCreator.lua
+src\DressingRoom.lua
+
+## E
+##EHT.lua
+src\ElmsMarkers.lua
+src\EnglishTooltips.lua
+
+## F
+src\FancyActionBarPlus.lua
+src\FurnitureCatalogue.lua
+
+## G
+src\GridList.lua
+src\GroupLootNotifier.lua
+src\GuildDonate.lua
+src\GuildHallButton.lua
+
+## H
+src\HarvensImprovedSkillsWindow.lua
+src\HarvestMap.lua
+src\HodorReflexes.lua
+src\HowToCloudrest.lua
+
+## I
+src\ITTSDonationBot.lua
+
+## J
+## K
+
+## L
+src\LibAddonMenu.lua
+src\LoreBooks.lua
+src\LucentCitadelHelper.lua
+
+## M
+src\MasterMerchant.lua
+
+## N
+
+## O
+src\OdySupportIcons.lua
+
+## P
+src\pChat.lua
+src\PerfectPixel.lua
+src\PersonalAssistant.lua
+src\Postmaster.lua
+src\PotionMaker.lua
+
+## Q
+src\QcellDreadsailReefHelper.lua
+src\QcellRockgroveHelper.lua
+src\QuestMap.lua
+
+## R
+src\RaidNotifier.lua
+src\RdKGroupTool.lua
+
+## S
+src\SanitysEdgeHelper.lua
+src\SlightlyImprovedExperienceBar.lua
+src\Srendarr.lua
+src\SynergyToggle.lua
+
+## T
+src\TamrielTradeCentre.lua
+
+## U
+src\Untaunted.lua
+
+## V
+src\VEQ.lua
+src\VotansFisherman.lua
+src\VotansKeybinder.lua
+src\VotansMapPinColors.lua
+src\VotansMiniMap.lua
+
+## W
+src\WeaveDelays.lua
+src\WizardsWardrobe.lua
+src\WPamA.lua
+src\WritWorthy.lua
+
+## X
+## Y
+## Z

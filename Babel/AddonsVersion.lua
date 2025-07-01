@@ -2,33 +2,33 @@ local BB = MABabel
 
 BB.AddonsVersion = {
   --A
-  ["AdvancedFilters"] =               "1.6.4.8",
+  ["AdvancedFilters"] =               "1.6.4.9",          --\lang\en.lua
   ["AlphaGear"] =                     "6.17.0",
   ["ArkadiusTradeTools"] =            "2.0.0",
-  ["AutoCategory"] =                  "4.3.13",           --strings.lua
+  ["AutoCategory"] =                  "4.4.7",            --strings.lua
   ["Azurah"] =                        "2.4.47",
   --B
-  ["BeamMeUp"] =                      "3.7.0",
-  ["BanditsUserInterface"] =          "4.428",            --\lang\en.lua
+  ["BeamMeUp"] =                      "3.7.1",            --\localization\ZH.lua
+  ["BanditsUserInterface"] =          "4.432",            --\lang\en.lua
   ["BuffTheGroup"] =                  "3.5.0",
   --C
-  ["CarosSkillPointSaver"] =          "5.5.4",
-  ["CombatMetrics"] =                 "1.7.4",            --\lang\en.lua
-  ["CombatMetronome"] =               "1.6.14",
+  ["CarosSkillPointSaver"] =          "5.6.3",            --\lang\en.lua
+  ["CombatMetrics"] =                 "1.7.5",            --\lang\en.lua
+  ["CombatMetronome"] =               "1.7.2",            --CMSettings.lua
   ["CraftStoreFixedAndImproved"] =    "2.96",
-  ["CrutchAlerts"] =                  "1.11.0",           --ProminentV2.lua, Effects.lua, Settings.lua, Damageable.lua
+  ["CrutchAlerts"] =                  "1.14.1",           --ProminentV2.lua, Effects.lua, Settings.lua, Damageable.lua
   --D
   ["DescendantsSupportSetTracker"] =  "1.0.3",
   ["displayleads"] =                  "42.1",
-  ["DolgubonsLazySetCrafter"] =       "3.0.5",
-  ["DolgubonsLazyWritCreator"] =      "3.1.7.5.4",
+  ["DolgubonsLazySetCrafter"] =       "3.0.6",            --\Lang\en.lua
+  ["DolgubonsLazyWritCreator"] =      "3.1.7.5.4",        --\Languages\default.lua
   ["DressingRoom"] =                  "0.12.1",
   --E
   ["ElmsMarkers"] =                   "3.1.0",
   ["EnglishTooltips"] =               "1.7.1",
   ["EssentialHousingTools"] =         "1774",
   --F
-  ["FancyActionBar+"] =               "2.14.0",
+  ["FancyActionBar+"] =               "2.14.8",           --menu.lua
   ["FurnitureCatalogue"] =            "4.87.1",
   --G
   ["GridList"] =                      "1.3.2",
@@ -36,55 +36,55 @@ BB.AddonsVersion = {
   ["GuildDonate"] =                   "1.4.11",
   ["GuildHallButton"] =               "2.3.20",
   --H
-  ["HarvensImprovedSkillsWindow"] =   "2.0.10",
-  ["HarvestMap"] =                    "3.15.14",
-  ["HodorReflexes"] =                 "2025.04.09",
+  ["HarvensImprovedSkillsWindow"] =   "2.0.13",
+  ["HarvestMap"] =                    "3.16.2",           --\Modules\HarvestMap\Localization\default.lua
+  ["HodorReflexes"] =                 "2025-05-09",       --\lang\en.lua
   ["HowToCloudrest"] =                "1.2.2",
   --I
   ["ITTSDonationBot"] =               "2.1.1",
   --J
   --K
   --L
-  ["LibAddonMenu-2.0"] =              "2.0 r38",
-  ["LoreBooks"] =                     "86",
-  ["LucentCitadelHelper"] =           "0.5.6",
+  ["LibAddonMenu-2.0"] =              "2.0 r40",
+  ["LoreBooks"] =                     "95",               --\Language\ZH\zh.lua
+  ["LucentCitadelHelper"] =           "0.6.0",            --LucentCitadelHelperMenu.lua
   --M
-  ["MasterMerchant"] =                "3.8.11",
+  ["MasterMerchant"] =                "3.8.14",           --\i18n\EN.lua
   --N
   --O
   ["OdySupportIcons"] =               "1.13.1",
   --P
-  ["pChat"] =                         "10.0.6.4",
-  ["PerfectPixel"] =                  "0.13.21",
-  ["PersonalAssistant"] =             "2025.04.29",       --*\localization\en.lua
+  ["pChat"] =                         "10.0.6.6",         --\i18n\en.lua
+  ["PerfectPixel"] =                  "0.13.25",          --\lang\en.lua
+  ["PersonalAssistant"] =             "2025.06.23",       --*\localization\en.lua
   ["Postmaster"] =                    "4.1.8",
-  ["PotionMaker"] =                   "5.10.1",
+  ["PotionMaker"] =                   "5.10.2",
   --Q
   ["QcellDreadsailReefHelper"] =      "2.0.3",
   ["QcellRockgroveHelper"] =          "6.8.2",
-  ["QuestMap"] =                      "3.21",
+  ["QuestMap"] =                      "3.24",             --\lang\Strings-zh.lua
   --R
   ["RaidNotifier"] =                  "2.28.1",
-  ["RdKGroupTool"] =                  "2.0.44",
+  ["RdKGroupTool"] =                  "2.1.1",            --\Lang\en.lua
   --S
   ["SanitysEdgeHelper"] =             "1.2.6",
   ["SlightlyImprovedExperienceBar"] = "3.0.1",
   ["Srendarr"] =                      "2.5.45",
   ["SynergyToggle"] =                 "1.12.0",
   --T
-  ["TamrielTradeCentre"] =            "4.22.018.01634",
+  ["TamrielTradeCentre"] =            "4.24.743.18382",
   --U
   ["Untaunted"] =                     "1.1.5",
   --V
   ["VotansFisherman"] =               "1.16.2",
   ["VotansKeybinder"] =               "1.4.5",
   ["VotansMapPinColors"] =            "1.2.3",
-  ["VotansMiniMap"] =                 "2.1.4",            --\lang\strings.lua
-  ["VEQ"] =                           "2025.04.21",       --\Langs\en.lua
+  ["VotansMiniMap"] =                 "2.1.5",            --\lang\strings.lua
+  ["VEQ"] =                           "2025.06.17",       --\Langs\en.lua
   --W
   ["WeaveDelays"] =                   "1.0.1",            --\WeaveDelays.lua
-  ["WizardsWardrobe"] =               "1.21.0",           --\lang\en.lua, zones\*.lua
-  ["WPamA"] =                         "2.5.0",            --\i18n\EN.lua
+  ["WizardsWardrobe"] =               "1.22.0",           --\lang\en.lua, zones\*.lua
+  ["WPamA"] =                         "2.5.1",            --\i18n\EN.lua
   ["WritWorthy"] =                    "7.4.9",
   --X
   --Y
@@ -93,21 +93,25 @@ BB.AddonsVersion = {
 
 --[The Name of Table Sended to LAM] = key in BB.AddonsVersion,
 BB.CurrentVersion = {
-  ["BuffTheGroupOptions"] =           "BuffTheGroup",
-  ["CombatMetronomeOptions"] =        "CombatMetronome",
-  ["CrutchAlertsOptions"] =           "CrutchAlerts",
-  ["Descendants Support Set Tracker"]="DescendantsSupportSetTracker", --Get Version Info From Namespace
-  ["ElmsMarkersOptions"] =            "ElmsMarkers",
-  ["FancyActionBar+Menu"] =           "FancyActionBar+",
-  ["GridListOptions"] =               "GridList",
-  ["GLN_Menu"] =                      "GroupLootNotifier",
-  ["HowToCloudrest_Settings"] =       "HowToCloudrest",
-  ["LucentCitadelHelperOptions"] =    "LucentCitadelHelper",
-  ["OdySupportIconsOptions"] =        "OdySupportIcons",
-  ["QcellDreadsailReefHelperOptions"]="QcellDreadsailReefHelper",
-  ["QcellRockgroveHelperOptions"] =   "QcellRockgroveHelper",
-  ["SanitysEdgeHelperOptions"] =      "SanitysEdgeHelper",
-  ["SlightlyImprovedExperienceBar"] = "SlightlyImprovedExperienceBar",
-  ["STS"] =                           "SynergyToggle",
-  ["WeaveDelays"] =                   "WritWorthy",
+  ["BuffTheGroupOptions"]                = "BuffTheGroup",
+  ["CombatMetronomeGeneralOptions"]      = "CombatMetronome",
+  ["CombatMetronomeLATrackerOptions"]    = "CombatMetronome",
+  ["CombatMetronomeProgressbarOptions"]  = "CombatMetronome",
+  ["CombatMetronomeResourcesOptions"]    = "CombatMetronome",
+  ["CombatMetronomeStackTrackerOptions"] = "CombatMetronome",
+  ["CrutchAlertsOptions"]                = "CrutchAlerts",
+  ["Descendants Support Set Tracker"]    = "DescendantsSupportSetTracker", --Get Version Info From Namespace
+  ["ElmsMarkersOptions"]                 = "ElmsMarkers",
+  ["FancyActionBar+Menu"]                = "FancyActionBar+",
+  ["GridListOptions"]                    = "GridList",
+  ["GLN_Menu"]                           = "GroupLootNotifier",
+  ["HowToCloudrest_Settings"]            = "HowToCloudrest",
+  ["LucentCitadelHelperOptions"]         = "LucentCitadelHelper",
+  ["OdySupportIconsOptions"]             = "OdySupportIcons",
+  ["QcellDreadsailReefHelperOptions"]    = "QcellDreadsailReefHelper",
+  ["QcellRockgroveHelperOptions"]        = "QcellRockgroveHelper",
+  ["SanitysEdgeHelperOptions"]           = "SanitysEdgeHelper",
+  ["SlightlyImprovedExperienceBar"]      = "SlightlyImprovedExperienceBar",
+  ["STS"]                                = "SynergyToggle",
+  ["WeaveDelays"]                        = "WeaveDelays",
 }
