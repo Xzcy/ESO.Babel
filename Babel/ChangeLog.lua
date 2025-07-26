@@ -1,5 +1,12 @@
 MABabel.ChangeLog = 
 [[
+  2025.07.24
+    常规更新
+    |cFFA500插件版本需求|r：
+      Combat Metronome → 1.7.3
+      Crutch Alerts → 1.16.0
+      FancyActionBar+ → 2.15.0
+
   2025.07.01
     修正：大量U46插件修正; 
     其他：WritWorthy报错为插件自身问题，已向作者反馈；

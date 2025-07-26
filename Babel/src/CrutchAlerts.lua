@@ -314,7 +314,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = {
                 {
                     type = "checkbox",
-                    name = "显示高难队长判断",
+                    name = "显示高难队长决策",
                     tooltip = "当发生某些重要事件时，在文本聊天中显示可能的信息。例如，有人在 DSR 中捡到了火穹",
                 },
                 {
@@ -331,11 +331,6 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示其他调试",
                     tooltip = "显示其他调试信息",
-                },
-                {
-                    type = "checkbox",
-                    name = "显示调试UI",
-                    tooltip = "显示一个用户界面元素，该元素可能包含有用的调试功能，也可能不包含",
                 },
                 {
                     type = "checkbox",
@@ -516,7 +511,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 佐林（尾王）线条AOE 站位图标",
-                    tooltip = "在佐林（尾王）战斗中，为小队成员站位显示图标（也会在试炼开始时显示，以用于练习）。需要OdySupportIcons插件。",
+                    tooltip = "在佐林（尾王）战斗中，为小队成员站位显示图标（会在试炼开始时显示，用于练习）。需要OdySupportIcons插件。",
                 },
                 {
                     type = "slider",
@@ -554,6 +549,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "    Show additional group members",
                     tooltip = "Shows additional debug-ish text under the Caustic Carrion progress bar for the stacks and tick time of all group members",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show titans' health bars",
+                    tooltip = "Shows Blazeforged Valneer's and Sparkstorm Myrinax's health using the vertical boss health bars",
                 },
                 {
                     type = "dropdown",
@@ -889,7 +889,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       --"Xoryn",
       ["比如他们！"] = "Like them!",
       --"Mirarro",
-      ["别……这是……陷阱。他来了！"] = "Don't .... It's ... trap.",
+      ["别……这是……陷阱。他来了！"] = "Don't …. It's … trap. He's coming!",
       --"Kulan-Dro",
       ["你没听到我说话吗？我不是把你的选择说清楚了吗？你们会听的，凡人……即使这意味着从你们的头皮上剥下耳朵，在你们破碎的头骨上呼喊纳米拉的意志！"] = "Have you not heard me? Have I not made your choice plain? You will listen, mortals",
       --"Skorkhif",

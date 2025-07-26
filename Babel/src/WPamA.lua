@@ -236,7 +236,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptCharsOrder = "角色顺序",
     OptCharsOrderF = "选择在插件窗口中显示角色的顺序。需要重新加载UI。仅在插件加载时排序角色，之后顺序不会改变。",
     OptAlwaysMaxWinX  = "调整主窗口宽度",
-    OptAlwaysMaxWinXF = "如启用，插件的主窗口在所有模式下将始终具有相同的宽度。如禁用，主窗口的宽度将根据模式而变化。",
+    OptAlwaysMaxWinXF = "启用时，插件的主窗口在所有模式下将始终具有相同的宽度。禁用后，主窗口的宽度将根据模式而变化。",
     OptLocation = "显示地点而非地下城名称",
     OptENDungeon = "显示地下城的英文名称",  
     OptDontShowNone = "显示空白而非“无”",
@@ -302,6 +302,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptEndeavorChatChnlF = "用于显示勉励进度相关信息的聊天频道",
     OptPursuitChatMsg  = "在聊天窗口中显示金典追觅进度",
     OptPursuitChatMsgF = "在聊天窗口中显示金典追觅进度相关信息",
+    OptPursuitChatCamp  = "直到获取金典追觅奖励",
+    OptPursuitChatCampF = "启用时，将在获取奖励前显示金典追觅进度\n禁用后，始终显示金典追觅进度",
     OptPursuitChatChnlF = "用于显示金典追觅进度相关信息的聊天频道",
     OptPursuitAutoClaim = "自动获取金典追觅奖励",
     ---

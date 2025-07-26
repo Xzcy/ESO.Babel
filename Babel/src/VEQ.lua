@@ -558,7 +558,9 @@ BB.AddonList["VEQ"] = function() if not VEQ then return false end
     ["lang_transmute_limit"] = "剩余的最小蜕变水晶上限触发器",
     ["lang_transmute_limit_tip"] = "触发迷你任务的剩余蜕变水晶的最小数量",
     ["lang_zoneguide_opt"] = "将下一个区域向导任务设置为迷你任务",
-    ["lang_zoneguide_tip"] = "区域指南迷你任务自动启用并在区域更改时成为 VEQ 中的迷你任务，如果您在该区域没有活动任务",	
+    ["lang_zoneguide_tip"] = "区域指南迷你任务自动启用并在区域更改时成为VEQ 中的迷你任务，如果您在该区域没有活动任务",	
+    ["lang_POIcompletion_opt"] = "将未发现的兴趣点区域设置为迷你任务",
+    ["lang_POIcompletion_tip"] = "区域更改时，将一个未发现的兴趣点设置为VEQ中的迷你任务",
     ["lang_poison_opt"] = "毒药检查器",
     ["lang_poison_tip"] = "每次战斗后检查你的武器毒药槽，如果你没有毒药，就会显示一个制作毒药的小任务",	
     ["lang_group_frames_opt"] = "同伴和小组成员的名字作为生命条",
@@ -573,6 +575,8 @@ BB.AddonList["VEQ"] = function() if not VEQ then return false end
     ["lang_NumbMiniQuest_opt_tip"] = "显示迷你任务的数量",
     ["lang_goldenPursuit_opt"] = "金典追觅迷你任务",
     ["lang_goldenPursuit_tip"] = "将每个金典追觅要求作为迷你任务添加",
+    ["lang_communityEvents_opt"] = "社区活动迷你任务",
+    ["lang_communityEvents_tip"] = "将每个社区活动事件作为迷你任务添加",
   }
   
   local Dialog = {

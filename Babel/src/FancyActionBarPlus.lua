@@ -10,6 +10,7 @@ return true end
 ]]
 
 BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return false end
+  --menu.lua
   local ACTION_BAR = GetControl("ZO_ActionBar1")
 
   local SV = ZO_SavedVars:NewAccountWide("FancyActionBarSV", FancyActionBar.variableVersion, nil, FancyActionBar.defaultSettings, GetWorldName())
@@ -17,7 +18,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
   
   local optionsTable = {}
   local tableIndex = 1
-
+  
   table.insert(optionsTable, 
   {
     type = "button",
@@ -1597,6 +1598,21 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
         name = "调整法力/耐力值栏位置",
         tooltip = "调整法力和耐力值栏位置，对齐生命值栏",
       },
+      {
+        type = "checkbox",
+        name = "调整玩家Buff栏位置",
+        tooltip = "调整玩家Buff栏位置，避免在主机UI中与属性栏冲突",
+      },
+      {
+        type = "checkbox",
+        name = "调整协同栏位置",
+        tooltip = "调整协同栏尾椎，避免在主机UI中与Buff栏冲突",
+      },
+      {
+        type = "checkbox",
+        name = "强制UI调节",
+        tooltip = "默认下，仅当技能栏处于默认位置时，重新调整资源栏、协同栏和Buff栏的位置。启用后，将始终调节它们的位置",
+      },
       { 
         type = "description"
       },
@@ -1688,6 +1704,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
   })
   tableIndex = tableIndex + 1
 
+--[[
   table.insert(optionsTable,
   {
 -- ===============[  Debugging  ]========================
@@ -1703,6 +1720,7 @@ BB.AddonList["FancyActionBar+"] = function() if not FancyActionBar then return f
     tooltip = "在聊天栏显示调试信息",
   })
   tableIndex = tableIndex + 1
+]]
 
   table.insert(optionsTable, 
   { 

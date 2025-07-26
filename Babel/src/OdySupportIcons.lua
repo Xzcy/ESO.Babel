@@ -528,7 +528,7 @@ BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
     },
     {
     type = "description",
-    text = "需要激活 |cffff00Hodor Reflexes|r 插件，如果你想要使用它提供的图标和动画\n",
+    text = "需要激活 |cffff00LibCustomIcons|r (原Hodor) 插件，如果你想要使用它提供的图标和动画\n",
     },
     {
     type  = "divider",
@@ -543,11 +543,11 @@ BB.AddonList["OdySupportIcons"] = function() if not OSI then return false end
     },
     {
     type     = "checkbox",
-    name     = "使用 Hodor Reflexes 图标",
+    name     = "使用 LibCustomIcons (原Hodor) 图标",
     },
     {
     type     = "checkbox",
-    name     = "使用 Hodor Reflexes 动画",
+    name     = "使用 LibCustomIcons (原Hodor) 动画",
     },
     {
     type     = "checkbox",

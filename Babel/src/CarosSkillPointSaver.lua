@@ -130,6 +130,8 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_CPOldPreset = "连接到已加载预案的 CP 预置会被标记为过时。您仍然可以使用这些预置，但建议切换到一些较新的可用预设"
 	L.CSPS_BuildProfile = "建立预设"
   L.CSPS_IgnoreSubClasses = "无视副职业"
+  L.CSPS_LAM_ShowAllClassSkills = "显示并编辑所有职业技能"
+	L.CSPS_LAM_ShowAllClassSkillsTT = "启用后，你可以修改并保存未启用职业线中的技能"
 	
 	L.CSPS_CPValueTooHigh = "数值高于该技能的最大值"
 	

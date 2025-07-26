@@ -410,7 +410,7 @@ BB.AddonList["CombatMetronome"] = function() if not CombatMetronome then return 
           },
           {
             type = "slider",
-            name = "调整GCD长度",
+            name = "调整GCD长度(ms)",
           },
           {
             type = "button",

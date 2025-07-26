@@ -10,6 +10,7 @@ return true end
 ]]
 
 BB.AddonList["LoreBooks"] = function() if not LoreBooks then return false end
+  --\Language\ZH\zh.lua
   local Strings = {
     ["LBOOKS_QUEST_BOOK"] = "任务 [%s]",
     ["LBOOKS_QUEST_BOOK_ZONENAME"] = "区域任务 %s [%s]",

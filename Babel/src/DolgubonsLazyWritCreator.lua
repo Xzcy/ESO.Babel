@@ -320,6 +320,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['statusBarInventoryTooltip'] = "在状态栏中显示背包总容量及已使用量"
   WritCreater.optionStrings['incompleteColour']	= "未完成委托颜色"
   WritCreater.optionStrings['completeColour']	= "已完成委托颜色"
+  WritCreater.optionStrings['smartMultiplier'] = "智能批量日常委托"
+  WritCreater.optionStrings['smartMultiplierTooltip'] = "启用时，将尝试制造3天内的日常委托，并会将已有的物品纳入计算。关闭时，仅制造当天日常委托的物品。"
   
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_CRAFT_ITEMS", "制作物品")
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_OPEN", "显示委托制造状态窗口")

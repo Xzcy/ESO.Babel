@@ -10,6 +10,7 @@ return true end
 ]]
 
 BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
+  --\lang\en.lua
   WritWorthy.I18N['static']['zh'] = {
       ["ags_label"                             ] = "WritWorthy 每张委托券花费"
   ,   ["button_dequeue_all"                    ] = "所有移出队列"
@@ -22,7 +23,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["empty"                                 ] = ""
   ,   ["enchanting_cp150"                      ] = "超级"
   ,   ["enchanting_cp160"                      ] = "真正超凡"
-  ,   ["err_could_not_parse"                   ] = "无法解析。"
+  ,   ["err_could_not_parse"                   ] = "无法解析"
   ,   ["glyph_absorb_health"                   ] = "吸取生命"
   ,   ["glyph_absorb_magicka"                  ] = "吸取魔法"
   ,   ["glyph_absorb_stamina"                  ] = "吸取耐力"
@@ -73,7 +74,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["header_HaveCt"                         ] = "拥有"
   ,   ["header_BuyCt"                          ] = "购买"
   ,   ["header_PriceEa"                        ] = "价格"
-  ,   ["header_BuySubtotal"                    ] = "总共"
+  ,   ["header_BuySubtotal"                    ] = "总价"
   ,   ["header_tooltip_RequiredCt"             ] = "委托需要多少?"
   ,   ["header_tooltip_HaveCt"                 ] = "物品栏 + 银行 + 生产背包中有多少?"
   ,   ["header_tooltip_BuyCt"                  ] = "拥有的不够? 你还需要多少? (= 需求 - 拥有)"
@@ -90,7 +91,7 @@ BB.AddonList["WritWorthy"] = function() if not WritWorthy then return false end
   ,   ["know_err_trait"                        ] = "特质 [%s] (%s) 未研究"
   ,   ["know_err_trait_ct_too_low"             ] = "特质研究数 ( %d / %d ) [%s]"
   ,   ["know_err_llc_too_old"                  ] = "懒人制造插件 %s 需要升级以设置 %d %s"
-  ,   ["lam_banked_vouchers_desc"              ] = "扫描银行并在可用委托列表中包含这些委托以自动制造。\n|cFF3333注意！如果你在多个角色上进行制造的话，其他的角色在制造同一个银行中的委托时WritWorthy将不会提醒你。|r"
+  ,   ["lam_banked_vouchers_desc"              ] = "在可用委托列表中包含银行中的委托物品以自动制造。\n|cFF3333注意！如果你在多个角色上进行制造，导致重复制作银行中的同个委托，WritWorthy将不会提醒|r"
   ,   ["lam_banked_vouchers_title"             ] = "在自动制造窗口中包含银行中的委托"
   ,   ["lam_force_en_desc"                     ] = "无视客户端语言设置并使用 EN 英文显示所有WritWorthy文本。"
   ,   ["lam_force_en_title"                    ] = "强制使用 EN 英文"

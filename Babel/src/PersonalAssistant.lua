@@ -68,6 +68,9 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_MENU_INTEGRATION_CK_INITIALIZING ="Character Knowledge正在启用...",
     
     --Loot
+    SI_PA_MENU_AUTO_LOOT_HEADER = "智能自动拾取",
+    SI_PA_MENU_AUTO_LOOT_ENABLE = "启用自动拾取",
+    
     SI_PA_MENU_LOOT_AUTO_LEARN_RECIPES = table.concat({"自动学习 ", GetString("SI_ITEMTYPE", ITEMTYPE_RECIPE)}),
     SI_PA_MENU_LOOT_AUTO_LEARN_RECIPES_T = table.concat({"当一份 ", GetString("SI_ITEMTYPE", ITEMTYPE_RECIPE), " 被未学习的角色获取，则自动学习"}),	
     SI_PA_MENU_LOOT_AUTO_LEARN_FURNISHING_PLAN = table.concat({"自动学习 ", GetString(SI_PROVISIONERSPECIALINGREDIENTTYPE_TRADINGHOUSERECIPECATEGORY3)}),
@@ -135,7 +138,7 @@ BB.AddonList["PersonalAssistant"] = function() if not PersonalAssistant then ret
     SI_PA_CHAT_NO_METICULOUS = "因细致拆装（CP技能）未装备，自动分解/提炼已停止",
     SI_PA_CHAT_NO_EXTRACTION = "因 %s 等级未满，自动分解/提炼已停止",
     SI_PA_CHAT_NO_EXTRACTION_FOR_ITEM = "%s 等级未满，所以 %s 不会被自动分解",
-    SI_PA_CHAT_CRAFTING_QUEST = "因为你持有一项进行中的制造任务，自动分解、提炼和研究已停止",
+    SI_PA_CHAT_CRAFTING_QUEST = "因为你持有进行中的 %s 任务，自动分解、提炼和研究已停止",
     
     --banking
     SI_PA_MENU_BANKING_ADVANCED_KNOWN_STYLE_PAGE = table.concat({PAC.ICONS.OTHERS.KNOWN.NORMAL, "已知样式书"}),

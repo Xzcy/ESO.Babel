@@ -28,6 +28,7 @@ do if not BB.SV.BanList["FurnitureCatalogue"] then
     SI_FURC_EVENT = "活动",
     SI_FURC_EVENT_ANNIVERSARY = "周年庆典",
     SI_FURC_EVENT_BLACKWOOD = "黑木的赏金",
+    SI_FURC_EVENT_CRIME = "罪恶浪潮",
     SI_FURC_EVENT_ELSWEYR = "龙临盛季",
     SI_FURC_EVENT_HOLLOWJACK = "万圣杰克",
     SI_FURC_EVENT_IC = "帝都庆典",
@@ -135,6 +136,8 @@ do if not BB.SV.BanList["FurnitureCatalogue"] then
     SI_FURC_FILTER_VERSION_BASE44_TT = "双方斗争",
     SI_FURC_FILTER_VERSION_FALLBAN = "落旗",
     SI_FURC_FILTER_VERSION_FALLBAN_TT = "新的地下城和视觉效果更新",
+    SI_FURC_FILTER_VERSION_WORMS = "黑虫教之季",
+    SI_FURC_FILTER_VERSION_WORMS_TT = "另一个新岛屿！这次有个翻腾之墙！",
     
     SI_FURC_GRAMMAR_CONJ_OR = "或",
     SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "在", -- used for locations "in Betnikh"
