@@ -64,6 +64,10 @@ BB.AddonList["HodorReflexes"] = function() if not HodorReflexes then return fals
     HR_MENU_MISCULTIMATES_SHOW_TT = "显示其他不支持的终极技能",
     HR_MENU_MISCULTIMATES_SHARE = "分享其他终极技能",
     HR_MENU_MISCULTIMATES_SHARE_TT = "分享其他不支持的终极技能",
+    HR_MENU_MISCULTIMATES_SHOW_PERCENT = "显示百分比",
+    HR_MENU_MISCULTIMATES_SHOW_PERCENT_TT = "显示经计算的技能终极点百分比",
+    HR_MENU_MISCULTIMATES_SHOW_RAW = "显示原始终极点",
+    HR_MENU_MISCULTIMATES_SHOW_RAW_TT = "显示玩家的原始终极点",
     
     HR_BINDING_HORN_SHARE = "切换战争号角分享",
     HR_BINDING_COLOS_SHARE = "切换死灵巨像分享",

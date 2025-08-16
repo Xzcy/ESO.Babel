@@ -1,5 +1,10 @@
 MABabel.ChangeLog = 
 [[
+  2025.08.16
+    新增: Pithka Achievement Tracker
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 1.18.2
+
   2025.07.24
     常规更新
     |cFFA500插件版本需求|r：

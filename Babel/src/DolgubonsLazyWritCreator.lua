@@ -283,6 +283,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings["recipeRewardTooltip"] = "如何处理配方"
   WritCreater.optionStrings["fragmentReward"]	= "塞伊克珍馐配方碎片"
   WritCreater.optionStrings["fragmentRewardTooltip"] = "如何处理塞伊克珍馐配方碎片"
+  WritCreater.optionStrings["currencyReward"]	= "金币"
+  WritCreater.optionStrings["currencyRewardTooltip"] = "如何处理金币奖励"
 
   WritCreater.optionStrings["writRewards submenu"] = "委托奖励处理"
   WritCreater.optionStrings["writRewards submenu tooltip"] = "如何处理完成委托获得的奖励"
@@ -322,6 +324,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['completeColour']	= "已完成委托颜色"
   WritCreater.optionStrings['smartMultiplier'] = "智能批量日常委托"
   WritCreater.optionStrings['smartMultiplierTooltip'] = "启用时，将尝试制造3天内的日常委托，并会将已有的物品纳入计算。关闭时，仅制造当天日常委托的物品。"
+  WritCreater.optionStrings['craftHousePort']	= "传送至制造特化住宅"
+  WritCreater.optionStrings['craftHousePortTooltip'] = "传送至一个公开可用的制造特化住宅"
   
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_CRAFT_ITEMS", "制作物品")
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_OPEN", "显示委托制造状态窗口")

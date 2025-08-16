@@ -93,6 +93,8 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_Tooltip_AddConnection = "链接到当前预设"
 	L.CSPS_Tooltip_RemoveConnection = "移除与当前预设的链接"
 	L.CSPS_Tooltip_ShowConnection = "链接到子预设: %s\n\n 对该规范所做的更改可以应用到你的角色，但不会保存到当前的预设中。加载构建会自动尝试加载链接的子预设.\n\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 移除链接"
+  
+  L.CSPS_Tooltip_DynamicProfile = "动态配置应从空白开始。每次保存时并非覆盖，而是将修改过的点数追加到配置中。加载一个动态配置时，CSPS将会按照保存的顺序逐步分配点数，直到点数上限。这种方式可以让你在升级过程中持续规划点数分配。"
 	
 	L.CSPS_Tooltiptext_LoadAndApply = "加载并应用"
 	L.CSPS_MORPH = "<<1[无变形/变形 1/变形 $d]>>"
@@ -275,6 +277,14 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LAM_SortCP_3 = "按字母顺序, 被动技能独立"
 	L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
 	L.CSPS_IgnoreEmptyOutfitSlots = "无视空置的外观装备栏"
+  L.CSPS_LAM_VersionHistory = "预设历史版本数量"
+	L.CSPS_LAM_VersionHistoryTT = "为一个预设保存多少个历史版本？修改会增大保存变量的文件大小"
+	L.CSPS_LAM_BGAlpha = "背景透明度"
+	L.CSPS_LAM_WinAlpha = "窗口透明度"
+	L.CSPS_LAM_Modules = "已启用模块"
+	
+	L.CSPS_Dynamic = "动态"
+	L.CSPS_Static = "常规/静态"
   
 	-- Presets
 	L.CSPS_MSG_SwitchCP = "将CP点投入 |c<<1>>'<<2>>'|r，而不是其他插槽技能，确保始终可能有收益"

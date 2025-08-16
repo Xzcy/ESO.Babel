@@ -2,8 +2,8 @@
 ## Description: Clustered Chinese Localization Tools
 ## Author: SplendidAchievers
 ## APIVersion: 101045 101046
-## AddOnVersion: 20250726
-## Version: 2025.07.26
+## AddOnVersion: 20250816
+## Version: 2025.08.16
 ## DependsOn: LibBabel
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
@@ -86,6 +86,7 @@ src\OdySupportIcons.lua
 src\pChat.lua
 src\PerfectPixel.lua
 src\PersonalAssistant.lua
+src\PithkaAchievementTracker.lua
 src\Postmaster.lua
 src\PotionMaker.lua
 

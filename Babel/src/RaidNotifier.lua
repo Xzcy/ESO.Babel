@@ -60,8 +60,8 @@ BB.AddonList["RaidNotifier"] = function() if not RaidNotifier then return false 
   L.Settings_General_Choices_Custom_Announcement      = "自定义 (可移动)"
   L.Settings_General_Choices_SelfAndTanks             = "自身与坦克"
   L.Settings_General_Choices_OnlyChaurusTotem         = "仅查鲁斯" -- Specific for Kyne's Aegis
-  L.Settings_DreadsailReef_Choices_OnlyFireDome       = "仅火罩子"
-  L.Settings_DreadsailReef_Choices_OnlyIceDome        = "仅冰罩子"
+  L.Settings_DreadsailReef_Choices_OnlyFireDome       = "仅火罩"
+  L.Settings_DreadsailReef_Choices_OnlyIceDome        = "仅冰罩"
   -- Alerts
   L.Alerts_General_No_Bufffood                        = "你没有buff食物!"
   L.Alerts_General_Bufffood_Minutes                   = "你的 '<<1>>' buff食物将在 |cbd0000<<2>>|r 分钟后耗尽!"

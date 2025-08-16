@@ -300,6 +300,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptEndeavorChatMsgF = "在聊天窗口中显示勉励任务进度相关信息",
     OptEndeavorChatChnl = "显示进度的聊天频道",
     OptEndeavorChatChnlF = "用于显示勉励进度相关信息的聊天频道",
+    OptEndeavorChatColor = "进度提示颜色",
+    OptEndeavorChatColorF = "调整进度提示的颜色",
     OptPursuitChatMsg  = "在聊天窗口中显示金典追觅进度",
     OptPursuitChatMsgF = "在聊天窗口中显示金典追觅进度相关信息",
     OptPursuitChatCamp  = "直到获取金典追觅奖励",
@@ -320,6 +322,15 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptLFGPIgnPledge = "忽略“誓约已完成”检查标记",
     OptLFGPAlert = "屏幕中通知",
     OptLFGPChat = "聊天框通知",
+    OptLFGPModeRoult = zo_strformat("过期誓约排本改为 <<1>>/<<2>> ", Icon.Vet, Icon.Norm),
+    OptLFGPModeRoultF = table.concat(
+                        { "当队伍查找器设置为老兵模式，",
+                          "而角色持有过期(非今日)的誓约者任务时，",
+                          "此选项使你额外搜索普通难度的队伍\n\n",
+                          "启用时，搜索任意难度 (", Icon.Vet, " 或 ", Icon.Norm,
+                          ") 的队伍 - ", Icon.Roult, ".\n",
+                          "禁用时，仅搜索 ", Icon.Vet, " 难度的队伍"
+                        } ),
   --> 3
     OptRGLAHdr = "RGLA设定(团队队长助手)",
     OptRGLAQAutoShare = "允许自动共享任务",
@@ -441,7 +452,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [29] = table.concat({ "无畏者誓约队伍查找器\n",
            Icon.Minus, " - GFP 在插件设置中未启用\n",
            GetIcon(62,18), " - 钥匙的可能数量 (包含HM)\n",
-           Icon.Norm, "/", Icon.Vet, " - 队伍查找器模式 (在地下城名称之前)" }),
+           Icon.Norm, "/", Icon.Vet, "/", Icon.Roult, " - 队伍查找器模式 (在地下城名称前)" }),
     [30] = "日常奖励可获取",
   -- 31-39 Class skills + Guild skills
     [31] = "第一职业技能线",

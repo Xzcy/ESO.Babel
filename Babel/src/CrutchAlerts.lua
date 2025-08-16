@@ -208,9 +208,14 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "当你队伍中的其他人成为特定能力的目标，或者在某些情况下，当敌人对自身施放某种能力时，显示警告。这是一个手动编辑列表，其中列出了足以影响到你的关键能力",
                 },
                 {
+                    type = "slider",
+                    name = "警告尺寸",
+                    tooltip = "显示上述常规警告的尺寸",
+                },
+                {
                     type = "checkbox",
                     name = "显示 可伤害计时器",
-                    tooltip = "对于某些遭遇战，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回场地等",
+                    tooltip = "对于某些战斗，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回场地等",
                 },
                 {
                     type = "divider",
@@ -430,7 +435,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "重组理事安全点图标尺寸",
+                    name = "    重组理事安全点图标尺寸",
                 },
                 {
                     type = "checkbox",
@@ -439,7 +444,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "组装大将军斩杀站位图标尺寸",
+                    name = "    组装大将军斩杀站位图标尺寸",
                 },
             })),
         },
@@ -464,7 +469,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "法格拉文领主 DD重叠站位图标尺寸",
+                    name = "    法格拉文领主 DD重叠站位图标尺寸",
                 },
             })),
         },
@@ -479,7 +484,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "卡沃特·阿格南 图标尺寸",
+                    name = "    卡沃特·阿格南 图标尺寸",
                     tooltip = "卡沃特·阿格南 出生点图标尺寸",
                 },
                 {
@@ -494,7 +499,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "镜子图标尺寸",
+                    name = "    镜子图标尺寸",
                     tooltip = "镜子图标尺寸",
                 },
                 {
@@ -515,7 +520,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "佐林线条AOE图标尺寸",
+                    name = "    佐林线条AOE图标尺寸",
                     tooltip = "佐林线条AOE图标尺寸",
                 },
             }))),
@@ -538,7 +543,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         },
         {
             type = "submenu",
-            name = "骨笼(OC)",
+            name = "骨笼(OC) 等打过的佬补充汉化",
             controls = {
                 {
                     type = "checkbox",
@@ -554,6 +559,31 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "Show titans' health bars",
                     tooltip = "Shows Blazeforged Valneer's and Sparkstorm Myrinax's health using the vertical boss health bars",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show twins icons",
+                    tooltip = "In the Jynorah + Skorkhif fight, shows icons in the world for close positioning. Requires OdySupportIcons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Match AOCH icons",
+                    tooltip = "Use icons that match Asquart's Ossein Cage Helper's icons",
+                },
+                {
+                    type = "checkbox",
+                    name = "    Show middle icons",
+                    tooltip = "Additionally shows a set of icons for positioning in the middle of the arena",
+                },
+                {
+                    type = "slider",
+                    name = "    Twins icons size",
+                },
+                {
+                    type = "dropdown",
+                    name = "Show Enfeeblement debuffs",
+                    tooltip = "Shows icons on players afflicted by Sparking Enfeeblement, Blazing Enfeeblement, or both. Requires OdySupportIcons",
+                    choices = {"从不", "仅困难模式", "老兵和困难模式", "总是"},
                 },
                 {
                     type = "dropdown",
