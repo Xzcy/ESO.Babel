@@ -159,6 +159,7 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_DEFAULT_TAG_GENERAL_ITEMS= "通用物品",
     SI_AC_DEFAULT_TAG_MATERIALS= "材料",
     SI_AC_DEFAULT_TAG_FURNITURE= "家具",
+    SI_AC_DEFAULT_TAG_PAPERS="纸张",
 
     SI_AC_DEFAULT_CATEGORY_ARMOR= "护甲",
     SI_AC_DEFAULT_CATEGORY_BOE= "BoE装备",
@@ -190,6 +191,8 @@ BB.AddonList["AutoCategory"] = function() if not AutoCategory then return false 
     SI_AC_DEFAULT_CATEGORY_FURNISHING_DESC= "可放置于住宅的物品",
     SI_AC_DEFAULT_CATEGORY_BYCATEGORY = "类型",
     SI_AC_DEFAULT_CATEGORY_BYCATEGORY_DESC= "自动分类的家具类别",
+    SI_AC_DEFAULT_CATEGORY_MASTER_WRITS="大师委托(所有)",
+    --SI_AC_DEFAULT_CATEGORY_MASTER_WRITS_DESC="",
     SI_AC_DEFAULT_CATEGORY_GLYPHS_AND_GEMS= "符文&宝石",
     SI_AC_DEFAULT_CATEGORY_GLYPHS_AND_GEMS_DESC= "",
     SI_AC_DEFAULT_CATEGORY_NEW= "新物品",

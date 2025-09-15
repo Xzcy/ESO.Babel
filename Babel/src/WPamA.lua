@@ -858,6 +858,13 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [58] = { -- Any -> Hew's Bane - Lep Seclusa
       N = "秀跃隐修院",
     },
+  -- Feast of Shadows DLC dungeons
+    [59] = { -- Any -> Solstice - Naj-Caldeesh
+      N = "纳吉-卡尔迪什",
+    },
+    [60] = { -- Any -> Solstice - Black Gem Foundry
+      N = "黑宝石铸造厂",
+    },
   }
   L.DailyBoss = {
   -- Wrothgar

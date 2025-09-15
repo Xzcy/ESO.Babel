@@ -274,7 +274,198 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
             }
         },
--- subtitles
+-- in-world icons
+        {
+            type = "submenu",
+            name = "副本内标记",
+            controls = {
+                {
+                    type = "description",
+                    text = "Crutch可以在副本中实时绘制图标，用于标记玩家或机制定位。推荐将视频设置中的\"二次抽样画质\" 设置为\"高\"，避免图标穿透墙壁显示",
+                },
+                {
+                    type = "slider",
+                    name = "刷新间隔",
+                    tooltip = "单位为毫秒，0表示每一帧都刷新。间隔越低，图标的显示越平滑，但性能压力越大",
+                },
+                {
+                    type = "checkbox",
+                    name = "启用绘制层级",
+                    tooltip = "启用后，将更近的图标始终显示在更远图标的上层，这会增加一定的性能压力。关闭后，当图标重叠显示时可能出现层级错乱，或因透明边缘而裁剪其他图标",
+                },
+                -- Attached icons
+                {
+                    type = "submenu",
+                    name = "队友图标",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "该设置包含为队友标记的职能、队长、死亡与复活状态和机制点名图标",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 自身的图标",
+                            tooltip = "启用后，也为自身标记职能、队长等图标。机制点名图标不受该设置影响",
+                        },
+                        {
+                            type = "slider",
+                            name = "尺寸",
+                            tooltip = "图标的大小。机制点名图标可能以不同的尺寸显示",
+                        },
+                        {
+                            type = "slider",
+                            name = "纵轴调整",
+                            tooltip = "调整非死亡图标在纵轴上的显示位置",
+                        },
+                        {
+                            type = "slider",
+                            name = "不透明度",
+                            tooltip = "图标的不透明程度。机制点名图标可能以不同的透明度显示",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "隐藏障碍后的图标",
+                            tooltip = "启用后，被障碍阻隔的图标将被隐藏。需要将视频设置中的\"二次抽样画质\" 设置为\"高\"",
+                        },
+                        {
+                            type = "divider",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 坦克图标",
+                            tooltip = "启用后，为队伍中相应职能的角色标记",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "坦克图标颜色",
+                            tooltip = "坦克图标颜色",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 治疗图标",
+                            tooltip = "启用后，为队伍中相应职能的角色标记",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "治疗图标颜色",
+                            tooltip = "治疗图标颜色",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 输出图标",
+                            tooltip = "启用后，为队伍中相应职能的角色标记",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "输出图标颜色",
+                            tooltip = "输出图标颜色",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 队长图标",
+                            tooltip = "启用后，为队长标记",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "队长图标颜色",
+                            tooltip = "队长图标颜色",
+                        },
+                        {
+                            type = "divider",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 死亡图标",
+                            tooltip = "启用后，为死亡玩家标记骷髅",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "死亡图标颜色",
+                            tooltip = "死亡图标颜色",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "复活中图标颜色",
+                            tooltip = "复活中图标颜色",
+                        },
+                        {
+                            type = "colorpicker",
+                            name = "等待起身图标颜色",
+                            tooltip = "等待起身图标颜色",
+                        },
+                    },
+                },
+                -- placedPositioning icons
+                {
+                    type = "submenu",
+                    name = "定位图标",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "该设置包含放置于地面的图标，比如为部分场地绘制站位分配",
+                        },
+                        {
+                            type = "slider",
+                            name = "不透明度",
+                            tooltip = "图标的不透明程度。机制点名图标可能以不同的透明度显示",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "隐藏障碍后的图标",
+                            tooltip = "启用后，被障碍阻隔的图标将被隐藏。需要将视频设置中的\"二次抽样画质\" 设置为\"高\"",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "启用平铺图标",
+                            tooltip = "启用后，图标将被平铺于地面，而不是始终面向玩家的屏幕。这可能会影响易读性，当人物面朝正北时，图标将保持垂直状态",
+                        },
+                    },
+                },
+                -- placedOriented icons
+                {
+                    type = "submenu",
+                    name = "定向纹理",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "该设置包含多种范围纹理，比如为部分AOE技能绘制圆形范围",
+                        },
+                        {
+                            type = "slider",
+                            name = "不透明度",
+                            tooltip = "图标的不透明程度。机制点名图标可能以不同的透明度显示",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "隐藏障碍后的图标",
+                            tooltip = "启用后，被障碍阻隔的图标将被隐藏。需要将视频设置中的\"二次抽样画质\" 设置为\"高\"",
+                        },
+                    },
+                },
+                -- placedIcon icons
+                {
+                    type = "submenu",
+                    name = "其他图标",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "该设置包含其他图标",
+                        },
+                        {
+                            type = "slider",
+                            name = "不透明度",
+                            tooltip = "图标的不透明程度。机制点名图标可能以不同的透明度显示",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "隐藏障碍后的图标",
+                            tooltip = "启用后，被障碍阻隔的图标将被隐藏。需要将视频设置中的\"二次抽样画质\" 设置为\"高\"",
+                        },
+                    },
+                },
+            },
+        },
+-- misc
         {
             type = "submenu",
             name = "杂项设置",
@@ -319,7 +510,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = {
                 {
                     type = "checkbox",
-                    name = "显示高难队长决策",
+                    name = "显示 高难队长决策",
                     tooltip = "当发生某些重要事件时，在文本聊天中显示可能的信息。例如，有人在 DSR 中捡到了火穹",
                 },
                 {
@@ -334,12 +525,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
-                    name = "显示其他调试",
+                    name = "显示 其他调试",
                     tooltip = "显示其他调试信息",
                 },
                 {
                     type = "checkbox",
-                    name = "显示画线距离",
+                    name = "显示 画线距离",
                     tooltip = "启用时，Crutch在被机制点名的玩家间画线，并在线条上显示距离",
                 },
             },
@@ -455,17 +646,17 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 爆炸矛落点",
-                    tooltip = "在存在长枪小怪的战斗中，显示爆炸矛AOE大致的落点。需要OdySupportIcons插件。",
+                    tooltip = "在存在长枪小怪的战斗中，显示爆炸矛AOE的大致落点",
                 },
                 {
                     type = "checkbox",
                     name = "显示 血牢图标",
-                    tooltip = "在被点名血牢的玩家头上显示图标，该提示可早于特效。需要OdySupportIcons插件。",
+                    tooltip = "在被点名血牢的玩家头上显示图标，该提示可早于机制特效出现",
                 },
                 {
                     type = "checkbox",
                     name = "显示 法格拉文领主（尾王） 2楼DD站位图标",
-                    tooltip = "在法格拉文领主（尾王）战斗中，显示DD重叠站位的图标。需要OdySupportIcons插件。",
+                    tooltip = "在法格拉文领主（尾王）战斗中，显示DD重叠站位的图标",
                 },
                 {
                     type = "slider",
@@ -480,7 +671,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 卡沃特·阿格南 出生点",
-                    tooltip = "为卡沃特·阿格南 出生点显示图标，需要OdySupportIcons插件",
+                    tooltip = "为卡沃特·阿格南 出生点显示图标",
                 },
                 {
                     type = "slider",
@@ -505,7 +696,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 奥术传送 图标和连线",
-                    tooltip = "在将要或已经被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头顶显示图标和连线",
+                    tooltip = "在将要或已被点名奥术传送（奥术结阶段，达利厄尔·莱蒙斯连线点名）的队员头顶显示图标和连线",
                 },
                 {
                     type = "dropdown",
@@ -516,7 +707,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 佐林（尾王）线条AOE 站位图标",
-                    tooltip = "在佐林（尾王）战斗中，为小队成员站位显示图标（会在试炼开始时显示，用于练习）。需要OdySupportIcons插件。",
+                    tooltip = "在佐林（尾王）战斗中，为小队成员站位显示图标（会在试炼开始时显示，用于练习）",
                 },
                 {
                     type = "slider",
@@ -563,7 +754,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "Show twins icons",
-                    tooltip = "In the Jynorah + Skorkhif fight, shows icons in the world for close positioning. Requires OdySupportIcons",
+                    tooltip = "In the Jynorah + Skorkhif fight, shows icons in the world for close positioning",
                 },
                 {
                     type = "checkbox",
@@ -582,8 +773,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "dropdown",
                     name = "Show Enfeeblement debuffs",
-                    tooltip = "Shows icons on players afflicted by Sparking Enfeeblement, Blazing Enfeeblement, or both. Requires OdySupportIcons",
+                    tooltip = "Shows icons on players afflicted by Sparking Enfeeblement, Blazing Enfeeblement, or both",
                     choices = {"从不", "仅困难模式", "老兵和困难模式", "总是"},
+                },
+                {
+                    type = "checkbox",
+                    name = "Print titan damage on HM",
+                    tooltip = "On hardmode, prints to chat when you damage a titan, which would proc Reflective Scales. For now, it doesn't print until the titan health bars appear",
                 },
                 {
                     type = "dropdown",
@@ -594,7 +790,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "Show Dominator's Chains tether",
-                    tooltip = "Shows icons above and a line connecting group members who are about to (or have already received) the Dominator's Chains tether from Overfiend Kazpian. Requires OdySupportIcons",
+                    tooltip = "Shows a line connecting group members who are about to (or have already received) the Dominator's Chains tether from Overfiend Kazpian",
                 },
             },
         },
@@ -623,7 +819,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "标记安苏尔（尾王）场地的中央",
-                    tooltip = "在折磨者安苏尔（尾王）战斗中，在场地中央显示图表。需要OdySupportIcons插件",
+                    tooltip = "在折磨者安苏尔（尾王）战斗中，在场地中央显示图表",
                 },
                 {
                     type = "slider",
@@ -638,7 +834,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 洛克斯提兹（一王）HM模式光束AOE 站位图标",
-                    tooltip = "在洛克斯提兹（一王）HM模式战斗中，显示8个DD和2个H的防重叠站位图标。需要OdySupportIcons插件。",
+                    tooltip = "在洛克斯提兹（一王）HM模式战斗中，显示8个DD和2个H的防重叠站位图标",
                 },
                 {
                     type = "checkbox",
@@ -653,7 +849,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 尤尔纳克林（二王）站位图标",
-                    tooltip = "在尤尔纳克林（二王）战斗中，显示尤尔纳克林降落时头部和右翅膀位置图标。需要OdySupportIcons插件。",
+                    tooltip = "在尤尔纳克林（二王）战斗中，显示尤尔纳克林降落时头部和右翅膀位置图标",
                 },
                 {
                     type = "checkbox",
@@ -663,6 +859,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "slider",
                     name = "尤尔纳克林图标尺寸",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 未处于火焰易伤的玩家",
+                    tooltip = "当尤尔纳克林使用火焰爆炸时，为不处于火焰易伤的玩家显示图标，这主要用于帮助OT前往正确的人群",
                 },
             })),
         },
@@ -704,7 +905,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "显示 酿酒师药剂点",
-                    tooltip = "在酿酒师可能投掷了缩小药剂的地方显示图标。注意这对扔向队友召唤物的药剂无效。需要OdySupportIcons插件",
+                    tooltip = "在酿酒师可能投掷了缩小药剂的地方显示图标。注意这对扔向队友召唤物的药剂无效",
                 },
                 {
                     type = "checkbox",
@@ -715,6 +916,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "音效提示 危险技能",
                     tooltip = "为特定的高危技能，播放音效提示",
+                },
+                {
+                    type = "checkbox",
+                    name = "输出走廊解谜答案",
+                    tooltip = "在走廊解谜房间中靠近开关时，若已知解谜方案，则会按从左到右的编号顺序将答案输出至聊天框。当前缺失部分谜题答案，且仅支持最高难度模式",
                 },
             })),
         },
@@ -802,7 +1008,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "灵魂炸弹分摊提示",
-                    tooltip = "在工头布拉迪干（一王）HM模式战斗中，当出现2个灵魂炸弹（分摊）点名时，显示推荐的分摊队友。如果有OdySupportIcons插件，则会在对应玩家头上显示标记。该提示按用户名进行分摊选择。",
+                    tooltip = "在工头布拉迪干（一王）HM模式战斗中，当出现2个灵魂炸弹（分摊）点名时，显示推荐的分摊队友，并在对应玩家头上显示标记（分摊的选择基于@用户名）",
                 },
             }
         },
