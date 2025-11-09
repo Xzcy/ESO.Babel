@@ -1,9 +1,9 @@
 ## Title: Babel
 ## Description: Clustered Chinese Localization Tools
 ## Author: SplendidAchievers
-## APIVersion: 101046 101047
-## AddOnVersion: 20250915
-## Version: 2025.09.15
+## APIVersion: 101047 101048
+## AddOnVersion: 20251109
+## Version: 2025.11.09
 ## DependsOn: LibBabel
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
@@ -62,6 +62,7 @@ src\HarvensImprovedSkillsWindow.lua
 src\HarvestMap.lua
 src\HodorReflexes.lua
 src\HowToCloudrest.lua
+src\HyperTools.lua
 
 ## I
 src\ITTSDonationBot.lua

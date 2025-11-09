@@ -240,6 +240,25 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "显示 雕刻脚本 销赃者格挡 计时器",
                     tooltip = "显示销赃者格挡持续时间的计时器",
                 },
+                 {
+                    type = "submenu",
+                    name = "自定义",
+                    controls = {
+                        {
+                            type = "description",
+                            text = "你可以在此调整警告中出现的技能，也包含上方选项的技能。技能ID的可以通过打开|c99FF99CrutchAlerts > 调试设置 > 警报中显示调试信息|r来获取，或者从UESP、ESOLogs等玩家数据库中获得",
+                        },
+                        {
+                            type = "editbox",
+                            name = "黑名单（输入技能ID，之间以英文逗号分隔）",
+                            tooltip = "添加入黑名单的技能不会在\"施法开始,\" \"施法获得,\" 和 \"对其他目标施法\" 的警告中出现。举例，添加 153517,153518 会禁用HM巴塞战斗中传送门方向的警告",
+                        },
+                        {
+                            type = "description",
+                            name = "当前黑名单：",
+                        },
+                    },
+                },
             }
         },
 -- boss health bar
@@ -256,6 +275,16 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "slider",
                     name = "尺寸",
                     tooltip = "显示垂直 BOSS 血条的尺寸。注意：某些元素在重新加载前可能无法正确更新尺寸",
+                },
+                {
+                    type = "colorpicker",
+                    name = "前景颜色",
+                    tooltip = "血条的前景颜色。此设置在特殊情况不适用，如试炼OC或AS中的部分战斗。此颜色包含不透明度，因此在设置菜单中显示的颜色可能比实际颜色更深",
+                },
+                {
+                    type = "colorpicker",
+                    name = "背景颜色",
+                    tooltip = "血条的背景颜色。此设置在特殊情况不适用，如试炼OC或AS中的部分战斗。此颜色包含不透明度，因此在设置菜单中显示的颜色可能比实际颜色更深",
                 },
                 {
                     type = "checkbox",
@@ -549,12 +578,17 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 {
                     type = "checkbox",
                     name = "当亵渎爆破（扇形AOE）点名你时 播放音效",
-                    tooltip = "当洛希斯（一王）点名你释放亵渎爆破（扇形AOE）时，播放音效",
+                    tooltip = "当洛希斯点名你释放亵渎爆破（扇形AOE）时，播放音效",
                 },
                 {
                     type = "checkbox",
                     name = "当亵渎爆破（扇形AOE）点名其他人时 播放音效",
-                    tooltip = "当洛希斯（一王）点名其他人释放亵渎爆破（扇形AOE）时，播放音效",
+                    tooltip = "当洛希斯点名其他人释放亵渎爆破（扇形AOE）时，播放音效",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 mini的血条",
+                    tooltip = "在竖直Boss血条上显示洛希斯和菲尔姆斯的血条",
                 },
             }
         },
@@ -572,6 +606,21 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "播放 矛机制 音效",
                     tooltip = "当矛在楼上生成时，播放CP技能提交音效",
                 },
+                                {
+                    type = "checkbox",
+                    name = "显示 丢冰风 计时器",
+                    tooltip = "显示何时可以丢冰风的计时器，之后显示何时被冰风秒杀的计时器（困难难度以上）",
+                },
+                {
+                    type = "checkbox",
+                    name = "警告 丢冰风",
+                    tooltip = "当你可以丢冰时，显示突出警告并发生Ding的音效",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 丢冰风 点名",
+                    tooltip = "在当前持有冰风的玩家头顶显示图标",
+                },
                 {
                     type = "checkbox",
                     name = "显示 叠火 分组",
@@ -579,8 +628,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
+                    name = "显示 叠火 点名",
+                    tooltip = "在被点名叠火的玩家头顶显示图标",
+                },
+                {
+                    type = "checkbox",
                     name = "染色Ody死亡图标",
-                    tooltip = "需要OdySupportIcons插件。如果死亡队友的影子依然存在，将其Ody死亡图标染为紫色",
+                    tooltip = "如果死亡队友的影子依然存在，将其死亡图标染为紫色",
                 },
             }))),
         },
@@ -621,12 +675,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(975, Crutch.GetProminentSettings(975, {
                 {
                     type = "checkbox",
-                    name = "显示重组理事（四王）的安全点",
-                    tooltip = "在重组理事（四王）战斗中，在秒杀护盾外的地方显示图标。需要OdySupportIcons插件",
-                },
-                {
-                    type = "slider",
-                    name = "    重组理事安全点图标尺寸",
+                    name = "显示重组理事（四王）的秒杀护盾范围",
+                    tooltip = "在重组理事（四王）战斗中，显示秒杀护盾AOE的大致范围",
                 },
                 {
                     type = "checkbox",
@@ -727,6 +777,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
+                    name = "显示 双子形态 图标",
+                    tooltip = "在瓦沙艾和斯金莱（二王）战斗中，在玩家头顶显示代表其暗影或月光形态的图标",
+                },
+                {
+                    type = "checkbox",
                     name = "显示 双子变色机制",
                     tooltip = "在瓦沙艾和斯金莱（二王）战斗中，如果你被点名变色则显示突出警告",
                 },
@@ -753,7 +808,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
-                    name = "Show twins icons",
+                    name = "Show curse positioning icons",
                     tooltip = "In the Jynorah + Skorkhif fight, shows icons in the world for close positioning",
                 },
                 {
@@ -768,7 +823,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "    Twins icons size",
+                    name = "    Curse positioning icons size",
                 },
                 {
                     type = "dropdown",
@@ -800,8 +855,13 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1263, Crutch.GetProminentSettings(1263, Crutch.GetEffectSettings(1263, {
                 {
                     type = "checkbox",
-                    name = "显示 毒点名玩家 处理方位",
-                    tooltip = "在奥西索（一王）战斗中，显示毒点名的玩家应该去哪侧解毒。该提示与Qcell's Rockgrove Helper插件的结果相同。",
+                    name = "显示 毒点名 处理方位",
+                    tooltip = "在奥西索（一王）战斗中，显示毒点名的玩家应该去哪侧解毒。该提示与Qcell's Rockgrove Helper插件的结果相同",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 毒点名 图标",
+                    tooltip = "在奥西索（一王）战斗中，在被点名毒的玩家头顶显示图标",
                 },
                 {
                     type = "dropdown",
@@ -809,6 +869,46 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "在火焰先驱巴塞（二王）战斗中，显示胖子造成的流血dot的计时器。如果设置为\"仅自身/治疗位\"，仅当你为治疗职能或dot作用于自身时，显示计时器",
                     choices = {"从不", "仅自身/治疗位", "总是"},
                     choicesValues = {"NEVER", "HEAL", "ALWAYS"},
+                },
+                 {
+                    type = "checkbox",
+                    name = "显示 诅咒点名 图标",
+                    tooltip = "在火焰先驱巴塞（二王）战斗中，在被点名诅咒的玩家头顶显示图标和爆炸倒计时",
+                },
+                {
+                    type = "description",
+                    title = "|c08BD1D[测试功能] 诅咒移动轨迹|r",
+                    text = "在诅咒爆炸后，显示AOE潜在的移动轨迹。4条可能的轨迹都会显示，其中2条会实际产生AOE",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 自身诅咒移动轨迹 预测",
+                    tooltip = "当你被点名诅咒时，显示预测的AOE移动轨迹。你可以尝试让它们远离队伍",
+                },
+                {
+                    type = "colorpicker",
+                    name = "预测轨迹颜色",
+                    tooltip = "修改预测轨迹的颜色",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 自身诅咒移动轨迹",
+                    tooltip = "在你的诅咒爆炸后，显示AOE移动轨迹。轨迹精度会受到网络延迟的影响，尤其当你快速移动时",
+                },
+                {
+                    type = "colorpicker",
+                    name = "轨迹颜色",
+                    tooltip = "修改轨迹的颜色",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 队友诅咒移动轨迹",
+                    tooltip = "当其他队友的诅咒爆炸时，显示诅咒移动轨迹（不受队友插件设置的影响）。轨迹精度会受到网络延迟的影响，尤其当队友快速移动时。这一功能需要你和队友都有LibGroupBroadcast插件，且CrutchAlerts版本相同",
+                },
+                {
+                    type = "colorpicker",
+                    name = "队友轨迹颜色",
+                    tooltip = "修改队友轨迹的颜色",
                 },
             }))),
         },
@@ -833,7 +933,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             controls = ReplaceProminent(1121, Crutch.GetProminentSettings(1121, {
                 {
                     type = "checkbox",
-                    name = "显示 洛克斯提兹（一王）HM模式光束AOE 站位图标",
+                    name = "显示 洛克斯提兹（一王）HM模式 光束AOE 站位图标",
                     tooltip = "在洛克斯提兹（一王）HM模式战斗中，显示8个DD和2个H的防重叠站位图标",
                 },
                 {
@@ -845,6 +945,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "slider",
                     name = "洛克斯提兹HM图标尺寸",
                     tooltip = "在图标隐藏后再次显示时，才会更新图标尺寸",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 洛克斯提兹（一王）HM模式 风暴吐息预警",
+                    tooltip = "在洛克斯提兹（一王）HM模式战斗中，显示部分风暴吐息的大致范围。主要针对玩家容易站错的区域",
                 },
                 {
                     type = "checkbox",
@@ -862,7 +967,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "checkbox",
-                    name = "显示 未处于火焰易伤的玩家",
+                    name = "显示 未处于火焰易伤 图标",
                     tooltip = "当尤尔纳克林使用火焰爆炸时，为不处于火焰易伤的玩家显示图标，这主要用于帮助OT前往正确的人群",
                 },
             })),
@@ -1003,6 +1108,17 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         },
         {
             type = "submenu",
+            name = "黑宝石铸造厂",
+            controls = {
+                {
+                    type = "checkbox",
+                    name = "显示 击退预览",
+                    tooltip = "在采石场主萨尔德扎尔（一王）的战斗中，显示击退后落点的预览线",
+                },
+            }
+        },
+        {
+            type = "submenu",
             name = "船工之憾地牢",
             controls = {
                 {
@@ -1074,6 +1190,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["马图斯·图留斯"] = "Martus Tullius",
       ["佩林加尔大师"] = "Master Pellingare",
       ["库·塔拉"] = "K'Tora",
+      ["战斗大师西亚斯"] = "Hiath the Battlemaster",
+      ["伯依希亚"] = "Boethiah",
     }
     
     local NpcMessage = {
@@ -1209,6 +1327,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       --"Sister Chana Nirine"
       ["你永远无法读到这卷轴的内容！"] = "You'll never read this scroll!",
       --"Nisaazda",
+      ["雷纳德很狡猾，但尼撒兹达会很快抓到他的。你的好运到头了。"] = "Renald is slippery, but Nisaazda will catch him in time. You will not be so lucky.",
       ["我可以不那么做。"] = "This one won't have to.",
       --"Grundwulf",
       ["我感觉到了！哈哈哈！"] = "I can feel it! Haha",
@@ -1244,6 +1363,18 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["魔族正在把它们的能量倾注到那台机器中。"] = "The Daedra are pouring their energy into that machine!",
       --"Master Pellingare"
       ["亚琳！瓦莱尼！是爸爸！我爱你们，我想和你们聊聊！"] = "Allene! Varaine! It's your father! I love you, and I want to talk to you!",
+      --"Hiath the Battlemaster"
+      ["我们又有新挑战者了！他们是会在比拼中活下来，还是会让自己的血成为我们宏伟竞技场的装饰品呢？"] = "We have new challengers! Will they survive the competition, or will their blood decorate the floor of our grand Arena?",
+      ["你还敢继续？这一举动倒让我主人很高兴。希望你能继续让主人开心，那样她就会赐予你能在接下来的战斗中得以活下去的力量。"] = "You dare to go on? This pleases my master. Let's hope you continue to please her and she grants you the strength to survive the coming battles.",
+      ["你们每胜一场，主人对你们的欣赏就会多上几分，凡人们。但你们在沼泽中又会如何表现呢？你们能应付终日的泥泞，虫子以及那些一旦将你们打败就毫不犹豫吞噬入腹的生物吗？"] = "Every victory elevates you in the eyes of the master, mortals. But how will you fare in the marsh? Can you handle the mud and the bugs and the creatures intent on eating you once they defeat you?",
+      ["我很确定你在想这里究竟发生什么事了。你会明白的——先让自己活下去！"] = "I'm sure you're starting to wonder what's going on in here. You'll come to understand—provided you survive!",
+      ["多么令人费解！这些奇怪的瓦片是做什么用的？我想你最好快点弄明白：当然，如果你不想死的话！"] = "How puzzling! What could those strange tiles be used for? I guess you better figure it out quickly—if you don't want to die, of course!",
+      ["所以你的旅程将你带进了我家主人领地深处。她最中意的崇拜者们就住这儿，其中也包括她最喜欢的那群斗士。那些人很乐意牺牲自己以成为某种……更高级的东西。"] = "And so your journey takes you into the depths of my master's domain. Her most-beloved worshipers reside here, including her favorite champions. Those who would gladly sacrifice themselves to become something … more.",
+      ["你还真把自己当回事儿了。你在一个又一个竞技场一路赢过来，但你什么也不是，你只不过是个随时等着被踩死的蝼蚁罢了。"] = "You must think you're really something. Arena after arena, you emerge victorious. But you are nothing. Nothing but lowly insects waiting to be stepped on.",
+      --"Boethiah"
+      ["如今真正的挑战开始了，我尊敬的参赛者们。我的斗士已被灭口，以致于我只能亲自来祝贺你们能走到今天这一步。从现在开始，你们会被逼至自身极限。"] = "Now the real challenge begins, my honored contestants. My champion has been silenced so that I may congratulate you personally for making it this far. From this point on, you will be pushed to your limits.",
+      ["你们的力量是无止境的，我很少能看到一个协同如此出色的团队。哦，我上次见到这场面还是几年前我在矮人遗迹中找到的那群可怜法师公会成员们所做到的。"] = "Your strength knows no bounds. Rarely have I seen a group that works so well together. The last time must have been, oh, those poor Mages Guild members I found in the Dwemer ruins years ago.",
+      ["所以最后的挑战开始了。那些代表我的斗士如今就站在我领地深处的这个竞技场之上。此战过后还能站着的人将会获得我的最高荣誉。"] = "And so the final challenge begins. Those who would represent me as champion now stand in this arena, deep within my realm. Only those who remain standing will receive my highest honor.",
       --"K'Tora",
       ["多爪的鲁拉，我召唤你，从深邃的重生池中出来吧！"] = "Ruella",
       ["凡人是多爪的鲁拉产卵的完美宿主。"] = "Ruella",

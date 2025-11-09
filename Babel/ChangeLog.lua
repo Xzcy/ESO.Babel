@@ -1,5 +1,11 @@
 MABabel.ChangeLog = 
 [[
+  2025.11.09
+    常规更新
+    新增：HyperTool(下拉框内容无法汉化)
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 2.5.1
+    
   2025.09.15
     常规更新
     |cFFA500插件版本需求|r：

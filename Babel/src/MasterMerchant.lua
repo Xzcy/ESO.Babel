@@ -304,9 +304,11 @@ do if not BB.SV.BanList["MasterMerchant"] then
     ZO_CreateStringId("MM_REPLACE_INVENTORY_VALUES_NAME", "替代物品栏价值")
     ZO_CreateStringId("MM_REPLACE_INVENTORY_VALUES_TIP", "在物品栏表格中显示MM价格。")
     ZO_CreateStringId("MM_REPLACE_INVENTORY_VALUE_TYPE_NAME", "替代价值类型")
-    ZO_CreateStringId("MM_REPLACE_INVENTORY_VALUE_TYPE_TIP", "为物品栏表格中的价值选择显示MM均价、TTC均价、TTC建议价、及宝藏价均值。")
+    ZO_CreateStringId("MM_REPLACE_INVENTORY_VALUE_TYPE_TIP", "为物品栏表格中的价值选择显示MM均价、TTC均价、TTC建议价或宝藏价均值。")
     ZO_CreateStringId("MM_REPLACE_INVENTORY_SHOW_UNITPRICE_NAME", "显示单价")
     ZO_CreateStringId("MM_REPLACE_INVENTORY_SHOW_UNITPRICE_TIP", "启用或禁用显示物品栏中物品的单价。")
+    ZO_CreateStringId("MM_AGS_TRADER_VALUE_TYPE_NAME", "AGS (AwesomeGuildStore)自动价格类型填充")
+    ZO_CreateStringId("MM_AGS_TRADER_VALUE_TYPE_TIP", "为AGS自动价格类型的填充，选择MM均价、TTC均价、TTC建议价或宝藏价均值")
 
     ZO_CreateStringId("MM_DISPLAY_LISTING_MESSAGE_NAME", "显示上架信息")
     ZO_CreateStringId("MM_DISPLAY_LISTING_MESSAGE_TIP", "每完成一次公会商店上架则在聊天框显示一条信息。")

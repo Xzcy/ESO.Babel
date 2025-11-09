@@ -210,6 +210,14 @@ BB.AddonList["PithkaAchievementTracker"] = function() if not PITHKA then return 
     ["Sic Semper"] = "圣蛾信赖者",
     ["Fight the Darkness"] = "对抗黑暗",
     
+    ["Naj-Caldeesh"] = "纳吉-卡尔迪什",
+    ["Key to the Stone"] = "死亡使者",
+    ["No Time To Explore"] = "无瑕探索",
+    
+    ["Black Gem Foundry"] = "黑宝石铸造厂",
+    ["Cut Above The Rest"] = "辉耀者",
+    ["Entry-Level Position"] = "入门岗位",
+    
     ["Fungal Grotto I"] = "真菌岩洞I",
     ["Fungal Grotto II"] = "真菌岩洞II",
     ["Banished Cells I"] = "放逐地牢I",

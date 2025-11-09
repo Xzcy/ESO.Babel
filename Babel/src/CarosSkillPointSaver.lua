@@ -282,6 +282,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LAM_BGAlpha = "背景透明度"
 	L.CSPS_LAM_WinAlpha = "窗口透明度"
 	L.CSPS_LAM_Modules = "已启用模块"
+  L.CSPS_LAM_Module = "模块"
 	
 	L.CSPS_Dynamic = "动态"
 	L.CSPS_Static = "常规/静态"

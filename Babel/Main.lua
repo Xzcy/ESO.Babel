@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2025.09.15"
+BB.Version = "2025.11.09"
 
 --Default/Saved Setting
 BB.Default = {
@@ -163,6 +163,7 @@ local IGVList = {}
 
 --[[Example
   BB.SetGlobalHook(function() BB.TableCopy(t1, t2) end, "CraftStore", "Quality")
+  
   when CraftStore.Quality has bean created, triggle function 
 ]]
 
@@ -205,6 +206,7 @@ setmetatable(_G, {
       end
     end, _G, "GetString", true
   )
+  
   If Do GetString(QUESTMAP_ICON_SETS_HEADER), Triggle Fun and Return New Value
 ]]
 
@@ -252,11 +254,8 @@ function BB.DoMenuPatch(Name, OldTable)
             local OnLoading = BB.CurrentVersion[Name] or Name
             local CurrentV = BB.VersionList[Name] or "无法获取"
             local TargetV = BB.AddonsVersion[OnLoading] or "无法获取"
-            d("[Babel] --------------------------------")
             d("[Babel] "..OnLoading.." 设置界面 汉化失败！")
-            d("[Babel] 当前/指定版本："..CurrentV.." / "..TargetV)
-            d("[Babel] 请更新插件 / 等待Babel适配")
-            d("[Babel] *该错误 不影响 其余插件汉化")
+            d("[Babel] 当前/指定版本："..CurrentV.." / "..TargetV.."; 请更新插件 / 等待Babel适配")
           end, 5000
         )
       end end
@@ -308,9 +307,7 @@ function BB.DoAfterPart()
     BB.SV.UpdateVersion = BB.Version
     zo_callLater(
       function()
-        d("[Babel] --------------------------------")
-        d("[Babel] 更新至 "..BB.Version.." 版本")
-        d("[Babel] --------------------------------")
+        d("[Babel] 已更新 "..BB.Version.." 版本")
       end, 7000
     )
   end
@@ -324,9 +321,9 @@ function BB.DoAfterPart()
         d("[Babel] --------------------------------")
         d("[Babel] 汉化 "..OnLoading.." 时严重错误")
         d("[Babel] 汉化指定版本："..TargetV)
-        d("[Babel] 1. 请更新 "..OnLoading.." 插件 ≥ 指定版本后，重试")
-        d("[Babel] 2. 若依然失败，请于【设置 - 插件 - Babel集束型汉化 - 插件列表】禁用目标插件汉化并重载UI")
-        d("[Babel] 3. 请联系SA公会修复有关问题")
+        d("[Babel] 1. 请更新 "..OnLoading.." ≥ 指定版本后重试")
+        d("[Babel] 2. 若仍失败，请于 [设置 - 插件 - Babel集束型汉化 - 插件列表] 禁用目标插件汉化并重载UI")
+        d("[Babel] 3. 联系SA公会修复该问题")
         d("[Babel] *该错误将 阻止 其余插件汉化")
         d("[Babel] --------------------------------")
       end, 5000
@@ -449,7 +446,7 @@ function BB.BuildMenu()
     {
 			type = "checkbox",
 			name = "插件汉化失败警告",
-			tooltip = "Babel汉化失败，通常因目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件采用独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n此时你可以通过单独禁用某个插件的汉化，来确保其余插件正常汉化。",
+			tooltip = "Babel汉化失败，通常是目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n你可以通过禁用特定插件的汉化，来确保其余插件正常汉化。",
 			getFunc = function() return BB.SV.Warning end,
 			setFunc = function(value) BB.SV.Warning = value end,
 		},
@@ -557,7 +554,7 @@ function BB.SafeMenuPatch(OldTable, NewTable, Name)
     if not NewTable[i] then
       table.insert(BB.SV.MenuDebug, 
         {
-          [Name] = "Less Options: "..i, 
+          [Name] = "Lack Options: "..i, 
           ["Old"] = OldTable, 
           ["New"] = NewTable[i-1] or {},
         })

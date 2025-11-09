@@ -170,6 +170,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
           [3] = {N=GetIcon(12,28), NC=GetIcon(12,28,true), W=28, S=true, A=GetString(SI_ZONECOMPLETIONTYPE8)}, -- World Events
           [4] = {N=GetIcon(56,28), NC=GetIcon(56,28,true),
                  W=28, S=true, A=GetString(SI_CUSTOMER_SERVICE_OVERVIEW)}, -- Overview
+          [5] = {N=GetIcon(69,28), NC=GetIcon(69,28,true),
+               W=28, S=true, A=GetString(SI_CHARGE_WEAPON_TITLE)}, -- Charge Weapon
         },
       },
     },
@@ -293,6 +295,18 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     OptAutoTakeDBList = {"帐号", "角色"},
     OptChoiceDBSupplies = "接收物品类型",
     OptDBSuppliesList = {"默认", "毒药/药水", "不显示", "装备"},
+    OptAutoChargeWeapon = "自动充能武器",
+    OptAutoChargeWeaponF = "当武器的充能低于阈值时自动充能。\n" ..
+                           "角色物品栏中需要有灵魂水晶",
+    OptAutoChargeThreshold = "最低充能阈值",
+    OptAutoChargeThresholdF = "当武器附魔的充能低于该值时，进行自动充能",
+    OptAutoCallEyeInfinite = "自动召唤 " .. GetCollectibleName(WPamA.EndlessDungeons.EyeOfInfinite.C),
+    OptAutoCallEyeInfiniteF = table.concat(
+                              { "自动召唤 |t20:20:",
+                                GetCollectibleIcon(WPamA.EndlessDungeons.EyeOfInfinite.C), "|t",
+                                GetCollectibleName(WPamA.EndlessDungeons.EyeOfInfinite.C),
+                                " ，当处于无限档案馆时\n\n需要该账户解锁对应工具"
+                              } ),
     ---
     --OptEndeavorRewardMode = "勉励任务奖励显示模式...",
     --OptEndeavorRewardList = {"单个", "当前", "最大"},
@@ -597,7 +611,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [224] = GetString(SI_WEAPONCONFIGTYPE4),
     [225] = GetString(SI_WEAPONCONFIGTYPE5),
     [226] = GetString(SI_WEAPONCONFIGTYPE6),
-  --227-240 Companion Equips
+  --227-240 Companion & Character Equips
     [227] = GetString(SI_EQUIPSLOT0),
     [228] = GetString(SI_EQUIPSLOT3),
     [229] = GetString(SI_EQUIPSLOT2),
@@ -610,8 +624,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [236] = GetString(SI_EQUIPSLOT1),
     [237] = GetString(SI_EQUIPSLOT11),
     [238] = GetString(SI_EQUIPSLOT12),
-  --239
-  --240
+    [239] = GetString(SI_EQUIPSLOT20),
+    [240] = GetString(SI_EQUIPSLOT21),
   -- WB High Isle
     [241] = "巨蛇泥沼\n - 蛇魔召唤者温莎",
     [242] = "耶弗尔的大釜\n - 黑魔骑士",
@@ -642,6 +656,9 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [267] = "潮涤浅滩\n - 恶潮蟹",
     [268] = "突尼利亚遗迹\n - 高姆",
     [269] = "瓦坎神龛\n - 沃斯科罗娜守护者",
+--  [270] = "Soulcaller's Haunt\n - Soulcaller", --!!
+--  [271] = "Lair of Wo-Xeeth\n - Wo-Xeeth",
+--  [272] = "Zyv-Elehk Ritual Site\n - Ghishzor", -- the "Maldrith Ghishzor" at achiev | "Ghishzor" at site
   }
   --
   L.ToolTip[215] = L.ToolTip[34]
