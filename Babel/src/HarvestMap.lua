@@ -71,7 +71,7 @@ BB.AddonList["HarvestMap"] = function() if not Harvest then return false end
     worldpinheighttooltip = "3D标记的高度，单位为厘米。",
     worldpinsdepth = "透视墙后的3D标记",
     worldpinsdepthtooltip = "启用时，将显示墙壁或其他物体后方的3D标记",
-    worldpinsdepthwarning = "由于一个游戏BUG, 当在游戏的视频选项中将二次取样质量设置为中等或者低时，此选项无法生效。",
+    worldpinsdepthtext = "关闭 \"透视墙后的3D标记\" 设置后，需满足一定条件才有效\n1) 游戏的分辨率需要与显示器分辨率匹配 (通过游戏或显卡驱动设置)\n2) 游戏视频设置中的 二次抽样画质 需要设置为 高",
 
     -- respawn timer settings
     visitednodes = "访问节点和采集助手",

@@ -6,7 +6,7 @@ local BB = MABabel
 BB.Name = "Babel"
 BB.Title = "Babel 集束型汉化"
 BB.Author = "SplendidAchievers"
-BB.Version = "2025.11.09"
+BB.Version = "2026.01.02"
 
 --Default/Saved Setting
 BB.Default = {
@@ -255,7 +255,8 @@ function BB.DoMenuPatch(Name, OldTable)
             local CurrentV = BB.VersionList[Name] or "无法获取"
             local TargetV = BB.AddonsVersion[OnLoading] or "无法获取"
             d("[Babel] "..OnLoading.." 设置界面 汉化失败！")
-            d("[Babel] 当前/指定版本："..CurrentV.." / "..TargetV.."; 请更新插件 / 等待Babel适配")
+            d("[Babel] 当前版本："..CurrentV.." / 指定版本："..TargetV)
+            d("[Babel] 请更新插件 / 等待Babel适配")
           end, 5000
         )
       end end
@@ -410,20 +411,22 @@ local function TableOfKey(Table)
   return String
 end
 
-local function StatusOfTable(Table)
-  local String = ""
-  for i = 1, #Table do
-    local Info = Table[i]
-    if BB.SV.BanList[Table[i]] then
-      Info = "|cFF0000"..Table[i].."|r"
-    else
-      if BB.ActiveAddons[Table[i]] then
-        Info = "|c008000"..Table[i].."|r"
+local function StatusOfTable(addonList)
+  local bannedDes, acitveDes, inactiveDes = "", "", ""
+  for i = 1, #addonList do
+    local name = addonList[i]
+    if BB.SV.BanList[name] then
+      bannedDes = bannedDes.."    |cFF0000"..name.."|r|c696969  ~  "..BB.AddonsVersion[name].."|r\r\n"
+    else 
+      if BB.ActiveAddons[name] then
+        acitveDes = acitveDes.."    |c008000"..name.."|r|c696969  ~  "..BB.AddonsVersion[name].."|r\r\n"
+      else
+        inactiveDes = inactiveDes.."    "..name.."|c696969  ~  "..BB.AddonsVersion[name].."|r\r\n"
       end
     end
-    String = String.."    "..Info.."|c696969  ~  "..BB.AddonsVersion[Table[i]].."|r\r\n"
   end
-  return String
+
+  return "禁用汉化：\r\n"..bannedDes.."\r\n启用汉化：\r\n"..acitveDes.."\r\n未安装插件：\r\n"..inactiveDes
 end
 
 function BB.BuildMenu()
@@ -445,8 +448,8 @@ function BB.BuildMenu()
   local options = {
     {
 			type = "checkbox",
-			name = "插件汉化失败警告",
-			tooltip = "Babel汉化失败，通常是目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n你可以通过禁用特定插件的汉化，来确保其余插件正常汉化。",
+			name = "汉化失败警告信息",
+			tooltip = "Babel汉化失败，通常是目标插件版本过旧/新，推荐维持在指定版本（详见插件列表）。\r\nBabel对每个插件独立汉化，部分插件汉化失败通常不会影响剩余插件被汉化，除非出现官方错误警告。\r\n你可以禁用特定插件的汉化，确保其余插件汉化的正常运行",
 			getFunc = function() return BB.SV.Warning end,
 			setFunc = function(value) BB.SV.Warning = value end,
 		},
@@ -486,7 +489,7 @@ function BB.BuildMenu()
         },
         {
           type = "description",
-          title = "* 不推荐在非中文语言下使用Babel，可能造成意外错误\r\n* 战斗相关插件较易汉化失败，推荐保持在汉化指定版本\r\n\r\n已支持插件: |cFFD700"..SupportCount.."|r 款\r\n\r\n文件夹名  ~  汉化指定版本   ( 未安装 / |c008000启用汉化|r / |cFF0000禁用汉化|r )",
+          title = "* 在非中文语言下使用Babel，可能造成意外错误\r\n* 战斗插件较易汉化失败，推荐保持在指定版本\r\n\r\n已支持插件: |cFFD700"..SupportCount.."|r 款\r\n",
           text = function() return StatusOfTable(TableOfKey(BB.AddonList)) end,
           width = "full",	
         },
@@ -508,7 +511,7 @@ function BB.BuildMenu()
       title = "联系方式（|l0:1:0:-35%:3:FFFFFF|l广告位招租|l）\r\n",
       text = "    Splendid Achievers\r\n       美服 公会 QQ群 452116107".."\r\n\r\n"..
              "    Guar Protection\r\n       欧服 公会 QQ群 703671761".."\r\n\r\n"..
-             "Babel项目仓库见 |c7B68EE'访问网站'|r 链接（墙外）",
+             "Babel项目仓库见 |c7B68EE'访问网站'|r 链接（Github）",
       width = "full",
     },
 	}

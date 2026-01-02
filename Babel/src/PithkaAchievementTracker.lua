@@ -337,13 +337,18 @@ BB.AddonList["PithkaAchievementTracker"] = function() if not PITHKA then return 
   BB.SetMenuItemPatch("Open Journal", "成就跳转")
   BB.SetMenuItemPatch("Create Group Finder", "创建队伍招募")
   
-  SecurePostHook(PITHKA, "Initialize",
-    function()
-      s1.title = "地下城(无三合一)"
-      s2.title = "地下城"
-      s3.title = "试炼"
-      s4.title = "分数/三合一"
+  SecurePostHook(PITHKA, "Initialize", function()
+    local titleDict = {
+      ["Starter Dungeons"] = "地下城(无三合一)",
+      ["4 Man Trifectas"] = "地下城",
+      ["Trials"] = "试炼",
+      ["All Scores and Tris"] = "分数/三合一",
+    }
+    local OldF = PITHKA.common.api.gui.setTitle
+    PITHKA.common.api.gui.setTitle = function(title)
+      title = titleDict[title] or title
+      return OldF(title)
     end
-  )
+  end)
   
 return true end

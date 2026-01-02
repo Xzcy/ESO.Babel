@@ -1,5 +1,13 @@
 MABabel.ChangeLog = 
 [[
+  2026.01.02
+    常规更新
+    修复了PAT汉化导致二维码无法生成的问题
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 2.9.0
+      Dolgubons Lazy Writ Creator → 4.0.4.3.6
+      WPamA → 2.5.8
+      
   2025.11.09
     常规更新
     新增：HyperTool(下拉框内容无法汉化)

@@ -12,7 +12,6 @@ return true end
 BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false end
   --\lang\en.lua
   local L = {}
-  
 	L.SI_BINDING_NAME_CSPS_SHOW = "显示 Skill Point Saver"
 	L.SI_BINDING_NAME_CSPS_CPHK1 = "CP栏预设 热键 1"
 	L.SI_BINDING_NAME_CSPS_CPHK2 = "CP栏预设 热键 2"
@@ -34,10 +33,10 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.SI_BINDING_NAME_CSPS_CPHK18 = "CP栏预设 热键 18"
 	L.SI_BINDING_NAME_CSPS_CPHK19 = "CP栏预设 热键 19"
 	L.SI_BINDING_NAME_CSPS_CPHK20 = "CP栏预设 热键 20"
-	
+
 	-- General UI
 	L.CSPS_MyWindowTitle = "Caro's Skill Point Saver"
-	
+
 	L.CSPS_Tooltiptext_Close = "关闭窗口"
 	L.CSPS_Tooltiptext_Read = "读取当前数据"
 	L.CSPS_Tooltiptext_Save = "保存显示的数据"
@@ -47,11 +46,11 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_Tooltiptext_CP1 = "你想要应用蓝CP吗？"
 	L.CSPS_Tooltiptext_CP2 = "你想要应用红CP吗？"
 	L.CSPS_Tooltiptext_CP3 = "你想要应用绿CP吗？"
-	
+
 	L.CSPS_Tooltiptext_ApplyCP = "应用冠军点数"
 	L.CSPS_Tooltiptext_ATTR = "应用属性点数"
 	L.CSPS_Tooltiptext_Sk = "应用技能点数"
-	
+
 	L.CSPS_Tooltiptext_MinusSk = "降级/删除 此技能"
 	L.CSPS_Tooltiptext_PlusSk = "升级/添加 此技能"
 	L.CSPS_Tooltiptext_Optional = "显示额外选项"
@@ -76,43 +75,43 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_Tooltip_CPPWebsite = "如需了解最新信息，请访问\n<<1>>"
 	L.CSPS_Tooltip_CPCustomBar = "切换 HUD中是否显示 CP装备栏"
 	L.CSPS_Tooltip_CPCustomIcons = "切换 插件是否为装备的CP使用自定义图标"
-	
+
 	L.CSPS_Tooltip_ReverseLabel = "导入文本的标准顺序：编号 名称\n点击颠倒顺序为：名称 编号"
 	L.CSPS_Tooltip_CapLabel = "激活时，插件将不会尝试导入超过该账户可用点数的CP"
 	L.CSPS_Tooltip_SelectBarProfile = "|t26:26:esoui/art/miscellaneous/icon_lmb.dds|t: 选择 子预设 (%s)\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 编辑 子预设" 
 	L.CSPS_Tooltip_ImpExp_CleanUp = "这将删除文本中的所有特殊字符。它还将删除所有以破折号分隔的数字对，这些数字对可用于表示所需的冠军点范围（如在 AlcastHQ 上），但会在导入过程中导致错误。"
-	
+
 	L.CSPS_Tooltip_AddBind1 = "如果添加了此条件，每次加载所选 dressing room 设置时，都会自动应用当前组"
 	L.CSPS_Tooltip_AddBind2 = "如果添加了此条件，每次加载所选 alpha gear 设置时，都会自动应用当前组"
 	L.CSPS_Tooltip_AddBind3 = "如果添加了此条件，每次进入所选区域时，都会自动应用当前组"
-	
+
 	L.CSPS_Tooltip_CPAutoOpen = "勾选时，插件会在每次你进入CP窗口时显示"
-	
+
 	L.CSPS_Tooltiptext_DeleteBinding = "去除绑定"
-	
+
 	L.CSPS_Tooltip_AddConnection = "链接到当前预设"
 	L.CSPS_Tooltip_RemoveConnection = "移除与当前预设的链接"
 	L.CSPS_Tooltip_ShowConnection = "链接到子预设: %s\n\n 对该规范所做的更改可以应用到你的角色，但不会保存到当前的预设中。加载构建会自动尝试加载链接的子预设.\n\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 移除链接"
-  
-  L.CSPS_Tooltip_DynamicProfile = "动态配置应从空白开始。每次保存时并非覆盖，而是将修改过的点数追加到配置中。加载一个动态配置时，CSPS将会按照保存的顺序逐步分配点数，直到点数上限。这种方式可以让你在升级过程中持续规划点数分配。"
-	
+
+	L.CSPS_Tooltip_DynamicProfile = "动态配置应从空白开始。每次保存时并非覆盖，而是将修改过的点数追加到配置中。加载一个动态配置时，CSPS将会按照保存的顺序逐步分配点数，直到点数上限。这种方式可以让你在升级过程中持续规划点数分配。"
+
 	L.CSPS_Tooltiptext_LoadAndApply = "加载并应用"
 	L.CSPS_MORPH = "<<1[无变形/变形 1/变形 $d]>>"
 	L.CSPS_MyRank = "等级 %s"
-	
+
 	L.CSPS_CP_RED = "红CP"
 	L.CSPS_CP_BLUE = "蓝CP"
 	L.CSPS_CP_GREEN = "绿CP"
-	
+
 	L.CSPS_TxtCp = "CP"	-- shortest form for champion points
-	
+
 	--	Errormessages (chat)
 	L.CSPS_NoSavedData = "尚无保存的数据"
 	L.CSPS_TxtLangDiff = "游戏语言已更改。迁移按字母顺序排列的技能类型数据。"
 	L.CSPS_Txt_NewProfile = "预设 " -- for numbered names
 	L.CSPS_Txt_NewProfile2 = "新预设" -- for unnumbered names
 	L.CSPS_Txt_StandardProfile = "标准"
-	
+
 	L.CSPS_CPP_Name = "名称"
 	L.CSPS_CPP_Points = "点数"
 	L.CSPS_CPP_Role = "角色"
@@ -131,34 +130,34 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_CPLoadGroup = "加载组: "
 	L.CSPS_CPOldPreset = "连接到已加载预案的 CP 预置会被标记为过时。您仍然可以使用这些预置，但建议切换到一些较新的可用预设"
 	L.CSPS_BuildProfile = "建立预设"
-  L.CSPS_IgnoreSubClasses = "无视副职业"
-  L.CSPS_LAM_ShowAllClassSkills = "显示并编辑所有职业技能"
+	L.CSPS_IgnoreSubClasses = "无视副职业"
+	L.CSPS_LAM_ShowAllClassSkills = "显示并编辑所有职业技能"
 	L.CSPS_LAM_ShowAllClassSkillsTT = "启用后，你可以修改并保存未启用职业线中的技能"
-	
+
 	L.CSPS_CPValueTooHigh = "数值高于该技能的最大值"
-	
+
 	L.CSPS_CPPDescr_JoaTFarming = "该预置经过优化，可与插件 'Jack of all Trades' 一起使用，并侧重于采集资源（战斗、捕鱼和犯罪将在更高的CP等级添加）"
 	L.CSPS_CPPDescr_JoaTFishing = "该预设经过优化，可与插件 ‘Jack of all Trades' 一起使用，并侧重于捕鱼（采集、战斗和犯罪将在更高的CP等级添加）"
 	L.CSPS_CPPDescr_JoaTThieving = "该预设经过优化，可与插件 ‘Jack of all Trades' 一起使用，并侧重于犯罪（采集、战斗、捕鱼将在更高的CP等级添加）"
 	L.CSPS_CPPDescr_CombatFocus = "该预置侧重于与战斗相关的绿色CP"
-	
+
 	L.CSPS_StrictOrder = "严格秩序"
 	L.CSPS_Tooltiptext_StrictOrder = "启用时，插件在第一个技能点数不足时停止加载预设，而不是检查是否可以加载其余技能。选择此选项可能会增加未使用的点数，但可能会节省 3000 金币的重置费。"
 	L.CSPS_CPPCurrentlyApplied = "目前应用:  <<1[无点数/1 点数/$d 点数]>>"
 		
 	L.CSPS_MSG_ApplyClosing = "CP系统中似乎有未应用的更改。请确保没有忘记应用它们。"
-	
+
 	L.CSPS_CPBar_LocTrial = "试炼 / 竞技场"
 	L.CSPS_CPBar_LocCurr = "当前区域"
 	L.CSPS_CPBar_LocType = "按种类"
 	L.CSPS_CPBar_Location = "区域"
-	
+
 	L.CSPS_CPBar_AddBindings = "为该组添加自动应用的条件..."
 	L.CSPS_CPBar_BindingsHeader = "该组的现有条件："
 	L.CSPS_Bindings_Empty = "清空组"
 	L.CSPS_Binding_Overwritten = "被改写: 组 %s (%s)"
 	L.CSPS_Binding_Conflict = " 与组的现有绑定冲突 %s.\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 去除现有的绑定"
-	
+
 	L.CSPS_CPBar_EditProfiles = "编辑预设"
 	L.CSPS_CPBar_Apply = "加载并应用该组..."
 	L.CSPS_CPBar_NoDR = "您要么没有安装 <<1>>，要么您使用的版本现在不支持"
@@ -168,7 +167,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_QS_TT_Select = "|t26:26:esoui/art/miscellaneous/icon_lmb.dds|t: 选择"
 	L.CSPS_QS_TT_TestIt = "|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 立即行动"
 	L.CSPS_SubProfiles_Edit = "编辑子预设"
-	
+
 	L.CSPS_Help_Oversection1 = "常规功能"
 	L.CSPS_Help_Head1 = "保存数据"
 	L.CSPS_Help_Sect1 = " 1. 点击 '读取当前数据'(|t24:24:esoui/art/help/help_tabicon_feedback_up.dds|t).\n2. 可选择点击技能旁的加/减号来调整技能（稍后您还可以编辑技能）\n3. 点击 '保存显示的数据'(|t24:24:esoui/art/mail/mail_tabicon_compose_up.dds|t)\n会保存所有技能、属性点、CP、快捷栏和装备(需要LibSets)"
@@ -229,13 +228,14 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_MSG_NoCPProfiles = "\n\n|cff7723WARNING!|r\n这不是保存CP预设的最佳方法！如果您只想保存CP预设，请使用右上角的三个按钮打开CP预设部分。在那里，您可以找到用于创建和保存预设的单独按钮(|t28:28:esoui/art/champion/champion_points_magicka_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_health_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_stamina_icon-hud-32.dds|t)"
 	L.CSPS_MSG_CPPaths = "最便宜的解锁路径 '<<C:1>>':\n\n<<2>>"
 	L.CSPS_MSG_CPPathOpt = "|c<<1>>选项 <<2>> (<<3>>)|r:" -- 1 color 2 number 3 points
-	
+	L.CSPS_MSG_SubclassingQuestGoal = "任务 '<<1>>' 还未完成，你需要至少一条尚未训练的技能线 (<<2>>)"
+
 	--	Errorcodes
 	L.CSPS_ErrorNumber1 = "技能已学习"
 	L.CSPS_ErrorNumber2 = "技能已处于另一变形。请在尝试应用前重置技能或变形"
 	L.CSPS_ErrorNumber3 = "技能的当前等级已经超过你尝试应用的"
 	L.CSPS_LoadingError = "请检查技能: <<C:1>>"
-	
+
 	-- Options
 	L.CSPS_KeepLastBuild = "在关闭时保留最后一次构建"
 	L.CSPS_KeepLastBuildTT = "如果激活，在关闭窗口时，插件会始终将当前构建保存到一个不可见的配置文件中。下次启动游戏并打开插件时，该配置文件将被加载，这样您就可以继续之前的操作。如果未激活，插件将始终以当前应用的实际构建文件启动"
@@ -262,7 +262,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_ShowGearMarkerDataBasedTooltip = "如果物品是按其属性而非唯一ID 保存的，则插件可以标记符合数据的物品。否则，它只会标记保存为 '唯一'的物品"
 	L.CSPS_SavedSpecific = "保存在: %s"
 	L.CSPS_SavedData = "适用于: %s"
-	
+
 	L.CSPS_LAM_ShowCpPresetNotifications = "加载CP预设时通知"
 	L.CSPS_LAM_ShowCpNotSaved = "CP技能变动尚未应用"
 	L.CSPS_LAM_ShowSaveOther = "打开子预设部分时保存一般预设"
@@ -277,16 +277,16 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LAM_SortCP_3 = "按字母顺序, 被动技能独立"
 	L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
 	L.CSPS_IgnoreEmptyOutfitSlots = "无视空置的外观装备栏"
-  L.CSPS_LAM_VersionHistory = "预设历史版本数量"
+	L.CSPS_LAM_VersionHistory = "预设历史版本数量"
 	L.CSPS_LAM_VersionHistoryTT = "为一个预设保存多少个历史版本？修改会增大保存变量的文件大小"
 	L.CSPS_LAM_BGAlpha = "背景透明度"
 	L.CSPS_LAM_WinAlpha = "窗口透明度"
 	L.CSPS_LAM_Modules = "已启用模块"
-  L.CSPS_LAM_Module = "模块"
-	
+	L.CSPS_LAM_Module = "模块"
+
 	L.CSPS_Dynamic = "动态"
 	L.CSPS_Static = "常规/静态"
-  
+
 	-- Presets
 	L.CSPS_MSG_SwitchCP = "将CP点投入 |c<<1>>'<<2>>'|r，而不是其他插槽技能，确保始终可能有收益"
 	L.CSPS_MSG_SituationalCP = "根据情况，考虑用以下技能之一来代替插槽: "
@@ -294,7 +294,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_AOE = "AOE伤害"
 	L.CSPS_CRIT = "暴击伤害"
 	L.CSPS_OffBalance = "失衡"
-	
+
 	-- Import/Export
 	L.CSPS_ImpEx_BtnImpLink = "导入链接"
 	L.CSPS_ImpEx_BtnImpText = "导入文本"
@@ -330,10 +330,10 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_ImpExp_Transfer_CPHb = "CP栏..."
 	L.CSPS_ImpExp_Transfer_CopyReplace = "转移所有热区栏预设和绑定（替换当前预设）"
 	L.CSPS_ImpExp_Transfer_CopyAdd = "转移所有热区栏预设和绑定（保留当前预设）"
-	
+
 	L.CSPS_Tooltip_Transfer_CopyReplace = "|cDE6531当前为该角色设置的所有绑定和热区栏预设都将被覆盖|r"
 	L.CSPS_Tooltip_Transfer_CopyAdd = "转移热区栏预设，但保留现有预设\n|cDE6531当前为该角色设置的所有绑定都将被覆盖|r"
-	
+
 	L.CSPS_CPImp_Success = "成功映射技能:"
 	L.CSPS_CPImp_Unmapped = "尚未分配技能:"
 	L.CSPS_CPImp_BtnApply = "应用映射"
@@ -342,7 +342,7 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_CPImp_New = "|c<<1>> <<2>>/<<3>> 映射 <<4>> 指向: <<C:5>>|r"
 	L.CSPS_CPImp_Note = "单击下面列表中的技能，手动映射该技能。请注意，只有在所有技能都已映射或放弃后，才会应用该映射"
 	L.CSPS_CPImp_NoMatch = "找不到任何匹配数据"
-	
+
 	--New with 5.5.0
 	L.CSPS_ScribingGoToStation = "%s\n请到纂刻台刻印你的纂刻技能（需要花费 %s 墨水）"
 	L.CSPS_CannotBeScribed = "<<1[技能/1 技能/$d 技能]>> 无法刻印"
@@ -352,12 +352,12 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_ScribingDiag = "%s 技能将被刻印 (这将消耗 %s 墨水)"
 	L.CSPS_ScribeNotEnough = "您无法刻印所选技能（墨水不足）"
 	L.CSPS_CustomStyles = "应用自定义样式: %s\n锁定的自定义样式: %s\n\n%s"
-	
+  
   for stringId, stringValue in pairs(L) do
     ZO_CreateStringId(stringId, stringValue)
   end
   
-  --Special Setting
+--Special Setting
   BB.SetAfterPart(
     function()
       CSPSWindowOptionsBtnImpExp:SetText("导入/导出")

@@ -556,6 +556,13 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
   SafeAddString(PCHAT_SEARCHUI_MESSAGE_SEARCH_DEFAULT_TEXT,"输入 \'message\' 在这里搜索...",1)
   SafeAddString(PCHAT_SEARCHUI_FROM_SEARCH_DEFAULT_TEXT,"输入 \'from\' 在这里搜索...",1)
   SafeAddString(PCHAT_SEARCHUI_CLEAR_SEARCH_HISTORY,"清除搜索历史",1)
+  SafeAddString(PCHAT_SEARCHUI_ACCOUNT_SWITCHED,"搜索记录已切换至 %q 账户",1)
+	SafeAddString(PCHAT_RESTORESCHOOSEACCOUNT,"默认账户 (聊天记录搜索)",1)
+  SafeAddString(PCHAT_RESTORESCHOOSEACCOUNT_TT,"选择聊天记录搜索UI下拉框中的默认账户\n如果你选择 " .. GetString(SI_ALLIANCE0) .. "，将使用当前登录账户（首次打开聊天记录搜索UI时）或上次选中的账户\n聊天信息的右键菜单将仅使用当前登录账户！",1)
+
+	SafeAddString(PCHAT_CHATSCROLLEDUPWARNING,"\'聊天栏上滚\' 警示",1)
+	SafeAddString(PCHAT_CHATSCROLLEDUPWARNING_TT,
+    "在 \'聊天栏滚动至底按钮\' 处显示一个动画效果，提示你聊天栏已被上滚，避免错过新收到的聊天信息",1)
 
     -- Coorbin20200708
     -- Chat Mentions settings strings
@@ -572,12 +579,12 @@ BB.AddonList["pChat"] = function() if not pChat then return false end
   SafeAddString(PCHAT_MENTIONS_SELFSEND_NAME			,"适用于您发送的消息?",1)
   SafeAddString(PCHAT_MENTIONS_SELFSEND_TOOLTIP			,"是否对您所发送的消息应用格式。",1)
   SafeAddString(PCHAT_MENTIONS_DING_NAME				,"声音提示?",1)
-  SafeAddString(PCHAT_MENTIONS_DING_TOOLTIP			,"当你的名字被提到时,是否要发出叮的声音。",1)
-  SafeAddString(PCHAT_MENTIONS_DING_SOUND_NAME, "选择音效", 1)
+  SafeAddString(PCHAT_MENTIONS_DING_TOOLTIP			,"当你的名字被提到时,是否要发出音效",1)
+  SafeAddString(PCHAT_MENTIONS_DING_SOUND_NAME, "选择音效：", 1)
 	SafeAddString(PCHAT_MENTIONS_DING_SOUND_NAME_TOOLTIP, "选择播放的音效", 1)
   SafeAddString(PCHAT_MENTIONS_APPLYNAME_NAME			,"适用于你的角色名字?",1)
   SafeAddString(PCHAT_MENTIONS_APPLYNAME_TOOLTIP			,"是否对你每个角色的名称(以空格分隔)应用格式。如果你在角色名中使用了非常常见的名字,比如“Me”,则请禁用它。",1)
-  SafeAddString(PCHAT_MENTIONS_WHOLEWORD_NAME			,"你的名字只进行完全匹配?",1)
+  SafeAddString(PCHAT_MENTIONS_WHOLEWORD_NAME			,"对角色名进行完全匹配?",1)
   SafeAddString(PCHAT_MENTIONS_WHOLEWORD_TOOLTIP			,"是否仅以全部字符匹配您的角色名。如果你的角色名很短,你可能需要打开它。",1)
 
     -- Coorbin20211222

@@ -10,8 +10,8 @@ return true end
 ]]
 
 BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then return false end
-  --default.lua
-
+  
+  --default.lua内容的汉化
   local function proper(str)
     if type(str)== "string" then
       return zo_strformat("<<C:1>>",str)
@@ -48,22 +48,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
     return text
   end
 
-  local function dailyResetFunction(till, stamp)
-    if till["hour"]==0 then
-      if till["minute"]==1 then
-        return "还有 1 分钟后日常重置!"
-      elseif till["minute"]==0 then
-        if stamp==1 then
-          return "日常重置还剩 "..stamp.." 秒!"
-        else
-          return "真的... 别问了。你真有那么着急么??? 它会在一秒内重置! *哼~哼*"
-        end
-      else
-        return till["minute"].." 分钟后日常将重置!"
-      end		
-    else
-      return till["hour"].." 小时 "..till["minute"].." 分钟 后日常重置"
-    end 
+  local function dailyResetFunction(till) 
+    d(zo_strformat("<<1>> 小时 <<2>> 分钟后重置日常任务", till["hour"], till["minute"])) 
   end
 
   function WritCreater.langWritNames()
@@ -81,23 +67,45 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   
   function WritCreater.writCompleteStrings()
     return {
-      ["Deliver"]       = "将货物送至",
-      ["Acquire"]       = "获(.+)",
       ["place"]         = "<将货物放",
       ["sign"]          = "签订",
-      
-      ["masterStart"]   = "<接受契约",
-      ["Rolis Hlaalu"]  = "罗利斯·哈拉鲁",
       ["masterPlace"]   = "我完成了",
       ["masterSign"]    = "<完工",
+      ["masterStart"]   = "<接受契约",
+      ["Rolis Hlaalu"]  = "罗利斯·哈拉鲁",
+      ["Deliver"]       = "将货物送至",
+      ["Acquire"]       = "获(.+)",
     }
   end
   
-  local function masterWritEnchantToCraft(link, trait, style, quality, writName)
+  local function masterWritSmithCraft(link, trait, style, quality, writName)
     local partialString = zo_strformat("<<t:5>>: 制作一件 <<t:1>> (CP150, <<t:2>>特性, <<t:3>> 风格，<<t:4>> 品质)", link, trait, style, quality, writName)
     return partialString
   end
+
+--[[ 不需要写的内容，default中定义的，防止翻译缺失的元表操作
+  WritCreater.missingTranslations = {}
+  WritCreater.missingTranslationsOrder = {}
+  local stringIndexTable = {}
   
+  local findMissingTranslationsMetatable = {
+    ["__newindex"] = function(t,k,v) 
+      if not stringIndexTable[tostring(t)] then 
+        stringIndexTable[tostring(t)] = {} 
+      end
+        stringIndexTable[tostring(t)][k] = v
+        WritCreater.missingTranslations[k] = {k, v}
+        WritCreater.missingTranslationsOrder[#WritCreater.missingTranslationsOrder+1] = {k, v}
+      end,
+    ["__index"] = function(t, k) 
+      return stringIndexTable[tostring(t)][k] 
+    end,
+  }
+
+  WritCreater.strings = {}
+  setmetatable(WritCreater.strings, findMissingTranslationsMetatable)
+]]
+
   WritCreater.strings["runeReq"] = function (essence, potency, taStack, essenceStack, potencyStack)
     return zo_strformat("|c2dff00制造需要 1/<<3>> 个 |r塔|c2dff00, 1/<<4>> 个 |cffcc66<<1>>|c2dff00 和 1/<<5>> 个|c0066ff<<2>>|r", essence, potency, taStack, essenceStack, potencyStack)
   end
@@ -132,10 +140,7 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   end
   WritCreater.strings["surveys"] = "制造调查报告"
   WritCreater.strings["sealedWrits"] = "密封的委托"
-  WritCreater.strings["masterWritEnchantToCraft"] = function(lvl, type, quality, writCraft, writName, generalName)
-    return zo_strformat("<<t:4>> <<t:5>> <<t:6>>: 正在制造一个 <<t:2>> 等级 <<t:3>> 类型的 <<t:1>> 附魔", lvl, type, quality, writCraft, writName, generalName)
-  end
-  WritCreater.strings["newMasterWritSmithToCraft"]	= masterWritEnchantToCraft
+  WritCreater.strings["newMasterWritSmithToCraft"]	= masterWritSmithCraft
   WritCreater.strings["withdrawItem"]	= function(amount, link, remaining) 
     return "懒人制造 取出了 "..amount.." "..link.." (银行剩余"..remaining..")" 
   end
@@ -145,6 +150,62 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.strings['resetWarningMessageText'] = "日常制造任务将在 <<1>> 小时 <<2>> 分钟 后刷新\n您可以在设置中自定义或关闭此警告"
   WritCreater.strings['resetWarningExampleText'] = "警告将是这样"
   WritCreater.strings['lowInventory'] = "\n你的背包剩余 <<1>> 格空间，可能装不下本次制作的物品。"
+  
+  WritCreater.strings['masterWritQueueCleared']		= "大师委托制作队列已清空"
+  WritCreater.strings['multiplierCraftPrediction']	= "为 <<1[无/$d 个/$d 个]>>循环的委托制作 <<2>> 件物品"
+
+  WritCreater.strings['alchemyNoCombo']				= "未找到足够便宜的炼金材料组合，请尝试获取其他种类的炼金材料"
+  WritCreater.strings['alchemyMissing']				= function(missingTable)
+    local missingOut = "你缺少 "
+    for missingItemId, v in pairs(missing) do
+      missingOut = missingOut..getItemLinkFromItemId(missingItemId).." "
+    end
+    missingOut = missingOut.." 作为最廉价的组合"
+    return missingOut
+  end
+  WritCreater.strings['alchemyLowPassive']			= "你选择了制作整组物品，但未激活产量加成的被动技能"
+  WritCreater.strings['alchemyCraftReqs']				= "制造将消耗 <<t:4>>x<<t:1>>, <<t:4>>x<<t:2>> 和 <<t:4>>x<<t:3>>"
+  WritCreater.strings['alchemyMasterReqs']			= "<<t:1>>: 制作 <<t:2>> 将消耗 <<t:3>>, <<t:4>>, 和 <<t:5>>"
+  WritCreater.strings['depositGold']					= "Writ Crafter: 存储 <<1>> 金币"
+  WritCreater.strings['depositItemMissing']			= "Writ Crafter: 未找到 <<t:1>> 用于存储，物品可能被摧毁或移动"
+  WritCreater.strings['depositItem']					= "Writ Crafter: 存储 <<t:1>>"
+  WritCreater.strings['welcomeMessage']				= "感谢使用 Dolgubon's Lazy Writ Crafter! 请检查设置以自定义插件功能"
+  WritCreater.strings['keybindStripBlurb']			= "制作委托物品"
+  WritCreater.strings['pressToCraft']					= "\n按下 |t32:32:<<1>>|t 来制作"
+  WritCreater.strings['goldenPursuitCraft']			= "为未完成的金典追觅制作套装物品？\n(可能无法制作，仅使用铁质材料制作 斧/弓/戒指/上衣)"
+  WritCreater.strings['fullInventory']				= "你的背包已满"
+  WritCreater.strings['provisioningUnknownRecipe']	= "你不知道 <<1>> 的配方"
+  WritCreater.strings['provisioningCraft']			= "Writ Crafter 将制作 <<1>>"
+  WritCreater.strings['transmuteLooted']				= "获得 <<1>> 个蜕变水晶 (当前拥有 <<2>> 个)"
+  WritCreater.strings['transmuteLimitApproach']		= "你已接近蜕变水晶持有上限，若开启容器会超出上限，Writ Crafter将不会拾取蜕变水晶"
+  WritCreater.strings['transmuteLimitHit']			= "拾取这些蜕变水晶将会超过持有上限，因此未拾取 <<1>> 个蜕变水晶"
+  WritCreater.strings['lootingMarkJunk']				= "Writ Crafter: 标记 <<1>> 为废品"
+  WritCreater.strings['lootingDestroyItem']			= "Writ Crafter: 摧毁 <<1>> (按照你的设置)"
+  WritCreater.strings['lootingDeconItem']				= "Writ Crafter: 将 <<1>> 加入分解队列"
+  WritCreater.strings['lootingDeposit']				= "Writ Crafter: <<1>> 件物品加入银行存储队列"
+  WritCreater.strings['mailComplete']					= "Writ Crafter: 邮件拾取完毕"
+  WritCreater.strings['mailNumLoot']					= "Writ Crafter: 发现 <<1>> 封雇员邮件"
+  WritCreater.strings['masterRecipeUnknown']			= "<<t:1>>: 无法加入队列，因你不知道 <<t:2>> 的配方"
+  WritCreater.strings['masterEnchantCraft']			= "<<t:1>>: 正在制作 <<t:2>>"
+  WritCreater.strings['masterRecipeCraft']			= "<<t:1>>: 正在制作 <<t:3>>x<<t:2>>"
+  WritCreater.strings['masterRecipeError']			= "<<1>>: 无法加入委托队列，你可能不知道所需配方"
+  WritCreater.strings['masterQueueNotFound']			= "无法确定需制作的物品数量，请尝试接受该委托"
+  WritCreater.strings['masterQueueBlurb']				= "制作委托"
+  WritCreater.strings['masterQueueSummary']			= "Writ Crafter 将 <<1>> 个密封委托加入队列"
+  WritCreater.strings['abandonQuestBanItem']			= "Writ Crafter 已丢弃 <<1>> ，因为它需要在设置中被禁用的 <<2>> 物品"
+  WritCreater.strings['writBufferNotification']		= "Lazy Writ Crafter™ 的委托任务缓冲区正在阻止你接受此任务"
+  WritCreater.strings['masterStopAcceptNoCraftSkill'] = "Lazy Writ Crafter™ 阻止你接受此委托，因你无法制作该物品"
+  WritCreater.strings['stealingProtection'] 			= "Lazy Writ Crafter™ 阻止你在制作委托时进行盗窃！"
+  WritCreater.strings['statsWitsDone']				= "已完成委托: 过去 <<2>> 天内完成 <<1>> 个"
+  WritCreater.strings['deconstructSuccess']			= "Writ Crafter: 已分解 <<1>>"
+  WritCreater.strings['potion']						= "药水"
+  WritCreater.strings['poison']						= "毒药"
+  
+  --设置部分
+  --[[ 同上，不需要写的元表操作部分
+  WritCreater.optionStrings = {}
+  setmetatable(WritCreater.optionStrings, findMissingTranslationsMetatable)
+  ]]
   
   WritCreater.optionStrings.nowEditing = "你正在更改 %s 设置"
   WritCreater.optionStrings.accountWide = "账户全局"
@@ -177,8 +238,6 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings["writ grabbing tooltip"] = "从银行获取制造所需的物品 (如奈恩根, 塔等)"
   WritCreater.optionStrings["style stone menu"] = "风格材料"
   WritCreater.optionStrings["style stone menu tooltip"]	= "选择插件可使用的风格材料"
-  WritCreater.optionStrings["send data"] = "发送委托奖励信息"
-  WritCreater.optionStrings["send data tooltip"] = "在聊天栏输出从委托奖励中获取的物品"
   WritCreater.optionStrings["exit when done"] = "退出制造窗口"
   WritCreater.optionStrings["exit when done tooltip"] = "完成所有的制造后退出制造窗口"
   WritCreater.optionStrings["automatic complete"] = "自动接交任务"
@@ -310,8 +369,8 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings["smart style slot save tooltip"] = "如果不是 ESO会员，将尝试优先使用数量较少的样式材料，尽量减少占用背包空间"
   WritCreater.optionStrings["abandon quest for item"]	= "需要 <<1>> 的委托"
   WritCreater.optionStrings["abandon quest for item tooltip"]	= "如果关闭，将自动放弃需要直接提交 <<1>> 的委托任务。而需要以 <<1>> 制作所需物品的委托任务不会被放弃。"
-  WritCreater.optionStrings["status bar submenu"]	= "状态栏选项"
-  WritCreater.optionStrings["status bar submenu tooltip"]	= "状态栏选项"
+  WritCreater.optionStrings["status bar submenu"]	= "状态栏"
+  WritCreater.optionStrings["status bar submenu tooltip"]	= "委托状态栏选项"
   WritCreater.optionStrings['showStatusBar'] = "显示制造委托状态栏"
   WritCreater.optionStrings['showStatusBarTooltip']	= "显示或隐藏该状态栏"
   WritCreater.optionStrings['statusBarIcons']	= "使用图标"
@@ -326,87 +385,32 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['smartMultiplierTooltip'] = "启用时，将尝试制造3天内的日常委托，并会将已有的物品纳入计算。关闭时，仅制造当天日常委托的物品。"
   WritCreater.optionStrings['craftHousePort']	= "传送至制造特化住宅"
   WritCreater.optionStrings['craftHousePortTooltip'] = "传送至一个公开可用的制造特化住宅"
+  WritCreater.optionStrings['craftHousePortButton'] = "传送"
+  WritCreater.optionStrings['reportBug'] = "汇报bug"
+  WritCreater.optionStrings['reportBugTooltip']	= "发帖汇报插件bug，尤其是主机版本的。请确认该问题此前未被报告过。"
+  WritCreater.optionStrings['openUrlButtonText'] = "打开链接"
+  WritCreater.optionStrings['donate']	= "捐助"
+  WritCreater.optionStrings['donateTooltip'] = "通过Paypal向Dolgubon捐助"
+  WritCreater.optionStrings['writStats'] = "委托奖励统计"
+  WritCreater.optionStrings['writStatsTooltip'] = "查看安装本插件后完成的委托奖励历史统计"
+  WritCreater.optionStrings['writStatsButton'] = "打开窗口"
+  
+  WritCreater.optionStrings['queueWrits']	= "将所有密封委托加入队列"
+  WritCreater.optionStrings['queueWritsTooltip'] = "将背包中所有密封委托加入制作队列"
+  WritCreater.optionStrings['queueWritsButton']	= "加入队列"
+  WritCreater.optionStrings['mainSettings']	= "主要设置"
+  WritCreater.optionStrings['statusBarHorizontal']	= "水平位置"
+  WritCreater.optionStrings['statusBarHorizontalTooltip']	= "状态条的水平位置"
+  WritCreater.optionStrings['statusBarVertical'] = "垂直位置"
+  WritCreater.optionStrings['statusBarVerticalTooltip'] = "状态条的垂直位置"
+  WritCreater.optionStrings['keepItemWritFormat'] = "保留 <<1>>"
+  WritCreater.optionStrings["npcStyleStoneReminder"] = "提示：你可以从任意制作类NPC商人处以每个15金币的价格购买基础种族的风格样式材料"
   
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_CRAFT_ITEMS", "制作物品")
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_OPEN", "显示委托制造状态窗口")
   ZO_CreateStringId("SI_CRAFT_SEALED_WRIT", "制作委托")
   
-  --en.lua
-  function WritCreater.langCraftKernels()
-    return {
-      [CRAFTING_TYPE_ENCHANTING]      = "附魔",
-      [CRAFTING_TYPE_BLACKSMITHING]   = "锻造",
-      [CRAFTING_TYPE_CLOTHIER]        = "制衣",
-      [CRAFTING_TYPE_PROVISIONING]    = "烹饪",
-      [CRAFTING_TYPE_WOODWORKING]     = "木(.+)",
-      [CRAFTING_TYPE_ALCHEMY]         = "炼金",
-      [CRAFTING_TYPE_JEWELRYCRAFTING] = "珠宝",
-    }
-  end
-
-  function WritCreater.langMasterWritNames()
-    return {
-      ["M"] 							          = "大师级的",
-      ["M1"]							          = "工艺精湛的",
-      [CRAFTING_TYPE_ALCHEMY]			  = "调和物",
-      [CRAFTING_TYPE_ENCHANTING]		= "雕文",
-      [CRAFTING_TYPE_PROVISIONING]	= "盛宴",
-      ["plate"]						          = "护甲",
-      ["tailoring"]					        = "剪裁",
-      ["leatherwear"]					      = "皮衣",
-      ["weapon"]						        = "武器",
-      ["shield"]						        = "盾牌",
-    }
-  end
-
-  function WritCreater.masterWritQuality()
-    return {
-      {"史诗", 4},
-      {"传说", 5}
-    }
-  end
-
-  function WritCreater.questExceptions(condition)
-    condition = string.gsub(condition, " "," ")
-    return condition
-  end
-
-  function WritCreater.enchantExceptions(condition)
-    condition = string.gsub(condition, " "," ")
-    return condition
-  end
-
-  function WritCreater.langTutorial(i) 
-    local t = {
-      [5]="还有一些事情你应该知道。\n首先, /dailyreset 此命令会告诉你\n距离下一次服务器日常任务重置还有多久。",
-      [4]="最后, 您也可以选择\n为每个专业停用或激活此插件。\n一般来说，所有可用制造都是默认开启的\n如果您想关闭其中的某些，请查看设置。",
-      [3]="接下来，您需要选择当您使用工作台的时候\n是否希望看到此窗口。\n此窗口会告诉你完成令状需要多少材料, 以及你现在有多少。",
-      [2]="要选择的第一个设置是\n您是否想使用自动制造。\n如果开启, 当您打开工作台时, 插件将自动开始制造。",
-      [1]="欢迎使用懒人令状!\n首先，您应该选择几个设置。\n 您可以随时从设置菜单更改设置。",
-    }
-    return t[i]
-  end
-
-  function WritCreater.langTutorialButton(i,onOrOff)
-    local tOn = {
-      [1]="使用默认",
-      [2]="开",
-      [3]="显示",
-      [4]="继续",
-      [5]="完成",
-    }
-    local tOff= {
-      [1]="继续",
-      [2]="关",
-      [3]="不显示",
-    }
-    if onOrOff then
-      return tOn[i]
-    else
-      return tOff[i]
-    end
-  end
-
+  --en.lua内容的内容
   function WritCreater.langStationNames()
     return {
       ["锻造台"]                               = 1, 

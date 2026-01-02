@@ -405,7 +405,12 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                         {
                             type = "checkbox",
                             name = "显示 死亡图标",
-                            tooltip = "启用后，为死亡玩家标记骷髅",
+                            tooltip = "启用后，为死亡玩家标记骷髅图标",
+                        },
+                        {
+                            type = "checkbox",
+                            name = "显示 T/H特殊死亡图标",
+                            tooltip = "当坦克或治疗死亡时，使用对应的职能图标而不是骷髅图标，以便优先寻找并复活他们",
                         },
                         {
                             type = "colorpicker",
@@ -421,6 +426,77 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                             type = "colorpicker",
                             name = "等待起身图标颜色",
                             tooltip = "等待起身图标颜色",
+                        },
+                        {
+                            type = "submenu",
+                            name = "独立玩家图标",
+                            controls = {
+                                -- Attached Individual Icons
+                                {
+                                    type = "description",
+                                    text = "为队伍中的特定玩家设置独立的图标。显示优先级：死亡/机制图标 > 独立图标 > 队长/职能图标",
+                                },
+                                {
+                                    type = "editbox",
+                                    name = "添加独立图标",
+                                    tooltip = "需要输入完整的账户名，比如 @Kyzeragon (以@开头，大小写敏感)\r\n如果你为自身设置独立图标，需要启用 \"显示 自身的图标\" 设置才能显示",
+                                },
+                                {
+                                    type = "divider",
+                                },
+                                {
+                                    type = "dropdown",
+                                    name = "修改独立图标",
+                                    tooltip = "选择修改一位玩家的独立图标",
+                                },
+                                {
+                                    type = "button",
+                                    name = "删除独立图标",
+                                    tooltip = "删除该玩家的独立图标，该操作无法撤回！",
+                                },
+                                {
+                                    type = "divider",
+                                },
+                                {
+                                    type = "dropdown",
+                                    name = "图标类型",
+                                    tooltip = "选择为该玩家显示的图标类型。如果使用 LibCustomIcons （即Hodor插件的图标库）, 你需要安装并启用该插件，否则会显示空白图标。如果使用 Custom texture（即自定义图标），你需要填写下方的自定义图标路径",
+                                },
+                                {
+                                    type = "editbox",
+                                    name = "自定义图标路径",
+                                    tooltip = "如果选择自定义图标，需要按规则填写路径，可以使用游戏自带或插件提供的图标。例如： esoui/art/icons/targetdummy_voriplasm_01.dds 或 CrutchAlerts/assets/poop.dds\n\n对于游戏图标，可以使用 TextureIt 插件在游戏内查询, 或者从UESP等在线网站获取\n对于插件提供的图标，你需要在插件文件夹中寻找，并输入文件的相对路径，例如：OdySupportIcons/icons/lightning-bolt.dds",
+                                },
+                                {
+                                    type = "colorpicker",
+                                    name = "图标颜色",
+                                    tooltip = "图标的颜色选择",
+                                },
+                                {
+                                    type = "slider",
+                                    name = "图标尺寸",
+                                    tooltip = "图标的尺寸选择",
+                                },
+                                {
+                                    type = "divider",
+                                },
+                                {
+                                    type = "editbox",
+                                    name = "文本",
+                                    tooltip = "显示在图标上的文本",
+                                },
+                                {
+                                    type = "colorpicker",
+                                    name = "文本颜色",
+                                    tooltip = "文本的颜色选择",
+                                },
+                                {
+                                    type = "slider",
+                                    name = "文本尺寸",
+                                    tooltip = "文本的尺寸选择",
+                                }
+                                -- TODO: a preview maybe?
+                            },
                         },
                     },
                 },
@@ -916,6 +992,15 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
             type = "submenu",
             name = "理智边缘(SE)",
             controls = ReplaceProminent(1427, Crutch.GetProminentSettings(1427, {
+                  {
+                    type = "checkbox",
+                    name = "显示 奇美拉谜题 数字标识",
+                    tooltip = "在特维尔凡和奇美拉（二王）战斗中，在谜题符文上显示数字标识",
+                },
+                {
+                    type = "slider",
+                    name = "奇美拉谜题 图标尺寸",
+                },
                 {
                     type = "checkbox",
                     name = "标记安苏尔（尾王）场地的中央",
@@ -923,7 +1008,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
                 {
                     type = "slider",
-                    name = "安苏尔场地图标尺寸",
+                    name = "安苏尔场地 图标尺寸",
                 },
             })),
         },

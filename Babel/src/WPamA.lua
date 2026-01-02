@@ -129,7 +129,8 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
           [2] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES5), W=112},
           [3] = {N=GetString(SI_DAILY_LOGIN_REWARDS_TILE_HEADER), W=112},
           [4] = {N="奖励&标志", W=132},
-  --      [5] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES4), W=100,},
+          [5] = {N="AP点奖励", W=71},
+        --[6] = {N=GetString(SI_CUSTOMERSERVICESUBMITFEEDBACKSUBCATEGORIES4), W=100,},
         },
       },
       [6] = {
@@ -189,6 +190,13 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
           [1] = GetString(SI_COLLECTIBLERESTRICTIONTYPE1), -- Race
           [2] = GetString(SI_COLLECTIBLERESTRICTIONTYPE3), -- Class
           [3] = "SP", [4] = "上次登录", [5] = "游戏时间",
+        },
+      },
+  --------
+      [50] = {
+        HdT = {
+          [1] = GetString(SI_CAMPAIGN_OVERVIEW_CATEGORY_BONUSES), -- Bonuses
+          [2] = GetString(SI_STAT_GAMEPAD_TIME_REMAINING):gsub(":", ""), -- time remaining
         },
       },
   --------
@@ -463,6 +471,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [26] = "被诅咒的繁殖场\n - “憎恶”科林萨克",
   --
     [27] = "成就倒计时",
+    [28] = "一种可增加联盟点数获取的激活效果",
     [29] = table.concat({ "无畏者誓约队伍查找器\n",
            Icon.Minus, " - GFP 在插件设置中未启用\n",
            GetIcon(62,18), " - 钥匙的可能数量 (包含HM)\n",
@@ -656,9 +665,9 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [267] = "潮涤浅滩\n - 恶潮蟹",
     [268] = "突尼利亚遗迹\n - 高姆",
     [269] = "瓦坎神龛\n - 沃斯科罗娜守护者",
---  [270] = "Soulcaller's Haunt\n - Soulcaller", --!!
---  [271] = "Lair of Wo-Xeeth\n - Wo-Xeeth",
---  [272] = "Zyv-Elehk Ritual Site\n - Ghishzor", -- the "Maldrith Ghishzor" at achiev | "Ghishzor" at site
+    [270] = "唤魂者栖所\n - 唤魂者",
+    [271] = "沃克希斯的巢穴\n - 沃克希斯",
+    [272] = "基夫-伊勒克仪式场地\n - 吉什佐尔",
   }
   --
   L.ToolTip[215] = L.ToolTip[34]
@@ -955,6 +964,9 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [57] = {C = "击败恶潮蟹"}, -- TIDE
     [58] = {C = "击败高姆"}, -- GAULM
     [59] = {C = "击败沃斯科罗娜守护者"}, -- VOSK
+    [60] = {C = "击败唤魂者"}, -- SCALL
+    [61] = {C = "击败沃克希斯"}, -- WOXET
+    [62] = {C = "击败吉什佐尔"}, -- GHISH
   }
   L.DayOfWeek = {
     [0] = "周日",
