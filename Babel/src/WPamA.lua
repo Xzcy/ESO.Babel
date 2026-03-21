@@ -166,7 +166,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
       [8] = {
         Capt = GetString(SI_QUEST_JOURNAL_GENERAL_CATEGORY), -- "Miscellaneous"
         Tab = {
-          [1] = {N=GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES), W=102,},
+          [1] = {N=GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES or SI_TIMED_ACTIVITIES_TITLES), W=102}, -- Endeavors / Challenges
           [2] = {N="委托", W=48,},
           [3] = {N=GetIcon(12,28), NC=GetIcon(12,28,true), W=28, S=true, A=GetString(SI_ZONECOMPLETIONTYPE8)}, -- World Events
           [4] = {N=GetIcon(56,28), NC=GetIcon(56,28,true),
@@ -546,7 +546,7 @@ BB.AddonList["WPamA"] = function() if not WPamA then return false end
     [104] = GetString(SI_LOOT_HISTORY_LEADERBOARD_SCORE) .. ".\n" .. GetString(SI_LEADERBOARDS_RANK_HELP_TOOLTIP),
     [105] = GetString(SI_DAILY_LOGIN_REWARDS_TILE_HEADER) .. " (联盟战争)",
   --
-    [106] = GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES),
+    [106] = GetString(SI_ACTIVITY_FINDER_CATEGORY_TIMED_ACTIVITIES or SI_TIMED_ACTIVITIES_TITLES),
     [107] = "暗影供应者",
     [108] = "暗影供应者冷却计时器",
     [109] = "伙伴默契度",

@@ -1,5 +1,12 @@
 MABabel.ChangeLog = 
 [[
+  2026.03.21
+    常规更新
+    |cFFA500插件版本需求|r：
+      Crutch Alerts → 2.13.0
+      Combat Metronome → 1.7.4
+      Dolgubons Lazy Writ Creator → 4.0.5.3
+
   2026.01.02
     常规更新
     修复了PAT汉化导致二维码无法生成的问题

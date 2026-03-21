@@ -93,8 +93,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_Tooltip_RemoveConnection = "移除与当前预设的链接"
 	L.CSPS_Tooltip_ShowConnection = "链接到子预设: %s\n\n 对该规范所做的更改可以应用到你的角色，但不会保存到当前的预设中。加载构建会自动尝试加载链接的子预设.\n\n|t26:26:esoui/art/miscellaneous/icon_rmb.dds|t: 移除链接"
 
-	L.CSPS_Tooltip_DynamicProfile = "动态配置应从空白开始。每次保存时并非覆盖，而是将修改过的点数追加到配置中。加载一个动态配置时，CSPS将会按照保存的顺序逐步分配点数，直到点数上限。这种方式可以让你在升级过程中持续规划点数分配。"
-
 	L.CSPS_Tooltiptext_LoadAndApply = "加载并应用"
 	L.CSPS_MORPH = "<<1[无变形/变形 1/变形 $d]>>"
 	L.CSPS_MyRank = "等级 %s"
@@ -130,9 +128,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_CPLoadGroup = "加载组: "
 	L.CSPS_CPOldPreset = "连接到已加载预案的 CP 预置会被标记为过时。您仍然可以使用这些预置，但建议切换到一些较新的可用预设"
 	L.CSPS_BuildProfile = "建立预设"
-	L.CSPS_IgnoreSubClasses = "无视副职业"
-	L.CSPS_LAM_ShowAllClassSkills = "显示并编辑所有职业技能"
-	L.CSPS_LAM_ShowAllClassSkillsTT = "启用后，你可以修改并保存未启用职业线中的技能"
 
 	L.CSPS_CPValueTooHigh = "数值高于该技能的最大值"
 
@@ -228,7 +223,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_MSG_NoCPProfiles = "\n\n|cff7723WARNING!|r\n这不是保存CP预设的最佳方法！如果您只想保存CP预设，请使用右上角的三个按钮打开CP预设部分。在那里，您可以找到用于创建和保存预设的单独按钮(|t28:28:esoui/art/champion/champion_points_magicka_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_health_icon-hud-32.dds|t, |t28:28:esoui/art/champion/champion_points_stamina_icon-hud-32.dds|t)"
 	L.CSPS_MSG_CPPaths = "最便宜的解锁路径 '<<C:1>>':\n\n<<2>>"
 	L.CSPS_MSG_CPPathOpt = "|c<<1>>选项 <<2>> (<<3>>)|r:" -- 1 color 2 number 3 points
-	L.CSPS_MSG_SubclassingQuestGoal = "任务 '<<1>>' 还未完成，你需要至少一条尚未训练的技能线 (<<2>>)"
 
 	--	Errorcodes
 	L.CSPS_ErrorNumber1 = "技能已学习"
@@ -237,19 +231,11 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LoadingError = "请检查技能: <<C:1>>"
 
 	-- Options
-	L.CSPS_KeepLastBuild = "在关闭时保留最后一次构建"
-	L.CSPS_KeepLastBuildTT = "如果激活，在关闭窗口时，插件会始终将当前构建保存到一个不可见的配置文件中。下次启动游戏并打开插件时，该配置文件将被加载，这样您就可以继续之前的操作。如果未激活，插件将始终以当前应用的实际构建文件启动"
-	L.CSPS_DeleteLastBuilds = "是否应该删除所有角色的临时预设？"
 	L.CSPS_ShowHb = "显示热区栏"
-	L.CSPS_AutoOpen = "自动打开..."
-	L.CSPS_CPAutoOpen = "CP界面"
 	L.CSPS_CPCustomBar = "单独CP栏"
 	L.CSPS_CPCustomIcons = "自定义CP图标"
 	L.CSPS_CPCustomBarLayout = "图层"
-	L.CSPS_ArmoryAutoOpen = "军械库"
 	L.CSPS_Tooltip_ArmoryAutoOpen = "选定时，使用军械库时显示插件"
-	L.CSPS_SkillWindowAutoOpen = "技能界面"
-	L.CSPS_StatsWindowAutoOpen = "角色界面"
 	L.CSPS_BtnApplyAll = "全部应用"
 	L.CSPS_ShowBtnApplyAll = "显示 '全部应用' 按钮"
 	L.CSPS_ShowDateInProfileName = "在预设名中显示最后修改时间"
@@ -275,17 +261,6 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_LAM_SortCP_1 = "标准"
 	L.CSPS_LAM_SortCP_2 = "按字母顺序"
 	L.CSPS_LAM_SortCP_3 = "按字母顺序, 被动技能独立"
-	L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
-	L.CSPS_IgnoreEmptyOutfitSlots = "无视空置的外观装备栏"
-	L.CSPS_LAM_VersionHistory = "预设历史版本数量"
-	L.CSPS_LAM_VersionHistoryTT = "为一个预设保存多少个历史版本？修改会增大保存变量的文件大小"
-	L.CSPS_LAM_BGAlpha = "背景透明度"
-	L.CSPS_LAM_WinAlpha = "窗口透明度"
-	L.CSPS_LAM_Modules = "已启用模块"
-	L.CSPS_LAM_Module = "模块"
-
-	L.CSPS_Dynamic = "动态"
-	L.CSPS_Static = "常规/静态"
 
 	-- Presets
 	L.CSPS_MSG_SwitchCP = "将CP点投入 |c<<1>>'<<2>>'|r，而不是其他插槽技能，确保始终可能有收益"
@@ -344,6 +319,36 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_CPImp_NoMatch = "找不到任何匹配数据"
 
 	--New with 5.5.0
+  L.CSPS_Tooltip_DynamicProfile = "动态配置应从空白开始。每次保存时并非覆盖，而是将修改过的点数追加到配置中。加载一个动态配置时，CSPS将会按照保存的顺序逐步分配点数，直到点数上限。这种方式可以让你在升级过程中持续规划点数分配。"
+  L.CSPS_IgnoreSubClasses = "无视副职业"
+	L.CSPS_LAM_ShowAllClassSkills = "显示并编辑所有职业技能"
+	L.CSPS_LAM_ShowAllClassSkillsTT = "启用后，你可以修改并保存未启用职业线中的技能"
+  L.CSPS_MSG_SubclassingQuestGoal = "任务 '<<1>>' 还未完成，你需要至少一条尚未训练的技能线 (<<2>>)"
+  L.CSPS_KeepLastBuild = "在关闭时保留最后一次构建"
+	L.CSPS_KeepLastBuildTT = "如果激活，在关闭窗口时，插件会始终将当前构建保存到一个不可见的配置文件中。下次启动游戏并打开插件时，该配置文件将被加载，这样您就可以继续之前的操作。如果未激活，插件将始终以当前应用的实际构建文件启动"
+	L.CSPS_DeleteLastBuilds = "是否应该删除所有角色的临时预设？"
+  
+  L.CSPS_AutoOpen = "自动打开..."
+	L.CSPS_CPAutoOpen = "CP界面"
+	L.CSPS_ArmoryAutoOpen = "军械库"
+	L.CSPS_SkillWindowAutoOpen = "技能界面"
+	L.CSPS_StatsWindowAutoOpen = "角色界面"
+  L.CSPS_LAM_ShowNumSetItems = "在物品名称后显示有效套装物品的数量。如果武器是套装的一部分，编号将显示为（主手/副手）"
+	L.CSPS_LAM_VersionHistory = "预设历史版本数量"
+	L.CSPS_LAM_VersionHistoryTT = "为一个预设保存多少个历史版本？修改会增大保存变量的文件大小"
+	L.CSPS_LAM_BGAlpha = "背景透明度"
+	L.CSPS_LAM_WinAlpha = "窗口透明度"
+	L.CSPS_LAM_Modules = "已启用模块"
+	L.CSPS_LAM_Module = "模块"
+  
+  L.CSPS_Dynamic = "动态"
+	L.CSPS_Static = "常规/静态"
+  
+  -- presets
+  L.CSPS_SingleTarget = "单目标"
+  
+  -- Russian came with v. 5.4.3
+  --New with 5.5.0
 	L.CSPS_ScribingGoToStation = "%s\n请到纂刻台刻印你的纂刻技能（需要花费 %s 墨水）"
 	L.CSPS_CannotBeScribed = "<<1[技能/1 技能/$d 技能]>> 无法刻印"
 	L.CSPS_ScribingGo = "%s\n刻印你的纂刻技能（将消耗 %s 墨水，您拥有 %s）"
@@ -352,7 +357,27 @@ BB.AddonList["CarosSkillPointSaver"] = function() if not CSPS then return false 
 	L.CSPS_ScribingDiag = "%s 技能将被刻印 (这将消耗 %s 墨水)"
 	L.CSPS_ScribeNotEnough = "您无法刻印所选技能（墨水不足）"
 	L.CSPS_CustomStyles = "应用自定义样式: %s\n锁定的自定义样式: %s\n\n%s"
+  L.CSPS_IgnoreEmptyOutfitSlots = "无视空置的外观装备栏"
+
+  -- Spanish came with 5.6.1
+	
+	--New or changed with 6.0.0
+	L.CSPS_RespecCooldown = "技能重置冷却中\nCSPS 将在 %ss 秒后自动重试"
+	L.CSPS_SubclassesIncompatible = "副职业不兼容，已将 <<C:1>> 切换为 <<C:2>>"
+	L.CSPS_QuickSlotPosition1 = "上"
+	L.CSPS_QuickSlotPosition2 = "右上"
+	L.CSPS_QuickSlotPosition3 = "右"
+	L.CSPS_QuickSlotPosition4 = "右下"
+	L.CSPS_QuickSlotPosition5 = "下"
+	L.CSPS_QuickSlotPosition6 = "左下"
+	L.CSPS_QuickSlotPosition7 = "左"
+	L.CSPS_QuickSlotPosition8 = "左上"
+	L.CSPS_MSG_CPPathOpt = "|c<<1>>选项 <<2>> (<<3>>)|r" -- 1 color 2 number 3 points in 6.0.0 only the ":" was deleted
+	-- deleted L.CSPS_MSG_ConfirmAttr1
+	L.CSPS_LAM_DeveloperOptions = "开发者选项"
+	L.CSPS_LAM_DeveloperOptions = "激活隐藏菜单项目显示内部数据"
   
+------------------------------------------
   for stringId, stringValue in pairs(L) do
     ZO_CreateStringId(stringId, stringValue)
   end

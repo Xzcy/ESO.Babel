@@ -79,6 +79,10 @@ do if not BB.SV.BanList["WizardsWardrobe"] then
 
       -- ADDON MENU
       WW_MENU_GENERAL = "常规",
+      WW_MENU_SETUP_DIRECTION = "设置显示方向",
+      WW_MENU_SETUP_DIRECTION_TT = "设置当窗口展开以显示多列时的方向",
+      WW_MENU_SETUP_DIRECTION_VERTICAL = "垂直",
+      WW_MENU_SETUP_DIRECTION_HORIZONTAL = "水平",
       WW_MENU_PRINTCHAT = "输出信息",
       WW_MENU_PRINTCHAT_TT =
       "在聊天栏、警告或屏幕中央公告处，输出加载配装的信息",

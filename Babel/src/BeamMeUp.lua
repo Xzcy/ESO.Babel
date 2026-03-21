@@ -260,7 +260,11 @@ BB.AddonList["BeamMeUp"] = function() if not BMU then return false end
   -- ITEM NAMES (PART OF IT) - BACKUP
   -----------------------------------------------------------------------------
   mkstr(SI.CONSTANT_TREASURE_MAP, "藏宝图") -- need a part of the item name that is in every treasure map item the same no matter which zone
-  mkstr(SI.CONSTANT_SURVEY_MAP, "调查：") -- need a part of the item name that is in every survey map item the same no matter which zone and kind of craft
+  mkstr(SI.CONSTANT_SURVEY_MAP, "调查报告：") -- need a part of the item name that is in every survey map item the same no matter which zone and kind of craft
+  -----------------------------------------------------------------------------
+  -- LibScrollableMenu - Context menu strings --INS260127 Baertram
+  -----------------------------------------------------------------------------
+  mkstr(SI_CONSTANT_LSM_CLICK_SUBMENU_TOGGLE_ALL, "切换所有子菜单的显示/关闭") --todo 260127
   
   --Special Setting
   BB.SetKeybindingsReplace("BMU_ANY_ZONE", "传送至任意区域")

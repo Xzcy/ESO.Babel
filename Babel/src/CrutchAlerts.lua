@@ -58,6 +58,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         ["Alert Threshing Wings"] = {"翻滚之握 警告", "当你需要用格挡避免拉克哈特（尾王）的击退时，显示突出警告"},
         ["Alert Unstable Void"] = {"不稳定虚无 警告", "当你被点名不稳定虚无，需要远离队伍处理时，显示突出警告"},
       },
+      [1548] = { --OC
+        ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
+        ["Alert Spectral Revenge"] = {"幽灵复仇 警告", "Shows a prominent alert when an Osteon Spectral Revenant swipes at you"},
+        ["Alert Dominator's Chains"] = {"主宰者锁链 警告", "Shows a prominent alert when you are about to be tethered to another player"},
+      },
       [1263] = { --RG
         ["|c08BD1DProminent Alerts|r"] = {"|c08BD1D强烈警告|r", "以下警告具有强烈的视觉和音效提示"},
         ["Alert Savage Blitz"] = {"野蛮冲锋 警告", "当奥西索（一王）冲锋时，显示突出警告"},
@@ -114,7 +119,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         ["Show Hoarfrost Timer"] = {"显示 冰风 计时器", "显示一个\"警告\"计时器，当冰风将要杀死你时（老兵难度中）"},
         ["Show Voltaic Overload Timer"] = {"显示 超载 计时器", "显示一个\"警告\"计时器，当处于超载不应切手时"},
       },
-      [1263] = {
+      [1565] = { --Opulent Ordeal
+        ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
+        ["Show Radiant Lamplight Timer"] = {"Show Radiant Lamplight Timer", "Shows an \"alert\" timer for when your nightlight will go out"}
+      },
+      [1263] = { --Rockgrove
         ["|c08BD1DEffect Timers|r"] = {"|c08BD1D效果计时器|r", "这些都是经过精心设计的计时器，与即将到来的开始/获得施法同时显示，通常用于特定的定时机制，如对自身的debuff"},
         ["Show Death Touch Timer"] = {"显示 死亡之触 计时器", "显示一个\"警告\"计时器，当你的巴塞诅咒即将爆炸"},
       },
@@ -218,6 +227,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "对于某些战斗，显示一个计时器，说明何时 BOSS 会变得可伤害、可嘲讽或返回场地等",
                 },
                 {
+                    type = "checkbox",
+                    name = "    固定于信息面板",
+                    tooltip = "将可伤害计时器置于信息面板，而不是单独的UI中",
+                },
+                {
                     type = "divider",
                 },
                 {
@@ -229,6 +243,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示 龙骑 熔岩护甲 计时器",
                     tooltip = "显示熔岩护甲持续时间的计时器",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 龙骑 龙火吞噬 引导计时器",
+                    tooltip = "显示施放龙火吞噬技能的引导计时器",
                 },
                 {
                     type = "checkbox",
@@ -272,6 +291,11 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     tooltip = "为基于百分比的机制显示带有标记的垂直 BOSS 血条",
                 },
                 {
+                    type = "checkbox",
+                    name = "水平血条",
+                    tooltip = "将Boss的血条从左向右显示。注意：仅简单旋转UI并稍作调整，可能存在显示异常",
+                },
+                {
                     type = "slider",
                     name = "尺寸",
                     tooltip = "显示垂直 BOSS 血条的尺寸。注意：某些元素在重新加载前可能无法正确更新尺寸",
@@ -298,10 +322,22 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                         {
                             type = "description",
                             text = "基于血量的机制通常会以 50.999% 这样的百分比显示，但默认用户界面和大多数附加组件都使用 \"zo_round\" 对显示的血量百分比进行四舍五入。这是常见的四舍五入方法，例如 50.4 四舍五入为 50，50.5 四舍五入为 51。这就意味着，当我们说一个机制在 50%时发生，它仍然可以在用户界面上显示 51%！为了解决这个问题，\"向下取整\" 会将小数舍入更小的整数。这意味着 50.999 被舍入为 50，这就与触发 BOSS 机制的方式一致了。不过我还是保留了常用的四舍五入方法作为选项，因为有些人可能更希望整个用户界面保持一致，即使只有半个百分点的差别",
-                        }
+                        },
                     },
                 },
-            }
+            },
+        },
+-- info panel
+        {
+            type = "submenu",
+            name = "信息面板",
+            controls = {
+                {
+                    type = "slider",
+                    name = "尺寸",
+                    tooltip = "信息面板将显示计时器和其他信息，比如Boss下次释放技能的时机",
+                },
+            },
         },
 -- in-world icons
         {
@@ -570,6 +606,42 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                 },
             },
         },
+-- CC
+        {
+            type = "submenu",
+            name = "群体控制",
+            controls = {
+                {
+                    type = "description",
+                    text = "针对被控制时的UI、音效和聊天栏信息选项。这通常包括可以被自行解除的眩晕、恐惧和魅惑等",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 图标UI",
+                    tooltip = "显示一个带有控制类型、技能名称和计时器的环形进度图标",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 更醒目图标UI",
+                    tooltip = "显示一个带有控制类型、技能名称和计时器的环形进度图标。类似于图标界面，但尺寸更大！",
+                },
+                {
+                    type = "checkbox",
+                    name = "播放音效",
+                    tooltip = "当受到控制技能影响时，播放音效",
+                },
+                {
+                    type = "slider",
+                    name = "音效音量",
+                    tooltip = "音效的音量",
+                },
+                {
+                    type = "checkbox",
+                    name = "输出聊天栏信息",
+                    tooltip = "当受到控制技能时，在聊天框中显示关于控制类型、来源、技能和持续时间的信息",
+                },
+            },
+        },
 -- misc
         {
             type = "submenu",
@@ -665,6 +737,42 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示 mini的血条",
                     tooltip = "在竖直Boss血条上显示洛希斯和菲尔姆斯的血条",
+                },
+                {
+                    type = "description",
+                    title = "|c08BD1D信息面板|r",
+                    text = "在一个信息面板中显示所有计时器和其他内容。解锁UI或在聊天栏输入 |c99FF99/crutch unlock|r 来移动信息面板未知位置",
+                },
+                -- TODO: maybe do these programmatically
+                {
+                    type = "dropdown",
+                    name = "显示 洛希斯 狂暴时间和重生时间",
+                    tooltip = "显示洛希斯进入狂暴状态的时间，或他要重生的时间",
+                },
+                {
+                    type = "dropdown",
+                    name = "显示 洛希斯 闪电 计时器",
+                    tooltip = "显示洛希斯需要被打断的群体闪电球技能的冷却",
+                },
+                {
+                    type = "dropdown",
+                    name = "显示 洛希斯 亵渎爆破 计时器",
+                    tooltip = "显示洛希斯点名玩家释放扇形AOE技能的冷却",
+                },
+                {
+                    type = "dropdown",
+                    name = "显示 洛希斯 传送 计时器",
+                    tooltip = "显示洛希斯传送并释放毒云技能的冷却",
+                },
+                {
+                    type = "dropdown",
+                    name = "显示 菲尔姆斯 狂暴时间和重生时间",
+                    tooltip = "显示菲尔姆斯进入狂暴状态的时间，或他要重生的时间",
+                },
+                {
+                    type = "dropdown",
+                    name = "显示 菲尔姆斯 传送 计时器",
+                    tooltip = "显示菲尔姆斯传送攻击并留下AOE技能的冷却",
                 },
             }
         },
@@ -865,8 +973,19 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
         },
         {
             type = "submenu",
+            name = "Opulent Ordeal",
+            controls = ReplaceProminent(1565, Crutch.GetEffectSettings(1565, {
+                {
+                    type = "checkbox",
+                    name = "Show Affinity icons",
+                    tooltip = "Shows icons above players' heads with their respective Affinity debuffs",
+                },
+            })),
+        },
+        {
+            type = "submenu",
             name = "骨笼(OC) 等打过的佬补充汉化",
-            controls = {
+            controls = ReplaceProminent(1548, Crutch.GetProminentSettings(1548, {
                 {
                     type = "checkbox",
                     name = "Show group-wide Caustic Carrion",
@@ -923,7 +1042,22 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     name = "Show Dominator's Chains tether",
                     tooltip = "Shows a line connecting group members who are about to (or have already received) the Dominator's Chains tether from Overfiend Kazpian",
                 },
-            },
+                {
+                    type = "description",
+                    title = "|c08BD1DInfo Panel|r",
+                    text = "Shows timers or other info in a consolidated panel. Unlock the UI or |c99FF99/crutch unlock|r to reposition the info panel.",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show time until Titanic Leap",
+                    tooltip = "Shows an approximate time until the titans may leap again",
+                },
+                {
+                    type = "checkbox",
+                    name = "Show timer for Titanic Clash",
+                    tooltip = "Shows the time until Titanic Clash would damage any remaining players",
+                },
+            })),
         },
         {
             type = "submenu",
@@ -950,6 +1084,46 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示 诅咒点名 图标",
                     tooltip = "在火焰先驱巴塞（二王）战斗中，在被点名诅咒的玩家头顶显示图标和爆炸倒计时",
+                },
+                {
+                    type = "description",
+                    title = "|c08BD1D信息面板|r",
+                    text = "在一个信息面板中显示所有计时器和其他内容。解锁UI或在聊天栏输入 |c99FF99/crutch unlock|r 来移动信息面板未知位置",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 奥西索 毒点名 计时器",
+                    tooltip = "显示奥西索点名玩家放毒技能的冷却",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 奥西索 冲锋 计时器",
+                    tooltip = "显示奥西索点名远距离玩家冲锋的冷却",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 传送门 计时器",
+                    tooltip = "显示传送门编号和巴塞生成传送门的冷却（HM）",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 传送门 方位",
+                    tooltip = "显示当前传送门的方向（巴塞HM）",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 传送门中的玩家数量",
+                    tooltip = "显示当前在传送门中的玩家数量（巴塞HM）",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 巴塞 扇形 计时器",
+                    tooltip = "显示巴塞对坦克扇形技能的冷却",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 巴塞 诅咒地面 计时器",
+                    tooltip = "显示巴塞点名最远两名玩家诅咒AOE技能的冷却",
                 },
                 {
                     type = "description",
@@ -985,6 +1159,31 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "colorpicker",
                     name = "队友轨迹颜色",
                     tooltip = "修改队友轨迹的颜色",
+                },
+                {
+                    type = "description",
+                    title = "|c08BD1D标记危险技能|r",
+                    text = "在巴塞HM的传送门阶段，部分AOE技能可能击杀多个幽灵而产生危险，比如圣骑的日光弹幕。此功能可自定义需要警示的技能。",
+                },
+                {
+                    type = "dropdown",
+                    name = "传送门分配",
+                    tooltip = "你被分配处理的传送门编号",
+                },
+                {
+                    type = "editbox",
+                    name = "添加危险技能",
+                    tooltip = "需要添加到列表中的技能ID。可聊天栏输入 |c99FF99/crutch printskills|r 查看当前装备技能的ID",
+                },
+                {
+                    type = "dropdown",
+                    name = "移除技能",
+                    tooltip = "移除列表中的指定技能",
+                },
+                {
+                    type = "slider",
+                    name = "容错时间",
+                    tooltip = "传送门生成时，危险技能应在此时间（毫秒）内结束。举例来说，设置为4000时，对于持续20s的日光弹幕，将在传送门生成前的16s进行标记并提示",
                 },
             }))),
         },
@@ -1054,6 +1253,16 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
                     type = "checkbox",
                     name = "显示 未处于火焰易伤 图标",
                     tooltip = "当尤尔纳克林使用火焰爆炸时，为不处于火焰易伤的玩家显示图标，这主要用于帮助OT前往正确的人群",
+                },
+                {
+                    type = "description",
+                    title = "|c08BD1D信息面板|r",
+                    text = "在一个信息面板中显示所有计时器和其他内容。解锁UI或在聊天栏输入 |c99FF99/crutch unlock|r 来移动信息面板未知位置",
+                },
+                {
+                    type = "checkbox",
+                    name = "显示 尤尔纳克林 火焰爆炸 倒计时",
+                    tooltip = "显示尤尔纳克林点名玩家分摊火焰AOE技能的冷却",
                 },
             })),
         },
@@ -1258,6 +1467,7 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["夕月"] = "Selene",
       ["诺丽纹"] = "Noriwen",
       ["查娜·尼林修女"] = "Sister Chana Nirine",
+      ["“大块头”达格伦德"] = "Dagrund the Bulky",
       ["尼撒兹达"] = "Nisaazda",
       ["格伦德伍尔夫"] = "Grundwulf",
       ["飞升的维科萨"] = "Vykosa the Ascendant",
@@ -1411,6 +1621,8 @@ BB.AddonList["CrutchAlerts"] = function() if not CrutchAlerts then return false 
       ["阿尔库纳！"] = "Alcunar!",
       --"Sister Chana Nirine"
       ["你永远无法读到这卷轴的内容！"] = "You'll never read this scroll!",
+      --"Dagrund the Bulky",
+      ["巨魔血液一定就在这附近！继续找。"] = "Troll's blood, it has to be here somewhere! Keep an eye out.",
       --"Nisaazda",
       ["雷纳德很狡猾，但尼撒兹达会很快抓到他的。你的好运到头了。"] = "Renald is slippery, but Nisaazda will catch him in time. You will not be so lucky.",
       ["我可以不那么做。"] = "This one won't have to.",

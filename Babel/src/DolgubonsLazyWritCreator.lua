@@ -78,9 +78,12 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
     }
   end
   
-  local function masterWritSmithCraft(link, trait, style, quality, writName)
-    local partialString = zo_strformat("<<t:5>>: 制作一件 <<t:1>> (CP150, <<t:2>>特性, <<t:3>> 风格，<<t:4>> 品质)", link, trait, style, quality, writName)
-    return partialString
+  local function masterWritSmithCraft(link, trait, style, quality, writName, usedMimicStone)
+    if usedMimicStone then
+      return zo_strformat("<<t:5>>: 消耗王冠复制石，制作一件 <<t:1>> (CP150, <<t:2>> 特性, <<t:3>> 风格，<<t:4>> 品质)", link, trait, style, quality, writName)
+    else
+      return zo_strformat("<<t:5>>: 制作一件 <<t:1>> (CP150, <<t:2>> 特性, <<t:3>> 风格，<<t:4>> 品质)", link, trait, style, quality, writName)
+    end
   end
 
 --[[ 不需要写的内容，default中定义的，防止翻译缺失的元表操作
@@ -200,6 +203,7 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.strings['deconstructSuccess']			= "Writ Crafter: 已分解 <<1>>"
   WritCreater.strings['potion']						= "药水"
   WritCreater.strings['poison']						= "毒药"
+  WritCreater.strings['junkSold']					= "Writ Crafter: 出售所有垃圾"
   
   --设置部分
   --[[ 同上，不需要写的元表操作部分
@@ -351,9 +355,10 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings["jubilee tooltip"] = "自动打开周年纪念和泽尼萨尔活动的容器"
   WritCreater.optionStrings["skin"] = "UI皮肤"
   WritCreater.optionStrings["skinTooltip"] = "懒人制造UI界面的皮肤"
-  WritCreater.optionStrings["skinOptions"] = {"默认", "奶酪", "山羊"}
+  WritCreater.optionStrings["skinOptions"] = {"默认", "奶酪", "山羊", "惊人"}
   WritCreater.optionStrings["goatSkin"]	= "山羊"
   WritCreater.optionStrings["cheeseSkin"]	= "奶酪"
+  WritCreater.optionStrings["fabulousSkin"]	= "惊人"
   WritCreater.optionStrings["defaultSkin"] = "默认"
   WritCreater.optionStrings["rewardChoices"] = {
     "无",
@@ -384,7 +389,7 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['smartMultiplier'] = "智能批量日常委托"
   WritCreater.optionStrings['smartMultiplierTooltip'] = "启用时，将尝试制造3天内的日常委托，并会将已有的物品纳入计算。关闭时，仅制造当天日常委托的物品。"
   WritCreater.optionStrings['craftHousePort']	= "传送至制造特化住宅"
-  WritCreater.optionStrings['craftHousePortTooltip'] = "传送至一个公开可用的制造特化住宅"
+  WritCreater.optionStrings['craftHousePortTooltip'] = "传送至一个公开可用的制造特化住宅。如果经常使用此功能，可用LibRadialMenu来创建快捷键。"
   WritCreater.optionStrings['craftHousePortButton'] = "传送"
   WritCreater.optionStrings['reportBug'] = "汇报bug"
   WritCreater.optionStrings['reportBugTooltip']	= "发帖汇报插件bug，尤其是主机版本的。请确认该问题此前未被报告过。"
@@ -392,11 +397,11 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['donate']	= "捐助"
   WritCreater.optionStrings['donateTooltip'] = "通过Paypal向Dolgubon捐助"
   WritCreater.optionStrings['writStats'] = "委托奖励统计"
-  WritCreater.optionStrings['writStatsTooltip'] = "查看安装本插件后完成的委托奖励历史统计"
+  WritCreater.optionStrings['writStatsTooltip'] = "查看安装本插件后完成的委托奖励历史统计。如果经常使用此功能，可用LibRadialMenu来创建快捷键。"
   WritCreater.optionStrings['writStatsButton'] = "打开窗口"
   
   WritCreater.optionStrings['queueWrits']	= "将所有密封委托加入队列"
-  WritCreater.optionStrings['queueWritsTooltip'] = "将背包中所有密封委托加入制作队列"
+  WritCreater.optionStrings['queueWritsTooltip'] = "将背包中所有密封委托加入制作队列。如果经常使用此功能，可用LibRadialMenu来创建快捷键。"
   WritCreater.optionStrings['queueWritsButton']	= "加入队列"
   WritCreater.optionStrings['mainSettings']	= "主要设置"
   WritCreater.optionStrings['statusBarHorizontal']	= "水平位置"
@@ -405,6 +410,15 @@ BB.AddonList["DolgubonsLazyWritCreator"] = function() if not WritCreater then re
   WritCreater.optionStrings['statusBarVerticalTooltip'] = "状态条的垂直位置"
   WritCreater.optionStrings['keepItemWritFormat'] = "保留 <<1>>"
   WritCreater.optionStrings["npcStyleStoneReminder"] = "提示：你可以从任意制作类NPC商人处以每个15金币的价格购买基础种族的风格样式材料"
+  
+  WritCreater.optionStrings['voucherCount'] = "计数：未获取的任务令卷"
+  WritCreater.optionStrings['voucherCountTooltip'] = "输出玩家背包和银行中所有密封的大师制作委托的任务令卷总数"
+  WritCreater.optionStrings['surveyCount'] = "计数：调查报告"
+  WritCreater.optionStrings['surveyCountTooltip'] = "输出玩家背包和银行中所有调查报告的总数"
+  WritCreater.optionStrings["mimicStoneUse"] = "在大师委托中使用王冠复制石"
+  WritCreater.optionStrings["mimicStoneUseTooltip"] = "定义大师委托制作中如何使用王冠复制石，并清空当前制作队列"
+  WritCreater.optionStrings['mimicStoneUseChoices'] = {"不使用" , "总是使用", "无样式材料时使用", "样式材料>1k金币", "样式材料>3k金币"}
+  WritCreater.optionStrings['masterWritQueueCleared'] = "已清空大师委托制作队列"
   
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_CRAFT_ITEMS", "制作物品")
   ZO_CreateStringId("SI_BINDING_NAME_WRIT_CRAFTER_OPEN", "显示委托制造状态窗口")

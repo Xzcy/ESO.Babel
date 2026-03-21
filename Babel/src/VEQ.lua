@@ -366,10 +366,6 @@ BB.AddonList["VEQ"] = function() if not VEQ then return false end
     ["lang_up_bank"] = "金币！升级你的银行空间",
     ["lang_bank_mon"] = "银行家或信贷商",
     
-    -- 努力	
-    ["lang_endeavor_week"] = "勉励任务（周常）",
-    ["lang_endeavor_day"] = "勉励任务（日常）",
-    
     -- 活动门票和蜕变水晶
     ["lang_event_tickets"] = "活动奖票",
     ["lang_transmute_crystals"] ="蜕变水晶",
@@ -547,8 +543,8 @@ BB.AddonList["VEQ"] = function() if not VEQ then return false end
     ["lang_stable_tip"] = "添加一个小任务，在满足条件后立即升级您的骑术",	
     ["lang_backbank_opt"] = "背包和银行升级迷你任务",
     ["lang_backbank_tip"] = "添加一个小任务来升级你的背包或银行空间，只要你有所需的金币",		
-    ["lang_endeavor_opt"] = "每日和每周勉励迷你任务",
-    ["lang_endeavor_tip"] = "将每日和每周的勉励任务添加一个迷你任务。",
+    ["lang_TamrielTomes_opt"] = "泰姆瑞尔古籍迷你任务",
+    ["lang_TamrielTomes_tip"] = "将泰姆瑞尔古籍添加为迷你任务",
     ["lang_tickets_opt"] = "消费活动门票迷你任务",
     ["lang_tickets_tip"] = "一个小任务，当您的活动门票达到您设置的最小剩余上限时花费您的活动票",	
     ["lang_tickets_limit"] = "剩余的最小事件门票上限触发器",

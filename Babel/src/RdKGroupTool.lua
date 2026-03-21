@@ -314,9 +314,16 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.DT_PROGRESS_COLOR_DEEP_FISSURE = "深渊撕裂 1段: 进度颜色"
   RdKGToolMenu.constants.DT_FONT_COLOR_DEEP_FISSURE2 = "深渊撕裂 2段: 字体颜色"
   RdKGToolMenu.constants.DT_PROGRESS_COLOR_DEEP_FISSURE2 = "深渊撕裂 2段: 进度颜色"
+  RdKGToolMenu.constants.DT_FONT_COLOR_SOUL_OF_FLAME = "烈焰之魂: 字体颜色"
+  RdKGToolMenu.constants.DT_PROGRESS_COLOR_SOUL_OF_FLAME = "烈焰之魂: 进度颜色"
+  RdKGToolMenu.constants.DT_SOUL_OF_FLAME_PROMPT_ENABLED = "烈焰之魂: 施法提示"
+  RdKGToolMenu.constants.DT_SOUL_OF_FLAME_TEXT = "施法提示文本"
   RdKGToolMenu.constants.DT_SIZE = "尺寸"
   RdKGToolMenu.constants.DT_MODE = "模式"
   RdKGToolMenu.constants.DT_SMOOTH_TRANSITION = "平滑过渡"
+  RdKGToolMenu.constants.DT_SOUL_BETWEEN_DESC = "显示 烈焰之魂 提示窗"
+  RdKGToolMenu.constants.DT_SOUL_BETWEEN1 = "之间"
+  RdKGToolMenu.constants.DT_SOUL_BETWEEN2 = "和"
 
   --Group Beams
   RdKGToolMenu.constants.GB_HEADER = "|c4592FF团队光束|r"
@@ -411,6 +418,15 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.SM_ITEM_POT_RED = "联盟生命药水"
   RdKGToolMenu.constants.SM_ITEM_POT_GREEN = "联盟战斗药水"
   RdKGToolMenu.constants.SM_ITEM_POT_BLUE = "联盟法术药水"
+  RdKGToolMenu.constants.SM_ITEM_TRI_POT = "绑定的三回药水"
+  RdKGToolMenu.constants.SM_ITEM_CF_TACK = "西罗帝尔战地粗面包"
+  RdKGToolMenu.constants.SM_ITEM_CF_TREAT = "西罗帝尔战地甜点"
+  RdKGToolMenu.constants.SM_ITEM_CF_BAR = "西罗帝尔战地干粮块"
+  RdKGToolMenu.constants.SM_ITEM_CF_BREW = "西罗帝尔战地饮料"
+  RdKGToolMenu.constants.SM_ITEM_CF_TEA = "西罗帝尔战地茶饮"
+  RdKGToolMenu.constants.SM_ITEM_CF_TONIC = "西罗帝尔战地补剂"
+  RdKGToolMenu.constants.SM_ITEM_SOUL_GEM = "灵魂石"
+  RdKGToolMenu.constants.SM_ITEM_SOUL_GEM_EMPTY = "灵魂石 (空)"
 
   --Recharger
   RdKGToolMenu.constants.RECHARGER_HEADER = "|c4592FF充能|r"
@@ -537,6 +553,7 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.SP_SYNERGY_GRYPHON = "阻止 狮鹫劫掠（狮鹫劫掠） 协同"
   RdKGToolMenu.constants.SP_SYNERGY_RUNEBREAK = "阻止 瑕疵之环 协同"
   RdKGToolMenu.constants.SP_SYNERGY_PASSAGE = "阻止 多界通道 协同"
+  RdKGToolMenu.constants.SP_SYNERGY_RECOVERY = "阻止 汇聚释放（恢复汇聚） 协同"
 
   --Synergy Overview
   RdKGToolMenu.constants.SO_HEADER = "|c4592FF协同概述|r"
@@ -575,6 +592,7 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.SO_SYNERGY_GRYPHON = "显示 狮鹫劫掠（狮鹫劫掠） 协同"
   RdKGToolMenu.constants.SO_SYNERGY_RUNEBREAK = "显示 瑕疵之环 协同"
   RdKGToolMenu.constants.SO_SYNERGY_PASSAGE = "显示 多界通道 协同"
+  RdKGToolMenu.constants.SO_SYNERGY_RECOVERY = "显示 汇聚释放（恢复汇聚） 协同"
   RdKGToolMenu.constants.SO_REDUCED_SPACING = "缩小间距"
 
   --Role Assignment
@@ -602,6 +620,31 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
   RdKGToolMenu.constants.AM_QUEST_CONDITION_CHANGED = "任务条件 信息"
   RdKGToolMenu.constants.AM_DAEDRIC_ARTIFACT_OBJECTIVE_SPAWNED_BUT_NOT_REVEALED = "神器生成 信息"
   RdKGToolMenu.constants.AM_DAEDRIC_ARTIFACT_OBJECTIVE_STATE_CHANGED = "神器状态 信息"
+  
+  --Push Timer
+  RdKGToolMenu.constants.PT_HEADER = "|c4592FF延迟伤害计时器|r"
+  RdKGToolMenu.constants.PT_ENABLED = "启用"
+  RdKGToolMenu.constants.PT_POSITION_FIXED = "固定位置"
+  RdKGToolMenu.constants.PT_PVP_ONLY = "仅PvP"
+  RdKGToolMenu.constants.PT_FONT_COLOR = "字体颜色"
+  RdKGToolMenu.constants.PT_LEAD_COLOR = "引导线颜色"
+  RdKGToolMenu.constants.PT_SHALK_COLOR = "虫爆 颜色"
+  RdKGToolMenu.constants.PT_SOUL_COLOR = "烈焰之魂 颜色"
+  RdKGToolMenu.constants.PT_DETO_COLOR = "魔力引爆 颜色"
+  RdKGToolMenu.constants.PT_SIZE = "尺寸"
+  RdKGToolMenu.constants.PT_SMOOTH_TRANSITION = "平滑过渡"
+  RdKGToolMenu.constants.PT_LEAD_LINE_COLOR = "引导线颜色"
+  RdKGToolMenu.constants.PT_TIMER_ENABLED = "启用计时器窗口"
+  RdKGToolMenu.constants.PT_TIMER_TEXT_ENABLED = "启用计时器文本"
+  RdKGToolMenu.constants.PT_TIMER_SHOW_ALL_ENABLED = "显示所有"
+  RdKGToolMenu.constants.PT_OVERVIEW_ENABLED = "启用概览计时器"
+  RdKGToolMenu.constants.PT_OVERVIEW_SIZE = "尺寸"
+  RdKGToolMenu.constants.PT_OVERVIEW_COLOR = "颜色"
+  RdKGToolMenu.constants.PT_REACTION_ENABLED = "启用计时器反应"
+  RdKGToolMenu.constants.PT_REACTION_SIZE = "尺寸"
+  RdKGToolMenu.constants.PT_REACTION_COLOR = "颜色"
+  RdKGToolMenu.constants.PT_REACTION_TEXT = "显示文本"
+  RdKGToolMenu.constants.PT_REACTION_TIME = "文本显示时长"
 
   --Util
   RdKGToolMenu.constants.UTIL_HEADER = "|cFF8174通用设置|r"
@@ -756,9 +799,11 @@ BB.AddonList["RdKGroupTool"] = function() if not _G['RdKGTool'] then return fals
 
   --Detonation Tracker
   RdKGToolDt.constants.modes = RdKGToolDt.constants.modes or {}
-  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_BOTH] = "两者"
+  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_BOTH] = "所有"
   RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_DETONATION] = "魔力引爆"
   RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_SHALK] = "虫爆"
+  RdKGToolDt.constants.modes[RdKGToolDt.constants.MODE_SOUL_OF_FLAME] = "烈焰之魂"
+  RdKGToolDt.constants.DT_SOUL_OF_FLAME_TEXT = "释放烈焰之魂！"
 
   --I See Dead People
   RdKGToolIsdp.constants = RdKGToolIsdp.constants or {}
